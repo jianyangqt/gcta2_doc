@@ -1,0 +1,30 @@
+{
+    "name": "gcta_web",
+    "version": "2.0.0",
+    "description": "The GCTA web site",
+    "main": "ch_params.js",
+    "private": true,
+    "scripts": {
+        "convert": "showdown makehtml -i whole.md -o whole.html",
+        "combine": "awk 'FNR==1{print \"\"}1' md/*.md > whole.md",
+        "fix": "node mkHTML.js",
+        "minify": "html-minifier --input-dir ./build --output-dir ./pub --collapse-whitespace --file-ext html",
+        "min": "uglifyjs ./build/static/js/jquery.tocify.js -o ./build/static/js/jquery.tocify.js -c -m",
+        "clean": "rm *.html *.md",
+        "build": "npm run combine && npm run convert && npm run fix && npm run min && npm run clean && echo 'Done, see ./build' && echo 'Do not forget to update the inter site links, print new PDF document and update the PDF and gcta package in static to latest'"
+    },
+    "keywords": [
+        "GCTA"
+    ],
+    "author": "Zhili Zheng",
+    "license": "GPL-3.0",
+    "devDependencies": {
+        "copy-dir": "^0.3.0",
+        "fs": "0.0.1-security",
+        "html-minifier": "^3.4.3",
+        "jquery": "^3.2.1",
+        "jsdom": "^9.12.0",
+        "showdown": "^1.6.4",
+        "uglify-js": "^2.8.22"
+    }
+}
