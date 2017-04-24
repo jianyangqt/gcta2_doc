@@ -1,28 +1,27 @@
 # GCTA_doc
 Document of GCTA
 
-## Install NPM
+## Install node.js and npm
 
-## Install NPM packages
+## Install the embeded npm packages
 cd the cloned folder
 ```
 npm install
 ```
 
 ## Revise the Markdown files
-In md folder
-
-We can use any markers from Markdown.
+Revise the Markdown file in the **md** folder. We can use any markers from Markdown.
 
 Some additional notes:
 
 * Use ## as the header to show on the left navigation bar 
 
-> Put {: .expand} to the end of ##, so the page will expand the contents not list the sub-titles when clicked;
+> Put {: .expand} to the end of ##, if we need to expand the contents other than a list of 
+the sub-titles when clicked;
 
 * Use ### to show as sub-header title. 
 
-> Put {: .notoc} to the end of ###, so this sub-title will not show in the navigation bar. 
+> Put {: .notoc} to the end of ###, if we don't like this sub-title to show in the navigation bar. 
 
 We can not make these titles too long, because it will mess the navigation bar
 
@@ -49,13 +48,13 @@ npm run build
 
 ## Create a zip of build folder, and send it to the web administrator.
 
-> Note:
-> Don't forget to put the new GCTA in the build folder
+> Note:  
+> Don't forget to put the new GCTA in the build folder  
 > Don't package the whole folder, only the **build** folder is needed for the deployment.
 
 
-## Contact
+## Help
 
-If you have addtional problems, email zhilizheng@outlook.com for help.
+If you have addtional problems, email zhilizheng@uq.edu.au (or zhilizheng@outlook.com) for help.
 
-
+If we want to change the styple of the web site, we need to change the **template**, not to change the builded web page directly.
