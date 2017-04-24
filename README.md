@@ -52,6 +52,8 @@ npm run build
 
 4. Put the latest GCTA into build/static with the name gcta_latest.zip
 
+*Note: this offline documents are for some users that have very old browsers, it is not prefered thus invisible to ordinary users*
+
 ## Create a zip of build folder
 
 Send the zip file to the web administrator.
@@ -65,4 +67,4 @@ Send the zip file to the web administrator.
 
 If you have addtional problems, email zhilizheng@uq.edu.au (or zhilizheng@outlook.com) for help.
 
-If we want to change the styple of the web site, we need change the **template**, not the builded web page directly.
+If we want to change the style of the web site, we need change the **template**, don't revise the builded web page directly.
