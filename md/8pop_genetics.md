@@ -64,3 +64,32 @@ Examples
 # Input the GRM file and output the first 20 eigenvectors for a subset of individuals
 gcta64  --grm test --keep test.indi.list  --pca 20  --out test
 ```
+
+### PC loading and projection
+
+--pc-loading  pca
+Generate the SNP loading according the the GCTA-PCA results
+
+--project-loading snp_loading 20  
+Project the genotype into the SNP loading, and generate 20 principal component
+
+> Note: 
+> * The SNPs mismatch will obsolete in the PC loadings, so it might be biased if lots of SNPs missing in the target genotype.
+> * The default mode is using the MAF in reference genotype to caculate the projection, which is coincided with EIGENSOFT projection.
+
+**Example**  
+SRC: source genotype, the source genotype to generate PC  
+TAR: target genotype to project the PC to SRC
+```bash
+# make GRM
+gcta64 --bfile SRC --maf 0.01 --autosome --make-grm --out SRC
+# PCA analysis
+gcta64 --grm SRC --pca 20 --out SRC_pca20
+
+# use the pca generated above to produce the SNP loading
+gcta64 --bfile SRC --pc-loading SRC_pca20 --out SRC_snp_loading
+
+# project the TAR to the SNP loading. The number 20 is the PC want to project.
+# It is the same if do chromosome by chromosome caculation add them up after each caculation 
+gcta64 --bfile TAR --project-loading SRC_snp_loading 20 --out TAR_pca20
+```
