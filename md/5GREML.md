@@ -515,7 +515,8 @@ rs9777703 1 918699 0.0301614 0.00131291 999 0.854464 2.31159 2.75538
 .... 
 ```
 
-#### Step 2: stratify the SNPs by segment-based LD scores in R
+#### Step 2 (option #1): stratify the SNPs by segment-based LD scores in R
+This assumes that functional SNPs are clustered in regions with higher or lower LD.  
 Below is an example of R script to stratify the SNPs by the segment-based mean LD scores.
 ```r
 lds_seg = read.table("test.score.ld",header=T,colClasses=c("character",rep("numeric",8)))
@@ -525,6 +526,28 @@ lb1 = which(lds_seg$ldscore_region <= quartiles[2])
 lb2 = which(lds_seg$ldscore_region > quartiles[2] & lds_seg$ldscore_region <= quartiles[3])
 lb3 = which(lds_seg$ldscore_region > quartiles[3] & lds_seg$ldscore_region <= quartiles[5])
 lb4 = which(lds_seg$ldscore_region > quartiles[5])
+
+lb1_snp = lds_seg$SNP[lb1]
+lb2_snp = lds_seg$SNP[lb2]
+lb3_snp = lds_seg$SNP[lb3]
+lb4_snp = lds_seg$SNP[lb4]
+
+write.table(lb1_snp, "snp_group1.txt", row.names=F, quote=F, col.names=F)
+write.table(lb2_snp, "snp_group2.txt", row.names=F, quote=F, col.names=F)
+write.table(lb3_snp, "snp_group3.txt", row.names=F, quote=F, col.names=F)
+write.table(lb4_snp, "snp_group4.txt", row.names=F, quote=F, col.names=F)
+```
+
+#### Step 2 (option #2): stratify the SNPs by LD scores of individual SNPs in R
+Below is an example of R script to stratify the SNPs by the LD scores of individual SNPs.
+```r
+lds_seg = read.table("test.score.ld",header=T,colClasses=c("character",rep("numeric",8)))
+quartiles=summary(lds_seg$ldscore_SNP)
+
+lb1 = which(lds_seg$ldscore_SNP <= quartiles[2])
+lb2 = which(lds_seg$ldscore_SNP > quartiles[2] & lds_seg$ldscore_SNP <= quartiles[3])
+lb3 = which(lds_seg$ldscore_SNP > quartiles[3] & lds_seg$ldscore_SNP <= quartiles[5])
+lb4 = which(lds_seg$ldscore_SNP > quartiles[5])
 
 lb1_snp = lds_seg$SNP[lb1]
 lb2_snp = lds_seg$SNP[lb2]
@@ -557,12 +580,6 @@ test_group1
 test_group2
 ...
 ```
-
-**Summary**  
-1) GREML-LDMS can provide an unbiased estimate of heritability using whole genome sequencing data regardless of the MAF and LD properties of the causal variants.  
-2) ~97% of variation at common sequence variants and ~68% of variation at rare variants can be captured by SNP-array based genotyping followed by 1000G imputation, irrespective of the types of SNP arrays used.  
-3) The narrow-sense heritability is likely to be 60~70% for height and 30%~40% for BMI, the majority of which can be explained by all the 1000G imputed variants. Therefore, the missing heritability for either height or BMI is small (negligible).  
-4) Height and BMI associated loci have been under natural selection.
 
 #### References:
 
@@ -859,31 +876,67 @@ h2O_func <- function(ncase, ncontrol, K, h2L, var_pi=2e-5){
 }
 ```
 
-
 ### GCTA-HEreg: Haseman-Elston regression analysis
 
-An alternative to GCTA-GREML analysis.
+Haseman-Elston (HE) regression is a moment-based method for estimating the heritability. It is computationally much more efficient but slightly less powerful than REML as the SE of the estimate from HE regression is larger than that from REML. We implemented a HE regression that allows fitting multiple GRMs and facilitates bivariate analysis as in the GREML analysis, and only requires a small amount of memory (e.g. <2GB for n=120,000). The bivariate analysis is essentially three sets of independent HE regression for the variance and covariance components, where the sampling variance/covariance of the estimates (including the genetic correlation rG) are computed using leave-one-individual-out Jackknife technique.
 
 > Example
 ```bash
+# One GRM
 gcta64 --HEreg --grm test --pheno test.phen --out test
+
+# Multiple GRMs
+gcta64 --HEreg --mgrm multi_grm.txt --pheno test.phen --out test
+
+# Bivariate analysis with one GRM
+gcta64 --HEreg-bivar 1 2 --grm test --pheno test.phen --out test
+
+# Bivariate analysis with multiple GRMs
+gcta64 --HEreg-bivar 1 2 --mgrm multi_grm.txt --pheno test.phen --out test
 ```
 
-> Output 
-> Results are saved in *.HEreg file.
+> Output results are saved in *.HEreg file.
+
+> Univariate analysis with one GRM
+> * HE-SD: HE regression using the square difference of the phenotypes for pairwise individuals  
+> * HE-CP: HE regression using the cross product of the phenotypes for pairwise individuals
+> * SE_OLS: standard error estimated from the ordinary least squares, which is likely to be an underestimation in a large sample
+> * SE_Jackknife: standard error estimated using leave-one-individual-out Jackknife technique
 ```nohighlight
-HE-SD
-Coefficient	Estimate	SE	P
-Intercept	   1.99992 0.00099822          0
-Slope	    -0.31676    0.0145436 3.62279e-105
-V(G)/Vp	0.158386	0.00727212
-
 HE-CP
-Coefficient	Estimate	SE	P
-Intercept	-0.000213987 0.00036016   0.552416
-Slope	    0.158594   0.00524738 1.20002e-200
-V(G)/Vp	0.158594	0.00524738
+Coefficient     Estimate        SE_OLS          SE_Jackknife    P_OLS           P_Jackknife     
+Intercept       -2.8813e-06     1.11965e-05     8.16333e-08     0.79692         6.83316e-273    
+V(G)/Vp         0.710794        0.00260404      0.0118354       0               0               
+
+HE-SD
+Coefficient     Estimate        SE_OLS          SE_Jackknife    P_OLS           P_Jackknife     
+Intercept       -0.999995       1.62064e-05     0.00416409      0               0               
+V(G)/Vp         0.709868        0.0037692       0.0121754       0               0               
 ```
 
-HE-SD: HE regression using the square difference of the phenotypes for pairwise individuals  
-HE-CP: HE regression using the cross product the phenotypes for pairwise individuals
+> Bivariate analysis with two GRMs
+```nohighlight
+HE-CP
+Coefficient         Estimate        SE_OLS          SE_Jackknife    P_OLS           P_Jackknife     
+Intercept_tr1       -1.73059e-05    2.77668e-05     2.7531e-07      0.533114        0               
+Intercept_tr2       -1.4924e-05     2.50997e-05     2.38696e-07     0.552119        0               
+Intercept_tr12      2.94888e-06     1.86676e-05     8.62647e-06     0.874481        0.732469        
+V(G1)/Vp_tr1        0.65882         0.0064606       0.0175264       0               3.12495e-309    
+V(G1)/Vp_tr2        0.696183        0.00584055      0.0174994       0               0               
+C(G1)/Vp_tr12       0.660164        0.00434369      0.0115293       0               0               
+V(G2)/Vp_tr1        0.0140144       0.00116567      0.00228244      2.70237e-33     8.24779e-10     
+V(G2)/Vp_tr2        0.0112924       0.00105554      0.00201111      1.03724e-26     1.96549e-08     
+C(G2)/Vp_tr12       0.012702        0.000784421     0.0014176       5.66913e-59     3.24039e-19     
+Sum of V(G)/Vp_tr1  0.672834        0.00656473      0.0178002       0               1.16416e-312    
+Sum of V(G)/Vp_tr2  0.707476        0.0059348       0.0177104       0               0               
+Sum of C(G)/Vp_tr12 0.672866        0.00441375      0.011687        0               0               
+rG1                 0.97478         0.00898327      0.0125365       
+rG2                 1.0097          0.0887597       0.114919        
+Total rG            0.975256        0.0089607       0.0124629       
+N_tr1               50930           
+N_tr2               56342           
+```
+
+#### References
+
+Yang J, Zeng J, Goddard ME, Wray NR, Visscher PM  (2017) Concepts, estimation and interpretation of SNP-based heritability. Under review.

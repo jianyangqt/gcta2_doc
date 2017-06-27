@@ -2,7 +2,7 @@
     "name": "gcta_web",
     "version": "2.0.0",
     "description": "The GCTA web site",
-    "main": "ch_params.js",
+    "main": "",
     "private": true,
     "scripts": {
         "convert": "showdown makehtml -i whole.md -o whole.html",
@@ -10,7 +10,7 @@
         "fix": "node mkHTML.js",
         "minify": "html-minifier --input-dir ./build --output-dir ./pub --collapse-whitespace --file-ext html",
         "min": "uglifyjs ./build/static/js/jquery.tocify.js -o ./build/static/js/jquery.tocify.js -c -m",
-        "clean": "rm *.html *.md",
+        "clean": "rm whole.html whole.md whole_moded.html",
         "build": "npm run combine && npm run convert && npm run fix && npm run min && npm run clean && echo 'Done, see ./build' && echo 'Do not forget to update the inter site links, print new PDF document and update the PDF and gcta package in static to latest'"
     },
     "keywords": [

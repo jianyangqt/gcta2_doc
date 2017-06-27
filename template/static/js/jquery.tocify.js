@@ -95,7 +95,7 @@
 
                 // **smoothScroll**: Accepts a boolean: true or false
                 // Determines if a jQuery animation should be used to scroll to specific table of contents items on the page
-                smoothScroll: true,
+                smoothScroll: false,
 
                 // **smoothScrollSpeed**: Accepts Number (milliseconds) or String: "slow", "medium", or "fast"
                 // The time duration of the smoothScroll animation

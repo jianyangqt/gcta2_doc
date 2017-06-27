@@ -21,10 +21,10 @@
             </div>
             <div class="span5">
                 <ul class="nav nav-pills">
-                    <li role="presentation" class="active"><a href="#">GCTA</a></li>
+                    <li role="presentation" class="active"><a href="http://cnsgenomics.com/software/gcta">GCTA</a></li>
                     <li role="presentation"><a href="http://gcta.freeforums.net/">GCTA forum</a></li>
                     <li role="presentation"><a href="http://cnsgenomics.com/software/smr/">SMR</a></li>
-                    <li role="presentation"><a href="http://cnsgenomics.com/software/smr/gsmr.html">GSMR</a></li>
+                    <li role="presentation"><a href="http://cnsgenomics.com/software/gsmr/">GSMR</a></li>
                     <li role="presentation"><a href="http://cnsgenomics.com/">Program in CTG</a></li>
                 </ul>
 
@@ -1038,8 +1038,9 @@ rs28705211 1 890368 0.278112 0.000573876 999 0.216874 1.5733 2.75538
 rs9777703 1 918699 0.0301614 0.00131291 999 0.854464 2.31159 2.75538
 .... 
 </code></pre>
-<h4 id="step2stratifythesnpsbysegmentbasedldscoresinr">Step 2: stratify the SNPs by segment-based LD scores in R</h4>
-<p>Below is an example of R script to stratify the SNPs by the segment-based mean LD scores.</p>
+<h4 id="step2option1stratifythesnpsbysegmentbasedldscoresinr">Step 2 (option #1): stratify the SNPs by segment-based LD scores in R</h4>
+<p>This assumes that functional SNPs are clustered in regions with higher or lower LD.<br>
+Below is an example of R script to stratify the SNPs by the segment-based mean LD scores.</p>
 <pre><code class="r language-r">lds_seg = read.table("test.score.ld",header=T,colClasses=c("character",rep("numeric",8)))
 quartiles=summary(lds_seg$ldscore_region)
 
@@ -1047,6 +1048,26 @@ lb1 = which(lds_seg$ldscore_region &lt;= quartiles[2])
 lb2 = which(lds_seg$ldscore_region &gt; quartiles[2] &amp; lds_seg$ldscore_region &lt;= quartiles[3])
 lb3 = which(lds_seg$ldscore_region &gt; quartiles[3] &amp; lds_seg$ldscore_region &lt;= quartiles[5])
 lb4 = which(lds_seg$ldscore_region &gt; quartiles[5])
+
+lb1_snp = lds_seg$SNP[lb1]
+lb2_snp = lds_seg$SNP[lb2]
+lb3_snp = lds_seg$SNP[lb3]
+lb4_snp = lds_seg$SNP[lb4]
+
+write.table(lb1_snp, "snp_group1.txt", row.names=F, quote=F, col.names=F)
+write.table(lb2_snp, "snp_group2.txt", row.names=F, quote=F, col.names=F)
+write.table(lb3_snp, "snp_group3.txt", row.names=F, quote=F, col.names=F)
+write.table(lb4_snp, "snp_group4.txt", row.names=F, quote=F, col.names=F)
+</code></pre>
+<h4 id="step2option2stratifythesnpsbyldscoresofindividualsnpsinr">Step 2 (option #2): stratify the SNPs by LD scores of individual SNPs in R</h4>
+<p>Below is an example of R script to stratify the SNPs by the LD scores of individual SNPs.</p>
+<pre><code class="r language-r">lds_seg = read.table("test.score.ld",header=T,colClasses=c("character",rep("numeric",8)))
+quartiles=summary(lds_seg$ldscore_SNP)
+
+lb1 = which(lds_seg$ldscore_SNP &lt;= quartiles[2])
+lb2 = which(lds_seg$ldscore_SNP &gt; quartiles[2] &amp; lds_seg$ldscore_SNP &lt;= quartiles[3])
+lb3 = which(lds_seg$ldscore_SNP &gt; quartiles[3] &amp; lds_seg$ldscore_SNP &lt;= quartiles[5])
+lb4 = which(lds_seg$ldscore_SNP &gt; quartiles[5])
 
 lb1_snp = lds_seg$SNP[lb1]
 lb2_snp = lds_seg$SNP[lb2]
@@ -1074,11 +1095,6 @@ gcta64 --bfile test --extract snp_group2.txt --make-grm --out test_group2
 test_group2
 ...
 </code></pre>
-<p><strong>Summary</strong><br>
-1) GREML-LDMS can provide an unbiased estimate of heritability using whole genome sequencing data regardless of the MAF and LD properties of the causal variants.<br>
-2) ~97% of variation at common sequence variants and ~68% of variation at rare variants can be captured by SNP-array based genotyping followed by 1000G imputation, irrespective of the types of SNP arrays used.<br>
-3) The narrow-sense heritability is likely to be 60~70% for height and 30%~40% for BMI, the majority of which can be explained by all the 1000G imputed variants. Therefore, the missing heritability for either height or BMI is small (negligible).<br>
-4) Height and BMI associated loci have been under natural selection.</p>
 <h4 id="references-4">References:</h4>
 <p><strong>Method paper</strong>: Yang et al. (2015) Genetic variance estimation with imputed variants finds negligible missing heritability for human height and body mass index. Nature Genetics, 47:1114–1120.</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
@@ -1347,30 +1363,67 @@ h2O_func &lt;- function(ncase, ncontrol, K, h2L, var_pi=2e-5){
 }
 </code></pre>
 <hr><h3 id="gctahereghasemanelstonregressionanalysis">GCTA-HEreg: Haseman-Elston regression analysis</h3>
-<p>An alternative to GCTA-GREML analysis.</p>
+<p>Haseman-Elston (HE) regression is a moment-based method for estimating the heritability. It is computationally much more efficient but slightly less powerful than REML as the SE of the estimate from HE regression is larger than that from REML. We implemented a HE regression that allows fitting multiple GRMs and facilitates bivariate analysis as in the GREML analysis, and only requires a small amount of memory (e.g. &lt;2GB for n=120,000). The bivariate analysis is essentially three sets of independent HE regression for the variance and covariance components, where the sampling variance/covariance of the estimates (including the genetic correlation rG) are computed using leave-one-individual-out Jackknife technique.</p>
 <blockquote>
   <p>Example</p>
 </blockquote>
-<pre><code class="bash language-bash">gcta64 --HEreg --grm test --pheno test.phen --out test
+<pre><code class="bash language-bash"># One GRM
+gcta64 --HEreg --grm test --pheno test.phen --out test
+
+# Multiple GRMs
+gcta64 --HEreg --mgrm multi_grm.txt --pheno test.phen --out test
+
+# Bivariate analysis with one GRM
+gcta64 --HEreg-bivar 1 2 --grm test --pheno test.phen --out test
+
+# Bivariate analysis with multiple GRMs
+gcta64 --HEreg-bivar 1 2 --mgrm multi_grm.txt --pheno test.phen --out test
 </code></pre>
 <blockquote>
-  <p>Output 
-  Results are saved in *.HEreg file.</p>
+  <p>Output results are saved in *.HEreg file.</p>
+  <p>Univariate analysis with one GRM</p>
+  <ul>
+  <li>HE-SD: HE regression using the square difference of the phenotypes for pairwise individuals  </li>
+  <li>HE-CP: HE regression using the cross product of the phenotypes for pairwise individuals</li>
+  <li>SE_OLS: standard error estimated from the ordinary least squares, which is likely to be an underestimation in a large sample</li>
+  <li>SE_Jackknife: standard error estimated using leave-one-individual-out Jackknife technique</li>
+  </ul>
 </blockquote>
-<pre><code class="nohighlight language-nohighlight">HE-SD
-Coefficient    Estimate    SE  P
-Intercept       1.99992 0.00099822          0
-Slope        -0.31676    0.0145436 3.62279e-105
-V(G)/Vp    0.158386    0.00727212
+<pre><code class="nohighlight language-nohighlight">HE-CP
+Coefficient     Estimate        SE_OLS          SE_Jackknife    P_OLS           P_Jackknife     
+Intercept       -2.8813e-06     1.11965e-05     8.16333e-08     0.79692         6.83316e-273    
+V(G)/Vp         0.710794        0.00260404      0.0118354       0               0               
 
-HE-CP
-Coefficient    Estimate    SE  P
-Intercept    -0.000213987 0.00036016   0.552416
-Slope        0.158594   0.00524738 1.20002e-200
-V(G)/Vp    0.158594    0.00524738
+HE-SD
+Coefficient     Estimate        SE_OLS          SE_Jackknife    P_OLS           P_Jackknife     
+Intercept       -0.999995       1.62064e-05     0.00416409      0               0               
+V(G)/Vp         0.709868        0.0037692       0.0121754       0               0               
 </code></pre>
-<p>HE-SD: HE regression using the square difference of the phenotypes for pairwise individuals<br>
-HE-CP: HE regression using the cross product the phenotypes for pairwise individuals</p>
+<blockquote>
+  <p>Bivariate analysis with two GRMs</p>
+</blockquote>
+<pre><code class="nohighlight language-nohighlight">HE-CP
+Coefficient         Estimate        SE_OLS          SE_Jackknife    P_OLS           P_Jackknife     
+Intercept_tr1       -1.73059e-05    2.77668e-05     2.7531e-07      0.533114        0               
+Intercept_tr2       -1.4924e-05     2.50997e-05     2.38696e-07     0.552119        0               
+Intercept_tr12      2.94888e-06     1.86676e-05     8.62647e-06     0.874481        0.732469        
+V(G1)/Vp_tr1        0.65882         0.0064606       0.0175264       0               3.12495e-309    
+V(G1)/Vp_tr2        0.696183        0.00584055      0.0174994       0               0               
+C(G1)/Vp_tr12       0.660164        0.00434369      0.0115293       0               0               
+V(G2)/Vp_tr1        0.0140144       0.00116567      0.00228244      2.70237e-33     8.24779e-10     
+V(G2)/Vp_tr2        0.0112924       0.00105554      0.00201111      1.03724e-26     1.96549e-08     
+C(G2)/Vp_tr12       0.012702        0.000784421     0.0014176       5.66913e-59     3.24039e-19     
+Sum of V(G)/Vp_tr1  0.672834        0.00656473      0.0178002       0               1.16416e-312    
+Sum of V(G)/Vp_tr2  0.707476        0.0059348       0.0177104       0               0               
+Sum of C(G)/Vp_tr12 0.672866        0.00441375      0.011687        0               0               
+rG1                 0.97478         0.00898327      0.0125365       
+rG2                 1.0097          0.0887597       0.114919        
+Total rG            0.975256        0.0089607       0.0124629       
+N_tr1               50930           
+N_tr2               56342           
+</code></pre>
+<h4 id="references-7">References</h4>
+<p>Yang J, Zeng J, Goddard ME, Wray NR, Visscher PM  (2017) Concepts, estimation and interpretation of SNP-based heritability. Under review.</p>
 <h2 id="gwasanalysis">GWAS analysis</h2>
 <hr><h3 id="gctacojoconditionaljointassociationanalysis">GCTA-COJO: Conditional &amp; joint association analysis</h3>
 <p><span class="kwd">--cojo-file</span> test.ma<br>
@@ -1483,7 +1536,7 @@ For example, cond.snplist)</p>
 <p>2) then run </p>
 <pre><code class="bash language-bash">gcta64  --bfile test  --cojo-file test.ma --cojo-cond cond.snplist --out test
 </code></pre>
-<h4 id="references-7">References</h4>
+<h4 id="references-8">References</h4>
 <p><strong>Conditional and joint analysis method</strong>: Yang et al. (2012) Conditional and joint multiple-SNP analysis of GWAS summary statistics identifies additional variants influencing complex traits. Nat Genet 44(4):369-375. [PubMed ID: 22426310]</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="gctamlmamixedlinearmodelbasedassociation">GCTA-MLMA: mixed linear model based association</h3>
@@ -1526,7 +1579,7 @@ gcta64 --mlma-loco --bfile test --pheno test.phen --out test --thread-num 10
 1   qtl2_7  1007  L                H           0.1675 -0.0487809  0.0512279   0.340979
 ...
 </code></pre>
-<h4 id="references-8">References</h4>
+<h4 id="references-9">References</h4>
 <p><strong>An overview of the MLM based association methods</strong>: Yang J, Zaitlen NA, Goddard ME, Visscher PM and Price AL (2014) Mixed model association methods: advantages and pitfalls. Nat Genet. 2014 Feb;46(2):100-6. [Pubmed ID: 24473328]</p>
 <p><strong>REML analysis and GCTA Software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="gctafastbatsetbasedassociationtest">GCTA-fastBAT: set-based association test</h3>
@@ -1648,7 +1701,7 @@ Pvalue: segment-based test p-value
 TopSNP.Pvalue: smallest single-SNP GWAS p-value in the segment
 TopSNP: the top associated GWAS SNP
 </code></pre>
-<h4 id="references-9">References:</h4>
+<h4 id="references-10">References:</h4>
 <p><strong>fastBAT method</strong>: Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894.</p>
 <p><strong>GCTA Software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="gwassimulation">GWAS Simulation</h3>
@@ -1752,7 +1805,7 @@ rs28705211 1 890368 0.278112 0.000911328 499 0.216874 0.000237098 500 0.00254858
 rs9777703 1 918699 0.0301614 0.00240581 499 0.854464 0.000222185 500 0.00222427
 ...
 </code></pre>
-<h4 id="references-10">References</h4>
+<h4 id="references-11">References</h4>
 <p><strong>LD score regression analysis</strong>: Bulik-Sullivan BK, Loh PR, Finucane HK, Ripke S, Yang J, Schizophrenia Working Group of the Psychiatric Genomics Consortium, Patterson N, Daly MJ, Price AL, Neale BM (2015) LD Score regression distinguishes confounding from polygenicity in genome-wide association studies. Nat Genet, 47: 291-295.</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="searchingforldfriends">Searching for LD friends</h3>
@@ -1784,7 +1837,7 @@ SNP in highest LD with the target SNP
 <blockquote>
   <p>Note: LD block is defined as a region where SNPs outside this region are not in significant LD with the target SNP. According to this definition, the length of LD block depends on user-specified window size and significance level.</p>
 </blockquote>
-<h4 id="references-11">References</h4>
+<h4 id="references-12">References</h4>
 <p><strong>Method to search for LD friends</strong>: Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J Hum Genet. 19(7): 807-812. [Pubmed ID: 21407268]</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
 <h2 id="populationgenetics">Population genetics</h2>
@@ -1816,7 +1869,7 @@ SNP in highest LD with the target SNP
 1    rs9777703   918699  C   0.0265765   0.0313871   0.000300492 
 ...
 </code></pre>
-<h4 id="references-12">References</h4>
+<h4 id="references-13">References</h4>
 <p><strong>Fst method</strong>: Weir, B.S. 1996. Genetic Data Analysis II: Methods for Discrete Population Genetic Data. Sinauer Associates, Inc. Sunderland, Massachusetts.</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="gctapcaprincipalcomponentanalysis">GCTA-PCA: Principal component analysis</h3>
@@ -1842,6 +1895,33 @@ Input the GRM and output the first n (n = 20, by default) eigenvectors (saved as
 <p>Examples</p>
 <pre><code class="bash language-bash"># Input the GRM file and output the first 20 eigenvectors for a subset of individuals
 gcta64  --grm test --keep test.indi.list  --pca 20  --out test
+</code></pre>
+<hr><h3 id="pcloadingandprojection">PC loading and projection</h3>
+<p><span class="kwd">--pc-loading</span>  pca
+Generate the SNP loading according the the GCTA-PCA results</p>
+<p><span class="kwd">--project-loading</span> snp_loading 20<br>
+Project the genotype into the SNP loading, and generate 20 principal component</p>
+<blockquote>
+  <p>Note: </p>
+  <ul>
+  <li>The SNPs mismatch will obsolete in the PC loadings, so it might be biased if lots of SNPs missing in the target genotype.</li>
+  <li>The default mode is using the MAF in reference genotype to caculate the projection, which is coincided with EIGENSOFT projection.</li>
+  </ul>
+</blockquote>
+<p><strong>Example</strong><br>
+SRC: source genotype, the source genotype to generate PC<br>
+TAR: target genotype to project the PC to SRC</p>
+<pre><code class="bash language-bash"># make GRM
+gcta64 --bfile SRC --maf 0.01 --autosome --make-grm --out SRC
+# PCA analysis
+gcta64 --grm SRC --pca 20 --out SRC_pca20
+
+# use the pca generated above to produce the SNP loading
+gcta64 --bfile SRC --pc-loading SRC_pca20 --out SRC_snp_loading
+
+# project the TAR to the SNP loading. The number 20 is the PC want to project.
+# It is the same if do chromosome by chromosome caculation add them up after each caculation 
+gcta64 --bfile TAR --project-loading SRC_snp_loading 20 --out TAR_pca20
 </code></pre></body></div>
         </div>
 
@@ -1863,6 +1943,24 @@ gcta64  --grm test --keep test.indi.list  --pca 20  --out test
                 });
                 hljs.initHighlightingOnLoad();
 
+            });
+
+            $(function() {
+                setTimeout(function() {
+                    (function(i, s, o, g, r, a, m) {
+                        i['GoogleAnalyticsObject'] = r;
+                        i[r] = i[r] || function() {
+                            (i[r].q = i[r].q || []).push(arguments)
+                        }, i[r].l = 1 * new Date();
+                        a = s.createElement(o),
+                            m = s.getElementsByTagName(o)[0];
+                        a.async = 1;
+                        a.src = g;
+                        m.parentNode.insertBefore(a, m)
+                    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+                    ga('create', 'UA-101733990-2', 'auto');
+                    ga('send', 'pageview');
+                }, 2000);
             });
         </script>
     </div>
