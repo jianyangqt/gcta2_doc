@@ -148,31 +148,46 @@ gcta64  --bfile test  --cojo-file test.ma --cojo-cond cond.snplist --out test
 The following options are designed to perform an MLM based association analysis. Previous data management options such as --keep, --extract and --maf, REML analysis options such as --reml-priors, --reml-maxit and --reml-no-constrain and multi-threading option --thread-num are still valid for this analysis.
 
 --mlma  
-This option will initiate an MLM based association analysis including the candidate SNP 
-*y = a + bx + g + e*
+This option will initiate an MLM based association analysis including the candidate SNP  
+*y = a + bx + g + e*  
 where *y* is the phenotype, *a* is the mean term, *b* is the additive effect (fixed effect) of the candidate SNP to be tested for association, *x* is the SNP genotype indicator variable coded as 0, 1 or 2, g is the polygenic effect (random effect) i.e. the accumulated effect of all SNPs (as captured by the GRM calculated using all SNPs) and *e* is the residual. For the ease of computation, the genetic variance, *var(g)*, is estimated based on the null model i.e. *y = a  + g + e* and then fixed while testing for the association between each SNP and the trait. This analysis would be similar as that implemented in other software tools such as EMMAX, FaST-LMM and GEMMA.
 The results will be saved in the *.mlma file.
  
 --mlma-loco  
-This option will implement an MLM based association analysis with the chromosome, on which the candidate SNP is located, excluded from calculating the GRM. We call it MLM leaving-one-chromosome-out (LOCO) analysis. The model is
-*y = a + bx + g<sup>-</sup> + e*
+This option will implement an MLM based association analysis with the chromosome, on which the candidate SNP is located, excluded from calculating the GRM. We call it MLM leaving-one-chromosome-out (LOCO) analysis. The model is  
+*y = a + bx + g<sup>-</sup> + e*  
 where *g<sup>-</sup>* is the accumulated effect of all SNPs except those on the chromosome where the candidate SNP is located. The *var(g<sup>-</sup>)* will be re-estimated each time when a chromosome is excluded from calculating the GRM. The MLM-LOCO analysis is computationally less efficient but more powerful as compared with the MLM analysis including the candidate (--mlma).
 The results will be saved in the *.loco.mlma file.
  
 --mlma-no-adj-covar  
 If there are covariates included in the analysis, the covariates will be fitted in the null model, a model including the mean term (fixed effect), covariates (fixed effects), polygenic effects (random effects) and residuals (random effects). By default, in order to improve computational efficiency, the phenotype will be adjusted by the mean and covariates, and the adjusted phenotype will subsequently be used for testing SNP association. However, if SNPs are correlated with the covariates, pre-adjusting the phenotype by the covariates will probably cause loss of power. If this option is specified, the covariates will be fitted together with the SNP for association test. However, this will significantly reduce computational efficiency.
+
+--mlma-subtract-grm  
+Subtract a GRM for a subset of SNPs (e.g. calculated from SNPs on one chromosome) from that for all the SNPs. This option is designed to parallelise the MLMA-LOCO analysis for large data set. Please see the example below.
  
 > Examples
 ```bash
-# MLM based association analysis - If you have already computed the GRM
-gcta64 --mlma --bfile test --grm test --pheno test.phen --out test --thread-num 10 
+# MLMA analysis - If you have already computed the GRM
+gcta64 --mlma --bfile test --grm test --pheno test.phen --out test --thread-num 10
 
-# MLM based association analysis including the candidate SNP (MLMi)
-gcta64 --mlma --bfile test --pheno test.phen --out test --thread-num 10
+# MLMA analysis using multiple GRMs - If you have already computed the GRM
+gcta64 --mlma --bfile test --mgrm multi_grm.txt --pheno test.phen --out test --thread-num 10 
  
-# MLM leaving-one-chromosome-out (LOCO) analysis
+# MLMA analysis including the candidate SNP (MLMi)
+gcta64 --mlma --bfile test --pheno test.phen --out test --thread-num 10
+
+# MLMA leaving-one-chromosome-out (LOCO) analysis
 gcta64 --mlma-loco --bfile test --pheno test.phen --out test --thread-num 10
+
+# MLMA-LOCO analysis for large data sets
+gcta64 --mlma --grm test_all --mlma-subtract-grm test_chr1 --bfile test --chr 1 --pheno test.phen --out test_loco_chr1 --thread-num 10
+gcta64 --mlma --grm test_all --mlma-subtract-grm test_chr2 --bfile test --chr 2 --pheno test.phen --out test_loco_chr2 --thread-num 10
+...
+gcta64 --mlma --grm test_all --mlma-subtract-grm test_chr22 --bfile test --chr 22 --pheno test.phen --out test_loco_chr22 --thread-num 10
+
 ```
+
+> Note: test\_all is the GRM calculated from all SNPs; test_chr1 is the GRM calculated from SNPs on chromosome 1.
  
 > Output file format  
 > test.mlma or test.loco.mlma (columns are chromosome, SNP, physical position, reference allele (the coded effect allele), the other allele, frequency of the reference allele, SNP effect, standard error and p-value).
