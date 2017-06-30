@@ -9,14 +9,14 @@ GCTA (Genome-wide Complex Trait Analysis) was originally designed to estimate th
 * Estimating genetic variance attributed to chromosome X, and testing for the effect of dosage compensation;
 * Estimating dominance variance in GWAS data;
 * Estimating genetic correlation between two traits (diseases) using GWAS data;
-* PCA analysis and estimation of Fst in GWAS data
+* PCA analysis, projection and estimation of Fst in GWAS data
 * Computing LD scores and searching for LD friends for a list of target SNPs;
 * Simulating a phenotype based on GWAS data;
 * Conditional & joint analysis of GWAS summary statistics without individual level genotype data;
 * Mixed linear model association analysis;
 * Gene- or set-based association analysis.
 
-**Latest release [v1.26.0](./gcta_1.26.0.zip) (22 June 2016)**
+**Latest release [v1.30.0](#Download), click to download or view update log (1 July 2017)**
 
 ### Credits 
 
@@ -56,5 +56,5 @@ Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J 
 **fastBAT method:**  
 Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894. \[[PMID: 27604177](https://www.nature.com/articles/srep32894)\]
 
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 22 June 2016</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 1 July 2017</p>
 

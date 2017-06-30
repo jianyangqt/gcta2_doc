@@ -58,14 +58,14 @@
 <li>Estimating genetic variance attributed to chromosome X, and testing for the effect of dosage compensation;</li>
 <li>Estimating dominance variance in GWAS data;</li>
 <li>Estimating genetic correlation between two traits (diseases) using GWAS data;</li>
-<li>PCA analysis and estimation of Fst in GWAS data</li>
+<li>PCA analysis, projection and estimation of Fst in GWAS data</li>
 <li>Computing LD scores and searching for LD friends for a list of target SNPs;</li>
 <li>Simulating a phenotype based on GWAS data;</li>
 <li>Conditional &amp; joint analysis of GWAS summary statistics without individual level genotype data;</li>
 <li>Mixed linear model association analysis;</li>
 <li>Gene- or set-based association analysis.</li>
 </ul>
-<p><strong>Latest release <a href="./gcta_1.26.0.zip">v1.26.0</a> (22 June 2016)</strong></p>
+<p><strong>Latest release <a href="#Download">v1.30.0</a>, click to download or view update log (1 July 2017)</strong></p>
 <hr><h3 id="credits">Credits</h3>
 <p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the software with methodological support from <a href="http://researchers.uq.edu.au/researcher/2703">Hong Lee</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>. <a href="mailto:zhilizheng@outlook.com">Zhili Zheng</a> speeded up the GRM computing and bivariate GREML analysis, contributed to the GCTA-PCA module, and designed the website. <a href="j.zeng@imb.uq.edu.au">Jian Zeng</a> contributed to the GCTA-HEreg module. <a href="mailto:andrew.bakshi@gmail.com">Andrew Bakshi</a> contributed to the GCTA-fastBAT module. Robert Marie contributed to the GCTA-sBLUP module. </p>
 <hr><h3 id="questionsandhelprequests">Questions and Help Requests</h3>
@@ -91,22 +91,33 @@ Yang et al. (2015) Genetic variance estimation with imputed variants finds negli
 Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J Hum Genet. 19(7): 807-812. [<a href="http://www.nature.com/ejhg/journal/v19/n7/full/ejhg201139a.html">Pubmed ID: 21407268</a>]</p>
 <p><strong>fastBAT method:</strong><br>
 Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894. [<a href="https://www.nature.com/articles/srep32894">PMID: 27604177</a>]</p>
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 22 June 2016</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 1 July 2017</p>
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
-<p><a href="./gcta_1.26.0.zip">gcta_1.26.0.zip</a></p>
-<p>The executable files (binary code) are release under MIT lincense.
-Unfortunately, we have stopped updating the Windows and Mac versions. An earlier version for Windows (gcta.exe) and Mac OS (gcta_mac) can be found at <a href="./gcta_1.02.zip">gcta_1.02.zip</a>.</p>
+<p>We support x86_64(Intel, AMD64) CPU platform with x64 operation system only, which is the most popular calculation platform currently.</p>
+<p>Linux <a href="./gcta_1.30.0.zip">gcta_1.30.0.zip</a></p>
+<p>Windows <a href="./gcta_1.30.0_win.zip">gcta_1.30.0_win.zip</a></p>
+<p>Mac <a href="./gcta_1.30.0_mac.zip">gcta_1.30.0_mac.zip</a></p>
+<p>The executable files (binary code) are release under MIT lincense. We encourage to use Linux version, as the Windows and Mac version are less tested.</p>
 <hr><h3 id="sourcecodenotoc" class="notoc">Source code </h3>
-<p><a href="./gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
+<p><a href="./gcta_1.30.0_src.zip">gcta_1.30.0_src.zip</a></p>
 <p>The source code are released under GPL v3. </p>
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
+<h4 id="version13001july2017">Version 1.30.0 (1 July 2017)</h4>
+<ul>
+<li>Update the package dependencies to latest, such as Intel MKL and Eigen. This makes the performance slightly better (30% ~ 40%)</li>
+<li>Performance enhancement of functions that use REML algorithm (GREML, GREML bivar, MLMA...)</li>
+<li>Fix memory issue when sample size exceed 500K in some functions (GREML bivar, read gz GRM ...)</li>
+<li>Fix COJO analysis SE issue, remove the second term of equation 16 (See reference paper)</li>
+<li>Add sBLUP prediction</li>
+<li>Add PCA projection</li>
+<li>Add Haseman-Elston regression analysis</li>
+</ul>
 <h4 id="version126022june2016">Version 1.26.0 (22 June 2016)</h4>
 <p>Download link: <a href="./gcta_1.26.0.zip">gcta_1.26.0.zip</a></p>
 <ul>
 <li>Fixed a bug in MLMA.</li>
 <li>Added a new module (GCTA-fastBAT) for a set- or gene-based association analysis using GWAS summary data.</li>
-<li>Released the latest version of the GCTA source code. Download link: <a href="./gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></li>
 </ul>
 <h4 id="version125327april2016">Version 1.25.3 (27 April 2016)</h4>
 <p>Download link: <a href="./gcta_1.25.3.zip">gcta_1.25.3.zip</a></p>
@@ -502,7 +513,7 @@ Include SNPs on a specific chromosome in the analysis, e.g. chromosome 1.</p>
 <p><span class="kwd">--autosome-num</span> 22<br>
 Specify the number of autosomes for a species other than human. For example, if you specify the number of autosomes to be 19, then chromosomes 1 to 19 will be recognized as autosomes and chromosome 20 will be recognized as the X chromosome. The default number is 22 if this option not specified. </p>
 <p><span class="kwd">--autosome</span><br>
-Include SNPs on all of the autosomes in the analysis. </p>
+Include SNPs on all of the autosomes in the analysis. Note: this option will be overided by the <span class="kwd">--chr</span> chr_num option, if you want to include all autosomes, please remove the <span class="kwd">--chr</span> option. </p>
 <p><span class="kwd">--extract</span> test.snplist<br>
 Specify a list of SNPs to be included in the analysis.  </p>
 <blockquote>
@@ -1909,31 +1920,31 @@ Input the GRM and output the first n (n = 20, by default) eigenvectors (saved as
 gcta64  --grm test --keep test.indi.list  --pca 20  --out test
 </code></pre>
 <hr><h3 id="pcloadingandprojection">PC loading and projection</h3>
-<p><span class="kwd">--pc-loading</span>  pca
-Generate the SNP loading according the the GCTA-PCA results</p>
-<p><span class="kwd">--project-loading</span> snp_loading 20<br>
-Project the genotype into the SNP loading, and generate 20 principal component</p>
+<p><span class="kwd">--pc-loading</span> ref_pca<br>
+Generate the SNP loading from the GCTA-PCA results of the reference genotype</p>
+<p><span class="kwd">--project-loading</span> ref_snp<em>loading 20  
+Project the target genotype into the reference SNP loading (ref_snp</em>loading), and generate 20 principal component</p>
 <blockquote>
   <p>Note: </p>
   <ul>
-  <li>The SNPs mismatch will obsolete in the PC loadings, so it might be biased if lots of SNPs missing in the target genotype.</li>
-  <li>The default mode is using the MAF in reference genotype to caculate the projection, which is coincided with EIGENSOFT projection.</li>
+  <li>The mismatch SNPs in the reference and target genotype will be obsoleted in the PC loadings, so it might be biased if lots of SNPs missing in the target genotype.</li>
+  <li>The default mode uses the MAF in reference genotype to caculate the projection, which coincides with EIGENSOFT projection.</li>
   </ul>
 </blockquote>
 <p><strong>Example</strong><br>
-SRC: source genotype, the source genotype to generate PC<br>
-TAR: target genotype to project the PC to SRC</p>
+REF: reference genotype, the reference genotype to generate PC loading
+TAR: target genotype to project the PC to REF</p>
 <pre><code class="bash language-bash"># make GRM
-gcta64 --bfile SRC --maf 0.01 --autosome --make-grm --out SRC
+gcta64 --bfile REF --maf 0.01 --autosome --make-grm --out REF
 # PCA analysis
-gcta64 --grm SRC --pca 20 --out SRC_pca20
+gcta64 --grm REF --pca 20 --out REF_pca20
 
 # use the pca generated above to produce the SNP loading
-gcta64 --bfile SRC --pc-loading SRC_pca20 --out SRC_snp_loading
+gcta64 --bfile REF --pc-loading REF_pca20 --out REF_snp_loading
 
 # project the TAR to the SNP loading. The number 20 is the PC want to project.
 # It is the same if do chromosome by chromosome caculation add them up after each caculation 
-gcta64 --bfile TAR --project-loading SRC_snp_loading 20 --out TAR_pca20
+gcta64 --bfile TAR --project-loading REF_snp_loading 20 --out TAR_pca20
 </code></pre></body></div>
         </div>
 

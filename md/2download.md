@@ -2,25 +2,39 @@
 ## Download
 ### Executable Files {: .notoc}
 
-[gcta_1.26.0.zip](./gcta_1.26.0.zip)
+We support x86_64(Intel, AMD64) CPU platform with x64 operation system only, which is the most popular calculation platform currently.
 
-The executable files (binary code) are release under MIT lincense.
-Unfortunately, we have stopped updating the Windows and Mac versions. An earlier version for Windows (gcta.exe) and Mac OS (gcta\_mac) can be found at [gcta\_1.02.zip](./gcta_1.02.zip).
+Linux [gcta_1.30.0.zip](./gcta_1.30.0.zip)
+
+Windows [gcta\_1.30.0_win.zip](./gcta_1.30.0_win.zip)
+
+Mac [gcta\_1.30.0_mac.zip](./gcta_1.30.0_mac.zip)
+ 
+The executable files (binary code) are release under MIT lincense. We encourage to use Linux version, as the Windows and Mac version are less tested.
 
 ### Source code {: .notoc}
 
-[gcta\_1.26.0\_src.zip](./gcta_1.26.0_src.zip)
+[gcta\_1.30.0\_src.zip](./gcta_1.30.0_src.zip)
 
 The source code are released under GPL v3. 
 
 ### Update log {: .notoc}
+
+#### Version 1.30.0 (1 July 2017)
+* Update the package dependencies to latest, such as Intel MKL and Eigen. This makes the performance slightly better (30% ~ 40%)
+* Performance enhancement of functions that use REML algorithm (GREML, GREML bivar, MLMA...)
+* Fix memory issue when sample size exceed 500K in some functions (GREML bivar, read gz GRM ...)
+* Fix COJO analysis SE issue, remove the second term of equation 16 (See reference paper)
+* Add sBLUP prediction
+* Add PCA projection
+* Add Haseman-Elston regression analysis
+
 #### Version 1.26.0 (22 June 2016)
 
 Download link: [gcta_1.26.0.zip](./gcta_1.26.0.zip)
 
 * Fixed a bug in MLMA.
 * Added a new module (GCTA-fastBAT) for a set- or gene-based association analysis using GWAS summary data.
-* Released the latest version of the GCTA source code. Download link: [gcta\_1.26.0\_src.zip](./gcta_1.26.0_src.zip)
 
 #### Version 1.25.3 (27 April 2016)
 

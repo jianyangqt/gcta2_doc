@@ -49,7 +49,7 @@ Include SNPs on a specific chromosome in the analysis, e.g. chromosome 1.
 Specify the number of autosomes for a species other than human. For example, if you specify the number of autosomes to be 19, then chromosomes 1 to 19 will be recognized as autosomes and chromosome 20 will be recognized as the X chromosome. The default number is 22 if this option not specified. 
 
 --autosome  
-Include SNPs on all of the autosomes in the analysis. 
+Include SNPs on all of the autosomes in the analysis. Note: this option will be overided by the --chr chr_num option, if you want to include all autosomes, please remove the --chr option. 
 
 --extract test.snplist  
 Specify a list of SNPs to be included in the analysis.  
