@@ -1772,6 +1772,38 @@ rs779725        G             0.204           -0.0677
 013     0103     1      1    1
 ...
 </code></pre>
+<hr><h3 id="gctasblup">GCTA-sBLUP</h3>
+<p>This is a method to run BLUP analysis using summary data from a GWAS/meta-analysis with LD from a reference sample with individual-level data. Similar methods have been proposed in recent studies to predict complex traits and diseases using GWAS summary data (Vilhjálmsson et al. 2015 AJHG; Robinson et al. 2017 Nat Hum Behav) or age using summary data from transcriptome-wise association studies (Peters et al. 2015 Nat Comm).</p>
+<blockquote>
+  <p>Example</p>
+</blockquote>
+<pre><code class="bash language-bash">gcta64 --bfile test --cojo-file test.ma --cojo-sblup 1.33e6 --cojo-wind 1000 --thread-num 20
+</code></pre>
+<p><span class="kwd">--cojo-file</span> test.ma<br>
+Input file in COJO format (see COJO)</p>
+<p><span class="kwd">--cojo-sblup</span><br>
+Perform COJO-SBLUP analysis. The input parameter = <em>m * (1 / h<sup>2</sup><sub>SNP</sub> - 1)</em> where m is the total number of SNPs used in this analysis (i.e. the number of SNPs in common between the summary data and the reference set), and h<sup>2</sup><sub>SNP</sub> is the proportion of variance in the phenotype explained by all SNPs. h<sup>2</sup><sub>SNP</sub> can be estimated from GCTA-GREML if individual-level data are available or from LD score regression analysis of the summary data.</p>
+<p><span class="kwd">--cojo-wind</span> 1000<br>
+Specify a distance d (in Kb unit). LD between SNPs more than d Kb away from each other are ignored. The default value is 10000 Kb (i.e. 10 Mb) if not specified. We recommend a window size of 1 Mb for the ease of computation.</p>
+<blockquote>
+  <p>Output file format</p>
+</blockquote>
+<pre><code class="nohighlight language-nohighlight">rs10055084    T     0.0094     0.00046175
+rs10076494    T     0.0074     0.000361283
+rs10057531    T     -0.0075    -0.0003681
+rs10039735    T     -0.0095    -0.000469503
+rs1507712     A     0.0091     0.000438602
+rs6869386     T     -0.0068    -3.35496e-05
+rs7734346     T     0.0106     0.000133413
+rs10065373    T     0.0093     -1.55927e-05
+rs10070362    T     -0.0108    -0.000150901
+</code></pre>
+<blockquote>
+  <p>Columns are SNP, the coded allele, effect size in the original GWAS summary data, and BLUP estimate of the SNP effect (all SNPs are fitted jointly).</p>
+</blockquote>
+<h4 id="references-11">References</h4>
+<p><strong>COJO-SBLUP method</strong>: Robinson et al. (2017) Genetic evidence of assortative mating in humans. Nat Hum Behav, 1:0016.</p>
+<p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]</p>
 <h2 id="gctald">GCTA-LD</h2>
 <hr><h3 id="computingldscores">Computing LD scores</h3>
 <p>LD score is defined as the sum of LD <em>r<sup>2</sup></em> between a variant and all the variants in a region.</p>
@@ -1828,7 +1860,7 @@ rs28705211 1 890368 0.278112 0.000911328 499 0.216874 0.000237098 500 0.00254858
 rs9777703 1 918699 0.0301614 0.00240581 499 0.854464 0.000222185 500 0.00222427
 ...
 </code></pre>
-<h4 id="references-11">References</h4>
+<h4 id="references-12">References</h4>
 <p><strong>LD score regression analysis</strong>: Bulik-Sullivan BK, Loh PR, Finucane HK, Ripke S, Yang J, Schizophrenia Working Group of the Psychiatric Genomics Consortium, Patterson N, Daly MJ, Price AL, Neale BM (2015) LD Score regression distinguishes confounding from polygenicity in genome-wide association studies. Nat Genet, 47: 291-295.</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="searchingforldfriends">Searching for LD friends</h3>
@@ -1860,7 +1892,7 @@ SNP in highest LD with the target SNP
 <blockquote>
   <p>Note: LD block is defined as a region where SNPs outside this region are not in significant LD with the target SNP. According to this definition, the length of LD block depends on user-specified window size and significance level.</p>
 </blockquote>
-<h4 id="references-12">References</h4>
+<h4 id="references-13">References</h4>
 <p><strong>Method to search for LD friends</strong>: Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J Hum Genet. 19(7): 807-812. [Pubmed ID: 21407268]</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
 <h2 id="populationgenetics">Population genetics</h2>
@@ -1892,7 +1924,7 @@ SNP in highest LD with the target SNP
 1    rs9777703   918699  C   0.0265765   0.0313871   0.000300492 
 ...
 </code></pre>
-<h4 id="references-13">References</h4>
+<h4 id="references-14">References</h4>
 <p><strong>Fst method</strong>: Weir, B.S. 1996. Genetic Data Analysis II: Methods for Discrete Population Genetic Data. Sinauer Associates, Inc. Sunderland, Massachusetts.</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="gctapcaprincipalcomponentanalysis">GCTA-PCA: Principal component analysis</h3>
@@ -1922,18 +1954,18 @@ gcta64  --grm test --keep test.indi.list  --pca 20  --out test
 <hr><h3 id="pcloadingandprojection">PC loading and projection</h3>
 <p><span class="kwd">--pc-loading</span> ref_pca<br>
 Generate the SNP loading from the GCTA-PCA results of the reference genotype</p>
-<p><span class="kwd">--project-loading</span> ref_snp<em>loading 20  
-Project the target genotype into the reference SNP loading (ref_snp</em>loading), and generate 20 principal component</p>
+<p><span class="kwd">--project-loading</span> ref_snp_loading 20<br>
+Project the target genotype into the reference SNP loading (ref_snp_loading), and generate 20 principal component</p>
 <blockquote>
   <p>Note: </p>
   <ul>
   <li>The mismatch SNPs in the reference and target genotype will be obsoleted in the PC loadings, so it might be biased if lots of SNPs missing in the target genotype.</li>
-  <li>The default mode uses the MAF in reference genotype to caculate the projection, which coincides with EIGENSOFT projection.</li>
+  <li>The default mode uses the MAF in reference genotype to calculate the projection, which coincides with EIGENSOFT projection.</li>
   </ul>
 </blockquote>
 <p><strong>Example</strong><br>
-REF: reference genotype, the reference genotype to generate PC loading
-TAR: target genotype to project the PC to REF</p>
+REF: reference genotype, the reference genotype to generate PC loading;<br>
+TAR: target genotype to project the PC to REF;</p>
 <pre><code class="bash language-bash"># make GRM
 gcta64 --bfile REF --maf 0.01 --autosome --make-grm --out REF
 # PCA analysis
@@ -1943,7 +1975,7 @@ gcta64 --grm REF --pca 20 --out REF_pca20
 gcta64 --bfile REF --pc-loading REF_pca20 --out REF_snp_loading
 
 # project the TAR to the SNP loading. The number 20 is the PC want to project.
-# It is the same if do chromosome by chromosome caculation add them up after each caculation 
+# It is the same if do chromosome by chromosome calculation add them up after each calculation 
 gcta64 --bfile TAR --project-loading REF_snp_loading 20 --out TAR_pca20
 </code></pre></body></div>
         </div>
