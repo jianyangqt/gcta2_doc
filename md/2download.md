@@ -2,7 +2,7 @@
 ## Download
 ### Executable Files {: .notoc}
 
-We support x86_64(Intel, AMD64) CPU platform with x64 operation system only, which is the most popular calculation platform currently.
+The executable files below only support Intel or AMD x86_64 CPU platform with an x64 operation system.
 
 Linux [gcta\_1.26.0.zip](./gcta_1.26.0.zip), [gcta\_1.90.0beta.zip](./gcta_1.90.0beta.zip)
 
