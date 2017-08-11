@@ -4,7 +4,7 @@
 
 We support x86_64(Intel, AMD64) CPU platform with x64 operation system only, which is the most popular calculation platform currently.
 
-Linux [gcta\_1.26.0.zip](./gcta_1.26.0.zip)  [gcta\_1.90.0beta.zip](./gcta_1.90.0beta.zip)
+Linux [gcta\_1.26.0.zip](./gcta_1.26.0.zip), [gcta\_1.90.0beta.zip](./gcta_1.90.0beta.zip)
 
 Windows [gcta\_1.90.0beta\_win.zip](./gcta_1.90.0beta_win.zip)
 
