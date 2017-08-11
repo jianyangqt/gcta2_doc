@@ -2,7 +2,7 @@
 ## Download
 ### Executable Files {: .notoc}
 
-The executable files below only support Intel or AMD x86_64 CPU platform with an x64 operation system.
+The executable files below only support a 64-bit operating system on the x86_64 CPU platform.
 
 Linux [gcta\_1.26.0.zip](./gcta_1.26.0.zip), [gcta\_1.90.0beta.zip](./gcta_1.90.0beta.zip)
 
