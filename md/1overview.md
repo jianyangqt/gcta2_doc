@@ -9,18 +9,18 @@ GCTA (Genome-wide Complex Trait Analysis) was originally designed to estimate th
 * Estimating genetic variance attributed to chromosome X, and testing for the effect of dosage compensation;
 * Estimating dominance variance in GWAS data;
 * Estimating genetic correlation between two traits (diseases) using GWAS data;
-* PCA analysis, projection and estimation of Fst in GWAS data
+* PCA analysis and estimation of Fst in GWAS data
 * Computing LD scores and searching for LD friends for a list of target SNPs;
 * Simulating a phenotype based on GWAS data;
 * Conditional & joint analysis of GWAS summary statistics without individual level genotype data;
 * Mixed linear model association analysis;
 * Gene- or set-based association analysis.
 
-**Latest release [v1.30.0](#Download), click to download or view update log (1 July 2017)**
+**Latest release [v1.30.0](#Download), click to download or view update log (8 Aug. 2017)**
 
 ### Credits 
 
-[Jian Yang](http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) developed the software with methodological support from [Hong Lee](http://researchers.uq.edu.au/researcher/2703), [Mike Goddard](mailto:Mike.Goddard@dpi.vic.gov.au) and [Peter Visscher](mailto:peter.visscher@uq.edu.au). [Zhili Zheng](mailto:zhilizheng@outlook.com) speeded up the GRM computing and bivariate GREML analysis, contributed to the GCTA-PCA module, and designed the website. [Jian Zeng](j.zeng@imb.uq.edu.au) contributed to the GCTA-HEreg module. [Andrew Bakshi](mailto:andrew.bakshi@gmail.com) contributed to the GCTA-fastBAT module. Robert Marie contributed to the GCTA-sBLUP module. 
+[Jian Yang](http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) developed the software with methodological support from [Hong Lee](http://researchers.uq.edu.au/researcher/2703), [Mike Goddard](mailto:Mike.Goddard@dpi.vic.gov.au) and [Peter Visscher](mailto:peter.visscher@uq.edu.au). [Zhili Zheng](mailto:zhilizheng@outlook.com) rewrote the GRM module to make it orders of magnitude faster, significantly improved the speed of the bivariate GREML module, extended the GCTA-PCA module, and designed the website. [Jian Zeng](j.zeng@imb.uq.edu.au) contributed to the GCTA-HEreg module. [Andrew Bakshi](mailto:andrew.bakshi@gmail.com) contributed to the GCTA-fastBAT module. [Zhihong Zhu](mailto:z.zhu1@uq.edu.au) improved the GCTA-COJO module. Robert Marie contributed to the GCTA-sBLUP module. 
 
 ### Questions and Help Requests 
 If you have any bug reports or questions please send an email to [Jian Yang](http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au)
@@ -56,5 +56,5 @@ Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J 
 **fastBAT method:**  
 Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894. \[[PMID: 27604177](https://www.nature.com/articles/srep32894)\]
 
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 1 July 2017</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 8 Aug 2017</p>
 

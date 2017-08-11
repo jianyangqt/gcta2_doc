@@ -95,6 +95,26 @@ ReadGRMBin=function(prefix, AllN=F, size=4){
   return(list(diag=grm[i], off=grm[-i], id=id, N=N))
 }
 ```
+
+**Note**: --make-grm has been rewritten with orders of magnitude improvement in speed and memory usage. Currently, It can only used in combination with a limited number of other flags, i.e., --keep, --remove, --chr, --autosome-num, --autosome, --extract, --exclude, --maf, --max-maf, --thread-num. You can use --make-grm-part in order to reduce the memory usage further.
+
+
+--make-grm--part m i  
+Partition the GRM into m parts (by row), and compute the i-th part in the current run. 
+
+**Note**: This option is designed to compute the GRM in a very large sample (e.g. the UK Biobank data). The memory usage of each run is the total memory required divided by m. Thus partitioning a large number of parts can reduce the memory usage significantly. The total memory required is approximately [n * (n + 1) / 2 * 12] / 1024<sup>3</sup> GB + 0.5GB, where n is the sample size. As some computer clusters limit the virtual memory, allocating 1 to 2GB more memory to each job will be safer. In our computation of the GRM in the UKB data, we partitioned the whole data set (n = 456,426) into 250 parts and allocated 6700MB memory to each job.
+
+> Example:
+```bash
+# Run the GRM in 3 parts
+gcta64 --bfile test --make-grm-part 3 1 --thead-num 5 --out test
+gcta64 --bfile test --make-grm-part 3 2 --thead-num 5 --out test
+gcta64 --bfile test --make-grm-part 3 3 --thead-num 5 --out test
+# Merge them together
+cat test.parted_3_*.grm.id > test.grm.id
+cat test.parted_3_*.grm.bin > test.grm.bin
+cat test.parted_3_*.grm.N.bin > test.grm.N.bin
+```
  
 --make-grm-alg 0    
 The default value is 0, and the GRM is calculated using the equation *sum{[(x<sub>ij</sub> - 2p<sub>i</sub>)\*(x<sub>ik</sub> - 2p<sub>i</sub>)] / [2p<sub>i</sub>(1-p<sub>i</sub>)]}* as described in Yang et al. 2010 Nat Genet. If the value = 1, the GRM will be calculated using the equation *sum[(x<sub>ij</sub> - 2p<sub>i</sub>)*(x<sub>ik</sub> - 2p<sub>i</sub>)] / sum[2p<sub>i</sub>(1-p<sub>i</sub>)]*. 
@@ -223,8 +243,14 @@ gcta64  --bfile test  --chr 22  --make-grm  --out test_chr22
 gcta64  --mgrm multi_grm.txt  --make-grm  --out test
 ```
 
---grm-cutoff 0.025  
-Remove one of a pair of individuals with estimated relatedness larger than the specified cut-off value (e.g. 0.025). GCTA selectively removes individuals to maximize the remaining sample size rather than doing it at random. NOTE: When merging multiple GRMs, this option does not apply to each single GRM but to the final merged GRM.
+--grm-cutoff 0.05  
+Remove one of a pair of individuals with estimated relatedness larger than the specified cut-off value (e.g. 0.05). GCTA selectively removes individuals to maximize the remaining sample size rather than doing it at random. 
+ 
+**Note**: 1) This flag has been rewritten to save memory usage. Currently, it can only be used in combination with other three flags, i.e., --grm --keep --exclude and --make-grm.  
+2) When merging multiple GRMs with --mgrm flag, this option does not apply to each single GRM but to the final merged GRM (run in the previous version).
+
+--grm-no-relative 0.05  
+Extract the GRM of a subset of individuals who do not have any relative in the sample given a threshold of relatedness.
 
 --grm-adj 0  
 When using the SNPs to predict the genetic relationship at causal loci, we have to adjust the prediction errors due to imperfect LD because of two reasons: 1) the use of only a finite number of SNPs; 2) causal loci tend to have lower MAF than the genotyped SNPs (input 0 if you assume that the causal loci have similar distribution of allele frequencies as the genotyped SNPs) (see Yang et al. 2010 Nat Genet for details).
@@ -236,11 +262,13 @@ By default, the GRM, especially for the X-chromosome, is parameterized under the
 
 Examples  
 ```bash
-# Prune the GRM by a cutoff of 0.025 and adjust for prediction errors assuming the causal variants have similar distribution of allele frequencies as the genotyped SNPs)
-gcta64  --grm test  --grm-adj  0  --grm-cutoff  0.025  --make-grm  --out test_adj
+# Prune the GRM for relatedness by a cutoff of 0.05
+gcta64  --grm test  --grm-cutoff  0.05  --make-grm  --out test
+# Extract the GRM subject id of all the singletons
+gcta64  --grm test  --grm-no-relative 0.05  --make-grm  --out test
 
 # Use --keep or --remove option
-gcta64  --grm test  --keep test.indi.list  --grm-cutoff  0.025  --make-grm  --out test_adj
+gcta64  --grm test  --keep test.indi.list  --grm-cutoff  0.05  --make-grm  --out test_adj
 gcta64  --grm test  --remove test.indi.list  --grm-adj 0  --make-grm  --out test_adj
 
 # Assume full and no dosage compensation for the X chromosome

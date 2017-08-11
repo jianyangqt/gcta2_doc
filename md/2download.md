@@ -4,33 +4,36 @@
 
 We support x86_64(Intel, AMD64) CPU platform with x64 operation system only, which is the most popular calculation platform currently.
 
-Linux [gcta_1.30.0.zip](./gcta_1.30.0.zip)
+Linux [gcta_1.90.0.zip](./gcta_1.90.0.zip)
 
-Windows [gcta\_1.30.0_win.zip](./gcta_1.30.0_win.zip)
+Windows [gcta\_1.90.0_win.zip](./gcta_1.90.0_win.zip)
 
-Mac [gcta\_1.30.0_mac.zip](./gcta_1.30.0_mac.zip)
+Mac [gcta\_1.90.0_mac.zip](./gcta_1.90.0_mac.zip)
  
-The executable files (binary code) are release under MIT lincense. We encourage to use Linux version, as the Windows and Mac version are less tested.
+The executable files (binary code) are release under MIT license. We encourage to use Linux version, as the Windows and Mac version are less tested.
+
+> Note: gcta 1.90.0 is in beta status although we have test most cases. You can run version 1.26.0. 
 
 ### Source code {: .notoc}
 
-[gcta\_1.30.0\_src.zip](./gcta_1.30.0_src.zip)
+[gcta\_1.90.0\_src.zip](./gcta_1.90.0_src.zip)
 
 The source code are released under GPL v3. 
 
 ### Update log {: .notoc}
 
-#### Version 1.30.0 (1 July 2017)
+#### Version 1.90.0 (8 Aug 2017)
 * Update the package dependencies to latest, such as Intel MKL and Eigen. This makes the performance slightly better (30% ~ 40%)
 * Performance enhancement of functions that use REML algorithm (GREML, GREML bivar, MLMA...)
 * Fix memory issue when sample size exceed 500K in some functions (GREML bivar, read gz GRM ...)
 * Fix COJO analysis SE issue, remove the second term of equation 16 (See reference paper)
 * Add sBLUP prediction
-* Add PCA projection
 * Add Haseman-Elston regression analysis
+* Switch the GRM calculation to new code base, reduce the memory usage by partial load genotypes, add --part mode to break a full GRM calculation into multiple parts
+* Rewrite --grm-cutoff, reduce the memory usage dramatically. Add --no-grm flag to get the unrelated samples only
+* Rewrite --freq with lookup table for performance, change its format to contain more information
 
 #### Version 1.26.0 (22 June 2016)
-
 Download link: [gcta_1.26.0.zip](./gcta_1.26.0.zip)
 
 * Fixed a bug in MLMA.
