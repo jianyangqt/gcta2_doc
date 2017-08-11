@@ -4,34 +4,37 @@
 
 We support x86_64(Intel, AMD64) CPU platform with x64 operation system only, which is the most popular calculation platform currently.
 
-Linux [gcta_1.90.0.zip](./gcta_1.90.0.zip)
+Linux [gcta\_1.26.0.zip](./gcta_1.26.0.zip)  [gcta\_1.90.0beta.zip](./gcta_1.90.0beta.zip)
 
-Windows [gcta\_1.90.0_win.zip](./gcta_1.90.0_win.zip)
+Windows [gcta\_1.90.0beta\_win.zip](./gcta_1.90.0beta_win.zip)
 
-Mac [gcta\_1.90.0_mac.zip](./gcta_1.90.0_mac.zip)
+Mac [gcta\_1.90.0beta\_mac.zip](./gcta_1.90.0beta_mac.zip)
  
-The executable files (binary code) are release under MIT license. We encourage to use Linux version, as the Windows and Mac version are less tested.
+The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
 
-> Note: gcta 1.90.0 is in beta status although we have test most cases. You can run version 1.26.0. 
+> Note: GCTA 1.90.0 is a beta version under testing. Please report bugs to Jian Yang (jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
-[gcta\_1.90.0\_src.zip](./gcta_1.90.0_src.zip)
+[gcta\_1.26.0\_src.zip](./gcta_1.26.0_src.zip)
 
-The source code are released under GPL v3. 
+The source code are released under GPL v3. The source code of the latest version will be release when it is stable.
 
 ### Update log {: .notoc}
 
-#### Version 1.90.0 (8 Aug 2017)
-* Update the package dependencies to latest, such as Intel MKL and Eigen. This makes the performance slightly better (30% ~ 40%)
-* Performance enhancement of functions that use REML algorithm (GREML, GREML bivar, MLMA...)
-* Fix memory issue when sample size exceed 500K in some functions (GREML bivar, read gz GRM ...)
-* Fix COJO analysis SE issue, remove the second term of equation 16 (See reference paper)
-* Add sBLUP prediction
-* Add Haseman-Elston regression analysis
-* Switch the GRM calculation to new code base, reduce the memory usage by partial load genotypes, add --part mode to break a full GRM calculation into multiple parts
-* Rewrite --grm-cutoff, reduce the memory usage dramatically. Add --no-grm flag to get the unrelated samples only
-* Rewrite --freq with lookup table for performance, change its format to contain more information
+#### Version 1.90.0beta (8 Aug 2017)
+* Improved the speed and memory usage of GRM computation by orders of magnitude.
+* Added a new option --make-grm-part to partition the GRM computation into a large of parts to facilitate the analysis in large data set such as the UK Biobank.
+* Improved the memory usage of the --grm-cutoff option.
+* Added the --grm-no-relative option to extract the GRM of a subset of individuals who do not have any close relative in the sample.
+* Improved the speed and memory usage of --freq by orders of magnitude.
+* Improved the approximation accuracy of the COJO analysis.
+* Added an option --cojo-sblup to perform a summary-data-based BLUP prediction analysis.
+* Added the Haseman-Elston regression analysis to estimate the SNP-based heritability for a trait and genetic correlation between traits.
+* Improved the speed of the bivariate GREML analysis (5X faster than original version).
+* Added the Mac and Windows versions.
+* Update the package dependencies to the latest, such as Intel MKL and Eigen. This improved the performance by ~40%.
+* Fixed the memory issue when the sample size exceeds 500K in some functions (e.g. bivariate GREML and reading the GRM in gz format).
 
 #### Version 1.26.0 (22 June 2016)
 Download link: [gcta_1.26.0.zip](./gcta_1.26.0.zip)

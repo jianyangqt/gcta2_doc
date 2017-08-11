@@ -49,23 +49,25 @@
             </div>
             <div id="content" class="span9" style="display: none;"><body><h2 id="overviewexpand" class="expand">Overview </h2>
 <hr><h3 id="about">About</h3>
-<p>GCTA (Genome-wide Complex Trait Analysis) was originally designed to estimate the proportion of phenotypic variance explained by genome- or chromosome-wide SNPs for complex traits (the GREML method), and has subsequently extended for many other analyses to better understand the genetic architecture of complex traits. GCTA currently supports the following functionalities: </p>
+<p>GCTA (Genome-wide Complex Trait Analysis) was originally designed to estimate the proportion of phenotypic variance explained by genome- or chromosome-wide SNPs for complex traits (the GREML method), and has subsequently extended for many other analyses to better understand the genetic architecture of complex traits. GCTA currently supports the analyses as follows.</p>
 <ul>
-<li>Estimating genetic relationships among individuals in GWAS data;</li>
-<li>Estimating inbreeding coefficients of individuals in GWAS data;</li>
-<li>Estimating variance in a phenotype explained by all GWAS SNPs;</li>
-<li>Partitioning genetic variance onto individual chromosomes, MAF bins or functional categories;</li>
-<li>Estimating genetic variance attributed to chromosome X, and testing for the effect of dosage compensation;</li>
-<li>Estimating dominance variance in GWAS data;</li>
-<li>Estimating genetic correlation between two traits (diseases) using GWAS data;</li>
+<li>GRM: estimating the genetic relationships among individuals in GWAS data;</li>
+<li>Estimating the inbreeding coefficients of individuals in GWAS data;</li>
+<li>GREML: estimating the proportion of variance in a phenotype explained by all GWAS SNPs (i.e. the SNP-based heritability);</li>
+<li>Partitioning the genetic variance onto individual chromosomes, MAF bins or functional categories;</li>
+<li>Estimating the genetic variance attributed to chromosome X, and testing for the effect of dosage compensation;</li>
+<li>GREMLd: estimating the dominance variance in unrelated individuals using GWAS data;</li>
+<li>Bivariate GREML: estimating the genetic correlation between two traits (diseases) using GWAS data;</li>
 <li>PCA analysis and estimation of Fst in GWAS data</li>
 <li>Computing LD scores and searching for LD friends for a list of target SNPs;</li>
 <li>Simulating a phenotype based on GWAS data;</li>
-<li>Conditional &amp; joint analysis of GWAS summary statistics without individual level genotype data;</li>
+<li>Conditional &amp; joint (COJO) analysis of GWAS summary statistics without individual level genotype data;</li>
 <li>Mixed linear model association analysis;</li>
-<li>Gene- or set-based association analysis.</li>
+<li>Gene- or set-based association analysis;</li>
+<li>Sumamry-data based BLUP;</li>
+<li>Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits.</li>
 </ul>
-<p><strong>Latest release <a href="#Download">v1.30.0</a>, click to download or view update log (8 Aug. 2017)</strong></p>
+<p><strong>Latest release <a href="#Download">v1.90.0beta</a>, click to download or view update log (8 Aug. 2017)</strong></p>
 <hr><h3 id="credits">Credits</h3>
 <p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the software with methodological support from <a href="http://researchers.uq.edu.au/researcher/2703">Hong Lee</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>. <a href="mailto:zhilizheng@outlook.com">Zhili Zheng</a> rewrote the GRM module to make it orders of magnitude faster, significantly improved the speed of the bivariate GREML module, extended the GCTA-PCA module, and designed the website. <a href="j.zeng@imb.uq.edu.au">Jian Zeng</a> contributed to the GCTA-HEreg module. <a href="mailto:andrew.bakshi@gmail.com">Andrew Bakshi</a> contributed to the GCTA-fastBAT module. <a href="mailto:z.zhu1@uq.edu.au">Zhihong Zhu</a> improved the GCTA-COJO module. Robert Marie contributed to the GCTA-sBLUP module. </p>
 <hr><h3 id="questionsandhelprequests">Questions and Help Requests</h3>
@@ -95,25 +97,31 @@ Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and 
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>We support x86_64(Intel, AMD64) CPU platform with x64 operation system only, which is the most popular calculation platform currently.</p>
-<p>Linux <a href="./gcta_1.30.0.zip">gcta_1.30.0.zip</a></p>
-<p>Windows <a href="./gcta_1.30.0_win.zip">gcta_1.30.0_win.zip</a></p>
-<p>Mac <a href="./gcta_1.30.0_mac.zip">gcta_1.30.0_mac.zip</a></p>
-<p>The executable files (binary code) are release under MIT lincense. We encourage to use Linux version, as the Windows and Mac version are less tested.</p>
+<p>Linux <a href="./gcta_1.26.0.zip">gcta_1.26.0.zip</a>  <a href="./gcta_1.90.0beta.zip">gcta_1.90.0beta.zip</a></p>
+<p>Windows <a href="./gcta_1.90.0beta_win.zip">gcta_1.90.0beta_win.zip</a></p>
+<p>Mac <a href="./gcta_1.90.0beta_mac.zip">gcta_1.90.0beta_mac.zip</a></p>
+<p>The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.</p>
+<blockquote>
+  <p>Note: GCTA 1.90.0 is a beta version under testing. Please report bugs to Jian Yang (jian.yang@uq.edu.au).</p>
+</blockquote>
 <hr><h3 id="sourcecodenotoc" class="notoc">Source code </h3>
-<p><a href="./gcta_1.30.0_src.zip">gcta_1.30.0_src.zip</a></p>
-<p>The source code are released under GPL v3. </p>
+<p><a href="./gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
+<p>The source code are released under GPL v3. The source code of the latest version will be release when it is stable.</p>
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
-<h4 id="version13008aug2017">Version 1.30.0 (8 Aug 2017)</h4>
+<h4 id="version1900beta8aug2017">Version 1.90.0beta (8 Aug 2017)</h4>
 <ul>
-<li>Update the package dependencies to latest, such as Intel MKL and Eigen. This makes the performance slightly better (30% ~ 40%)</li>
-<li>Performance enhancement of functions that use REML algorithm (GREML, GREML bivar, MLMA...)</li>
-<li>Fix memory issue when sample size exceed 500K in some functions (GREML bivar, read gz GRM ...)</li>
-<li>Fix COJO analysis SE issue, remove the second term of equation 16 (See reference paper)</li>
-<li>Add sBLUP prediction</li>
-<li>Add Haseman-Elston regression analysis</li>
-<li>Switch the GRM calculation to new code base, reduce the memory usage by partial load genotypes, add --part mode to break a full GRM calculation into multiple parts</li>
-<li>Rewrite --grm-cutoff, reduce the memory usage dramatically. Add --no-grm flag to get the unrelated samples only</li>
-<li>Rewrite --freq with lookup table for performance, change its format to include more informations</li>
+<li>Improved the speed and memory usage of GRM computation by orders of magnitude.</li>
+<li>Added a new option --make-grm-part to partition the GRM computation into a large of parts to facilitate the analysis in large data set such as the UK Biobank.</li>
+<li>Improved the memory usage of the --grm-cutoff option.</li>
+<li>Added the --grm-no-relative option to extract the GRM of a subset of individuals who do not have any close relative in the sample.</li>
+<li>Improved the speed and memory usage of --freq by orders of magnitude.</li>
+<li>Improved the approximation accuracy of the COJO analysis.</li>
+<li>Added an option --cojo-sblup to perform a summary-data-based BLUP prediction analysis.</li>
+<li>Added the Haseman-Elston regression analysis to estimate the SNP-based heritability for a trait and genetic correlation between traits.</li>
+<li>Improved the speed of the bivariate GREML analysis (5X faster than original version).</li>
+<li>Added the Mac and Windows versions.</li>
+<li>Update the package dependencies to the latest, such as Intel MKL and Eigen. This improved the performance by ~40%.</li>
+<li>Fixed the memory issue when the sample size exceeds 500K in some functions (e.g. bivariate GREML and reading the GRM in gz format).</li>
 </ul>
 <h4 id="version126022june2016">Version 1.26.0 (22 June 2016)</h4>
 <p>Download link: <a href="./gcta_1.26.0.zip">gcta_1.26.0.zip</a></p>
@@ -578,25 +586,25 @@ rs175292 1.000
 ......  
 </code></pre>
 <p><span class="kwd">--freq</span><br>
-Output allele frequencies of the SNPs included in the analysis (in plain text format), e.g.</p>
+Output allele frequencies of the SNPs included in the analysis (in plain text format).</p>
 <blockquote>
-  <p>Note: <span class="kwd">--freq</span> is rewrited based on new code base. Limited combinations of flags are supported: <span class="kwd">--keep</span>, <span class="kwd">--remove</span>, <span class="kwd">--chr</span>, <span class="kwd">--autosome-num</span>, <span class="kwd">--autosome</span>, <span class="kwd">--extract</span>, <span class="kwd">--exclude</span>, <span class="kwd">--maf</span>, <span class="kwd">--max-maf</span>, <span class="kwd">--thread-num</span>, <span class="kwd">--part</span>. Other flags will be bridged into previous version directly. We are adding flags currently. If you see "Accepted options" in the output, it is run in the previous version. </p>
-  <p>output format
-  test.freq (with header, AF is the allele frequency of A1, NCHROBS    is the number of allele observations)</p>
+  <p>Output format
+  test.frq (with header, AF is the allele frequency of A1, NCHROBS is the non-missing allele count)</p>
 </blockquote>
-<pre><code class="nohighlight language-nohighlight">CHR     SNP     A1      A2      AF      NCHROBS
-1       rs4475691       T       C       0.197698        7036
-1       rs28705211      C       G       0.278112        6972
-1       rs9777703       C       T       0.030161        7062
-1       rs3121567       A       G       0.028936        7050
-1       rs3934834       T       C       0.143316        7780
+<pre><code class="nohighlight language-nohighlight">CHR     SNP           A1      A2      AF            NCHROBS
+1       rs4475691     T       C       0.197698      7036
+1       rs28705211    C       G       0.278112      6972
+1       rs9777703     C       T       0.030161      7062
+1       rs3121567     A       G       0.028936      7050
+1       rs3934834     T       C       0.143316      7780
 </code></pre>
+<p>You can call the original <span class="kwd">--freq</span> by the <span class="kwd">--freq-v1</span> flag. </p>
 <blockquote>
-  <p>Output file format in prevous version 
-  test.freq (no header line; columns are SNP ID, reference allele and its frequency)  </p>
+  <p>Output file format in the previous version 
+  test.freq (no header line; columns are SNP ID, the reference allele and its frequency)  </p>
 </blockquote>
-<pre><code class="nohighlight language-nohighlight">rs103645 A 0.312  
-rs175292 G 0.602  
+<pre><code class="nohighlight language-nohighlight">rs4475691  T 0.198  
+rs28705211 C 0.278 
 ......  
 </code></pre>
 <p><span class="kwd">--update-freq</span> test.freq<br>
@@ -712,26 +720,21 @@ ReadGRMBin=function(prefix, AllN=F, size=4){
   return(list(diag=grm[i], off=grm[-i], id=id, N=N))
 }
 </code></pre>
+<p><strong>Note</strong>: <span class="kwd">--make-grm</span> has been rewritten with orders of magnitude improvement in speed and memory usage. Currently, It can only used in combination with a limited number of other flags, i.e., <span class="kwd">--keep</span>, <span class="kwd">--remove</span>, <span class="kwd">--chr</span>, <span class="kwd">--autosome-num</span>, <span class="kwd">--autosome</span>, <span class="kwd">--extract</span>, <span class="kwd">--exclude</span>, <span class="kwd">--maf</span>, <span class="kwd">--max-maf</span>, <span class="kwd">--thread-num</span>. You can use <span class="kwd">--make-grm-part</span> to reduce the memory usage further.</p>
+<p><span class="kwd">--make-grm--part</span> m i<br>
+Partition the GRM into m parts (by row), and compute the i-th part in the current run. </p>
+<p><strong>Note</strong>: This option is designed to compute the GRM in a very large sample (e.g. the UK Biobank data). The memory usage of each run is the total memory required divided by m. Thus partitioning a large number of parts can reduce the memory usage significantly. The total memory required is approximately [n * (n + 1) / 2 * 12] / 1024<sup>3</sup> GB + 0.5GB, where n is the sample size. As some computer clusters limit the virtual memory, allocating 1 to 2GB more memory to each job will be safer. In our computation of the GRM in the UKB data, we partitioned the whole data set (n = 456,426) into 250 parts and allocated 6700MB memory to each job.</p>
 <blockquote>
-  <p>Note: <span class="kwd">--make-grm</span> is rewrited based on new code base which aimed to reduce the memory consumption and improve speed of GCTA. Limited combinations of flags are supported: <span class="kwd">--keep</span>, <span class="kwd">--remove</span>, <span class="kwd">--chr</span>, <span class="kwd">--autosome-num</span>, <span class="kwd">--autosome</span>, <span class="kwd">--extract</span>, <span class="kwd">--exclude</span>, <span class="kwd">--maf</span>, <span class="kwd">--max-maf</span>, <span class="kwd">--thread-num</span>, <span class="kwd">--part</span>. Other flags will be bridged into previous version directly. We are adding flags currently. If you see "Accepted options" in the output, it is run in the previous version. </p>
+  <p>Example:</p>
 </blockquote>
-<p><span class="kwd">--part</span> TOTAL CUR<br>
-Part the GRM into TOTAL parts, calculate CUR part only in current run. </p>
-<blockquote>
-  <p>Note: <span class="kwd">--part</span> only works with <span class="kwd">--make-grm</span> only currently. The memory usage is also divided by TOTAL in each part, thus choose large TOTAL number will reduce the memory usage dramatically. 
-  Experience of estimate the memory usage: N * (N + 1) / 2 * 12 / 1024 / 1024 / 1024 GB + 0.5GB. N is the sample size. As some cluster will limit the virtual memory, add 1 - 2GB memory will be safer. You can always try to run it, GCTA will prompt the actual memory needed if the memory is not enough.</p>
-</blockquote>
-<p>Example to run in parted manner.</p>
 <pre><code class="bash language-bash"># Run the GRM in 3 parts
-gcta64 --bfile test --make-grm --part 3 1 --thead-num 5 --out test
-gcta64 --bfile test --make-grm --part 3 2 --thead-num 5 --out test
-gcta64 --bfile test --make-grm --part 3 3 --thead-num 5 --out test
+gcta64 --bfile test --make-grm-part 3 1 --thead-num 5 --out test
+gcta64 --bfile test --make-grm-part 3 2 --thead-num 5 --out test
+gcta64 --bfile test --make-grm-part 3 3 --thead-num 5 --out test
 # Merge them together
 cat test.parted_3_*.grm.id &gt; test.grm.id
 cat test.parted_3_*.grm.bin &gt; test.grm.bin
 cat test.parted_3_*.grm.N.bin &gt; test.grm.N.bin
-# The result is same with below command to calcualte them together, but the memeory usage is divided by 3 in parted calculation
-# gcta64 --bfile test --make-grm --thread-num 5 --out test
 </code></pre>
 <p><span class="kwd">--make-grm-alg</span> 0<br>
 The default value is 0, and the GRM is calculated using the equation <em>sum{[(x<sub>ij</sub> - 2p<sub>i</sub>)*(x<sub>ik</sub> - 2p<sub>i</sub>)] / [2p<sub>i</sub>(1-p<sub>i</sub>)]}</em> as described in Yang et al. 2010 Nat Genet. If the value = 1, the GRM will be calculated using the equation <em>sum[(x<sub>ij</sub> - 2p<sub>i</sub>)</em>(x<sub>ik</sub> - 2p<sub>i</sub>)] / sum[2p<sub>i</sub>(1-p<sub>i</sub>)]*. </p>
@@ -843,19 +846,25 @@ gcta64  --bfile test  --chr 22  --make-grm  --out test_chr22
 # To estimate the GRMs from the SNPs on each chromosome, then merge them by the command
 gcta64  --mgrm multi_grm.txt  --make-grm  --out test
 </code></pre>
-<p><span class="kwd">--grm-cutoff</span> 0.025<br>
-Remove one of a pair of individuals with estimated relatedness larger than the specified cut-off value (e.g. 0.025). GCTA selectively removes individuals to maximize the remaining sample size rather than doing it at random. NOTE: When merging multiple GRMs, this option does not apply to each single GRM but to the final merged GRM. You can combinate with <span class="kwd">--no-grm</span> to get the unrelated samples only in binary formatted GRM. </p>
+<p><span class="kwd">--grm-cutoff</span> 0.05<br>
+Remove one of a pair of individuals with estimated relatedness larger than the specified cut-off value (e.g. 0.05). GCTA selectively removes individuals to maximize the remaining sample size rather than doing it at random. </p>
+<p><strong>Note</strong>: 1) This flag has been rewritten to save memory usage. Currently, it can only be used in combination with other three flags, i.e., <span class="kwd">--grm</span> <span class="kwd">--keep</span> <span class="kwd">--exclude</span> and <span class="kwd">--make-grm</span>.<br>
+2) When merging multiple GRMs with <span class="kwd">--mgrm</span> flag, this option does not apply to each single GRM but to the final merged GRM.</p>
+<p><span class="kwd">--grm-no-relative</span> 0.05<br>
+Extract the GRM of a subset of individuals who do not have any relative in the sample given a threshold of relatedness.</p>
 <p><span class="kwd">--grm-adj</span> 0<br>
 When using the SNPs to predict the genetic relationship at causal loci, we have to adjust the prediction errors due to imperfect LD because of two reasons: 1) the use of only a finite number of SNPs; 2) causal loci tend to have lower MAF than the genotyped SNPs (input 0 if you assume that the causal loci have similar distribution of allele frequencies as the genotyped SNPs) (see Yang et al. 2010 Nat Genet for details).</p>
 <p><span class="kwd">--dc</span> 1<br>
 By default, the GRM, especially for the X-chromosome, is parameterized under the assumption of equal variance for males and females, unless the option <span class="kwd">--dc</span> is specified (1 and 0 for full and no dosage compensation, respectively). You need to use the option <span class="kwd">--update-sex</span> to read sex information of the individuals from a file (see the <span class="kwd">--update-sex</span> option above).</p>
 <p><strong>NOTE</strong>: you can add the option <span class="kwd">--make-grm</span> or <span class="kwd">--make-grm-gz</span> afterwards to save the modified GRM. You can also use the option <span class="kwd">--keep</span> and/or <span class="kwd">--remove</span> in combination with these five commands. It is also possible to use these five commands in the REML analysis (see the section below).</p>
 <p>Examples  </p>
-<pre><code class="bash language-bash"># Prune the GRM by a cutoff of 0.025 and adjust for prediction errors assuming the causal variants have similar distribution of allele frequencies as the genotyped SNPs)
-gcta64  --grm test  --grm-adj  0  --grm-cutoff  0.025  --make-grm  --out test_adj
+<pre><code class="bash language-bash"># Prune the GRM for relatedness by a cutoff of 0.05
+gcta64  --grm test  --grm-cutoff  0.05  --make-grm  --out test
+# Extract the GRM subject id of all the singletons
+gcta64  --grm test  --grm-no-relative 0.05  --make-grm  --out test
 
 # Use --keep or --remove option
-gcta64  --grm test  --keep test.indi.list  --grm-cutoff  0.025  --make-grm  --out test_adj
+gcta64  --grm test  --keep test.indi.list  --grm-cutoff  0.05  --make-grm  --out test_adj
 gcta64  --grm test  --remove test.indi.list  --grm-adj 0  --make-grm  --out test_adj
 
 # Assume full and no dosage compensation for the X chromosome
@@ -1985,33 +1994,6 @@ Input the GRM and output the first n (n = 20, by default) eigenvectors (saved as
 <p>Examples</p>
 <pre><code class="bash language-bash"># Input the GRM file and output the first 20 eigenvectors for a subset of individuals
 gcta64  --grm test --keep test.indi.list  --pca 20  --out test
-</code></pre>
-<hr><h3 id="pcloadingandprojection">PC loading and projection</h3>
-<p><span class="kwd">--pc-loading</span> ref_pca<br>
-Generate the SNP loading from the GCTA-PCA results of the reference genotype</p>
-<p><span class="kwd">--project-loading</span> ref_snp_loading 20<br>
-Project the target genotype into the reference SNP loading (ref_snp_loading), and generate 20 principal component</p>
-<blockquote>
-  <p>Note: </p>
-  <ul>
-  <li>The mismatch SNPs in the reference and target genotype will be obsoleted in the PC loadings, so it might be biased if lots of SNPs missing in the target genotype.</li>
-  <li>The default mode uses the MAF in reference genotype to calculate the projection, which coincides with EIGENSOFT projection.</li>
-  </ul>
-</blockquote>
-<p><strong>Example</strong><br>
-REF: reference genotype, the reference genotype to generate PC loading;<br>
-TAR: target genotype to project the PC to REF;</p>
-<pre><code class="bash language-bash"># make GRM
-gcta64 --bfile REF --maf 0.01 --autosome --make-grm --out REF
-# PCA analysis
-gcta64 --grm REF --pca 20 --out REF_pca20
-
-# use the pca generated above to produce the SNP loading
-gcta64 --bfile REF --pc-loading REF_pca20 --out REF_snp_loading
-
-# project the TAR to the SNP loading. The number 20 is the PC want to project.
-# It is the same if do chromosome by chromosome calculation add them up after each calculation 
-gcta64 --bfile TAR --project-loading REF_snp_loading 20 --out TAR_pca20
 </code></pre></body></div>
         </div>
 

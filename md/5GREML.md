@@ -96,7 +96,7 @@ ReadGRMBin=function(prefix, AllN=F, size=4){
 }
 ```
 
-**Note**: --make-grm has been rewritten with orders of magnitude improvement in speed and memory usage. Currently, It can only used in combination with a limited number of other flags, i.e., --keep, --remove, --chr, --autosome-num, --autosome, --extract, --exclude, --maf, --max-maf, --thread-num. You can use --make-grm-part in order to reduce the memory usage further.
+**Note**: --make-grm has been rewritten with orders of magnitude improvement in speed and memory usage. Currently, It can only used in combination with a limited number of other flags, i.e., --keep, --remove, --chr, --autosome-num, --autosome, --extract, --exclude, --maf, --max-maf, --thread-num. You can use --make-grm-part to reduce the memory usage further.
 
 
 --make-grm--part m i  
@@ -247,7 +247,7 @@ gcta64  --mgrm multi_grm.txt  --make-grm  --out test
 Remove one of a pair of individuals with estimated relatedness larger than the specified cut-off value (e.g. 0.05). GCTA selectively removes individuals to maximize the remaining sample size rather than doing it at random. 
  
 **Note**: 1) This flag has been rewritten to save memory usage. Currently, it can only be used in combination with other three flags, i.e., --grm --keep --exclude and --make-grm.  
-2) When merging multiple GRMs with --mgrm flag, this option does not apply to each single GRM but to the final merged GRM (run in the previous version).
+2) When merging multiple GRMs with --mgrm flag, this option does not apply to each single GRM but to the final merged GRM.
 
 --grm-no-relative 0.05  
 Extract the GRM of a subset of individuals who do not have any relative in the sample given a threshold of relatedness.

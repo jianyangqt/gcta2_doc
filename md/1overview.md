@@ -1,22 +1,24 @@
 ## Overview {: .expand}
 
 ### About
-GCTA (Genome-wide Complex Trait Analysis) was originally designed to estimate the proportion of phenotypic variance explained by genome- or chromosome-wide SNPs for complex traits (the GREML method), and has subsequently extended for many other analyses to better understand the genetic architecture of complex traits. GCTA currently supports the following functionalities: 
-* Estimating genetic relationships among individuals in GWAS data;
-* Estimating inbreeding coefficients of individuals in GWAS data;
-* Estimating variance in a phenotype explained by all GWAS SNPs;
-* Partitioning genetic variance onto individual chromosomes, MAF bins or functional categories;
-* Estimating genetic variance attributed to chromosome X, and testing for the effect of dosage compensation;
-* Estimating dominance variance in GWAS data;
-* Estimating genetic correlation between two traits (diseases) using GWAS data;
+GCTA (Genome-wide Complex Trait Analysis) was originally designed to estimate the proportion of phenotypic variance explained by genome- or chromosome-wide SNPs for complex traits (the GREML method), and has subsequently extended for many other analyses to better understand the genetic architecture of complex traits. GCTA currently supports the analyses as follows.
+* GRM: estimating the genetic relationships among individuals in GWAS data;
+* Estimating the inbreeding coefficients of individuals in GWAS data;
+* GREML: estimating the proportion of variance in a phenotype explained by all GWAS SNPs (i.e. the SNP-based heritability);
+* Partitioning the genetic variance onto individual chromosomes, MAF bins or functional categories;
+* Estimating the genetic variance attributed to chromosome X, and testing for the effect of dosage compensation;
+* GREMLd: estimating the dominance variance in unrelated individuals using GWAS data;
+* Bivariate GREML: estimating the genetic correlation between two traits (diseases) using GWAS data;
 * PCA analysis and estimation of Fst in GWAS data
 * Computing LD scores and searching for LD friends for a list of target SNPs;
 * Simulating a phenotype based on GWAS data;
-* Conditional & joint analysis of GWAS summary statistics without individual level genotype data;
+* Conditional & joint (COJO) analysis of GWAS summary statistics without individual level genotype data;
 * Mixed linear model association analysis;
-* Gene- or set-based association analysis.
+* Gene- or set-based association analysis;
+* Sumamry-data based BLUP;
+* Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits.
 
-**Latest release [v1.30.0](#Download), click to download or view update log (8 Aug. 2017)**
+**Latest release [v1.90.0beta](#Download), click to download or view update log (8 Aug. 2017)**
 
 ### Credits 
 

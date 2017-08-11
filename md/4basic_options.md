@@ -125,7 +125,7 @@ rs175292 1.000
 --freq  
 Output allele frequencies of the SNPs included in the analysis (in plain text format).
 
-> output format
+> Output format
 > test.frq (with header, AF is the allele frequency of A1, NCHROBS is the non-missing allele count)
 ```nohighlight
 CHR     SNP           A1      A2      AF            NCHROBS
@@ -136,9 +136,9 @@ CHR     SNP           A1      A2      AF            NCHROBS
 1       rs3934834     T       C       0.143316      7780
 ```
 
-You can call original --freq by --freq-v1 flag. 
+You can call the original --freq by the --freq-v1 flag. 
 > Output file format in the previous version 
-> test.freq (no header line; columns are SNP ID, reference allele and its frequency)  
+> test.freq (no header line; columns are SNP ID, the reference allele and its frequency)  
 ```nohighlight
 rs4475691  T 0.198  
 rs28705211 C 0.278 
