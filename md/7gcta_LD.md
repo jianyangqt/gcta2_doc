@@ -1,5 +1,5 @@
 
-## GCTA-LD
+## LD
 
 ### Computing LD scores
 LD score is defined as the sum of LD *r<sup>2</sup>* between a variant and all the variants in a region.
