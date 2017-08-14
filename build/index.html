@@ -721,20 +721,20 @@ ReadGRMBin=function(prefix, AllN=F, size=4){
 }
 </code></pre>
 <p><strong>Note</strong>: <span class="kwd">--make-grm</span> has been rewritten with orders of magnitude improvement in speed and memory usage. Currently, It can only used in combination with a limited number of other flags, i.e., <span class="kwd">--keep</span>, <span class="kwd">--remove</span>, <span class="kwd">--chr</span>, <span class="kwd">--autosome-num</span>, <span class="kwd">--autosome</span>, <span class="kwd">--extract</span>, <span class="kwd">--exclude</span>, <span class="kwd">--maf</span>, <span class="kwd">--max-maf</span>, <span class="kwd">--thread-num</span>. You can use <span class="kwd">--make-grm-part</span> to reduce the memory usage further.</p>
-<p><span class="kwd">--make-grm--part</span> m i<br>
+<p><span class="kwd">--make-grm-part</span> m i<br>
 Partition the GRM into m parts (by row), and compute the i-th part in the current run. </p>
 <p><strong>Note</strong>: This option is designed to compute the GRM in a very large sample (e.g. the UK Biobank data). The memory usage of each run is the total memory required divided by m. Thus partitioning a large number of parts can reduce the memory usage significantly. The total memory required is approximately [n * (n + 1) / 2 * 12] / 1024<sup>3</sup> GB + 0.5GB, where n is the sample size. As some computer clusters limit the virtual memory, allocating 1 to 2GB more memory to each job will be safer. In our computation of the GRM in the UKB data, we partitioned the whole data set (n = 456,426) into 250 parts and allocated 6700MB memory to each job.</p>
 <blockquote>
   <p>Example:</p>
 </blockquote>
-<pre><code class="bash language-bash"># Run the GRM in 3 parts
+<pre><code class="bash language-bash"># Partition the GRM into 3 parts
 gcta64 --bfile test --make-grm-part 3 1 --thead-num 5 --out test
 gcta64 --bfile test --make-grm-part 3 2 --thead-num 5 --out test
 gcta64 --bfile test --make-grm-part 3 3 --thead-num 5 --out test
-# Merge them together
-cat test.parted_3_*.grm.id &gt; test.grm.id
-cat test.parted_3_*.grm.bin &gt; test.grm.bin
-cat test.parted_3_*.grm.N.bin &gt; test.grm.N.bin
+# Merge all the parts together
+cat test.part_3_*.grm.id &gt; test.grm.id
+cat test.part_3_*.grm.bin &gt; test.grm.bin
+cat test.part_3_*.grm.N.bin &gt; test.grm.N.bin
 </code></pre>
 <p><span class="kwd">--make-grm-alg</span> 0<br>
 The default value is 0, and the GRM is calculated using the equation <em>sum{[(x<sub>ij</sub> - 2p<sub>i</sub>)*(x<sub>ik</sub> - 2p<sub>i</sub>)] / [2p<sub>i</sub>(1-p<sub>i</sub>)]}</em> as described in Yang et al. 2010 Nat Genet. If the value = 1, the GRM will be calculated using the equation <em>sum[(x<sub>ij</sub> - 2p<sub>i</sub>)</em>(x<sub>ik</sub> - 2p<sub>i</sub>)] / sum[2p<sub>i</sub>(1-p<sub>i</sub>)]*. </p>

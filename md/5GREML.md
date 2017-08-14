@@ -99,21 +99,21 @@ ReadGRMBin=function(prefix, AllN=F, size=4){
 **Note**: --make-grm has been rewritten with orders of magnitude improvement in speed and memory usage. Currently, It can only used in combination with a limited number of other flags, i.e., --keep, --remove, --chr, --autosome-num, --autosome, --extract, --exclude, --maf, --max-maf, --thread-num. You can use --make-grm-part to reduce the memory usage further.
 
 
---make-grm--part m i  
+--make-grm-part m i  
 Partition the GRM into m parts (by row), and compute the i-th part in the current run. 
 
 **Note**: This option is designed to compute the GRM in a very large sample (e.g. the UK Biobank data). The memory usage of each run is the total memory required divided by m. Thus partitioning a large number of parts can reduce the memory usage significantly. The total memory required is approximately [n * (n + 1) / 2 * 12] / 1024<sup>3</sup> GB + 0.5GB, where n is the sample size. As some computer clusters limit the virtual memory, allocating 1 to 2GB more memory to each job will be safer. In our computation of the GRM in the UKB data, we partitioned the whole data set (n = 456,426) into 250 parts and allocated 6700MB memory to each job.
 
 > Example:
 ```bash
-# Run the GRM in 3 parts
+# Partition the GRM into 3 parts
 gcta64 --bfile test --make-grm-part 3 1 --thead-num 5 --out test
 gcta64 --bfile test --make-grm-part 3 2 --thead-num 5 --out test
 gcta64 --bfile test --make-grm-part 3 3 --thead-num 5 --out test
-# Merge them together
-cat test.parted_3_*.grm.id > test.grm.id
-cat test.parted_3_*.grm.bin > test.grm.bin
-cat test.parted_3_*.grm.N.bin > test.grm.N.bin
+# Merge all the parts together
+cat test.part_3_*.grm.id > test.grm.id
+cat test.part_3_*.grm.bin > test.grm.bin
+cat test.part_3_*.grm.N.bin > test.grm.N.bin
 ```
  
 --make-grm-alg 0    
