@@ -246,11 +246,31 @@ gcta64  --mgrm multi_grm.txt  --make-grm  --out test
 --grm-cutoff 0.05  
 Remove one of a pair of individuals with estimated relatedness larger than the specified cut-off value (e.g. 0.05). GCTA selectively removes individuals to maximize the remaining sample size rather than doing it at random. 
  
-**Note**: 1) This flag has been rewritten to save memory usage. Currently, it can only be used in combination with other three flags, i.e., --grm --keep --exclude and --make-grm.  
+**Note**: 1) This flag has been rewritten to save memory usage. Currently, it can only be used in combination with other three flags, i.e., --grm --keep --remove and --make-grm.  
 2) When merging multiple GRMs with --mgrm flag, this option does not apply to each single GRM but to the final merged GRM.
 
---grm-no-relative 0.05  
-Extract the GRM of a subset of individuals who do not have any relative in the sample given a threshold of relatedness.
+--grm-singleton 0.05  
+Output IDs of individuals who do not have any relatives in sample given the relatedness threshold. This option will lead to two output files: \*.singleton.txt and \*.family.txt. It can be used in combination with --keep and --remove to manupulate the subjects.
+
+> Format for \*.singleton.txt (FID IID)
+```nohighlight
+17      171
+295     2951
+429     4291
+827     8271
+2585    25851
+...
+```
+
+> Format for \*.family.txt (FID1 IID1 FID2 IID2 GRM)
+```nohighlight
+5       51      3       31      0.129183
+7       71      1       11      0.0732403
+9       91      1       11      0.0618603
+9       91      7       71      0.0703791
+15      151     5       51      0.0623071
+...
+```
 
 --grm-adj 0  
 When using the SNPs to predict the genetic relationship at causal loci, we have to adjust the prediction errors due to imperfect LD because of two reasons: 1) the use of only a finite number of SNPs; 2) causal loci tend to have lower MAF than the genotyped SNPs (input 0 if you assume that the causal loci have similar distribution of allele frequencies as the genotyped SNPs) (see Yang et al. 2010 Nat Genet for details).
@@ -263,9 +283,9 @@ By default, the GRM, especially for the X-chromosome, is parameterized under the
 Examples  
 ```bash
 # Prune the GRM for relatedness by a cutoff of 0.05
-gcta64  --grm test  --grm-cutoff  0.05  --make-grm  --out test
-# Extract the GRM subject id of all the singletons
-gcta64  --grm test  --grm-no-relative 0.05  --make-grm  --out test
+gcta64 --grm test --grm-cutoff 0.05 --make-grm --out test
+# Extract the GRM subject id of all the singletons by a cutoff of 0.05
+gcta64 --grm test --grm-singleton 0.05  --out test
 
 # Use --keep or --remove option
 gcta64  --grm test  --keep test.indi.list  --grm-cutoff  0.05  --make-grm  --out test_adj
@@ -468,7 +488,7 @@ Note that the --reml-bendV option only provides an approximate inverse of V and 
 Zaitlen et al. [2013 PLoS Genetics](http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1003520) proposed a method to estimate pedigree-based and SNP-based *h<sup>2</sup>* simultaneously in one model using family data. The main advantage of this method is that it allows us to estimate SNP-based *h<sup>2</sup>* in family data without having to remove related individuals. The method has now been implemented in GCTA.
 
 --make-bK 0.05  
-The default value is 0.05. This option will set the GRM off-diagonal elements that are below the threshold to 0.
+The default value is 0.05. This option will set the GRM off-diagonal elements that are below the threshold to 0. It has been updated to save the memory (Memory usage less than 500MB).
 
 #### Examples
 ```bash

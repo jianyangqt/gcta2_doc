@@ -4,15 +4,15 @@
 
 The executable files below only support a 64-bit operating system on the x86_64 CPU platform.
 
-Linux [gcta\_1.26.0.zip](./gcta_1.26.0.zip), [gcta\_1.90.0beta.zip](./gcta_1.90.0beta.zip)
+Linux [gcta\_1.26.0.zip](./gcta_1.26.0.zip), [gcta\_1.90.1beta.zip](./gcta_1.90.1beta.zip)
 
-Windows [gcta\_1.90.0beta\_win.zip](./gcta_1.90.0beta_win.zip)
+Windows [gcta\_1.90.1beta\_win.zip](./gcta_1.90.1beta_win.zip)
 
-Mac [gcta\_1.90.0beta\_mac.zip](./gcta_1.90.0beta_mac.zip)
+Mac [gcta\_1.90.1beta\_mac.zip](./gcta_1.90.1beta_mac.zip)
  
 The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
 
-> Note: GCTA 1.90.0 is a beta version under testing. Please report bugs to Jian Yang (jian.yang@uq.edu.au).
+> Note: GCTA 1.90.1 is a beta version under testing. Previous version (GCTA 1.90.0) has some known issues, it shall be updated. Please report bugs to Jian Yang (jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
@@ -21,6 +21,15 @@ The executable files are released under the MIT license. We recommend to use the
 The source code are released under GPL v3. The source code of the latest version will be release when it is stable.
 
 ### Update log {: .notoc}
+
+#### Version 1.90.1beta (13 Sep 2017)
+* Fixed weird allele frequency in some conditions.
+* Fixed weird GRM happened occasionally.
+* Fixed GRM issue on rare variants.
+* Fixed issue to run Linux binary in the Linux subsystem on Win10.
+* Fixed memory issue of Windows version.
+* Removed --grm-no-relative, added --grm-singleton to get singleton subjects and family informatioan.
+* Fixed the memory issue in --make-bK.
 
 #### Version 1.90.0beta (8 Aug 2017)
 * Improved the speed and memory usage of GRM computation by orders of magnitude.

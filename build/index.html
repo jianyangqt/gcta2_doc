@@ -97,17 +97,27 @@ Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and 
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>The executable files below only support a 64-bit operating system on the x86_64 CPU platform.</p>
-<p>Linux <a href="./gcta_1.26.0.zip">gcta_1.26.0.zip</a>, <a href="./gcta_1.90.0beta.zip">gcta_1.90.0beta.zip</a></p>
-<p>Windows <a href="./gcta_1.90.0beta_win.zip">gcta_1.90.0beta_win.zip</a></p>
-<p>Mac <a href="./gcta_1.90.0beta_mac.zip">gcta_1.90.0beta_mac.zip</a></p>
+<p>Linux <a href="./gcta_1.26.0.zip">gcta_1.26.0.zip</a>, <a href="./gcta_1.90.1beta.zip">gcta_1.90.1beta.zip</a></p>
+<p>Windows <a href="./gcta_1.90.1beta_win.zip">gcta_1.90.1beta_win.zip</a></p>
+<p>Mac <a href="./gcta_1.90.1beta_mac.zip">gcta_1.90.1beta_mac.zip</a></p>
 <p>The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.</p>
 <blockquote>
-  <p>Note: GCTA 1.90.0 is a beta version under testing. Please report bugs to Jian Yang (jian.yang@uq.edu.au).</p>
+  <p>Note: GCTA 1.90.1 is a beta version under testing. Previous version (GCTA 1.90.0) has some known issues, it shall be updated. Please report bugs to Jian Yang (jian.yang@uq.edu.au).</p>
 </blockquote>
 <hr><h3 id="sourcecodenotoc" class="notoc">Source code </h3>
 <p><a href="./gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
 <p>The source code are released under GPL v3. The source code of the latest version will be release when it is stable.</p>
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
+<h4 id="version1901beta13sep2017">Version 1.90.1beta (13 Sep 2017)</h4>
+<ul>
+<li>Fixed weird allele frequency in some conditions.</li>
+<li>Fixed weird GRM happened occasionally.</li>
+<li>Fixed GRM issue on rare variants.</li>
+<li>Fixed issue to run Linux binary in the Linux subsystem on Win10.</li>
+<li>Fixed memory issue of Windows version.</li>
+<li>Removed --grm-no-relative, added --grm-singleton to get singleton subjects and family informatioan.</li>
+<li>Fixed the memory issue in --make-bK.</li>
+</ul>
 <h4 id="version1900beta8aug2017">Version 1.90.0beta (8 Aug 2017)</h4>
 <ul>
 <li>Improved the speed and memory usage of GRM computation by orders of magnitude.</li>
@@ -848,10 +858,30 @@ gcta64  --mgrm multi_grm.txt  --make-grm  --out test
 </code></pre>
 <p><span class="kwd">--grm-cutoff</span> 0.05<br>
 Remove one of a pair of individuals with estimated relatedness larger than the specified cut-off value (e.g. 0.05). GCTA selectively removes individuals to maximize the remaining sample size rather than doing it at random. </p>
-<p><strong>Note</strong>: 1) This flag has been rewritten to save memory usage. Currently, it can only be used in combination with other three flags, i.e., <span class="kwd">--grm</span> <span class="kwd">--keep</span> <span class="kwd">--exclude</span> and <span class="kwd">--make-grm</span>.<br>
+<p><strong>Note</strong>: 1) This flag has been rewritten to save memory usage. Currently, it can only be used in combination with other three flags, i.e., <span class="kwd">--grm</span> <span class="kwd">--keep</span> <span class="kwd">--remove</span> and <span class="kwd">--make-grm</span>.<br>
 2) When merging multiple GRMs with <span class="kwd">--mgrm</span> flag, this option does not apply to each single GRM but to the final merged GRM.</p>
-<p><span class="kwd">--grm-no-relative</span> 0.05<br>
-Extract the GRM of a subset of individuals who do not have any relative in the sample given a threshold of relatedness.</p>
+<p><span class="kwd">--grm-singleton</span> 0.05<br>
+Output IDs of individuals who do not have any relatives in sample given the relatedness threshold. This option will lead to two output files: *.singleton.txt and *.family.txt. It can be used in combination with <span class="kwd">--keep</span> and <span class="kwd">--remove</span> to manupulate the subjects.</p>
+<blockquote>
+  <p>Format for *.singleton.txt (FID IID)</p>
+</blockquote>
+<pre><code class="nohighlight language-nohighlight">17      171
+295     2951
+429     4291
+827     8271
+2585    25851
+...
+</code></pre>
+<blockquote>
+  <p>Format for *.family.txt (FID1 IID1 FID2 IID2 GRM)</p>
+</blockquote>
+<pre><code class="nohighlight language-nohighlight">5       51      3       31      0.129183
+7       71      1       11      0.0732403
+9       91      1       11      0.0618603
+9       91      7       71      0.0703791
+15      151     5       51      0.0623071
+...
+</code></pre>
 <p><span class="kwd">--grm-adj</span> 0<br>
 When using the SNPs to predict the genetic relationship at causal loci, we have to adjust the prediction errors due to imperfect LD because of two reasons: 1) the use of only a finite number of SNPs; 2) causal loci tend to have lower MAF than the genotyped SNPs (input 0 if you assume that the causal loci have similar distribution of allele frequencies as the genotyped SNPs) (see Yang et al. 2010 Nat Genet for details).</p>
 <p><span class="kwd">--dc</span> 1<br>
@@ -859,9 +889,9 @@ By default, the GRM, especially for the X-chromosome, is parameterized under the
 <p><strong>NOTE</strong>: you can add the option <span class="kwd">--make-grm</span> or <span class="kwd">--make-grm-gz</span> afterwards to save the modified GRM. You can also use the option <span class="kwd">--keep</span> and/or <span class="kwd">--remove</span> in combination with these five commands. It is also possible to use these five commands in the REML analysis (see the section below).</p>
 <p>Examples  </p>
 <pre><code class="bash language-bash"># Prune the GRM for relatedness by a cutoff of 0.05
-gcta64  --grm test  --grm-cutoff  0.05  --make-grm  --out test
-# Extract the GRM subject id of all the singletons
-gcta64  --grm test  --grm-no-relative 0.05  --make-grm  --out test
+gcta64 --grm test --grm-cutoff 0.05 --make-grm --out test
+# Extract the GRM subject id of all the singletons by a cutoff of 0.05
+gcta64 --grm test --grm-singleton 0.05  --out test
 
 # Use --keep or --remove option
 gcta64  --grm test  --keep test.indi.list  --grm-cutoff  0.05  --make-grm  --out test_adj
@@ -1034,7 +1064,7 @@ The GREML method uses REML for variance estimation, which requires the inverse o
 <hr><h3 id="gremlanalysisinfamilydata">GREML analysis in family data</h3>
 <p>Zaitlen et al. <a href="http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1003520">2013 PLoS Genetics</a> proposed a method to estimate pedigree-based and SNP-based <em>h<sup>2</sup></em> simultaneously in one model using family data. The main advantage of this method is that it allows us to estimate SNP-based <em>h<sup>2</sup></em> in family data without having to remove related individuals. The method has now been implemented in GCTA.</p>
 <p><span class="kwd">--make-bK</span> 0.05<br>
-The default value is 0.05. This option will set the GRM off-diagonal elements that are below the threshold to 0.</p>
+The default value is 0.05. This option will set the GRM off-diagonal elements that are below the threshold to 0. It has been updated to save the memory (Memory usage less than 500MB).</p>
 <h4 id="examples-1">Examples</h4>
 <pre><code class="bash language-bash"># Making a GRM from all SNPs in a family data set
 gcta64 --bfile test --make-grm --out test
