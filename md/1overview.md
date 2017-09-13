@@ -18,7 +18,7 @@ GCTA (Genome-wide Complex Trait Analysis) was originally designed to estimate th
 * Sumamry-data based BLUP;
 * Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits.
 
-**Latest release [v1.90.0beta](#Download), click to download or view update log (8 Aug. 2017)**
+**Latest release [v1.90.1beta](#Download), click to download or view update log (13 Sep. 2017)**
 
 ### Credits 
 
@@ -58,5 +58,5 @@ Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J 
 **fastBAT method:**  
 Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894. \[[PMID: 27604177](https://www.nature.com/articles/srep32894)\]
 
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 8 Aug 2017</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 13 Sep 2017</p>
 
