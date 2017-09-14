@@ -1,7 +1,10 @@
 
 ## GWAS analysis
 
-### GCTA-COJO: Conditional & joint association analysis
+### Conditional analysis
+
+**GCTA-COJO: conditional & joint association analysis based on summary-level data**
+
 --cojo-file test.ma  
 Input the summary-level statistics from a meta-analysis GWAS (or a single GWAS).
 > Input file format  
@@ -143,7 +146,9 @@ gcta64  --bfile test  --cojo-file test.ma --cojo-cond cond.snplist --out test
 **GCTA software**: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]
 
 
-### GCTA-MLMA: mixed linear model based association 
+### Mixed model association
+
+**GCTA-MLMA and GCTA-LOCO: mixed linear model based association analysis** 
 
 The following options are designed to perform an MLM based association analysis. Previous data management options such as --keep, --extract and --maf, REML analysis options such as --reml-priors, --reml-maxit and --reml-no-constrain and multi-threading option --thread-num are still valid for this analysis.
 
@@ -209,11 +214,11 @@ Chr SNP     bp    ReferenceAllele  OtherAllele Freq   b           se          p
 
 **REML analysis and GCTA Software**: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]
 
-### GCTA-fastBAT: set-based association test
+### Gene-based test
 
-GCTA-fastBAT: a fast and flexible set-Based Association Test using GWAS summary data
+**GCTA-fastBAT: a fast and flexible gene- or set-Based Association Test using GWAS summary data**
 
-This method performs a fast set-based association analysis for human complex traits using summary-level data from genome-wide association studies (GWAS) and linkage disequilibrium (LD) data from a reference sample with individual-level genotypes. Please see Bakshi et al. (2016 Scientific Reports) for details about the method. This module is developed by Andrew Bakshi and Jian Yang.
+This method performs a fast set-based association analysis for human complex traits using summary-level data from genome-wide association studies (GWAS) and linkage disequilibrium (LD) data from a reference sample with individual-level genotypes. Please see [Bakshi et al. (2016 Scientific Reports)](https://www.nature.com/articles/srep32894) for details about the method. This module is developed by Andrew Bakshi and Jian Yang.
 
 **Note**: most other GCTA options are also valid in this analysis.
 
@@ -426,6 +431,8 @@ rs10065373    T     0.0093     -1.55927e-05
 rs10070362    T     -0.0108    -0.000150901
 ```
 > Columns are SNP, the coded allele, effect size in the original GWAS summary data, and BLUP estimate of the SNP effect (all SNPs are fitted jointly).
+
+> **Note:** Let b = per-allele effect size and u = effec size per standardized SNP genotype. GCTA-sBLUP reads b, fits the model based on u, and output the BLUP SNP effect in the scale of b. So, the output can directly be used to compute the profile score using PLINK --score.
 
 #### References
 **COJO-SBLUP method**: Robinson et al. (2017) Genetic evidence of assortative mating in humans. Nat Hum Behav, 1:0016.

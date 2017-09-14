@@ -49,27 +49,27 @@
             </div>
             <div id="content" class="span9" style="display: none;"><body><h2 id="overviewexpand" class="expand">Overview </h2>
 <hr><h3 id="about">About</h3>
-<p>GCTA (Genome-wide Complex Trait Analysis) was originally designed to estimate the proportion of phenotypic variance explained by genome- or chromosome-wide SNPs for complex traits (the GREML method), and has subsequently extended for many other analyses to better understand the genetic architecture of complex traits. GCTA currently supports the analyses as follows.</p>
+<p>GCTA (Genome-wide Complex Trait Analysis) was originally designed to estimate the proportion of phenotypic variance explained by all genome-wide SNPs for complex traits (the GREML method), and has subsequently extended for many other analyses to better understand the genetic architecture of complex traits. GCTA currently supports the following analyses.</p>
 <ul>
 <li>GRM: estimating the genetic relationships among individuals in GWAS data;</li>
 <li>Estimating the inbreeding coefficients of individuals in GWAS data;</li>
 <li>GREML: estimating the proportion of variance in a phenotype explained by all GWAS SNPs (i.e. the SNP-based heritability);</li>
 <li>Partitioning the genetic variance onto individual chromosomes, MAF bins or functional categories;</li>
-<li>Estimating the genetic variance attributed to chromosome X, and testing for the effect of dosage compensation;</li>
+<li>Estimating the genetic variance attributed to the X chromosome, and testing for the effect of dosage compensation;</li>
 <li>GREMLd: estimating the dominance variance in unrelated individuals using GWAS data;</li>
 <li>Bivariate GREML: estimating the genetic correlation between two traits (diseases) using GWAS data;</li>
 <li>PCA analysis and estimation of Fst in GWAS data</li>
 <li>Computing LD scores and searching for LD friends for a list of target SNPs;</li>
 <li>Simulating a phenotype based on GWAS data;</li>
-<li>Conditional &amp; joint (COJO) analysis of GWAS summary statistics without individual level genotype data;</li>
-<li>Mixed linear model association analysis;</li>
-<li>Gene- or set-based association analysis;</li>
-<li>Sumamry-data based BLUP;</li>
+<li>Conditional &amp; joint (COJO) analysis of GWAS summary statistics without individual-level genotype data;</li>
+<li>MLMA and MLMA-LOCO: mixed linear model association analysis;</li>
+<li>fastBAT: gene- or set-based association analysis;</li>
+<li>sBLUP: sumamry-data based BLUP analysis for genomic risk prediction;</li>
 <li>Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits.</li>
 </ul>
 <p><strong>Latest release <a href="#Download">v1.90.1beta</a>, click to download or view update log (13 Sep. 2017)</strong></p>
 <hr><h3 id="credits">Credits</h3>
-<p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with assistance and guidance from <a href="http://researchers.uq.edu.au/researcher/2703">Hong Lee</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>. <a href="mailto:zhilizheng@outlook.com">Zhili Zheng</a> rewrote the GRM module, improved the bivariate GREML module, extended the GCTA-PCA module, and designed the website. <a href="j.zeng@imb.uq.edu.au">Jian Zeng</a> contributed to the GCTA-HEreg module. <a href="mailto:andrew.bakshi@gmail.com">Andrew Bakshi</a> contributed to the GCTA-fastBAT module. <a href="mailto:z.zhu1@uq.edu.au">Zhihong Zhu</a> improved the GCTA-COJO module. <a href="mailto:rmaier@broadinstitute.org">Robert Maier</a> contributed to the GCTA-sBLUP module. </p>
+<p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with assistance from <a href="http://researchers.uq.edu.au/researcher/2703">Hong Lee</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>. <a href="mailto:zhilizheng@outlook.com">Zhili Zheng</a> rewrote the I/O and GRM modules, improved the bivariate GREML module, extended the GCTA-PCA module, and designed the website. <a href="j.zeng@imb.uq.edu.au">Jian Zeng</a> rewrote the GCTA-HEreg module. <a href="mailto:andrew.bakshi@gmail.com">Andrew Bakshi</a> contributed to the GCTA-fastBAT module. <a href="mailto:z.zhu1@uq.edu.au">Zhihong Zhu</a> improved the GCTA-COJO module. <a href="mailto:rmaier@broadinstitute.org">Robert Maier</a> improved the GCTA-sBLUP module. </p>
 <hr><h3 id="questionsandhelprequests">Questions and Help Requests</h3>
 <p>If you have any bug reports or questions please send an email to <a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a></p>
 <hr><h3 id="citations">Citations</h3>
@@ -654,7 +654,7 @@ Specify the number of threads on which the program will be running.</p>
 gcta64 --reml --grm test --pheno test.pheno --out test --thread-num 10
 </code></pre>
 <h2 id="greml">GREML</h2>
-<hr><h3 id="gremltutorial">GREML tutorial</h3>
+<hr><h3 id="tutorial">Tutorial</h3>
 <p>If you have used PLINK before, you will find it easy to use GCTA. In this tutorial, all the options used are not detailed. Please refer to the documentation of GCTA for details of the options and formats of the input or output files.</p>
 <h4 id="gctagrmcalculatingthegeneticrelationshipmatrixgrmfromalltheautosomalsnps">GCTA-GRM: calculating the genetic relationship matrix (GRM) from all the autosomal SNPs</h4>
 <p>Suppose you have a GWAS data set in PLINK binary PED format, e.g. test.bed, test.bim and test.fam. You can type this command to calculate the genetic relationships between pairwise individuals from all the autosomal SNPs</p>
@@ -695,7 +695,8 @@ gcta64 --grm test_chr22 --pheno test.phen --reml --out test_chr22 --thread-num 1
 <p>For a case-control study, the phenotypic values of cases and controls should be specified as 1 and 0, respectively. Suppose you have prepared a phenotype file test_cc.phen. You can type the following command to estimate the variance explained by all the autosomal SNPs on the observed 0-1 scale and transform the estimate to that on the underlying liability scale (assuming the disease prevalence is 0.01 in this example)</p>
 <pre><code class="bash language-bash">gcta64 --grm test --pheno test_cc.phen --reml --prevalence 0.01 --out test --thread-num 10
 </code></pre>
-<hr><h3 id="gctagrmestimatinggeneticrelatednessfromsnps">GCTA-GRM: estimating genetic relatedness from SNPs</h3>
+<hr><h3 id="makingagrm">Making a GRM</h3>
+<p><strong>GCTA-GRM: estimating genetic relatedness from SNPs</strong></p>
 <p><span class="kwd">--make-grm</span><br>
 or<br>
 <span class="kwd">--make-grm-bin</span><br>
@@ -816,7 +817,7 @@ gcta64  --bfile test  --autosome --make-grm  --make-grm-alg 1  --out test_alg1
 <h4 id="references">References</h4>
 <p><strong>Method for estimating the GRM</strong>: Yang et al. (2010) Common SNPs explain a large proportion of the heritability for human height. Nat Genet. 42(7): 565-9. [PubMed ID: 20562875]</p>
 <p><strong>Method for estimating the inbreeding coefficients and GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
-<hr><h3 id="manipulationofthegrm">Manipulation of the GRM</h3>
+<hr><h3 id="manipulatingthegrm">Manipulating the GRM</h3>
 <p>Manipulation of the genetic relationship matrix</p>
 <p><span class="kwd">--grm</span> test<br>
 or<br>
@@ -905,7 +906,8 @@ gcta64  --grm test_xchr  --dosage-compen 0  --update-sex test.indi.sex.list  --m
 <p><strong>Method for estimating the GRM</strong>: Yang et al. (2010) Common SNPs explain a large proportion of the heritability for human height. Nat Genet. 42(7): 565-9. [PubMed ID: 20562875]</p>
 <p><strong>Method for estimating the GRM for the X chromosome and GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
 <p><strong>A demonstration of estimating variance explained by the X chromosome for height and BMI</strong>: Yang et al. (2011) Genome partitioning of genetic variation for complex traits using common SNPs. Nat Genet. 43(6): 519-525. [PubMed ID: 21552263]</p>
-<hr><h3 id="estimatevarianceexplainedbyallthesnps">Estimate variance explained by all the SNPs</h3>
+<hr><h3 id="gremlanalysis">GREML analysis</h3>
+<p><strong>GCTA-GREML: Estimate variance explained by all the SNPs</strong></p>
 <p><span class="kwd">--reml</span><br>
 Perform a REML (restricted maximum likelihood) analysis. This option is usually followed by the option <span class="kwd">--grm</span> (one GRM) or <span class="kwd">--mgrm</span> (multiple GRMs) to estimate the variance explained by the SNPs that were used to estimate the GRM.</p>
 <p><span class="kwd">--reml-priors</span> 0.45 0.55<br>
@@ -1061,7 +1063,8 @@ The GREML method uses REML for variance estimation, which requires the inverse o
 <p><strong>Method for estimating the variance explained by all SNPs</strong>: Yang et al. (2010) Common SNPs explain a large proportion of the heritability for human height. Nat Genet. 42(7): 565-9. [PubMed ID: 20562875]</p>
 <p><strong>Method for estimating the variance explained by all SNPs using case-control data</strong>: Lee et al. (2011) Estimating Missing Heritability for Disease from Genome-wide Association Studies. Am J Hum Genet. 88(3): 294-305. [PubMed ID: 21376301]</p>
 <p><strong>Method for partitioning the genetic variance captured by all SNPs onto chromosomes and genomic segments</strong>: Yang et al. (2011) Genome partitioning of genetic variation for complex traits using common SNPs. Nat Genet. 43(6): 519-525. [PubMed ID: 21552263]</p>
-<hr><h3 id="gremlanalysisinfamilydata">GREML analysis in family data</h3>
+<hr><h3 id="gremlinfamilydata">GREML in family data</h3>
+<p><strong>GCTA-GREML analysis in family data</strong></p>
 <p>Zaitlen et al. <a href="http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1003520">2013 PLoS Genetics</a> proposed a method to estimate pedigree-based and SNP-based <em>h<sup>2</sup></em> simultaneously in one model using family data. The main advantage of this method is that it allows us to estimate SNP-based <em>h<sup>2</sup></em> in family data without having to remove related individuals. The method has now been implemented in GCTA.</p>
 <p><span class="kwd">--make-bK</span> 0.05<br>
 The default value is 0.05. This option will set the GRM off-diagonal elements that are below the threshold to 0. It has been updated to save the memory (Memory usage less than 500MB).</p>
@@ -1101,8 +1104,9 @@ n    2753
 <p><strong>Method for estimating the GRM</strong>: Yang et al. (2010) Common SNPs explain a large proportion of the heritability for human height. Nat Genet. 42(7): 565-9. [PubMed ID: 20562875]</p>
 <p><strong>The Zaitlen et al. method</strong>: Zaitlen N, Kraft P, Patterson N, Pasaniuc B, Bhatia G, Pollack S, Price AL (2013) Using extended genealogy to estimate components of heritability for 23 quantitative and dichotomous traits. PLoS Genet. 2013 May;9(5):e1003520. PubMed ID: 23737753]</p>
 <p><strong>REML analysis and GCTA Software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
-<hr><h3 id="gctaldmsestimatingheritabilityfromwgsdata">GCTA-LDMS: estimating heritability from WGS data</h3>
-<p>The GREML-LDMS method is proposed to estimate heritability using whole genome sequence (WGS) data (<a href="http://www.nature.com/ng/journal/v47/n10/full/ng.3390.html">Yang et al. 2015 Nature Genetics</a>). It can also be applied to (imputed) GWAS data. The method is unbiased regardless the properties (e.g. MAF and LD) of the underlying causal variants. The analysis involves four steps.<br>
+<hr><h3 id="gremlinwgsorimputeddata">GREML in WGS or imputed data</h3>
+<p><strong>GCTA-LDMS: estimating heritability from WGS or imputed WGS data</strong></p>
+<p>The GREML-LDMS method is proposed to estimate heritability using whole genome sequence (WGS) data (<a href="http://www.nature.com/ng/journal/v47/n10/full/ng.3390.html">Yang et al. 2015 Nature Genetics</a>). <strong>It corrects for the LD bias in the estimated SNP-based heritability.</strong> It can also be applied to (imputed) GWAS data. The method is unbiased regardless the properties (e.g. MAF and LD) of the underlying causal variants. The analysis involves four steps.<br>
 1) calculating segment-based LD score;<br>
 2) stratifying SNPs based on the segment-based LD score (this is done in R);<br>
 3) computing GRMs using the stratified SNPs;<br>
@@ -1183,8 +1187,9 @@ test_group2
 <h4 id="references-4">References:</h4>
 <p><strong>Method paper</strong>: Yang et al. (2015) Genetic variance estimation with imputed variants finds negligible missing heritability for human height and body mass index. Nature Genetics, 47:1114–1120.</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
-<hr><h3 id="gctagremldestimatingdominancevariancefromsnps">GCTA-GREMLd: estimating dominance variance from SNPs</h3>
-<p>Estimating dominance variance from GWAS data</p>
+<hr><h3 id="gremlfordominancevariance">GREML for dominance variance</h3>
+<p><strong>GCTA-GREMLd: estimating dominance variance in unrelated individuals using SNP data</strong></p>
+<p>Details of the method can be found in <a href="http://www.sciencedirect.com/science/article/pii/S0002929715000099">Zhu et al. (2015 AJHG)</a>.</p>
 <p><span class="kwd">--make-grm-d</span><br>
 or<br>
 <span class="kwd">--make-grm-d-bin</span><br>
@@ -1236,8 +1241,8 @@ test_domi
 <h4 id="references-5">References:</h4>
 <p><strong>Method paper</strong>: Zhu Z, Bakshi A, Vinkhuyzen AA, Hemani G, Lee SH, Nolte IM, van Vliet-Ostaptchouk JV, Snieder H, The LifeLines Cohort Study, Esko T, Milani L, Mägi R, Metspalu A, Hill WG, Weir BS, Goddard ME, Visscher PM, Yang J (2015) Dominance Genetic Variation Contributes Little to the Missing Heritability for Human Complex Traits. Am J Hum Genet, 96: 1-9. [PubMed ID: 25683123]</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
-<hr><h3 id="bivariateremlanalysis">Bivariate REML analysis</h3>
-<p>These options are designed to perform a bivariate REML analysis of two quantitative traits (continuous) from population based studies, two disease traits (binary) from case control studies, or one quantitative trait and one binary disease trait, to estimate the genetic variance of each trait and that genetic covariance between two traits that can be captured by all SNPs. </p>
+<hr><h3 id="bivariategremlanalysis">Bivariate GREML analysis</h3>
+<p>These options are designed to perform a bivariate GREML analysis to estimate the genetic crrelation between two quantitative traits, between two disease traits (binary) from case control studies, and between a quantitative trait and a binary disease trait. The analysis will output the estimated genetic variance for each trait (captured by the SNPs) and the genetic covariance betwen traits.  </p>
 <p><span class="kwd">--reml-bivar</span> 1 2<br>
 By default, GCTA will take the first two traits in the phenotype file for analysis. The phenotype file is specified by the option <span class="kwd">--pheno</span> as described in univariate REML analysis. All the options for univariate REML analysis are still valid here except <span class="kwd">--mpheno</span>, <span class="kwd">--gxe</span>, <span class="kwd">--prevalence</span>, <span class="kwd">--reml-lrt</span>, <span class="kwd">--reml-no-lrt</span> and <span class="kwd">--blup-snp</span>. All the input files are in the same format as in univariate REML analysis.</p>
 <p><span class="kwd">--reml-bivar-nocove</span><br>
@@ -1447,7 +1452,8 @@ h2O_func &lt;- function(ncase, ncontrol, K, h2L, var_pi=2e-5){
     return(list(h2L=h2L, var_h2L=var_h2L, h2O=h2O, var_h2O=var_h2O))
 }
 </code></pre>
-<hr><h3 id="gctahereghasemanelstonregressionanalysis">GCTA-HEreg: Haseman-Elston regression analysis</h3>
+<hr><h3 id="hasemanelstonregression">Haseman-Elston regression</h3>
+<p><strong>GCTA-HEreg: Haseman-Elston regression analysis</strong></p>
 <p>Haseman-Elston (HE) regression is a moment-based method for estimating the heritability. It is computationally much more efficient but slightly less powerful than REML as the SE of the estimate from HE regression is larger than that from REML. We implemented a HE regression that allows fitting multiple GRMs and facilitates bivariate analysis as in the GREML analysis, and only requires a small amount of memory (e.g. &lt;2GB for n=120,000). The bivariate analysis is essentially three sets of independent HE regression for the variance and covariance components, where the sampling variance/covariance of the estimates (including the genetic correlation rG) are computed using leave-one-individual-out Jackknife technique.</p>
 <blockquote>
   <p>Example</p>
@@ -1508,9 +1514,10 @@ N_tr1               50930
 N_tr2               56342           
 </code></pre>
 <h4 id="references-7">References</h4>
-<p>Yang J, Zeng J, Goddard ME, Wray NR, Visscher PM  (2017) Concepts, estimation and interpretation of SNP-based heritability. Under review.</p>
+<p>Yang J, Zeng J, Goddard ME, Wray NR, Visscher PM  (2017) Concepts, estimation and interpretation of SNP-based heritability. Nature Genetics, 49: 1304-1310.</p>
 <h2 id="gwasanalysis">GWAS analysis</h2>
-<hr><h3 id="gctacojoconditionaljointassociationanalysis">GCTA-COJO: Conditional &amp; joint association analysis</h3>
+<hr><h3 id="conditionalanalysis">Conditional analysis</h3>
+<p><strong>GCTA-COJO: conditional &amp; joint association analysis based on summary-level data</strong></p>
 <p><span class="kwd">--cojo-file</span> test.ma<br>
 Input the summary-level statistics from a meta-analysis GWAS (or a single GWAS).</p>
 <blockquote>
@@ -1624,7 +1631,8 @@ For example, cond.snplist)</p>
 <h4 id="references-8">References</h4>
 <p><strong>Conditional and joint analysis method</strong>: Yang et al. (2012) Conditional and joint multiple-SNP analysis of GWAS summary statistics identifies additional variants influencing complex traits. Nat Genet 44(4):369-375. [PubMed ID: 22426310]</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
-<hr><h3 id="gctamlmamixedlinearmodelbasedassociation">GCTA-MLMA: mixed linear model based association</h3>
+<hr><h3 id="mixedmodelassociation">Mixed model association</h3>
+<p><strong>GCTA-MLMA and GCTA-LOCO: mixed linear model based association analysis</strong> </p>
 <p>The following options are designed to perform an MLM based association analysis. Previous data management options such as <span class="kwd">--keep</span>, <span class="kwd">--extract</span> and <span class="kwd">--maf</span>, REML analysis options such as <span class="kwd">--reml-priors</span>, <span class="kwd">--reml-maxit</span> and <span class="kwd">--reml-no-constrain</span> and multi-threading option <span class="kwd">--thread-num</span> are still valid for this analysis.</p>
 <p><span class="kwd">--mlma</span><br>
 This option will initiate an MLM based association analysis including the candidate SNP<br>
@@ -1679,9 +1687,9 @@ gcta64 --mlma --grm test_all --mlma-subtract-grm test_chr22 --bfile test --chr 2
 <h4 id="references-9">References</h4>
 <p><strong>An overview of the MLM based association methods</strong>: Yang J, Zaitlen NA, Goddard ME, Visscher PM and Price AL (2014) Mixed model association methods: advantages and pitfalls. Nat Genet. 2014 Feb;46(2):100-6. [Pubmed ID: 24473328]</p>
 <p><strong>REML analysis and GCTA Software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
-<hr><h3 id="gctafastbatsetbasedassociationtest">GCTA-fastBAT: set-based association test</h3>
-<p>GCTA-fastBAT: a fast and flexible set-Based Association Test using GWAS summary data</p>
-<p>This method performs a fast set-based association analysis for human complex traits using summary-level data from genome-wide association studies (GWAS) and linkage disequilibrium (LD) data from a reference sample with individual-level genotypes. Please see Bakshi et al. (2016 Scientific Reports) for details about the method. This module is developed by Andrew Bakshi and Jian Yang.</p>
+<hr><h3 id="genebasedtest">Gene-based test</h3>
+<p><strong>GCTA-fastBAT: a fast and flexible gene- or set-Based Association Test using GWAS summary data</strong></p>
+<p>This method performs a fast set-based association analysis for human complex traits using summary-level data from genome-wide association studies (GWAS) and linkage disequilibrium (LD) data from a reference sample with individual-level genotypes. Please see <a href="https://www.nature.com/articles/srep32894">Bakshi et al. (2016 Scientific Reports)</a> for details about the method. This module is developed by Andrew Bakshi and Jian Yang.</p>
 <p><strong>Note</strong>: most other GCTA options are also valid in this analysis.</p>
 <blockquote>
   <p>Examples</p>
@@ -1874,12 +1882,14 @@ rs10070362    T     -0.0108    -0.000150901
 </code></pre>
 <blockquote>
   <p>Columns are SNP, the coded allele, effect size in the original GWAS summary data, and BLUP estimate of the SNP effect (all SNPs are fitted jointly).</p>
+  <p><strong>Note:</strong> Let b = per-allele effect size and u = effec size per standardized SNP genotype. GCTA-sBLUP reads b, fits the model based on u, and output the BLUP SNP effect in the scale of b. So, the output can directly be used to compute the profile score using PLINK <span class="kwd">--score</span>.</p>
 </blockquote>
 <h4 id="references-11">References</h4>
 <p><strong>COJO-SBLUP method</strong>: Robinson et al. (2017) Genetic evidence of assortative mating in humans. Nat Hum Behav, 1:0016.</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]</p>
 <h2 id="ld">LD</h2>
 <hr><h3 id="computingldscores">Computing LD scores</h3>
+<p><strong>GCTA-LDS: calculating LD score for each SNP</strong></p>
 <p>LD score is defined as the sum of LD <em>r<sup>2</sup></em> between a variant and all the variants in a region.</p>
 <p>Example - calculating LD score to stratify SNPs</p>
 <pre><code class="bash language-bash">gcta64 --bfile test --ld-score --ld-wind 1000 --ld-rsq-cutoff 0.01 --out test
@@ -1938,7 +1948,7 @@ rs9777703 1 918699 0.0301614 0.00240581 499 0.854464 0.000222185 500 0.00222427
 <p><strong>LD score regression analysis</strong>: Bulik-Sullivan BK, Loh PR, Finucane HK, Ripke S, Yang J, Schizophrenia Working Group of the Psychiatric Genomics Consortium, Patterson N, Daly MJ, Price AL, Neale BM (2015) LD Score regression distinguishes confounding from polygenicity in genome-wide association studies. Nat Genet, 47: 291-295.</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="searchingforldfriends">Searching for LD friends</h3>
-<p>GCTA-LDS: calculating LD score for each SNP</p>
+<p><strong>GCTA-LDF: finding LD friends for each of the SNPs given on the list</strong></p>
 <p>For each target SNP, GCTA uses the simple regression approach to search for SNPs that are in significant LD with the target SNP.</p>
 <p><span class="kwd">--ld</span> ld.snplist<br>
 Specify a list of SNPs.</p>
@@ -1970,8 +1980,9 @@ SNP in highest LD with the target SNP
 <p><strong>Method to search for LD friends</strong>: Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J Hum Genet. 19(7): 807-812. [Pubmed ID: 21407268]</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
 <h2 id="populationgenetics">Population genetics</h2>
-<hr><h3 id="gctafstcalculatingfstusinggwasdata">GCTA-Fst: calculating Fst using GWAS data</h3>
-<p>Calculating Fst following the method described in Weir (1996).</p>
+<hr><h3 id="fst">Fst</h3>
+<p><strong>GCTA-Fst: calculating Fst values of SNPs using GWAS data</strong></p>
+<p>It follows the Fst method described in Weir (1996).</p>
 <blockquote>
   <p>Example</p>
 </blockquote>
@@ -2001,7 +2012,8 @@ SNP in highest LD with the target SNP
 <h4 id="references-14">References</h4>
 <p><strong>Fst method</strong>: Weir, B.S. 1996. Genetic Data Analysis II: Methods for Discrete Population Genetic Data. Sinauer Associates, Inc. Sunderland, Massachusetts.</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]</p>
-<hr><h3 id="gctapcaprincipalcomponentanalysis">GCTA-PCA: Principal component analysis</h3>
+<hr><h3 id="pca">PCA</h3>
+<p><strong>GCTA-PCA: Principal component analysis</strong></p>
 <p><span class="kwd">--pca</span> 20<br>
 Input the GRM and output the first n (n = 20, by default) eigenvectors (saved as *.eigenvec, plain text file) and all the eigenvalues (saved as *.eigenval, plain text file), which are equivalent to those calculated by the program EIGENSTRAT. The only purpose of this option is to calculate the first m eigenvectors, and subsequently include them as covariates in the model when estimating the variance explained by all the SNPs (see below for the option of estimating the variance explained by genome-wide SNPs). Please find the EIGENSTRAT software if you need more sophisticated principal component analysis of the population structure. </p>
 <blockquote>

@@ -1,7 +1,7 @@
 
 ## GREML
 
-### GREML tutorial
+### Tutorial
 
 If you have used PLINK before, you will find it easy to use GCTA. In this tutorial, all the options used are not detailed. Please refer to the documentation of GCTA for details of the options and formats of the input or output files.
 
@@ -61,7 +61,9 @@ For a case-control study, the phenotypic values of cases and controls should be 
 gcta64 --grm test --pheno test_cc.phen --reml --prevalence 0.01 --out test --thread-num 10
 ```
 
-### GCTA-GRM: estimating genetic relatedness from SNPs
+### Making a GRM
+
+**GCTA-GRM: estimating genetic relatedness from SNPs**
 
 --make-grm  
 or  
@@ -193,7 +195,7 @@ gcta64  --bfile test  --autosome --make-grm  --make-grm-alg 1  --out test_alg1
  
 **Method for estimating the inbreeding coefficients and GCTA software**: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]
 
-### Manipulation of the GRM
+### Manipulating the GRM
 
 Manipulation of the genetic relationship matrix
 
@@ -305,7 +307,9 @@ gcta64  --grm test_xchr  --dosage-compen 0  --update-sex test.indi.sex.list  --m
 **A demonstration of estimating variance explained by the X chromosome for height and BMI**: Yang et al. (2011) Genome partitioning of genetic variation for complex traits using common SNPs. Nat Genet. 43(6): 519-525. [PubMed ID: 21552263]
 
 
-### Estimate variance explained by all the SNPs
+### GREML analysis 
+
+**GCTA-GREML: Estimate variance explained by all the SNPs**
 
 --reml  
 Perform a REML (restricted maximum likelihood) analysis. This option is usually followed by the option --grm (one GRM) or --mgrm (multiple GRMs) to estimate the variance explained by the SNPs that were used to estimate the GRM.
@@ -483,7 +487,9 @@ Note that the --reml-bendV option only provides an approximate inverse of V and 
 **Method for partitioning the genetic variance captured by all SNPs onto chromosomes and genomic segments**: Yang et al. (2011) Genome partitioning of genetic variation for complex traits using common SNPs. Nat Genet. 43(6): 519-525. [PubMed ID: 21552263]
 
 
-### GREML analysis in family data
+### GREML in family data
+
+**GCTA-GREML analysis in family data**
 
 Zaitlen et al. [2013 PLoS Genetics](http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1003520) proposed a method to estimate pedigree-based and SNP-based *h<sup>2</sup>* simultaneously in one model using family data. The main advantage of this method is that it allows us to estimate SNP-based *h<sup>2</sup>* in family data without having to remove related individuals. The method has now been implemented in GCTA.
 
@@ -536,8 +542,11 @@ where "*V(G<sub>1</sub>) / V<sub>p</sub>*" provides an estimate of SNP-based *h<
 **REML analysis and GCTA Software**: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]
 
 
-### GCTA-LDMS: estimating heritability from WGS data
-The GREML-LDMS method is proposed to estimate heritability using whole genome sequence (WGS) data ([Yang et al. 2015 Nature Genetics](http://www.nature.com/ng/journal/v47/n10/full/ng.3390.html)). It can also be applied to (imputed) GWAS data. The method is unbiased regardless the properties (e.g. MAF and LD) of the underlying causal variants. The analysis involves four steps.  
+### GREML in WGS or imputed data
+
+**GCTA-LDMS: estimating heritability from WGS or imputed WGS data**
+
+The GREML-LDMS method is proposed to estimate heritability using whole genome sequence (WGS) data ([Yang et al. 2015 Nature Genetics](http://www.nature.com/ng/journal/v47/n10/full/ng.3390.html)). **It corrects for the LD bias in the estimated SNP-based heritability.** It can also be applied to (imputed) GWAS data. The method is unbiased regardless the properties (e.g. MAF and LD) of the underlying causal variants. The analysis involves four steps.  
 1) calculating segment-based LD score;  
 2) stratifying SNPs based on the segment-based LD score (this is done in R);  
 3) computing GRMs using the stratified SNPs;  
@@ -636,9 +645,11 @@ test_group2
 **GCTA software**: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]
 
 
-### GCTA-GREMLd: estimating dominance variance from SNPs
+### GREML for dominance variance
 
-Estimating dominance variance from GWAS data
+**GCTA-GREMLd: estimating dominance variance in unrelated individuals using SNP data**
+
+Details of the method can be found in [Zhu et al. (2015 AJHG)](http://www.sciencedirect.com/science/article/pii/S0002929715000099).
 
 --make-grm-d  
 or  
@@ -694,8 +705,9 @@ test_domi
 **GCTA software**: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]
 
 
-### Bivariate REML analysis
-These options are designed to perform a bivariate REML analysis of two quantitative traits (continuous) from population based studies, two disease traits (binary) from case control studies, or one quantitative trait and one binary disease trait, to estimate the genetic variance of each trait and that genetic covariance between two traits that can be captured by all SNPs. 
+### Bivariate GREML analysis
+
+These options are designed to perform a bivariate GREML analysis to estimate the genetic crrelation between two quantitative traits, between two disease traits (binary) from case control studies, and between a quantitative trait and a binary disease trait. The analysis will output the estimated genetic variance for each trait (captured by the SNPs) and the genetic covariance betwen traits.  
 
 --reml-bivar 1 2  
 By default, GCTA will take the first two traits in the phenotype file for analysis. The phenotype file is specified by the option --pheno as described in univariate REML analysis. All the options for univariate REML analysis are still valid here except --mpheno, --gxe, --prevalence, --reml-lrt, --reml-no-lrt and --blup-snp. All the input files are in the same format as in univariate REML analysis.
@@ -924,7 +936,9 @@ h2O_func <- function(ncase, ncontrol, K, h2L, var_pi=2e-5){
 }
 ```
 
-### GCTA-HEreg: Haseman-Elston regression analysis
+### Haseman-Elston regression
+
+**GCTA-HEreg: Haseman-Elston regression analysis**
 
 Haseman-Elston (HE) regression is a moment-based method for estimating the heritability. It is computationally much more efficient but slightly less powerful than REML as the SE of the estimate from HE regression is larger than that from REML. We implemented a HE regression that allows fitting multiple GRMs and facilitates bivariate analysis as in the GREML analysis, and only requires a small amount of memory (e.g. <2GB for n=120,000). The bivariate analysis is essentially three sets of independent HE regression for the variance and covariance components, where the sampling variance/covariance of the estimates (including the genetic correlation rG) are computed using leave-one-individual-out Jackknife technique.
 
@@ -987,4 +1001,4 @@ N_tr2               56342
 
 #### References
 
-Yang J, Zeng J, Goddard ME, Wray NR, Visscher PM  (2017) Concepts, estimation and interpretation of SNP-based heritability. Under review.
+Yang J, Zeng J, Goddard ME, Wray NR, Visscher PM  (2017) Concepts, estimation and interpretation of SNP-based heritability. Nature Genetics, 49: 1304-1310.

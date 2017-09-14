@@ -1,9 +1,11 @@
 
 ## Population genetics
 
-### GCTA-Fst: calculating Fst using GWAS data
+### Fst
 
-Calculating Fst following the method described in Weir (1996).
+**GCTA-Fst: calculating Fst values of SNPs using GWAS data**
+
+It follows the Fst method described in Weir (1996).
 
 > Example
 ```bash
@@ -38,7 +40,9 @@ Chr	SNP	      bp	 refA freq_Popu1(n=1000) freq_Popu2(n=2925)	Fst
 **GCTA software**: Yang J, Lee SH, Goddard ME and Visscher PM. (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]
 
 
-### GCTA-PCA: Principal component analysis
+### PCA
+
+**GCTA-PCA: Principal component analysis**
 
 --pca 20  
 Input the GRM and output the first n (n = 20, by default) eigenvectors (saved as *.eigenvec, plain text file) and all the eigenvalues (saved as *.eigenval, plain text file), which are equivalent to those calculated by the program EIGENSTRAT. The only purpose of this option is to calculate the first m eigenvectors, and subsequently include them as covariates in the model when estimating the variance explained by all the SNPs (see below for the option of estimating the variance explained by genome-wide SNPs). Please find the EIGENSTRAT software if you need more sophisticated principal component analysis of the population structure. 

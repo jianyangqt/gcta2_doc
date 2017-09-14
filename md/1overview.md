@@ -1,28 +1,28 @@
 ## Overview {: .expand}
 
 ### About
-GCTA (Genome-wide Complex Trait Analysis) was originally designed to estimate the proportion of phenotypic variance explained by genome- or chromosome-wide SNPs for complex traits (the GREML method), and has subsequently extended for many other analyses to better understand the genetic architecture of complex traits. GCTA currently supports the analyses as follows.
+GCTA (Genome-wide Complex Trait Analysis) was originally designed to estimate the proportion of phenotypic variance explained by all genome-wide SNPs for complex traits (the GREML method), and has subsequently extended for many other analyses to better understand the genetic architecture of complex traits. GCTA currently supports the following analyses.
 * GRM: estimating the genetic relationships among individuals in GWAS data;
 * Estimating the inbreeding coefficients of individuals in GWAS data;
 * GREML: estimating the proportion of variance in a phenotype explained by all GWAS SNPs (i.e. the SNP-based heritability);
 * Partitioning the genetic variance onto individual chromosomes, MAF bins or functional categories;
-* Estimating the genetic variance attributed to chromosome X, and testing for the effect of dosage compensation;
+* Estimating the genetic variance attributed to the X chromosome, and testing for the effect of dosage compensation;
 * GREMLd: estimating the dominance variance in unrelated individuals using GWAS data;
 * Bivariate GREML: estimating the genetic correlation between two traits (diseases) using GWAS data;
 * PCA analysis and estimation of Fst in GWAS data
 * Computing LD scores and searching for LD friends for a list of target SNPs;
 * Simulating a phenotype based on GWAS data;
-* Conditional & joint (COJO) analysis of GWAS summary statistics without individual level genotype data;
-* Mixed linear model association analysis;
-* Gene- or set-based association analysis;
-* Sumamry-data based BLUP;
+* Conditional & joint (COJO) analysis of GWAS summary statistics without individual-level genotype data;
+* MLMA and MLMA-LOCO: mixed linear model association analysis;
+* fastBAT: gene- or set-based association analysis;
+* sBLUP: sumamry-data based BLUP analysis for genomic risk prediction;
 * Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits.
 
 **Latest release [v1.90.1beta](#Download), click to download or view update log (13 Sep. 2017)**
 
 ### Credits 
 
-[Jian Yang](http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) developed the original version of the software with assistance and guidance from [Hong Lee](http://researchers.uq.edu.au/researcher/2703), [Mike Goddard](mailto:Mike.Goddard@dpi.vic.gov.au) and [Peter Visscher](mailto:peter.visscher@uq.edu.au). [Zhili Zheng](mailto:zhilizheng@outlook.com) rewrote the GRM module, improved the bivariate GREML module, extended the GCTA-PCA module, and designed the website. [Jian Zeng](j.zeng@imb.uq.edu.au) contributed to the GCTA-HEreg module. [Andrew Bakshi](mailto:andrew.bakshi@gmail.com) contributed to the GCTA-fastBAT module. [Zhihong Zhu](mailto:z.zhu1@uq.edu.au) improved the GCTA-COJO module. [Robert Maier](mailto:rmaier@broadinstitute.org) contributed to the GCTA-sBLUP module. 
+[Jian Yang](http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) developed the original version of the software with assistance from [Hong Lee](http://researchers.uq.edu.au/researcher/2703), [Mike Goddard](mailto:Mike.Goddard@dpi.vic.gov.au) and [Peter Visscher](mailto:peter.visscher@uq.edu.au). [Zhili Zheng](mailto:zhilizheng@outlook.com) rewrote the I/O and GRM modules, improved the bivariate GREML module, extended the GCTA-PCA module, and designed the website. [Jian Zeng](j.zeng@imb.uq.edu.au) rewrote the GCTA-HEreg module. [Andrew Bakshi](mailto:andrew.bakshi@gmail.com) contributed to the GCTA-fastBAT module. [Zhihong Zhu](mailto:z.zhu1@uq.edu.au) improved the GCTA-COJO module. [Robert Maier](mailto:rmaier@broadinstitute.org) improved the GCTA-sBLUP module. 
 
 ### Questions and Help Requests 
 If you have any bug reports or questions please send an email to [Jian Yang](http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au)

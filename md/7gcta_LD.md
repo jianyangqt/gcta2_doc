@@ -2,6 +2,9 @@
 ## LD
 
 ### Computing LD scores
+
+**GCTA-LDS: calculating LD score for each SNP**
+
 LD score is defined as the sum of LD *r<sup>2</sup>* between a variant and all the variants in a region.
 
 Example - calculating LD score to stratify SNPs
@@ -77,9 +80,9 @@ rs9777703 1 918699 0.0301614 0.00240581 499 0.854464 0.000222185 500 0.00222427
 
 
 ### Searching for LD friends 
-	
-GCTA-LDS: calculating LD score for each SNP
 
+**GCTA-LDF: finding LD friends for each of the SNPs given on the list**
+	
 For each target SNP, GCTA uses the simple regression approach to search for SNPs that are in significant LD with the target SNP.
 
 --ld ld.snplist  
