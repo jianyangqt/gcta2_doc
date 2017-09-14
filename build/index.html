@@ -1854,7 +1854,7 @@ rs779725        G             0.204           -0.0677
 013     0103     1      1    1
 ...
 </code></pre>
-<hr><h3 id="gctasblup">GCTA-sBLUP</h3>
+<hr><h3 id="gctasblup">GCTA-SBLUP</h3>
 <p>This is a method to run BLUP analysis using summary data from a GWAS/meta-analysis with LD from a reference sample with individual-level data. Similar methods have been proposed in recent studies to predict complex traits and diseases using GWAS summary data (Vilhjálmsson et al. 2015 AJHG; Robinson et al. 2017 Nat Hum Behav) or age using summary data from transcriptome-wise association studies (Peters et al. 2015 Nat Comm).</p>
 <blockquote>
   <p>Example</p>
@@ -1864,7 +1864,7 @@ rs779725        G             0.204           -0.0677
 <p><span class="kwd">--cojo-file</span> test.ma<br>
 Input file in COJO format (see COJO)</p>
 <p><span class="kwd">--cojo-sblup</span><br>
-Perform COJO-SBLUP analysis. The input parameter = <em>m * (1 / h<sup>2</sup><sub>SNP</sub> - 1)</em> where m is the total number of SNPs used in this analysis (i.e. the number of SNPs in common between the summary data and the reference set), and h<sup>2</sup><sub>SNP</sub> is the proportion of variance in the phenotype explained by all SNPs. h<sup>2</sup><sub>SNP</sub> can be estimated from GCTA-GREML if individual-level data are available or from LD score regression analysis of the summary data.</p>
+Perform COJO-SBLUP analysis. The input parameter lambda = <em>m</em> * (1 / <em>h</em><sup>2</sup><sub>SNP</sub> - 1) where <em>m</em> is the total number of SNPs used in this analysis (i.e. the number of SNPs in common between the summary data and the reference set), and <em>h</em><sup>2</sup><sub>SNP</sub> is the proportion of variance in the phenotype explained by all SNPs. <em>h</em><sup>2</sup><sub>SNP</sub> can be estimated from GCTA-GREML if individual-level data are available or from LD score regression analysis of the summary data. <strong>Note:</strong> for the ease of computation, the analysis can be performed separately on individual chromosomes with the same lambda value calculated from all the genome-wide SNPs. </p>
 <p><span class="kwd">--cojo-wind</span> 1000<br>
 Specify a distance d (in Kb unit). LD between SNPs more than d Kb away from each other are ignored. The default value is 10000 Kb (i.e. 10 Mb) if not specified. We recommend a window size of 1 Mb for the ease of computation.</p>
 <blockquote>
@@ -1882,7 +1882,7 @@ rs10070362    T     -0.0108    -0.000150901
 </code></pre>
 <blockquote>
   <p>Columns are SNP, the coded allele, effect size in the original GWAS summary data, and BLUP estimate of the SNP effect (all SNPs are fitted jointly).</p>
-  <p><strong>Note:</strong> Let b = per-allele effect size and u = effec size per standardized SNP genotype. GCTA-sBLUP reads b, fits the model based on u, and output the BLUP SNP effect in the scale of b. So, the output can directly be used to compute the profile score using PLINK <span class="kwd">--score</span>.</p>
+  <p><strong>Note:</strong> Let b = per-allele effect size and u = effec size per standardized SNP genotype. GCTA-SBLUP reads b, fits the model based on u, and output the BLUP SNP effect in the scale of b. So, the output can directly be used to compute the profile score using PLINK <span class="kwd">--score</span>.</p>
 </blockquote>
 <h4 id="references-11">References</h4>
 <p><strong>COJO-SBLUP method</strong>: Robinson et al. (2017) Genetic evidence of assortative mating in humans. Nat Hum Behav, 1:0016.</p>
