@@ -28,7 +28,7 @@ The source code are released under GPL v3. The source code of the latest version
 * Fixed an issue in computing a GRM including rare variants.
 * Fixed an issue to run Linux binary in the Linux subsystem on Windows 10.
 * Fixed a memory issue in the Windows version.
-* Removed --grm-no-relative, added --grm-singleton to get singleton subjects from a sample.
+* Removed --grm-no-relative and added --grm-singleton to get singleton subjects from a sample.
 * Fixed a memory issue in --make-bK.
 
 #### Version 1.90.0beta (8 Aug 2017)
