@@ -23,13 +23,13 @@ The source code are released under GPL v3. The source code of the latest version
 ### Update log {: .notoc}
 
 #### Version 1.90.1beta (13 Sep 2017)
-* Fixed weird allele frequency in some conditions.
-* Fixed weird GRM happened occasionally.
-* Fixed GRM issue on rare variants.
-* Fixed issue to run Linux binary in the Linux subsystem on Win10.
-* Fixed memory issue of Windows version.
-* Removed --grm-no-relative, added --grm-singleton to get singleton subjects and family informatioan.
-* Fixed the memory issue in --make-bK.
+* Fixed a bug in estimating allele frequency in some occasions.
+* Fixed a bug in computing a GRM occasionally in small sample.
+* Fixed an issue in computing a GRM including rare variants.
+* Fixed an issue to run Linux binary in the Linux subsystem on Windows 10.
+* Fixed a memory issue in the Windows version.
+* Removed --grm-no-relative, added --grm-singleton to get singleton subjects from a sample.
+* Fixed a memory issue in --make-bK.
 
 #### Version 1.90.0beta (8 Aug 2017)
 * Improved the speed and memory usage of GRM computation by orders of magnitude.
