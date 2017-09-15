@@ -12,7 +12,7 @@ Mac [gcta\_1.90.1beta\_mac.zip](./gcta_1.90.1beta_mac.zip)
  
 The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
 
-> Note: GCTA 1.90.1 is a beta version under testing. Previous version (GCTA 1.90.0) has some known issues, it shall be updated. Please report bugs to Jian Yang (jian.yang@uq.edu.au).
+> Note: GCTA 1.90.1 is a beta version under testing. We have fixed a few bugs in the previous version (1.90.0). If you find any bug in tihs version, please report it to Jian Yang (jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
