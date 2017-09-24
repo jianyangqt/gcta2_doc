@@ -24,7 +24,7 @@ The source code are released under GPL v3. The source code of the latest version
 
 #### Version 1.90.2beta (24 Sep 2017)
 * Fixed a bug in --mlma-loco with the --mlma-no-adj-covar option.
-* Fixed a bug in --make-grm-part when the sample size of one part is larger than 69K.
+* Fixed a bug in --make-grm-part when the sample size of one partition is larger than 69K.
 * Fixed the performance issue in reading the PLINK .fam file.
 * Fixed an issue with --autosome-num.
 * Removed the VC++ runtime dependency in the Windows version. 
