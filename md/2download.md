@@ -23,12 +23,11 @@ The source code are released under GPL v3. The source code of the latest version
 ### Update log {: .notoc}
 
 #### Version 1.90.2beta (24 Sep 2017)
-* Fixed a bug in --mlma-loco with --mlma-no-adj-covar.
-* Fixed a bug in GRM computation when sample (one part) larger than 69K.
-* Fixed performance issue when read the PLINK FAM.
-* Fixed --autosome-num issue.
-* A few tunning on the output log.
-* Removed Windows version VC++ runtime dependency. 
+* Fixed a bug in --mlma-loco with the --mlma-no-adj-covar option.
+* Fixed a bug in --make-grm-part when the sample size of one part is larger than 69K.
+* Fixed the performance issue in reading the PLINK .fam file.
+* Fixed an issue with --autosome-num.
+* Removed the VC++ runtime dependency in the Windows version. 
 
 #### Version 1.90.1beta (13 Sep 2017)
 * Fixed a bug in estimating allele frequency in some occasions.
