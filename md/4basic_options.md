@@ -76,10 +76,10 @@ Extract a region centred around a specified SNP, e.g. +-1000Kb region centred ar
 --exclude-region-snp rs123678 1000  
 Exclude a region centred around a specified SNP, e.g. +-1000Kb region centred around rs123678. 
 
---extract-region-snp 1 120000 1000  
+--extract-region-bp 1 120000 1000  
 Extract a region centred around a specified bp, e.g. +-1000Kb region centred around 120,000bp of chr 1. 
 
---exclude-region-snp 1 120000 1000  
+--exclude-region-bp 1 120000 1000  
 Exclude a region centred around a specified bp, e.g. +-1000Kb region centred around 120,000bp of chr 1. This option is particularly useful for a analysis excluding the MHC region.
 
 --maf 0.01  

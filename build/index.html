@@ -67,7 +67,7 @@
 <li>sBLUP: sumamry-data based BLUP analysis for genomic risk prediction;</li>
 <li>Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits.</li>
 </ul>
-<p><strong>Latest release <a href="#Download">v1.90.1beta</a>, click to download or view update log (13 Sep. 2017)</strong></p>
+<p><strong>Latest release <a href="#Download">v1.90.2beta</a>, click to download or view update log (24 Sep 2017)</strong></p>
 <hr><h3 id="credits">Credits</h3>
 <p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with assistance from <a href="http://researchers.uq.edu.au/researcher/2703">Hong Lee</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>. <a href="mailto:zhilizheng@outlook.com">Zhili Zheng</a> rewrote the I/O and GRM modules, improved the bivariate GREML module, extended the GCTA-PCA module, and designed the website. <a href="j.zeng@imb.uq.edu.au">Jian Zeng</a> rewrote the GCTA-HEreg module. <a href="mailto:andrew.bakshi@gmail.com">Andrew Bakshi</a> contributed to the GCTA-fastBAT module. <a href="mailto:z.zhu1@uq.edu.au">Zhihong Zhu</a> improved the GCTA-COJO module. <a href="mailto:rmaier@broadinstitute.org">Robert Maier</a> improved the GCTA-sBLUP module. </p>
 <hr><h3 id="questionsandhelprequests">Questions and Help Requests</h3>
@@ -93,21 +93,30 @@ Yang et al. (2015) Genetic variance estimation with imputed variants finds negli
 Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J Hum Genet. 19(7): 807-812. [<a href="http://www.nature.com/ejhg/journal/v19/n7/full/ejhg201139a.html">Pubmed ID: 21407268</a>]</p>
 <p><strong>fastBAT method:</strong><br>
 Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894. [<a href="https://www.nature.com/articles/srep32894">PMID: 27604177</a>]</p>
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 13 Sep 2017</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 24 Sep 2017</p>
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>The executable files below only support a 64-bit operating system on the x86_64 CPU platform.</p>
-<p>Linux <a href="./gcta_1.26.0.zip">gcta_1.26.0.zip</a>, <a href="./gcta_1.90.1beta.zip">gcta_1.90.1beta.zip</a></p>
-<p>Windows <a href="./gcta_1.90.1beta_win.zip">gcta_1.90.1beta_win.zip</a></p>
-<p>Mac <a href="./gcta_1.90.1beta_mac.zip">gcta_1.90.1beta_mac.zip</a></p>
+<p>Linux <a href="./gcta_1.26.0.zip">gcta_1.26.0.zip</a>, <a href="./gcta_1.90.2beta.zip">gcta_1.90.2beta.zip</a></p>
+<p>Windows <a href="./gcta_1.90.2beta_win.zip">gcta_1.90.2beta_win.zip</a></p>
+<p>Mac <a href="./gcta_1.90.2beta_mac.zip">gcta_1.90.2beta_mac.zip</a></p>
 <p>The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.</p>
 <blockquote>
-  <p>Note: GCTA 1.90.1 is a beta version under testing. We have fixed a few bugs in the previous version (1.90.0). If you find any bug in tihs version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
+  <p>Note: GCTA 1.90.2 is a beta version under testing. We have fixed a few bugs in the previous versions (1.90.0, 1.90.1). If you find any bug in tihs version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
 </blockquote>
 <hr><h3 id="sourcecodenotoc" class="notoc">Source code </h3>
 <p><a href="./gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
 <p>The source code are released under GPL v3. The source code of the latest version will be release when it is stable.</p>
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
+<h4 id="version1902beta24sep2017">Version 1.90.2beta (24 Sep 2017)</h4>
+<ul>
+<li>Fixed a bug in --mlma-loco with --mlma-no-adj-covar.</li>
+<li>Fixed a bug in GRM computation when sample (one part) larger than 69K.</li>
+<li>Fixed performance issue when read the PLINK FAM.</li>
+<li>Fixed --autosome-num issue.</li>
+<li>A few tunning on the output log.</li>
+<li>Removed Windows version VC++ runtime dependency. </li>
+</ul>
 <h4 id="version1901beta13sep2017">Version 1.90.1beta (13 Sep 2017)</h4>
 <ul>
 <li>Fixed a bug in estimating allele frequency in some occasions.</li>
@@ -554,9 +563,9 @@ Specify a single SNP to be excluded from the analysis.</p>
 Extract a region centred around a specified SNP, e.g. +-1000Kb region centred around rs123678. </p>
 <p><span class="kwd">--exclude-region-snp</span> rs123678 1000<br>
 Exclude a region centred around a specified SNP, e.g. +-1000Kb region centred around rs123678. </p>
-<p><span class="kwd">--extract-region-snp</span> 1 120000 1000<br>
+<p><span class="kwd">--extract-region-bp</span> 1 120000 1000<br>
 Extract a region centred around a specified bp, e.g. +-1000Kb region centred around 120,000bp of chr 1. </p>
-<p><span class="kwd">--exclude-region-snp</span> 1 120000 1000<br>
+<p><span class="kwd">--exclude-region-bp</span> 1 120000 1000<br>
 Exclude a region centred around a specified bp, e.g. +-1000Kb region centred around 120,000bp of chr 1. This option is particularly useful for a analysis excluding the MHC region.</p>
 <p><span class="kwd">--maf</span> 0.01<br>
 Exclude SNPs with minor allele frequency (MAF) less than a specified value, e.g. 0.01.</p>
