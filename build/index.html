@@ -748,13 +748,17 @@ Partition the GRM into m parts (by row), and compute the i-th part in the curren
   <p>Example:</p>
 </blockquote>
 <pre><code class="bash language-bash"># Partition the GRM into 3 parts
-gcta64 --bfile test --make-grm-part 3 1 --thead-num 5 --out test
-gcta64 --bfile test --make-grm-part 3 2 --thead-num 5 --out test
-gcta64 --bfile test --make-grm-part 3 3 --thead-num 5 --out test
-# Merge all the parts together
+gcta64 --bfile test --make-grm-part 3 1 --thread-num 5 --out test
+gcta64 --bfile test --make-grm-part 3 2 --thread-num 5 --out test
+gcta64 --bfile test --make-grm-part 3 3 --thread-num 5 --out test
+# Merge all the parts together (Linux, Mac)
 cat test.part_3_*.grm.id &gt; test.grm.id
 cat test.part_3_*.grm.bin &gt; test.grm.bin
 cat test.part_3_*.grm.N.bin &gt; test.grm.N.bin
+# Windows alternative
+copy /b test.part_3_*.grm.id test.grm.id
+copy /b test.part_3_*.grm.bin test.grm.bin
+copy /b test.part_3_*.grm.N.bin test.grm.N.bin
 </code></pre>
 <p><span class="kwd">--make-grm-alg</span> 0<br>
 The default value is 0, and the GRM is calculated using the equation <em>sum{[(x<sub>ij</sub> - 2p<sub>i</sub>)*(x<sub>ik</sub> - 2p<sub>i</sub>)] / [2p<sub>i</sub>(1-p<sub>i</sub>)]}</em> as described in Yang et al. 2010 Nat Genet. If the value = 1, the GRM will be calculated using the equation <em>sum[(x<sub>ij</sub> - 2p<sub>i</sub>)</em>(x<sub>ik</sub> - 2p<sub>i</sub>)] / sum[2p<sub>i</sub>(1-p<sub>i</sub>)]*. </p>
@@ -1525,8 +1529,8 @@ N_tr2               56342
 <h4 id="references-7">References</h4>
 <p>Yang J, Zeng J, Goddard ME, Wray NR, Visscher PM  (2017) Concepts, estimation and interpretation of SNP-based heritability. Nature Genetics, 49: 1304-1310.</p>
 <h2 id="gwasanalysis">GWAS analysis</h2>
-<hr><h3 id="conditionalanalysis">Conditional analysis</h3>
-<p><strong>GCTA-COJO: conditional &amp; joint association analysis based on summary-level data</strong></p>
+<hr><h3 id="cojo">COJO</h3>
+<p><strong>GCTA-COJO: multi-SNP-based conditional &amp; joint association analysis using GWAS summary data</strong></p>
 <p><span class="kwd">--cojo-file</span> test.ma<br>
 Input the summary-level statistics from a meta-analysis GWAS (or a single GWAS).</p>
 <blockquote>
@@ -1540,7 +1544,7 @@ rs1003 A C 0.5128 0.0045 0.0038 0.2319 129830
 ...
 </code></pre>
 <p>Columns are SNP, the effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value and sample size. The headers are not keywords and will be omitted by the program. Important: "A1" needs to be the effect allele with "A2" being the other allele and "freq" should be the frequency of "A1".</p>
-<p><strong>NOTE</strong>: 1) For a case-control study, the effect size should be log(odds ratio) with its corresponding standard error. 2) Please always input the summary statistics of all the SNPs even if your analysis only focuses on a subset of SNPs because the program needs the summary data of all SNPs to calculate the phenotypic variance.</p>
+<p>Note: 1) For a case-control study, the effect size should be log(odds ratio) with its corresponding standard error. 2) Please always input the summary statistics of all the SNPs even if your analysis only focuses on a subset of SNPs because the program needs the summary data of all SNPs to calculate the phenotypic variance.</p>
 <p><span class="kwd">--cojo-slct</span><br>
 Perform a stepwise model selection procedure to select independently associated SNPs. Results will be saved in a *.jma file with additional file 
 *.jma.ldr showing the LD correlations between the SNPs.</p>
@@ -1559,7 +1563,8 @@ rs1002
 ...
 </code></pre>
 <p><span class="kwd">--cojo-p</span> 5e-8<br>
-Threshold p-value to declare a genome-wide significant hit. The default value is 5e-8 if not specified. This option is only valid in conjunction with the option <span class="kwd">--cojo-slct</span>. NOTE: it will be extremely time-consuming if you set a very low significance level, e.g. 5e-3.</p>
+Threshold p-value to declare a genome-wide significant hit. The default value is 5e-8 if not specified. This option is only valid in conjunction with the option <span class="kwd">--cojo-slct</span>. </p>
+<p>Note: it will be extremely time-consuming if you set a very low significance level, e.g. 5e-3.</p>
 <p><span class="kwd">--cojo-wind</span> 10000<br>
 Specify a distance d (in Kb unit). It is assumed that SNPs more than d Kb away from each other are in complete linkage equilibrium. The default value is 10000 Kb (i.e. 10 Mb) if not specified.</p>
 <p><span class="kwd">--cojo-collinear</span> 0.9<br>
@@ -1640,6 +1645,66 @@ For example, cond.snplist)</p>
 <h4 id="references-8">References</h4>
 <p><strong>Conditional and joint analysis method</strong>: Yang et al. (2012) Conditional and joint multiple-SNP analysis of GWAS summary statistics identifies additional variants influencing complex traits. Nat Genet 44(4):369-375. [PubMed ID: 22426310]</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
+<hr><h3 id="mtcojo">mtCOJO</h3>
+<p><strong>mtCOJO: multi-trait-based conditional &amp; joint analysis using GWAS summary data</strong></p>
+<p>If you have two phenotypes (y and x, which can be measured on two different samples), and you want to run GWAS analysis for y conditioning on x, this analysis can be achieved by a mtCOJO analysis using GWAS summary-level data for y and x. Details of the method can be found in the Zhu et al. (<a href="https://www.biorxiv.org/content/early/2017/07/26/168674">2017 bioRxiv</a>) paper. In the mtCOJO analysis, we used the GSMR method to estimate the effect of x on y, the mtCOJO estimate is free of the collider bias as described in Aschard et al. (<a href="http://www.sciencedirect.com/science/article/pii/S0002929714005278?via%3Dihub">2015 AJHG</a>). It should be noted that mtCOJO allows for an analysis of y conditioning on multiple x.</p>
+<blockquote>
+  <p>Example</p>
+</blockquote>
+<pre><code class="bash language-bash">gcta64  --bfile mtcojo_ref_data  --mtcojo-file mtcojo_summary_data.list  --ref-ld-chr eur_w_ld_chr/   --w-ld-chr eur_w_ld_chr/  --out test_mtcojo_result
+</code></pre>
+<p><span class="kwd">--mtcojo-file</span> mtcojo_summary_data.list<br>
+Reading a list that contains filepaths of the GWAS summary data and prevalence of diseases.</p>
+<blockquote>
+  <p>Input file format</p>
+</blockquote>
+<pre><code class="nohighlight language-nohighlight">t2d t2d_test.raw 0.176306984 0.09
+bmi bmi_test.raw
+</code></pre>
+<p>Columns are the trait name, filepath of the GWAS summary data, sample prevalence and population prevalence. Each row represents a trait. The first row is for the target trait (i.e. y), and the remaining rows are for covariate traits.</p>
+<p><strong>Note:</strong> If the sample prevalence and the population prevalence are not specified, the estimate of the SNP-based h<sup>2</sup> will be on the observed scale.</p>
+<blockquote>
+  <p>Format of the GWAS summary data (i.e. the <a href="http://cnsgenomics.com/software/gcta/#COJO">GCTA-COJO format</a>)</p>
+</blockquote>
+<p>bmi_test.raw</p>
+<pre><code class="nohighlight language-nohighlight">SNP A1  A2  freq    b   se  p   N
+rs1000000   G   A   0.781838245 1.00E-04    0.0044  0.9819  231410
+rs10000010  T   C   0.513760872 -0.0029 0.003   0.3374  322079
+rs10000012  G   C   0.137219265 -0.0095 0.0054  0.07853 233933
+rs10000013  A   C   0.775931455 -0.0095 0.0044  0.03084 233886
+</code></pre>
+<p>Columns are SNP, the effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value and sample size.</p>
+<p><span class="kwd">--ref-ld-chr</span> eur_w_ld_chr/<br>
+The directory of LD score files (the same format as in <a href="https://github.com/bulik/ldsc">LDSC software tool</a>). Note that the LD scores will be used in the LD score regression analysis to estimate the SNP-based heritability for a trait based on summary data, genetic correlation between two traits, and to estimate the degree of overlap between two samples (see <a href="https://www.biorxiv.org/content/early/2017/07/26/168674">Zhu et al. 2017 bioRxiv</a>).</p>
+<p><span class="kwd">--w-ld-chr</span> eur_w_ld_chr/<br>
+The directory of LD scores for the regression weights (the same format as in <a href="https://github.com/bulik/ldsc">LDSC software tool</a>).</p>
+<p><span class="kwd">--out</span> test_mtcojo_result    </p>
+<blockquote>
+  <p>Output file format  </p>
+</blockquote>
+<p>test_mtcojo_result.mtcojo.cma</p>
+<pre><code class="nohighlight language-nohighlight">SNP A1  A2  freq    b   se  p   N   bC  bC_se   bC_pval
+rs4040617   G   A   0.143126    -0.0295588  0.0397075   0.50    28944   -0.0343525  0.0399332   0.389652
+rs6687776   T   C   0.133909    0.0295588   0.0343927   0.35    38288   0.0217897   0.0344916   0.527557
+</code></pre>
+<p>Columns are SNP, effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value, sample size from the original GWAS summary data, mtCOJO effect size, mtCOJO standard error and mtCOJO p-value.</p>
+<h4 id="optionalflags">Optional flags</h4>
+<p><em>Clumping analysis</em></p>
+<p><span class="kwd">--clump-p1</span> 5e-8<br>
+P-value threshold for index SNPs. The default threshold is 5e-8.</p>
+<p><span class="kwd">--clump-kb</span> 10000<br>
+Window size for clumping analysis. The default distance is 10,000 kb (i.e., 10 Mb).</p>
+<p><span class="kwd">--clump-r2</span> 0.05<br>
+LD r<sup>2</sup> threshold for clumping analysis. The default value is 0.05.</p>
+<p><em>GSMR analysis</em></p>
+<p><span class="kwd">--gwas-thresh</span> 5e-8<br>
+P-value threshold to select instruments for the GSMR analysis (see <a href="https://www.biorxiv.org/content/early/2017/07/26/168674">Zhu et al. 2017 bioRxiv</a>). Instruments are filtered from the index SNPs. The default threshold is 5e-8.</p>
+<p><span class="kwd">--heidi-thresh</span> 0.01<br>
+P-value threshold for the HEIDI-outlier test to filter instruments. The default threshold is 0.01.</p>
+<p><span class="kwd">--heidi-snp</span> 10<br>
+The minimum number of SNP instruments for the HEIDI-outlier test. The default number is 10.</p>
+<p><span class="kwd">--gsmr-snp</span> 10<br>
+The minimum number of SNP instruments for the GSMR analysis. The default number is 10.</p>
 <hr><h3 id="mixedmodelassociation">Mixed model association</h3>
 <p><strong>GCTA-MLMA and GCTA-LOCO: mixed linear model based association analysis</strong> </p>
 <p>The following options are designed to perform an MLM based association analysis. Previous data management options such as <span class="kwd">--keep</span>, <span class="kwd">--extract</span> and <span class="kwd">--maf</span>, REML analysis options such as <span class="kwd">--reml-priors</span>, <span class="kwd">--reml-maxit</span> and <span class="kwd">--reml-no-constrain</span> and multi-threading option <span class="kwd">--thread-num</span> are still valid for this analysis.</p>
@@ -1873,7 +1938,8 @@ rs779725        G             0.204           -0.0677
 <p><span class="kwd">--cojo-file</span> test.ma<br>
 Input file in COJO format (see COJO)</p>
 <p><span class="kwd">--cojo-sblup</span><br>
-Perform COJO-SBLUP analysis. The input parameter lambda = <em>m</em> * (1 / <em>h</em><sup>2</sup><sub>SNP</sub> - 1) where <em>m</em> is the total number of SNPs used in this analysis (i.e. the number of SNPs in common between the summary data and the reference set), and <em>h</em><sup>2</sup><sub>SNP</sub> is the proportion of variance in the phenotype explained by all SNPs. <em>h</em><sup>2</sup><sub>SNP</sub> can be estimated from GCTA-GREML if individual-level data are available or from LD score regression analysis of the summary data. <strong>Note:</strong> for the ease of computation, the analysis can be performed separately on individual chromosomes with the same lambda value calculated from all the genome-wide SNPs. </p>
+Perform COJO-SBLUP analysis. The input parameter lambda = <em>m</em> * (1 / <em>h</em><sup>2</sup><sub>SNP</sub> - 1) where <em>m</em> is the total number of SNPs used in this analysis (i.e. the number of SNPs in common between the summary data and the reference set), and <em>h</em><sup>2</sup><sub>SNP</sub> is the proportion of variance in the phenotype explained by all SNPs. <em>h</em><sup>2</sup><sub>SNP</sub> can be estimated from GCTA-GREML if individual-level data are available or from LD score regression analysis of the summary data. </p>
+<p><strong>Note:</strong> for the ease of computation, the analysis can be performed separately on individual chromosomes with the same lambda value calculated from all the genome-wide SNPs. </p>
 <p><span class="kwd">--cojo-wind</span> 1000<br>
 Specify a distance d (in Kb unit). LD between SNPs more than d Kb away from each other are ignored. The default value is 10000 Kb (i.e. 10 Mb) if not specified. We recommend a window size of 1 Mb for the ease of computation.</p>
 <blockquote>
@@ -1891,8 +1957,8 @@ rs10070362    T     -0.0108    -0.000150901
 </code></pre>
 <blockquote>
   <p>Columns are SNP, the coded allele, effect size in the original GWAS summary data, and BLUP estimate of the SNP effect (all SNPs are fitted jointly).</p>
-  <p><strong>Note:</strong> Let b = per-allele effect size and u = effec size per standardized SNP genotype. GCTA-SBLUP reads b, fits the model based on u, and output the BLUP SNP effect in the scale of b. So, the output can directly be used to compute the profile score using PLINK <span class="kwd">--score</span>.</p>
 </blockquote>
+<p><strong>Note:</strong> Let b = per-allele effect size and u = effec size per standardized SNP genotype. GCTA-SBLUP reads b, fits the model based on u, and output the BLUP SNP effect in the scale of b. So, the output can directly be used to compute the profile score using PLINK <span class="kwd">--score</span>.</p>
 <h4 id="references-11">References</h4>
 <p><strong>COJO-SBLUP method</strong>: Robinson et al. (2017) Genetic evidence of assortative mating in humans. Nat Hum Behav, 1:0016.</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]</p>

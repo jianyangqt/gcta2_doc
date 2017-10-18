@@ -109,13 +109,17 @@ Partition the GRM into m parts (by row), and compute the i-th part in the curren
 > Example:
 ```bash
 # Partition the GRM into 3 parts
-gcta64 --bfile test --make-grm-part 3 1 --thead-num 5 --out test
-gcta64 --bfile test --make-grm-part 3 2 --thead-num 5 --out test
-gcta64 --bfile test --make-grm-part 3 3 --thead-num 5 --out test
-# Merge all the parts together
+gcta64 --bfile test --make-grm-part 3 1 --thread-num 5 --out test
+gcta64 --bfile test --make-grm-part 3 2 --thread-num 5 --out test
+gcta64 --bfile test --make-grm-part 3 3 --thread-num 5 --out test
+# Merge all the parts together (Linux, Mac)
 cat test.part_3_*.grm.id > test.grm.id
 cat test.part_3_*.grm.bin > test.grm.bin
 cat test.part_3_*.grm.N.bin > test.grm.N.bin
+# Windows alternative
+copy /b test.part_3_*.grm.id test.grm.id
+copy /b test.part_3_*.grm.bin test.grm.bin
+copy /b test.part_3_*.grm.N.bin test.grm.N.bin
 ```
  
 --make-grm-alg 0    
