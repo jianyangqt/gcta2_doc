@@ -23,7 +23,7 @@ The source code are released under GPL v3. The source code of the latest version
 ### Update log {: .notoc}
 
 #### Version 1.91.0beta (21 Oct 2017)
-* Added a new module mtCOJO
+* Added a new module [mtCOJO](#mtCOJO)
 * Fixed an issue of file path in the Windows version
 
 #### Version 1.90.2beta (24 Sep 2017)
