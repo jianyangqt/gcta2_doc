@@ -155,7 +155,7 @@ If you have two phenotypes (y and x, which can be measured on two different samp
 
 > Example
 ```bash
-gcta64  --bfile mtcojo_ref_data  --mtcojo-file mtcojo_summary_data.list  --ref-ld-chr eur_w_ld_chr/   --w-ld-chr eur_w_ld_chr/  --out test_mtcojo_result
+gcta64 --bfile mtcojo_ref_data --mtcojo-file mtcojo_summary_data.list --ref-ld-chr eur_w_ld_chr/ --w-ld-chr eur_w_ld_chr/ --out test_mtcojo_result
 ```
 
 --mtcojo-file mtcojo\_summary\_data.list  
@@ -208,7 +208,7 @@ Columns are SNP, effect allele, the other allele, frequency of the effect allele
 P-value threshold for index SNPs. The default threshold is 5e-8.
 
 --clump-kb 10000  
-Window size for clumping analysis. The default distance is 10,000 kb (i.e., 10 Mb).
+Window size for clumping analysis. The default distance is 10,000 kb (i.e. 10 Mb).
 
 --clump-r2 0.05  
 LD r<sup>2</sup> threshold for clumping analysis. The default value is 0.05.
