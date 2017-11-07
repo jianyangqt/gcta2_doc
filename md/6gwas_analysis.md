@@ -22,17 +22,17 @@ Columns are SNP, the effect allele, the other allele, frequency of the effect al
 Note: 1) For a case-control study, the effect size should be log(odds ratio) with its corresponding standard error. 2) Please always input the summary statistics of all the SNPs even if your analysis only focuses on a subset of SNPs because the program needs the summary data of all SNPs to calculate the phenotypic variance.
 
 --cojo-slct  
-Perform a stepwise model selection procedure to select independently associated SNPs. Results will be saved in a *.jma file with additional file 
-*.jma.ldr showing the LD correlations between the SNPs.
+Perform a stepwise model selection procedure to select independently associated SNPs. Results will be saved in a \*.jma file with additional file 
+\*.jma.ldr showing the LD correlations between the SNPs.
 
 --cojo-top-SNPs 10  
 Perform a stepwise model selection procedure to select a fixed number of independently associated SNPs without a p-value threshold. The output format is the same as that from --cojo-slct.
 
 --cojo-joint  
-Fit all the included SNPs to estimate their joint effects without model selection. Results will be saved in a *.jma file with additional file *.jma.ldr showing the LD correlations between the SNPs.
+Fit all the included SNPs to estimate their joint effects without model selection. Results will be saved in a \*.jma file with additional file \*.jma.ldr showing the LD correlations between the SNPs.
 
 --cojo-cond cond.snplist  
-Perform association analysis of the included SNPs conditional on the given list of SNPs. Results will be saved in a *.cma.
+Perform association analysis of the included SNPs conditional on the given list of SNPs. Results will be saved in a \*.cma.
 > Input file format  
 > cond.snplist
 ```nohighlight
@@ -155,10 +155,10 @@ If you have two phenotypes (y and x, which can be measured on two different samp
 
 > Example
 ```bash
-gcta64 --bfile mtcojo_ref_data --mtcojo-file mtcojo_summary_data.list --ref-ld-chr eur_w_ld_chr/ --w-ld-chr eur_w_ld_chr/ --out test_mtcojo_result
+gcta64 --bfile mtcojo_ref_data --mtcojo mtcojo_summary_data.list --ref-ld-chr eur_w_ld_chr/ --w-ld-chr eur_w_ld_chr/ --out test_mtcojo_result
 ```
 
---mtcojo-file mtcojo\_summary\_data.list  
+--mtcojo mtcojo\_summary\_data.list  
 Reading a list that contains filepaths of the GWAS summary data and prevalence of diseases.
 
 > Input file format

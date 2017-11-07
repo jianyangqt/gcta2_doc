@@ -4,15 +4,15 @@
 
 The executable files below only support a 64-bit operating system on the x86_64 CPU platform.
 
-Linux [gcta\_1.26.0.zip](./gcta_1.26.0.zip), [gcta\_1.91.0beta.zip](./gcta_1.91.0beta.zip)
+Linux [gcta\_1.26.0.zip](./gcta_1.26.0.zip), [gcta\_1.91.1beta.zip](./gcta_1.91.1beta.zip)
 
-Windows [gcta\_1.91.0beta\_win.zip](./gcta_1.91.0beta_win.zip)
+Windows [gcta\_1.91.1beta\_win.zip](./gcta_1.91.1beta_win.zip)
 
-Mac [gcta\_1.91.0beta\_mac.zip](./gcta_1.91.0beta_mac.zip)
+Mac [gcta\_1.91.1beta\_mac.zip](./gcta_1.91.1beta_mac.zip)
  
 The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
 
-> Note: GCTA 1.91.0 is a beta version under testing. We have fixed a few bugs in the previous versions (1.90.0, 1.90.1). If you find any bug in tihs version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
+> Note: GCTA 1.91.1 is a beta version under testing. We have fixed a few bugs in the previous versions (1.90.0, 1.90.1). If you find any bug in tihs version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
@@ -21,6 +21,9 @@ The executable files are released under the MIT license. We recommend to use the
 The source code are released under GPL v3. The source code of the latest version will be release when it is stable.
 
 ### Update log {: .notoc}
+
+#### Version 1.91.1beta(27 Oct 2017)
+* Fixed a bug in --mtcojo when the effect sizes are standardised.
 
 #### Version 1.91.0beta (21 Oct 2017)
 * Added a new module [mtCOJO](#mtCOJO)
