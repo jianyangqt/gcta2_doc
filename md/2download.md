@@ -2,7 +2,9 @@
 ## Download
 ### Executable Files {: .notoc}
 
-The executable files below only support a 64-bit operating system on the x86_64 CPU platform.
+The executable files below only support a 64-bit operating system on the x86_64 CPU platform. 
+
+Note: As we changed the link of glibc into shared manner in GCTA 1.91.1 in Linux version, some Linux variants that don't have the glibc package will run into problem, such as some minimized docker Linux image (alpine), install the glibc dependencies is essential to run GCTA in these systems which is very seldom to meet. 
 
 Linux [gcta\_1.26.0.zip](./gcta_1.26.0.zip), [gcta\_1.91.1beta.zip](./gcta_1.91.1beta.zip)
 
@@ -22,8 +24,11 @@ The source code are released under GPL v3. The source code of the latest version
 
 ### Update log {: .notoc}
 
-#### Version 1.91.1beta(27 Oct 2017)
+#### Version 1.91.1beta(25 Nov 2017)
 * Fixed a bug in --mtcojo when the effect sizes are standardised.
+* Fixed mtcojo flag.
+* Fixed REML memory issue and boost the speed by 3 times in Linux version.
+* Changed glibc package into shared link, to avoid strange problem (segmentation fault) in higher version of Linux kernel.
 
 #### Version 1.91.0beta (21 Oct 2017)
 * Added a new module [mtCOJO](#mtCOJO)

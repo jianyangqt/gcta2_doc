@@ -31,19 +31,15 @@ A2: The 95% confidence interval (CI) is approximately h2-SNP estimate +- 1.96 * 
 
 #### 1) Making a GRM
 
-This process involves genotype data in PLNK format, a SNP genotype matrix, a GRM, and a n x n matrix of the number of SNPs used for GRM calculation. 
+This process involves a GRM, and a n x n matrix of the number of SNPs used for GRM calculation. 
 
-Size of the n x m genotype matrix in PLINK binary format (2 bits per genotype) = m * n / 4 
+Size of GRM in double precision = n * (n + 1) / 2 * 8 bytes
 
-Size of GRM in double precision float = n * n * 8 bytes
+n x n matrix for the number of SNPs used to calculate GRM in single precision = n * (n + 1) /2 * 4 bytes
 
-n x n matrix for the number of SNPs used to calculate GRM in single precision = n * n * 4 bytes
+Thus the total memory is [n * (n + 1) / 2 * 12] / 1024<sup>3</sup> GB + 0.5GB.
 
-Size of SNP genotype matrix in single precision float = m * n * 4 bytes, where m is the number of SNPs
-
-Total memory usage ~= m * n / 4 + m * n * 4 + n * n * 8 + n * n * 4 = (4.25 * m + 12 * n) * n bytes
-
-This is usually very large for 1000G imputed data in particular. I would recommend running the the analysis per chromosome and then merging the GRMs.
+If the sample size n is huge, you can use --make-grm-part to reduce the memory usage (minimize and boost performance by parts divided). See [--make-grm-part](#MakingaGRM) for more details. 
 
 #### 2) REML analysis
 
