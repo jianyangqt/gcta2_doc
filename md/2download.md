@@ -4,7 +4,7 @@
 
 The executable files below only support a 64-bit operating system on the x86_64 CPU platform. 
 
-Note: As we changed the link of glibc into shared manner in GCTA 1.91.1 in Linux version, some Linux variants that don't have the glibc package will run into problem, such as some minimized docker Linux image (alpine), install the glibc dependencies is essential to run GCTA in these systems which is very seldom to meet. 
+Note: the latest Linux versein of GCTA (v1.91.1) uses the shared library glibc which might need to be installed manually in some Linux systems (e.g. alpine). 
 
 Linux [gcta\_1.26.0.zip](./gcta_1.26.0.zip), [gcta\_1.91.1beta.zip](./gcta_1.91.1beta.zip)
 
@@ -25,10 +25,9 @@ The source code are released under GPL v3. The source code of the latest version
 ### Update log {: .notoc}
 
 #### Version 1.91.1beta(25 Nov 2017)
-* Fixed a bug in --mtcojo when the effect sizes are standardised.
-* Fixed mtcojo flag.
-* Fixed REML memory issue and boost the speed by 3 times in Linux version.
-* Changed glibc package into shared link, to avoid strange problem (segmentation fault) in higher version of Linux kernel.
+* Fixed a bug in --mtcojo.
+* Fixed a memory issue in REML analysis and improved the speed by 3 times in the Linux version.
+* Changed to use the shared library glibc avoid segmentation fault in higher versions of Linux kernel.
 
 #### Version 1.91.0beta (21 Oct 2017)
 * Added a new module [mtCOJO](#mtCOJO)

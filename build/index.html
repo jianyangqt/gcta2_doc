@@ -71,8 +71,8 @@
 </ul>
 <p><strong>Latest release <a href="#Download">v1.91.1beta</a>, click to download or view update log (25 Nov 2017)</strong></p>
 <hr><h3 id="credits">Credits</h3>
-<p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with the supports from <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="http://researchers.uq.edu.au/researcher/2703">Hong Lee</a>. </p>
-<p><a href="mailto:zhilizheng@outlook.com">Zhili Zheng</a> rewrote the I/O and GRM modules, improved the bivariate GREML module, extended the GCTA-PCA module, and developed the website. </p>
+<p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with supports from <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="http://researchers.uq.edu.au/researcher/2703">Hong Lee</a>. </p>
+<p><a href="mailto:zhilizheng@outlook.com">Zhili Zheng</a> rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, developed the website, and are currently maintaining the software.</p>
 <p><a href="mailto:z.zhu1@uq.edu.au">Zhihong Zhu</a> developed the GCTA-mtCOJO module and improved the GCTA-COJO module. </p>
 <p><a href="j.zeng@imb.uq.edu.au">Jian Zeng</a> rewrote the GCTA-HEreg module. </p>
 <p><a href="mailto:andrew.bakshi@gmail.com">Andrew Bakshi</a> contributed to the GCTA-fastBAT module. </p>
@@ -104,7 +104,7 @@ Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and 
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>The executable files below only support a 64-bit operating system on the x86_64 CPU platform. </p>
-<p>Note: As we changed the link of glibc into shared manner in GCTA 1.91.1 in Linux version, some Linux variants that don't have the glibc package will run into problem, such as some minimized docker Linux image (alpine), install the glibc dependencies is essential to run GCTA in these systems which is very seldom to meet. </p>
+<p>Note: the latest Linux versein of GCTA (v1.91.1) uses the shared library glibc which might need to be installed manually in some Linux systems (e.g. alpine). </p>
 <p>Linux <a href="./gcta_1.26.0.zip">gcta_1.26.0.zip</a>, <a href="./gcta_1.91.1beta.zip">gcta_1.91.1beta.zip</a></p>
 <p>Windows <a href="./gcta_1.91.1beta_win.zip">gcta_1.91.1beta_win.zip</a></p>
 <p>Mac <a href="./gcta_1.91.1beta_mac.zip">gcta_1.91.1beta_mac.zip</a></p>
@@ -118,10 +118,9 @@ Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and 
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
 <h4 id="version1911beta25nov2017">Version 1.91.1beta(25 Nov 2017)</h4>
 <ul>
-<li>Fixed a bug in --mtcojo when the effect sizes are standardised.</li>
-<li>Fixed mtcojo flag.</li>
-<li>Fixed REML memory issue and boost the speed by 3 times in Linux version.</li>
-<li>Changed glibc package into shared link, to avoid strange problem (segmentation fault) in higher version of Linux kernel.</li>
+<li>Fixed a bug in --mtcojo.</li>
+<li>Fixed a memory issue in REML analysis and improved the speed by 3 times in the Linux version.</li>
+<li>Changed to use the shared library glibc avoid segmentation fault in higher versions of Linux kernel.</li>
 </ul>
 <h4 id="version1910beta21oct2017">Version 1.91.0beta (21 Oct 2017)</h4>
 <ul>
