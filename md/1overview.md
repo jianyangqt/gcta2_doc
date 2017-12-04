@@ -25,7 +25,7 @@ GCTA (Genome-wide Complex Trait Analysis) was originally designed to estimate th
 
 [Jian Yang](http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) developed the original version of the software with supports from [Peter Visscher](mailto:peter.visscher@uq.edu.au), [Mike Goddard](mailto:Mike.Goddard@dpi.vic.gov.au) and [Hong Lee](http://researchers.uq.edu.au/researcher/2703). 
 
-[Zhili Zheng](mailto:zhilizheng@outlook.com) rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, developed the website, and are currently maintaining the software.
+[Zhili Zheng](mailto:zhilizheng@outlook.com) rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, developed the website, and is currently maintaining the software.
 
 [Zhihong Zhu](mailto:z.zhu1@uq.edu.au) developed the GCTA-mtCOJO module and improved the GCTA-COJO module. 
 
