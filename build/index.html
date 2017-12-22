@@ -25,10 +25,10 @@
                     <li role="presentation"><a href="http://cnsgenomics.com/software/smr/">SMR</a></li>
                     <li role="presentation"><a href="http://cnsgenomics.com/software/gsmr/">GSMR</a></li>
                     <li role="presentation"><a href="http://cnsgenomics.com/software/osca/">OSCA</a></li>
+                    <li role="presentation"><a href="http://cnsgenomics.com/software/gctb/">GCTB</a></li>
                     <li role="presentation"><a href="http://cnsgenomics.com/software.html">Program in PCTG</a></li>
                     <li role="presentation"><a href="http://gcta.freeforums.net/">CTG forum</a></li>
                 </ul>
-
             </div>
         </div>
 
@@ -488,14 +488,14 @@ rs175292   G     -0.00021   0.00139
 <p>where mu is the mean term (fixed effect), g is the genetic value (random effect) and e is the residual.</p>
 <h4 id="1categoricalcovariateegsexandcohortcovaroption">1) Categorical covariate (e.g. sex and cohort): --covar option</h4>
 <p>If the covariate is a categorical covariate, there will be t - 1 variables (where t is the number of categories, e.g. t = 2 for sex) because otherwise the X<sup>T</sup>V<sup>-1</sup>X will not be invertible (X is design matrix for the fixed effects and V is the covariance-covariance matrix). Therefore, the model can be written as</p>
-<p><em>y = mu + x<sub>c(2)</sub>*b<sub>c(2)</sub> + x<sub>c(3)</sub>*b<sub>c(3)</sub> + … + x<sub>c(t)</sub>*b<sub>c(t)</sub> + g + e</em></p>
+<p><em>y = mu + x<sub>c(2)</sub>*b<sub>c(2)</sub> + x<sub>c(3)</sub>*b<sub>c(3)</sub> + ... + x<sub>c(t)</sub>*b<sub>c(t)</sub> + g + e</em></p>
 <p>where x is coded as 1 or 0 (representing the presence or absence of a category), bc(i) is interpreted as difference in mean phenotype in category i from the category 1. Note that the order of the categories are determined by their order of appearance in the data.</p>
 <h4 id="2quantitativecovariateegageqcovaroption">2) Quantitative covariate (e.g. age): --qcovar option</h4>
 <p>The covariate is fitted as a continuous variable, then the model is
 <em>y = mu + x<sub>q(1)</sub>*b<sub>q(1)</sub> + g + e</em>
 where the interpretation of bq(1) is similar as that from a linear regression.</p>
 <h4 id="3ifwehaveacategoricalcovariateandtwoquantitativecovariatesthemodelis">3) If we have a categorical covariate and two quantitative covariates, the model is</h4>
-<p><em>y = mu + x<sub>c(2)</sub>*b<sub>c(2)</sub> + x<sub>c(3)</sub>*b<sub>c(3)</sub> + … + x<sub>c(t)</sub>*b<sub>c(t)</sub> + x<sub>q(1)</sub>*b<sub>q(1)</sub> + x<sub>q(2)</sub>*b<sub>q(2)</sub> + g + e</em></p>
+<p><em>y = mu + x<sub>c(2)</sub>*b<sub>c(2)</sub> + x<sub>c(3)</sub>*b<sub>c(3)</sub> + ... + x<sub>c(t)</sub>*b<sub>c(t)</sub> + x<sub>q(1)</sub>*b<sub>q(1)</sub> + x<sub>q(2)</sub>*b<sub>q(2)</sub> + g + e</em></p>
 <p>Of course, we could also fit multiple quantitative covariates and multiple categorical covariates.</p>
 <blockquote>
   <p>These fixed effects can be estimated using the <span class="kwd">--reml-est-fix</span> option in a REML analysis. The estimates are shown in the log output following the order in the model above, i.e. the effect of each quantitative covariate followed by the effect each of category of the categorical covariates.</p>
@@ -1017,7 +1017,7 @@ Specify the disease prevalence for a case-control study. Once this option is spe
     phenotypic variance, estimate and SE;<br>
     ratio of genetic variance to phenotypic variance, estimate and SE;<br>
     log-likelihood;<br>
-    sample size). If there are multiple GRMs included in the REML analysis, there will be multiple rows for the genetic variance (as well as their ratios to phenotypic variance) with the names of <em>V(1)</em>, <em>V(2)</em>, … .  </p>
+    sample size). If there are multiple GRMs included in the REML analysis, there will be multiple rows for the genetic variance (as well as their ratios to phenotypic variance) with the names of <em>V(1)</em>, <em>V(2)</em>, ... .  </p>
   </blockquote>
 </blockquote>
 <pre><code class="nohightlight language-nohightlight">Source  Variance        SE
