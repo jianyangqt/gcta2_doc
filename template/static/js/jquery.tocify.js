@@ -105,6 +105,9 @@
                 // The amount of space between the top of page and the selected table of contents item after the page has been scrolled
                 scrollTo: 0,
 
+                //**scrollRef*: Jquery selector/
+                scrollRef: "body",
+
                 // **showAndHideOnScroll**: Accepts a boolean: true or false
                 // Determines if table of contents nested items should be shown and hidden while scrolling
                 showAndHideOnScroll: false,
@@ -955,6 +958,11 @@
                     duration = self.options.smoothScroll || 0,
                     scrollTo = self.options.scrollTo,
                     currentDiv = $('div[data-unique="' + elem.attr("data-unique") + '"]');
+
+                if (self.options.scrollRef != "body") {
+                    var ref = $(self.options.scrollRef);
+                    scrollTo = ref.position().top + ref.height();
+                }
 
                 var contents = "";
                 if (elem.parent().attr("class").indexOf(headerClassName) !== -1) {

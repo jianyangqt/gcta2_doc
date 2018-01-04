@@ -10,28 +10,26 @@
     <script src="./static/js/jquery.tocify.js"></script>
     <script src="./static/js/hljs.js"></script>
 </head>
-
 <body>
-    <div class="page-header">
+    <div class="page-header" id="PAGE-header" style="height:auto;padding:0">
         <div class="container-fluid">
             <p class="TOP_head">&nbsp;</p>
-            <div class="span6">
+            <div class="span5">
                 <h1>&nbsp;GCTA</h1>
                 <p class="TOP_head">a tool for Genome-wide Complex Trait Analysis</p>
             </div>
-            <div class="span6">
-                <ul class="nav nav-pills">
-                    <li role="presentation" class="active"><a href="http://cnsgenomics.com/software/gcta/">GCTA</a></li>
+            <div class="span7">
+                <ul class="nav nav-pills" style="margin:0">
+                    <li role="presentation"><a href="http://cnsgenomics.com/software/gcta/">GCTA</a></li>
                     <li role="presentation"><a href="http://cnsgenomics.com/software/smr/">SMR</a></li>
-                    <li role="presentation"><a href="http://cnsgenomics.com/software/gsmr/">GSMR</a></li>
+                    <li role="presentation" class="active"><a href="http://cnsgenomics.com/software/gsmr/">GSMR</a></li>
                     <li role="presentation"><a href="http://cnsgenomics.com/software/osca/">OSCA</a></li>
                     <li role="presentation"><a href="http://cnsgenomics.com/software/gctb/">GCTB</a></li>
                     <li role="presentation"><a href="http://cnsgenomics.com/software.html">Program in PCTG</a></li>
                     <li role="presentation"><a href="http://gcta.freeforums.net/">CTG forum</a></li>
                 </ul>
             </div>
-        </div>
-
+       </div>
     </div>
     <div class="container-fluid">
         <div class="row-fluid">
@@ -2139,7 +2137,7 @@ gcta64  --grm test --keep test.indi.list  --pca 20  --out test
                     showEffect: "fadeIn",
                     scrollHistory: false,
                     extendPage: false,
-                    scrollTo: 80,
+                    scrollRef: "#PAGE-header",
                     showDIV: "#show",
                     tocID: "#toc"
                 }).data("toc-tocify");
