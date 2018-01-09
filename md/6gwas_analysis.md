@@ -19,7 +19,7 @@ rs1003 A C 0.5128 0.0045 0.0038 0.2319 129830
 
 Columns are SNP, the effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value and sample size. The headers are not keywords and will be omitted by the program. Important: "A1" needs to be the effect allele with "A2" being the other allele and "freq" should be the frequency of "A1".
 
-Note: 1) For a case-control study, the effect size should be log(odds ratio) with its corresponding standard error. 2) Please always input the summary statistics of all the SNPs even if your analysis only focuses on a subset of SNPs because the program needs the summary data of all SNPs to calculate the phenotypic variance.
+Note: 1) For a case-control study, the effect size should be log(odds ratio) with its corresponding standard error. 2) Please always input the summary statistics of all  SNPs even if your analysis only focuses on a subset of SNPs because the program needs the summary data of all SNPs to calculate the phenotypic variance. You can use one of the --extract options ([Data management](#Datamanagement)) to limit the COJO analysis in a certain genomic region.
 
 --cojo-slct  
 Perform a stepwise model selection procedure to select independently associated SNPs. Results will be saved in a \*.jma file with additional file 
@@ -171,7 +171,7 @@ Columns are the trait name, filepath of the GWAS summary data, sample prevalence
 
 **Note:** If the sample prevalence and the population prevalence are not specified, the estimate of the SNP-based h<sup>2</sup> will be on the observed scale.
 
-> Format of the GWAS summary data (i.e. the [GCTA-COJO format](http://cnsgenomics.com/software/gcta/#COJO))
+> Format of the GWAS summary data (i.e. the [GCTA-COJO format](#COJO))
 
 bmi\_test.raw
 ```nohighlight
