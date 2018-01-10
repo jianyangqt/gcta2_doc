@@ -33,6 +33,7 @@ Chr	SNP	      bp	 refA freq_Popu1(n=1000) freq_Popu2(n=2925)	Fst
 ...
 ```
 
+
 #### Citations
 
 **Fst method**: Weir, B.S. 1996. Genetic Data Analysis II: Methods for Discrete Population Genetic Data. Sinauer Associates, Inc. Sunderland, Massachusetts.

@@ -72,6 +72,7 @@ rs9777703 1 918699 0.0301614 0.00240581 499 0.854464 0.000222185 500 0.00222427
 ...
 ```
 
+
 #### Citations
 
 **LD score regression analysis**: Bulik-Sullivan BK, Loh PR, Finucane HK, Ripke S, Yang J, Schizophrenia Working Group of the Psychiatric Genomics Consortium, Patterson N, Daly MJ, Price AL, Neale BM (2015) LD Score regression distinguishes confounding from polygenicity in genome-wide association studies. Nat Genet, 47: 291-295.
@@ -114,6 +115,7 @@ SNP in highest LD with the target SNP
 2) test.r.ld, the correlations (r) between the target SNP and all the SNPs in the LD block.  
 3) test.snp.ld, the names of all the SNPs in the LD with the target SNP.  
 > Note: LD block is defined as a region where SNPs outside this region are not in significant LD with the target SNP. According to this definition, the length of LD block depends on user-specified window size and significance level.
+
 
 #### Citations
 

@@ -193,6 +193,7 @@ gcta64  --bfile test  --autosome  --ibc  --out test
 gcta64  --bfile test  --autosome --make-grm  --make-grm-alg 1  --out test_alg1
 ```
  
+
 #### Citations
  
 **Method for estimating the GRM**: Yang et al. (2010) Common SNPs explain a large proportion of the heritability for human height. Nat Genet. 42(7): 565-9. [PubMed ID: 20562875]
@@ -301,6 +302,7 @@ gcta64  --grm test  --remove test.indi.list  --grm-adj 0  --make-grm  --out test
 gcta64  --grm test_xchr  --dosage-compen 1  --update-sex test.indi.sex.list  --make-grm  --out test_xchr_fdc
 gcta64  --grm test_xchr  --dosage-compen 0  --update-sex test.indi.sex.list  --make-grm  --out test_xchr_ndc
 ```
+
 
 #### Citations
 
@@ -537,6 +539,7 @@ n	2753
 
 where "*V(G<sub>1</sub>) / V<sub>p</sub>*" provides an estimate of SNP-based *h<sup>2</sup>* (h<sup>2</sup>SNP), "Sum of *V(G) / V<sub>p</sub>*" provides an estimate of pedigree-based *h<sup>2</sup>* (*h<sup>2</sup>ped*), and *V(G<sub>2</sub>) / V<sub>p</sub> = h<sup>2</sup>ped - h<sup>2</sup>SNP*.
 
+
 #### Citations
 
 **Method for estimating the GRM**: Yang et al. (2010) Common SNPs explain a large proportion of the heritability for human height. Nat Genet. 42(7): 565-9. [PubMed ID: 20562875]
@@ -642,6 +645,7 @@ test_group2
 ...
 ```
 
+
 #### Citations:
 
 **Method paper**: Yang et al. (2015) Genetic variance estimation with imputed variants finds negligible missing heritability for human height and body mass index. Nature Genetics, 47:1114–1120.
@@ -701,6 +705,7 @@ test_domi
 
 # Note that most of the other GCTA options (e.g. --extract and --keep) are also valid for these analyses
 ```
+
 
 #### Citations:
 
@@ -778,6 +783,7 @@ V(G)/Vp_tr2  0.280445    0.176928
 rG    0.622864    0.217458
 n    3669
 ```
+
 
 #### Citations
 
@@ -1002,6 +1008,7 @@ Total rG            0.975256        0.0089607       0.0124629
 N_tr1               50930           
 N_tr2               56342           
 ```
+
 
 #### Citation
 
