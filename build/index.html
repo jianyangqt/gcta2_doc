@@ -841,7 +841,7 @@ gcta64  --bfile test  --autosome  --ibc  --out test
 # Calculate the GRM using the alternative method
 gcta64  --bfile test  --autosome --make-grm  --make-grm-alg 1  --out test_alg1
 </code></pre>
-<h4 id="references">References</h4>
+<h4 id="citations-1">Citations</h4>
 <p><strong>Method for estimating the GRM</strong>: Yang et al. (2010) Common SNPs explain a large proportion of the heritability for human height. Nat Genet. 42(7): 565-9. [PubMed ID: 20562875]</p>
 <p><strong>Method for estimating the inbreeding coefficients and GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="manipulatingthegrm">Manipulating the GRM</h3>
@@ -929,7 +929,7 @@ gcta64  --grm test  --remove test.indi.list  --grm-adj 0  --make-grm  --out test
 gcta64  --grm test_xchr  --dosage-compen 1  --update-sex test.indi.sex.list  --make-grm  --out test_xchr_fdc
 gcta64  --grm test_xchr  --dosage-compen 0  --update-sex test.indi.sex.list  --make-grm  --out test_xchr_ndc
 </code></pre>
-<h4 id="references-1">References</h4>
+<h4 id="citations-2">Citations</h4>
 <p><strong>Method for estimating the GRM</strong>: Yang et al. (2010) Common SNPs explain a large proportion of the heritability for human height. Nat Genet. 42(7): 565-9. [PubMed ID: 20562875]</p>
 <p><strong>Method for estimating the GRM for the X chromosome and GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
 <p><strong>A demonstration of estimating variance explained by the X chromosome for height and BMI</strong>: Yang et al. (2011) Genome partitioning of genetic variation for complex traits using common SNPs. Nat Genet. 43(6): 519-525. [PubMed ID: 21552263]</p>
@@ -1086,7 +1086,7 @@ The GREML method uses REML for variance estimation, which requires the inverse o
 <p>Unfortunately, there has not been an ultimate solution. Tricks such as adding a small number of to the diagonal elements of V also do not guarantee the modified V being invertible. In some cases, you might be able to get around the problem by using alternative REML algorithms e.g. the Fisher scoring approach (<span class="kwd">--reml-alg</span> 1).</p>
 <p>We have implemented the "bending" approach (Hayes and Hill 1981 Biometrics) in GCTA to invert V if V is not positive definite (you could add the <span class="kwd">--reml-bendV</span> option to a REML or MLMA analysis to activate this approach). The "bending" approach guarantees to get an approximate of V-1 but it does not guarantee the REML analysis being converged.</p>
 <p>Note that the <span class="kwd">--reml-bendV</span> option only provides an approximate inverse of V and has not been tested extensively. The results from analyses using this option might not be reliable.</p>
-<h4 id="references-2">References</h4>
+<h4 id="citations-3">Citations</h4>
 <p><strong>Method for estimating the variance explained by all SNPs</strong>: Yang et al. (2010) Common SNPs explain a large proportion of the heritability for human height. Nat Genet. 42(7): 565-9. [PubMed ID: 20562875]</p>
 <p><strong>Method for estimating the variance explained by all SNPs using case-control data</strong>: Lee et al. (2011) Estimating Missing Heritability for Disease from Genome-wide Association Studies. Am J Hum Genet. 88(3): 294-305. [PubMed ID: 21376301]</p>
 <p><strong>Method for partitioning the genetic variance captured by all SNPs onto chromosomes and genomic segments</strong>: Yang et al. (2011) Genome partitioning of genetic variation for complex traits using common SNPs. Nat Genet. 43(6): 519-525. [PubMed ID: 21552263]</p>
@@ -1127,7 +1127,7 @@ logL    -1357.892
 n    2753
 </code></pre>
 <p>where "<em>V(G<sub>1</sub>) / V<sub>p</sub></em>" provides an estimate of SNP-based <em>h<sup>2</sup></em> (h<sup>2</sup>SNP), "Sum of <em>V(G) / V<sub>p</sub></em>" provides an estimate of pedigree-based <em>h<sup>2</sup></em> (<em>h<sup>2</sup>ped</em>), and <em>V(G<sub>2</sub>) / V<sub>p</sub> = h<sup>2</sup>ped - h<sup>2</sup>SNP</em>.</p>
-<h4 id="references-3">References</h4>
+<h4 id="citations-4">Citations</h4>
 <p><strong>Method for estimating the GRM</strong>: Yang et al. (2010) Common SNPs explain a large proportion of the heritability for human height. Nat Genet. 42(7): 565-9. [PubMed ID: 20562875]</p>
 <p><strong>The Zaitlen et al. method</strong>: Zaitlen N, Kraft P, Patterson N, Pasaniuc B, Bhatia G, Pollack S, Price AL (2013) Using extended genealogy to estimate components of heritability for 23 quantitative and dichotomous traits. PLoS Genet. 2013 May;9(5):e1003520. PubMed ID: 23737753]</p>
 <p><strong>REML analysis and GCTA Software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
@@ -1211,7 +1211,7 @@ gcta64 --bfile test --extract snp_group2.txt --make-grm --out test_group2
 test_group2
 ...
 </code></pre>
-<h4 id="references-4">References:</h4>
+<h4 id="citations-5">Citations:</h4>
 <p><strong>Method paper</strong>: Yang et al. (2015) Genetic variance estimation with imputed variants finds negligible missing heritability for human height and body mass index. Nature Genetics, 47:1114–1120.</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="gremlfordominancevariance">GREML for dominance variance</h3>
@@ -1265,7 +1265,7 @@ test_domi
 
 # Note that most of the other GCTA options (e.g. --extract and --keep) are also valid for these analyses
 </code></pre>
-<h4 id="references-5">References:</h4>
+<h4 id="citations-6">Citations:</h4>
 <p><strong>Method paper</strong>: Zhu Z, Bakshi A, Vinkhuyzen AA, Hemani G, Lee SH, Nolte IM, van Vliet-Ostaptchouk JV, Snieder H, The LifeLines Cohort Study, Esko T, Milani L, Mägi R, Metspalu A, Hill WG, Weir BS, Goddard ME, Visscher PM, Yang J (2015) Dominance Genetic Variation Contributes Little to the Missing Heritability for Human Complex Traits. Am J Hum Genet, 96: 1-9. [PubMed ID: 25683123]</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="bivariategremlanalysis">Bivariate GREML analysis</h3>
@@ -1332,7 +1332,7 @@ V(G)/Vp_tr2  0.280445    0.176928
 rG    0.622864    0.217458
 n    3669
 </code></pre>
-<h4 id="references-6">References</h4>
+<h4 id="citations-7">Citations</h4>
 <p><strong>The first bivariate GREML example</strong>: Deary et al. (2012) Genetic contributions to stability and change in intelligence from childhood to old age. Nature, 482: 212-215. [Pubmed ID: 22258510]</p>
 <p><strong>Bivariate GREML analysis method</strong>: Lee et al. (2012) Estimation of pleiotropy between complex diseases using SNP-derived genomic relationships and restricted maximum likelihood. Bioinformatics, 28: 2540-2542. [PubMed ID: 22843982]</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]</p>
@@ -1540,7 +1540,7 @@ Total rG            0.975256        0.0089607       0.0124629
 N_tr1               50930           
 N_tr2               56342           
 </code></pre>
-<h4 id="references-7">References</h4>
+<h4 id="citation">Citation</h4>
 <p>Yang J, Zeng J, Goddard ME, Wray NR, Visscher PM  (2017) Concepts, estimation and interpretation of SNP-based heritability. Nature Genetics, 49: 1304-1310.</p>
 <h2 id="gwasanalysis">GWAS analysis</h2>
 <hr><h3 id="cojo">COJO</h3>
@@ -1656,7 +1656,7 @@ For example, cond.snplist)</p>
 <p>2) then run </p>
 <pre><code class="bash language-bash">gcta64  --bfile test  --cojo-file test.ma --cojo-cond cond.snplist --out test
 </code></pre>
-<h4 id="references-8">References</h4>
+<h4 id="citations-8">Citations</h4>
 <p><strong>Conditional and joint analysis method</strong>: Yang et al. (2012) Conditional and joint multiple-SNP analysis of GWAS summary statistics identifies additional variants influencing complex traits. Nat Genet 44(4):369-375. [PubMed ID: 22426310]</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="mtcojo">mtCOJO</h3>
@@ -1719,6 +1719,8 @@ P-value threshold for the HEIDI-outlier test to filter instruments. The default 
 The minimum number of SNP instruments for the HEIDI-outlier test. The default number is 10.</p>
 <p><span class="kwd">--gsmr-snp</span> 10<br>
 The minimum number of SNP instruments for the GSMR analysis. The default number is 10.</p>
+<h4 id="citation-1">Citation</h4>
+<p>Zhu, Z. et al. Causal associations between risk factors and common diseases inferred from GWAS summary data. bioRxiv, 168674.</p>
 <hr><h3 id="mixedmodelassociation">Mixed model association</h3>
 <p><strong>GCTA-MLMA and GCTA-LOCO: mixed linear model based association analysis</strong> </p>
 <p>The following options are designed to perform an MLM based association analysis. Previous data management options such as <span class="kwd">--keep</span>, <span class="kwd">--extract</span> and <span class="kwd">--maf</span>, REML analysis options such as <span class="kwd">--reml-priors</span>, <span class="kwd">--reml-maxit</span> and <span class="kwd">--reml-no-constrain</span> and multi-threading option <span class="kwd">--thread-num</span> are still valid for this analysis.</p>
@@ -1772,7 +1774,7 @@ gcta64 --mlma --grm test_all --mlma-subtract-grm test_chr22 --bfile test --chr 2
 1   qtl2_7  1007  L                H           0.1675 -0.0487809  0.0512279   0.340979
 ...
 </code></pre>
-<h4 id="references-9">References</h4>
+<h4 id="citations-9">Citations</h4>
 <p><strong>An overview of the MLM based association methods</strong>: Yang J, Zaitlen NA, Goddard ME, Visscher PM and Price AL (2014) Mixed model association methods: advantages and pitfalls. Nat Genet. 2014 Feb;46(2):100-6. [Pubmed ID: 24473328]</p>
 <p><strong>REML analysis and GCTA Software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="genebasedtest">Gene-based test</h3>
@@ -1894,7 +1896,7 @@ Pvalue: segment-based test p-value
 TopSNP.Pvalue: smallest single-SNP GWAS p-value in the segment
 TopSNP: the top associated GWAS SNP
 </code></pre>
-<h4 id="references-10">References:</h4>
+<h4 id="citations-10">Citations:</h4>
 <p><strong>fastBAT method</strong>: Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894.</p>
 <p><strong>GCTA Software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="gwassimulation">GWAS Simulation</h3>
@@ -1973,7 +1975,7 @@ rs10070362    T     -0.0108    -0.000150901
   <p>Columns are SNP, the coded allele, effect size in the original GWAS summary data, and BLUP estimate of the SNP effect (all SNPs are fitted jointly).</p>
 </blockquote>
 <p><strong>Note:</strong> Let b = per-allele effect size and u = effec size per standardized SNP genotype. GCTA-SBLUP reads b, fits the model based on u, and output the BLUP SNP effect in the scale of b. So, the output can directly be used to compute the profile score using PLINK <span class="kwd">--score</span>.</p>
-<h4 id="references-11">References</h4>
+<h4 id="citations-11">Citations</h4>
 <p><strong>COJO-SBLUP method</strong>: Robinson et al. (2017) Genetic evidence of assortative mating in humans. Nat Hum Behav, 1:0016.</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]</p>
 <h2 id="ld">LD</h2>
@@ -2033,7 +2035,7 @@ rs28705211 1 890368 0.278112 0.000911328 499 0.216874 0.000237098 500 0.00254858
 rs9777703 1 918699 0.0301614 0.00240581 499 0.854464 0.000222185 500 0.00222427
 ...
 </code></pre>
-<h4 id="references-12">References</h4>
+<h4 id="citations-12">Citations</h4>
 <p><strong>LD score regression analysis</strong>: Bulik-Sullivan BK, Loh PR, Finucane HK, Ripke S, Yang J, Schizophrenia Working Group of the Psychiatric Genomics Consortium, Patterson N, Daly MJ, Price AL, Neale BM (2015) LD Score regression distinguishes confounding from polygenicity in genome-wide association studies. Nat Genet, 47: 291-295.</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="searchingforldfriends">Searching for LD friends</h3>
@@ -2065,7 +2067,7 @@ SNP in highest LD with the target SNP
 <blockquote>
   <p>Note: LD block is defined as a region where SNPs outside this region are not in significant LD with the target SNP. According to this definition, the length of LD block depends on user-specified window size and significance level.</p>
 </blockquote>
-<h4 id="references-13">References</h4>
+<h4 id="citations-13">Citations</h4>
 <p><strong>Method to search for LD friends</strong>: Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J Hum Genet. 19(7): 807-812. [Pubmed ID: 21407268]</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
 <h2 id="populationgenetics">Population genetics</h2>
@@ -2098,7 +2100,7 @@ SNP in highest LD with the target SNP
 1    rs9777703   918699  C   0.0265765   0.0313871   0.000300492 
 ...
 </code></pre>
-<h4 id="references-14">References</h4>
+<h4 id="citations-14">Citations</h4>
 <p><strong>Fst method</strong>: Weir, B.S. 1996. Genetic Data Analysis II: Methods for Discrete Population Genetic Data. Sinauer Associates, Inc. Sunderland, Massachusetts.</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="pca">PCA</h3>

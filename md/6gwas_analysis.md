@@ -141,7 +141,7 @@ rs1001
 gcta64  --bfile test  --cojo-file test.ma --cojo-cond cond.snplist --out test
 ```
 
-#### References
+#### Citations
 
 **Conditional and joint analysis method**: Yang et al. (2012) Conditional and joint multiple-SNP analysis of GWAS summary statistics identifies additional variants influencing complex traits. Nat Genet 44(4):369-375. [PubMed ID: 22426310]
 
@@ -227,6 +227,10 @@ The minimum number of SNP instruments for the HEIDI-outlier test. The default nu
 --gsmr-snp 10  
 The minimum number of SNP instruments for the GSMR analysis. The default number is 10.
 
+#### Citation
+
+Zhu, Z. et al. Causal associations between risk factors and common diseases inferred from GWAS summary data. bioRxiv, 168674.
+
 
 ### Mixed model association
 
@@ -290,7 +294,7 @@ Chr SNP     bp    ReferenceAllele  OtherAllele Freq   b           se          p
 ...
 ``` 
  
-#### References
+#### Citations
  
 **An overview of the MLM based association methods**: Yang J, Zaitlen NA, Goddard ME, Visscher PM and Price AL (2014) Mixed model association methods: advantages and pitfalls. Nat Genet. 2014 Feb;46(2):100-6. [Pubmed ID: 24473328]
 
@@ -423,7 +427,7 @@ TopSNP.Pvalue: smallest single-SNP GWAS p-value in the segment
 TopSNP: the top associated GWAS SNP
 ```
 
-#### References:
+#### Citations:
 
 **fastBAT method**: Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894.
 
@@ -518,7 +522,7 @@ rs10070362    T     -0.0108    -0.000150901
 
 **Note:** Let b = per-allele effect size and u = effec size per standardized SNP genotype. GCTA-SBLUP reads b, fits the model based on u, and output the BLUP SNP effect in the scale of b. So, the output can directly be used to compute the profile score using PLINK --score.
 
-#### References
+#### Citations
 **COJO-SBLUP method**: Robinson et al. (2017) Genetic evidence of assortative mating in humans. Nat Hum Behav, 1:0016.
 
 **GCTA software**: Yang J, Lee SH, Goddard ME and Visscher PM (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]

@@ -193,7 +193,7 @@ gcta64  --bfile test  --autosome  --ibc  --out test
 gcta64  --bfile test  --autosome --make-grm  --make-grm-alg 1  --out test_alg1
 ```
  
-#### References
+#### Citations
  
 **Method for estimating the GRM**: Yang et al. (2010) Common SNPs explain a large proportion of the heritability for human height. Nat Genet. 42(7): 565-9. [PubMed ID: 20562875]
  
@@ -302,7 +302,7 @@ gcta64  --grm test_xchr  --dosage-compen 1  --update-sex test.indi.sex.list  --m
 gcta64  --grm test_xchr  --dosage-compen 0  --update-sex test.indi.sex.list  --make-grm  --out test_xchr_ndc
 ```
 
-#### References
+#### Citations
 
 **Method for estimating the GRM**: Yang et al. (2010) Common SNPs explain a large proportion of the heritability for human height. Nat Genet. 42(7): 565-9. [PubMed ID: 20562875]
 
@@ -482,7 +482,7 @@ We have implemented the "bending" approach (Hayes and Hill 1981 Biometrics) in G
 Note that the --reml-bendV option only provides an approximate inverse of V and has not been tested extensively. The results from analyses using this option might not be reliable.
 
 
-#### References
+#### Citations
 
 **Method for estimating the variance explained by all SNPs**: Yang et al. (2010) Common SNPs explain a large proportion of the heritability for human height. Nat Genet. 42(7): 565-9. [PubMed ID: 20562875]
 
@@ -537,7 +537,7 @@ n	2753
 
 where "*V(G<sub>1</sub>) / V<sub>p</sub>*" provides an estimate of SNP-based *h<sup>2</sup>* (h<sup>2</sup>SNP), "Sum of *V(G) / V<sub>p</sub>*" provides an estimate of pedigree-based *h<sup>2</sup>* (*h<sup>2</sup>ped*), and *V(G<sub>2</sub>) / V<sub>p</sub> = h<sup>2</sup>ped - h<sup>2</sup>SNP*.
 
-#### References
+#### Citations
 
 **Method for estimating the GRM**: Yang et al. (2010) Common SNPs explain a large proportion of the heritability for human height. Nat Genet. 42(7): 565-9. [PubMed ID: 20562875]
 
@@ -642,7 +642,7 @@ test_group2
 ...
 ```
 
-#### References:
+#### Citations:
 
 **Method paper**: Yang et al. (2015) Genetic variance estimation with imputed variants finds negligible missing heritability for human height and body mass index. Nature Genetics, 47:1114–1120.
 
@@ -702,7 +702,7 @@ test_domi
 # Note that most of the other GCTA options (e.g. --extract and --keep) are also valid for these analyses
 ```
 
-#### References:
+#### Citations:
 
 **Method paper**: Zhu Z, Bakshi A, Vinkhuyzen AA, Hemani G, Lee SH, Nolte IM, van Vliet-Ostaptchouk JV, Snieder H, The LifeLines Cohort Study, Esko T, Milani L, Mägi R, Metspalu A, Hill WG, Weir BS, Goddard ME, Visscher PM, Yang J (2015) Dominance Genetic Variation Contributes Little to the Missing Heritability for Human Complex Traits. Am J Hum Genet, 96: 1-9. [PubMed ID: 25683123]
 
@@ -779,7 +779,7 @@ rG    0.622864    0.217458
 n    3669
 ```
 
-#### References
+#### Citations
 
 **The first bivariate GREML example**: Deary et al. (2012) Genetic contributions to stability and change in intelligence from childhood to old age. Nature, 482: 212-215. [Pubmed ID: 22258510]
 
@@ -1003,6 +1003,6 @@ N_tr1               50930
 N_tr2               56342           
 ```
 
-#### References
+#### Citation
 
 Yang J, Zeng J, Goddard ME, Wray NR, Visscher PM  (2017) Concepts, estimation and interpretation of SNP-based heritability. Nature Genetics, 49: 1304-1310.
