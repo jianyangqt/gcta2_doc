@@ -1661,13 +1661,13 @@ For example, cond.snplist)</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="mtcojo">mtCOJO</h3>
 <p><strong>mtCOJO: multi-trait-based conditional &amp; joint analysis using GWAS summary data</strong></p>
-<p>If you have two phenotypes (y and x, which can be measured on two different samples), and you want to run GWAS analysis for y conditioning on x, this analysis can be achieved by a mtCOJO analysis using GWAS summary-level data for y and x. Details of the method can be found in the Zhu et al. (<a href="https://www.biorxiv.org/content/early/2017/07/26/168674">2017 bioRxiv</a>) paper. In the mtCOJO analysis, we used the GSMR method to estimate the effect of x on y, the mtCOJO estimate is free of the collider bias as described in Aschard et al. (<a href="http://www.sciencedirect.com/science/article/pii/S0002929714005278?via%3Dihub">2015 AJHG</a>). It should be noted that mtCOJO allows for an analysis of y conditioning on multiple x.</p>
+<p>If you have two phenotypes (y and x, which can be measured on two different samples), and you want to run GWAS analysis for y conditioning on x, this analysis can be achieved by a mtCOJO analysis using GWAS summary-level data for y and x. Details of the method can be found in the Zhu et al. (<a href="https://www.nature.com/articles/s41467-017-02317-2">2018 Nat. Commun.</a>) paper. In the mtCOJO analysis, we used the GSMR method to estimate the effect of x on y, the mtCOJO estimate is free of the collider bias as described in Aschard et al. (<a href="http://www.sciencedirect.com/science/article/pii/S0002929714005278?via%3Dihub">2015 AJHG</a>). It should be noted that mtCOJO allows for an analysis of y conditioning on multiple x.</p>
 <blockquote>
   <p>Example</p>
 </blockquote>
-<pre><code class="bash language-bash">gcta64 --bfile mtcojo_ref_data --mtcojo mtcojo_summary_data.list --ref-ld-chr eur_w_ld_chr/ --w-ld-chr eur_w_ld_chr/ --out test_mtcojo_result
+<pre><code class="bash language-bash">gcta64 --bfile mtcojo_ref_data --mtcojo-file mtcojo_summary_data.list --ref-ld-chr eur_w_ld_chr/ --w-ld-chr eur_w_ld_chr/ --out test_mtcojo_result
 </code></pre>
-<p><span class="kwd">--mtcojo</span> mtcojo_summary_data.list<br>
+<p><span class="kwd">--mtcojo-file</span> mtcojo_summary_data.list<br>
 Reading a list that contains filepaths of the GWAS summary data and prevalence of diseases.</p>
 <blockquote>
   <p>Input file format</p>
@@ -1689,7 +1689,7 @@ rs10000013  A   C   0.775931455 -0.0095 0.0044  0.03084 233886
 </code></pre>
 <p>Columns are SNP, the effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value and sample size.</p>
 <p><span class="kwd">--ref-ld-chr</span> eur_w_ld_chr/<br>
-The directory of LD score files (the same format as in <a href="https://github.com/bulik/ldsc">LDSC software tool</a>). Note that the LD scores will be used in the LD score regression analysis to estimate the SNP-based heritability for a trait based on summary data, genetic correlation between two traits, and to estimate the degree of overlap between two samples (see <a href="https://www.biorxiv.org/content/early/2017/07/26/168674">Zhu et al. 2017 bioRxiv</a>).</p>
+The directory of LD score files (the same format as in <a href="https://github.com/bulik/ldsc">LDSC software tool</a>). Note that the LD scores will be used in the LD score regression analysis to estimate the SNP-based heritability for a trait based on summary data, genetic correlation between two traits, and to estimate the degree of overlap between two samples (see <a href="https://www.nature.com/articles/s41467-017-02317-2">Zhu et al. 2018 Nat. Commun.</a>).</p>
 <p><span class="kwd">--w-ld-chr</span> eur_w_ld_chr/<br>
 The directory of LD scores for the regression weights (the same format as in <a href="https://github.com/bulik/ldsc">LDSC software tool</a>).</p>
 <p><span class="kwd">--out</span> test_mtcojo_result    </p>
@@ -1712,7 +1712,7 @@ Window size for clumping analysis. The default distance is 10,000 kb (i.e. 10 Mb
 LD r<sup>2</sup> threshold for clumping analysis. The default value is 0.05.</p>
 <p><em>GSMR analysis</em></p>
 <p><span class="kwd">--gwas-thresh</span> 5e-8<br>
-P-value threshold to select instruments for the GSMR analysis (see <a href="https://www.biorxiv.org/content/early/2017/07/26/168674">Zhu et al. 2017 bioRxiv</a>). Instruments are filtered from the index SNPs. The default threshold is 5e-8.</p>
+P-value threshold to select instruments for the GSMR analysis (see <a href="https://www.nature.com/articles/s41467-017-02317-2">Zhu et al. 2018 Nat. Commun.</a>). Instruments are filtered from the index SNPs. The default threshold is 5e-8.</p>
 <p><span class="kwd">--heidi-thresh</span> 0.01<br>
 P-value threshold for the HEIDI-outlier test to filter instruments. The default threshold is 0.01.</p>
 <p><span class="kwd">--heidi-snp</span> 10<br>
@@ -1720,7 +1720,7 @@ The minimum number of SNP instruments for the HEIDI-outlier test. The default nu
 <p><span class="kwd">--gsmr-snp</span> 10<br>
 The minimum number of SNP instruments for the GSMR analysis. The default number is 10.</p>
 <h4 id="citation-1">Citation</h4>
-<p>Zhu, Z. et al. Causal associations between risk factors and common diseases inferred from GWAS summary data. bioRxiv, 168674.</p>
+<p>Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. Nat. Commun. 9, 224.</p>
 <hr><h3 id="mixedmodelassociation">Mixed model association</h3>
 <p><strong>GCTA-MLMA and GCTA-LOCO: mixed linear model based association analysis</strong> </p>
 <p>The following options are designed to perform an MLM based association analysis. Previous data management options such as <span class="kwd">--keep</span>, <span class="kwd">--extract</span> and <span class="kwd">--maf</span>, REML analysis options such as <span class="kwd">--reml-priors</span>, <span class="kwd">--reml-maxit</span> and <span class="kwd">--reml-no-constrain</span> and multi-threading option <span class="kwd">--thread-num</span> are still valid for this analysis.</p>

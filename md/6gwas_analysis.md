@@ -152,14 +152,14 @@ gcta64  --bfile test  --cojo-file test.ma --cojo-cond cond.snplist --out test
 
 **mtCOJO: multi-trait-based conditional & joint analysis using GWAS summary data**
 
-If you have two phenotypes (y and x, which can be measured on two different samples), and you want to run GWAS analysis for y conditioning on x, this analysis can be achieved by a mtCOJO analysis using GWAS summary-level data for y and x. Details of the method can be found in the Zhu et al. ([2017 bioRxiv](https://www.biorxiv.org/content/early/2017/07/26/168674)) paper. In the mtCOJO analysis, we used the GSMR method to estimate the effect of x on y, the mtCOJO estimate is free of the collider bias as described in Aschard et al. ([2015 AJHG](http://www.sciencedirect.com/science/article/pii/S0002929714005278?via%3Dihub)). It should be noted that mtCOJO allows for an analysis of y conditioning on multiple x.
+If you have two phenotypes (y and x, which can be measured on two different samples), and you want to run GWAS analysis for y conditioning on x, this analysis can be achieved by a mtCOJO analysis using GWAS summary-level data for y and x. Details of the method can be found in the Zhu et al. ([2018 Nat. Commun.](https://www.nature.com/articles/s41467-017-02317-2)) paper. In the mtCOJO analysis, we used the GSMR method to estimate the effect of x on y, the mtCOJO estimate is free of the collider bias as described in Aschard et al. ([2015 AJHG](http://www.sciencedirect.com/science/article/pii/S0002929714005278?via%3Dihub)). It should be noted that mtCOJO allows for an analysis of y conditioning on multiple x.
 
 > Example
 ```bash
-gcta64 --bfile mtcojo_ref_data --mtcojo mtcojo_summary_data.list --ref-ld-chr eur_w_ld_chr/ --w-ld-chr eur_w_ld_chr/ --out test_mtcojo_result
+gcta64 --bfile mtcojo_ref_data --mtcojo-file mtcojo_summary_data.list --ref-ld-chr eur_w_ld_chr/ --w-ld-chr eur_w_ld_chr/ --out test_mtcojo_result
 ```
 
---mtcojo mtcojo\_summary\_data.list  
+--mtcojo-file mtcojo\_summary\_data.list  
 Reading a list that contains filepaths of the GWAS summary data and prevalence of diseases.
 
 > Input file format
@@ -185,7 +185,7 @@ rs10000013  A   C   0.775931455 -0.0095 0.0044  0.03084 233886
 Columns are SNP, the effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value and sample size.
 
 --ref-ld-chr eur\_w\_ld\_chr/  
-The directory of LD score files (the same format as in [LDSC software tool](https://github.com/bulik/ldsc)). Note that the LD scores will be used in the LD score regression analysis to estimate the SNP-based heritability for a trait based on summary data, genetic correlation between two traits, and to estimate the degree of overlap between two samples (see [Zhu et al. 2017 bioRxiv](https://www.biorxiv.org/content/early/2017/07/26/168674)).
+The directory of LD score files (the same format as in [LDSC software tool](https://github.com/bulik/ldsc)). Note that the LD scores will be used in the LD score regression analysis to estimate the SNP-based heritability for a trait based on summary data, genetic correlation between two traits, and to estimate the degree of overlap between two samples (see [Zhu et al. 2018 Nat. Commun.](https://www.nature.com/articles/s41467-017-02317-2)).
 
 --w-ld-chr eur\_w\_ld\_chr/  
 The directory of LD scores for the regression weights (the same format as in [LDSC software tool](https://github.com/bulik/ldsc)).
@@ -217,7 +217,7 @@ LD r<sup>2</sup> threshold for clumping analysis. The default value is 0.05.
 *GSMR analysis*
 
 --gwas-thresh 5e-8  
-P-value threshold to select instruments for the GSMR analysis (see [Zhu et al. 2017 bioRxiv](https://www.biorxiv.org/content/early/2017/07/26/168674)). Instruments are filtered from the index SNPs. The default threshold is 5e-8.
+P-value threshold to select instruments for the GSMR analysis (see [Zhu et al. 2018 Nat. Commun.](https://www.nature.com/articles/s41467-017-02317-2)). Instruments are filtered from the index SNPs. The default threshold is 5e-8.
 
 --heidi-thresh 0.01  
 P-value threshold for the HEIDI-outlier test to filter instruments. The default threshold is 0.01.
@@ -231,7 +231,7 @@ The minimum number of SNP instruments for the GSMR analysis. The default number 
 
 #### Citation
 
-Zhu, Z. et al. Causal associations between risk factors and common diseases inferred from GWAS summary data. bioRxiv, 168674.
+Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. Nat. Commun. 9, 224.
 
 
 ### Mixed model association
