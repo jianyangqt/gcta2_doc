@@ -6,7 +6,7 @@ The executable files below only support a 64-bit operating system on the x86_64 
 
 Note: the latest Linux versein of GCTA (v1.91.1) uses the shared library glibc which might need to be installed manually in some Linux systems (e.g. alpine). 
 
-Linux [gcta\_1.26.0.zip](./gcta_1.26.0.zip), [gcta\_1.91.1beta.zip](./gcta_1.91.1beta.zip)
+Linux [gcta\_1.91.1beta.zip](./gcta_1.91.1beta.zip)
 
 Windows [gcta\_1.91.1beta\_win.zip](./gcta_1.91.1beta_win.zip)
 
