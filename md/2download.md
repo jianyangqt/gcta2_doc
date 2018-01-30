@@ -24,7 +24,11 @@ The source code are released under GPL v3. The source code of the latest version
 
 ### Update log {: .notoc}
 
-#### Version 1.91.1beta(25 Nov 2017)
+#### Version 1.91.2beta (30 Jan 2018)
+* Added a new module [GSMR](#GSMR)
+* Added a flag (--mbfile) to read multiple PLINK binary files for [GSMR](#GSMR) and [mtCOJO](#mtCOJO)
+
+#### Version 1.91.1beta (25 Nov 2017)
 * Fixed a bug in --mtcojo.
 * Fixed a memory issue in REML analysis and improved the speed by 3 times in the Linux version.
 * Changed to use the shared library glibc avoid segmentation fault in higher versions of Linux kernel.
