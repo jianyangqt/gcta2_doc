@@ -1543,6 +1543,79 @@ N_tr2               56342
 <h4 id="citation">Citation</h4>
 <p>Yang J, Zeng J, Goddard ME, Wray NR, Visscher PM  (2017) Concepts, estimation and interpretation of SNP-based heritability. Nature Genetics, 49: 1304-1310.</p>
 <h2 id="gwasanalysis">GWAS analysis</h2>
+<hr><h3 id="gsmr">GSMR</h3>
+<p><strong>GSMR: Generalised Summary-data-based Mendelian Randomisation</strong></p>
+<p>The GSMR method tests for putative causal association between a risk factor and a disease using summary-level data from genome-wide association studies (GWAS). Details of the method can be found in Zhu et al. (<a href="https://www.nature.com/articles/s41467-017-02317-2">2018 Nat. Commun.</a>). The corresponding R package is at <a href="http://cnsgenomics.com/software/gsmr/">http://cnsgenomics.com/software/gsmr/</a>. This GCTA module runs the same analysis as in the R version of GSMR but is meant to be faster and more flexible.</p>
+<blockquote>
+  <p>Example</p>
+</blockquote>
+<pre><code class="bash language-bash">gcta64 --mbfile gsmr_ref_data.txt --gsmr-file gsmr_exposure.txt gsmr_outcome.txt --gsmr-alg 0 --out test_gsmr_result
+</code></pre>
+<p><span class="kwd">--mbfile</span> gsmr_ref_data.txt  </p>
+<p>The GSMR analysis requires a reference sample with individual level genotypes (in PLINK binary format) for LD estimation. If the genotype data are very large, the data are often saved in separate PLINK files (e.g. one for each chromosome). Here, we provide an option to read GWAS genotype data saved in multiple PLINK files. The input is a text file with each row representing a PLINK binary file.</p>
+<blockquote>
+  <p>Input file format</p>
+</blockquote>
+<pre><code class="nohighlight language-nohighlight">gsmr_ref_data_chr1
+gsmr_ref_data_chr2
+…
+</code></pre>
+<p><strong>Note:</strong> the option <span class="kwd">--bfile</span> is still valid when there is only a single PLINK file.</p>
+<p><span class="kwd">--gsmr-file</span> gsmr_exposure.txt gsmr_outcome.txt<br>
+The inputs are two text files containing the filepaths of the GWAS summary data. The first one is for exposures and the second one is for outcomes. </p>
+<blockquote>
+  <p>Input file format </p>
+</blockquote>
+<p>gsmr_exposure.txt</p>
+<pre><code class="nohighlight language-nohighlight">hdl hdl_test.raw
+bmi bmi_test.raw
+</code></pre>
+<p>gsmr_outcome.txt</p>
+<pre><code class="nohighlight language-nohighlight">t2d t2d_test.raw
+</code></pre>
+<p>Columns are the trait name, filepath of the GWAS summary data. Each row represents a trait.</p>
+<blockquote>
+  <p>Format of the GWAS summary data (i.e. the <a href="#COJO">GCTA-COJO format</a>)  </p>
+</blockquote>
+<p>bmi_test.raw  </p>
+<pre><code class="nohighlight language-nohighlight">SNP A1  A2  freq    b   se  p   N
+rs1000000   G   A   0.781838245 1.00E-04    0.0044  0.9819  231410
+rs10000010  T   C   0.513760872 -0.0029 0.003   0.3374  322079
+rs10000012  G   C   0.137219265 -0.0095 0.0054  0.07853 233933
+rs10000013  A   C   0.775931455 -0.0095 0.0044  0.03084 233886
+</code></pre>
+<p>Columns are SNP, the effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value and sample size.</p>
+<p><span class="kwd">--gsmr-alg</span> 0<br>
+There are 3 GSMR analyses, forward-GSMR analysis (coded as 0), reverse-GSMR analysis (coded as 1) and bi-GSMR analysis (both forward- and reverse-GSMR analyses, coded as 2). </p>
+<p><span class="kwd">--out</span> test_gsmr_result  </p>
+<blockquote>
+  <p>Output file format  </p>
+</blockquote>
+<p>test_gsmr_result.gsmr  </p>
+<pre><code class="nohighlight language-nohighlight">exposure  outcome      bxy          se          pval       nsnps
+bmi         t2d      0.798596    0.086785     3.51315e-20   77
+hdl         t2d     -0.125651    0.0431615    0.00360073    130
+</code></pre>
+<p>Columns are exposure, outcome, GSMR estimates of <em>b</em><sub>xy</sub>, standard error, p-value and number of SNPs.</p>
+<h4 id="optionalflags">Optional flags</h4>
+<p><em>Clumping analysis</em>  </p>
+<p><span class="kwd">--clump-p1</span> 5e-8<br>
+P-value threshold for index SNPs. The default threshold is 5e-8.  </p>
+<p><span class="kwd">--clump-r2</span> 0.05<br>
+LD <em>r</em><sup>2</sup> threshold for clumping analysis. The default value is 0.05. </p>
+<p><em>GSMR analysis</em>  </p>
+<p><span class="kwd">--gwas-thresh</span> 5e-8<br>
+P-value threshold to select instruments for the GSMR analysis (see <a href="https://www.nature.com/articles/s41467-017-02317-2">Zhu et al. 2018 Nat. Commun.</a>). Instruments are filtered from the index SNPs. The default threshold is 5e-8.  </p>
+<p><span class="kwd">--heidi-thresh</span> 0.01<br>
+P-value threshold for the HEIDI-outlier analysis to filter instruments. The default threshold is 0.01.  </p>
+<p><span class="kwd">--heidi-snp</span> 10<br>
+The minimum number of SNP instruments for the HEIDI-outlier analysis. The default number is 10.  </p>
+<p><span class="kwd">--gsmr-snp</span> 10<br>
+The minimum number of SNP instruments for the GSMR analysis. The default number is 10.  </p>
+<p><span class="kwd">--gsmr-ld-fdr</span> 0.05<br>
+FDR threshold to shrink the chance correlations between the SNP instruments to zero. The default value is 0.05. If the reference sample is independent from the GWAS samples, it is not valid to approximate the chance correlations between SNPs in the GWAS data by those estimated from the reference sample. Under the null that the SNPs are not correlated, <em>n</em><em>r</em><sup>2</sup> follows a chi-squared distribution with df = 1, where n is the sample size and df is the degrees of freedom.  </p>
+<h4 id="citation-1">Citation</h4>
+<p>Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. Nat. Commun. 9, 224.  </p>
 <hr><h3 id="cojo">COJO</h3>
 <p><strong>GCTA-COJO: multi-SNP-based conditional &amp; joint association analysis using GWAS summary data</strong></p>
 <p><span class="kwd">--cojo-file</span> test.ma<br>
@@ -1583,7 +1656,7 @@ Threshold p-value to declare a genome-wide significant hit. The default value is
 Specify a distance d (in Kb unit). It is assumed that SNPs more than d Kb away from each other are in complete linkage equilibrium. The default value is 10000 Kb (i.e. 10 Mb) if not specified.</p>
 <p><span class="kwd">--cojo-collinear</span> 0.9<br>
 During the model selection procedure, the program will check the collinearity between the SNPs that have already been selected and a SNP to be tested. The testing SNP will not be selected if its multiple regression <em>R<sup>2</sup></em> on the selected SNPs is greater than the cutoff value. By default, the cutoff value is 0.9 if not specified.</p>
-<p><span class="kwd">--cojo-gc</span><br>
+<p><span class="kwd">--cojo-gc</span> 
 If this option is specified, p-values will be adjusted by the genomic control method. By default, the genomic inflation factor will be calculated from the summary-level statistics of all the SNPs unless you specify a value, e.g. <span class="kwd">--cojo-gc</span> 1.05.</p>
 <p><span class="kwd">--cojo-actual-geno</span><br>
 If the individual-level genotype data of the discovery set are available (e.g. a single-cohort GWAS), you can use the discovery set as the reference sample. In this case, the analysis will be equivalent to a multiple regression analysis with the actual genotype and phenotype data. Once this option is specified, GCTA will take all pairwise LD correlations between all SNPs into account, which overrides the –cojo-wind option. This option also allows GCTA to calculate the variance taken out from the residual variance by all the significant SNPs in the model, otherwise the residual variance will be fixed constant at the same level of the phenotypic variance.</p>
@@ -1665,8 +1738,11 @@ For example, cond.snplist)</p>
 <blockquote>
   <p>Example</p>
 </blockquote>
-<pre><code class="bash language-bash">gcta64 --bfile mtcojo_ref_data --mtcojo-file mtcojo_summary_data.list --ref-ld-chr eur_w_ld_chr/ --w-ld-chr eur_w_ld_chr/ --out test_mtcojo_result
+<pre><code class="bash language-bash">gcta64 --mbfile mtcojo_ref_data.txt --mtcojo-file mtcojo_summary_data.list --ref-ld-chr eur_w_ld_chr/ --w-ld-chr eur_w_ld_chr/ --out test_mtcojo_result
 </code></pre>
+<p><span class="kwd">--mbfile</span> mtcojo_ref_data.txt<br>
+The GSMR analysis requires a reference sample with individual level genotypes (in PLINK binary format) for LD estimation. If the genotype data are very large, the data are often saved in separate PLINK files (e.g. one for each chromosome). Here, we provide an option to read GWAS genotype data saved in multiple PLINK files. The input is a text file with each row representing a PLINK binary file.<br>
+<strong>Note:</strong> the option <span class="kwd">--bfile</span> is still valid when there is only a single PLINK file.</p>
 <p><span class="kwd">--mtcojo-file</span> mtcojo_summary_data.list<br>
 Reading a list that contains filepaths of the GWAS summary data and prevalence of diseases.</p>
 <blockquote>
@@ -1676,7 +1752,7 @@ Reading a list that contains filepaths of the GWAS summary data and prevalence o
 bmi bmi_test.raw
 </code></pre>
 <p>Columns are the trait name, filepath of the GWAS summary data, sample prevalence and population prevalence. Each row represents a trait. The first row is for the target trait (i.e. y), and the remaining rows are for covariate traits.</p>
-<p><strong>Note:</strong> If the sample prevalence and the population prevalence are not specified, the estimate of the SNP-based h<sup>2</sup> will be on the observed scale.</p>
+<p><strong>Note:</strong> If the sample prevalence and the population prevalence are not specified, the estimate of the SNP-based <em>h</em><sup>2</sup> will be on the observed scale.</p>
 <blockquote>
   <p>Format of the GWAS summary data (i.e. the <a href="#COJO">GCTA-COJO format</a>)</p>
 </blockquote>
@@ -1702,24 +1778,9 @@ rs4040617   G   A   0.143126    -0.0295588  0.0397075   0.50    28944   -0.03435
 rs6687776   T   C   0.133909    0.0295588   0.0343927   0.35    38288   0.0217897   0.0344916   0.527557
 </code></pre>
 <p>Columns are SNP, effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value, sample size from the original GWAS summary data, mtCOJO effect size, mtCOJO standard error and mtCOJO p-value.</p>
-<h4 id="optionalflags">Optional flags</h4>
-<p><em>Clumping analysis</em></p>
-<p><span class="kwd">--clump-p1</span> 5e-8<br>
-P-value threshold for index SNPs. The default threshold is 5e-8.</p>
-<p><span class="kwd">--clump-kb</span> 10000<br>
-Window size for clumping analysis. The default distance is 10,000 kb (i.e. 10 Mb).</p>
-<p><span class="kwd">--clump-r2</span> 0.05<br>
-LD r<sup>2</sup> threshold for clumping analysis. The default value is 0.05.</p>
-<p><em>GSMR analysis</em></p>
-<p><span class="kwd">--gwas-thresh</span> 5e-8<br>
-P-value threshold to select instruments for the GSMR analysis (see <a href="https://www.nature.com/articles/s41467-017-02317-2">Zhu et al. 2018 Nat. Commun.</a>). Instruments are filtered from the index SNPs. The default threshold is 5e-8.</p>
-<p><span class="kwd">--heidi-thresh</span> 0.01<br>
-P-value threshold for the HEIDI-outlier test to filter instruments. The default threshold is 0.01.</p>
-<p><span class="kwd">--heidi-snp</span> 10<br>
-The minimum number of SNP instruments for the HEIDI-outlier test. The default number is 10.</p>
-<p><span class="kwd">--gsmr-snp</span> 10<br>
-The minimum number of SNP instruments for the GSMR analysis. The default number is 10.</p>
-<h4 id="citation-1">Citation</h4>
+<h4 id="optionalflags-1">Optional flags</h4>
+<p>The optional flags are the same as those described at <a href="#GSMR">http://cnsgenomics.com/software/gcta/#GSMR</a>. These flags include <span class="kwd">--clump-p1</span>, <span class="kwd">--clump-r2</span>, <span class="kwd">--gwas-thresh</span>, <span class="kwd">--heidi-thresh</span>, <span class="kwd">--heidi-snp</span>, <span class="kwd">--gsmr-snp</span> and <span class="kwd">--gsmr-ld-fdr</span>.</p>
+<h4 id="citation-2">Citation</h4>
 <p>Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. Nat. Commun. 9, 224.</p>
 <hr><h3 id="mixedmodelassociation">Mixed model association</h3>
 <p><strong>GCTA-MLMA and GCTA-LOCO: mixed linear model based association analysis</strong> </p>

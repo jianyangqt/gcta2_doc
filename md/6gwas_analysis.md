@@ -1,6 +1,98 @@
 
 ## GWAS analysis
 
+### GSMR
+
+**GSMR: Generalised Summary-data-based Mendelian Randomisation**
+
+The GSMR method tests for putative causal association between a risk factor and a disease using summary-level data from genome-wide association studies (GWAS). Details of the method can be found in Zhu et al. ([2018 Nat. Commun.](https://www.nature.com/articles/s41467-017-02317-2)). The corresponding R package is at [http://cnsgenomics.com/software/gsmr/](http://cnsgenomics.com/software/gsmr/). This GCTA module runs the same analysis as in the R version of GSMR but is meant to be faster and more flexible.
+
+> Example
+```bash
+gcta64 --mbfile gsmr_ref_data.txt --gsmr-file gsmr_exposure.txt gsmr_outcome.txt --gsmr-alg 0 --out test_gsmr_result
+```
+
+--mbfile gsmr\_ref\_data.txt  
+
+The GSMR analysis requires a reference sample with individual level genotypes (in PLINK binary format) for LD estimation. If the genotype data are very large, the data are often saved in separate PLINK files (e.g. one for each chromosome). Here, we provide an option to read GWAS genotype data saved in multiple PLINK files. The input is a text file with each row representing a PLINK binary file.
+> Input file format
+```nohighlight
+gsmr_ref_data_chr1
+gsmr_ref_data_chr2
+…
+```
+**Note:** the option --bfile is still valid when there is only a single PLINK file.
+
+--gsmr-file gsmr\_exposure.txt gsmr\_outcome.txt  
+The inputs are two text files containing the filepaths of the GWAS summary data. The first one is for exposures and the second one is for outcomes. 
+> Input file format 
+ 
+gsmr\_exposure.txt
+```nohighlight
+hdl hdl_test.raw
+bmi bmi_test.raw
+```
+gsmr\_outcome.txt
+```nohighlight
+t2d t2d_test.raw
+```
+Columns are the trait name, filepath of the GWAS summary data. Each row represents a trait.
+> Format of the GWAS summary data (i.e. the [GCTA-COJO format](#COJO))  
+
+bmi\_test.raw  
+```nohighlight
+SNP A1  A2  freq    b   se  p   N
+rs1000000   G   A   0.781838245 1.00E-04    0.0044  0.9819  231410
+rs10000010  T   C   0.513760872 -0.0029 0.003   0.3374  322079
+rs10000012  G   C   0.137219265 -0.0095 0.0054  0.07853 233933
+rs10000013  A   C   0.775931455 -0.0095 0.0044  0.03084 233886
+```
+Columns are SNP, the effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value and sample size.
+
+--gsmr-alg 0   
+There are 3 GSMR analyses, forward-GSMR analysis (coded as 0), reverse-GSMR analysis (coded as 1) and bi-GSMR analysis (both forward- and reverse-GSMR analyses, coded as 2). 
+
+--out test\_gsmr\_result  
+> Output file format  
+
+test\_gsmr\_result.gsmr  
+```nohighlight
+exposure  outcome      bxy          se          pval       nsnps
+bmi         t2d      0.798596    0.086785     3.51315e-20   77
+hdl         t2d     -0.125651    0.0431615    0.00360073    130
+```
+Columns are exposure, outcome, GSMR estimates of *b*<sub>xy</sub>, standard error, p-value and number of SNPs.
+
+#### Optional flags  
+*Clumping analysis*  
+
+--clump-p1 5e-8  
+P-value threshold for index SNPs. The default threshold is 5e-8.  
+
+--clump-r2 0.05  
+LD *r*<sup>2</sup> threshold for clumping analysis. The default value is 0.05. 
+
+*GSMR analysis*  
+
+--gwas-thresh 5e-8  
+P-value threshold to select instruments for the GSMR analysis (see [Zhu et al. 2018 Nat. Commun.](https://www.nature.com/articles/s41467-017-02317-2)). Instruments are filtered from the index SNPs. The default threshold is 5e-8.  
+
+--heidi-thresh 0.01  
+P-value threshold for the HEIDI-outlier analysis to filter instruments. The default threshold is 0.01.  
+
+--heidi-snp 10  
+The minimum number of SNP instruments for the HEIDI-outlier analysis. The default number is 10.  
+
+--gsmr-snp 10  
+The minimum number of SNP instruments for the GSMR analysis. The default number is 10.  
+
+--gsmr-ld-fdr 0.05  
+FDR threshold to shrink the chance correlations between the SNP instruments to zero. The default value is 0.05. If the reference sample is independent from the GWAS samples, it is not valid to approximate the chance correlations between SNPs in the GWAS data by those estimated from the reference sample. Under the null that the SNPs are not correlated, *n**r*<sup>2</sup> follows a chi-squared distribution with df = 1, where n is the sample size and df is the degrees of freedom.  
+
+#### Citation  
+Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. Nat. Commun. 9, 224.  
+
+
 ### COJO
 
 **GCTA-COJO: multi-SNP-based conditional & joint association analysis using GWAS summary data**
@@ -52,7 +144,7 @@ Specify a distance d (in Kb unit). It is assumed that SNPs more than d Kb away f
 --cojo-collinear 0.9  
 During the model selection procedure, the program will check the collinearity between the SNPs that have already been selected and a SNP to be tested. The testing SNP will not be selected if its multiple regression *R<sup>2</sup>* on the selected SNPs is greater than the cutoff value. By default, the cutoff value is 0.9 if not specified.
 
---cojo-gc  
+--cojo-gc 
 If this option is specified, p-values will be adjusted by the genomic control method. By default, the genomic inflation factor will be calculated from the summary-level statistics of all the SNPs unless you specify a value, e.g. --cojo-gc 1.05.
 
 --cojo-actual-geno  
@@ -156,8 +248,12 @@ If you have two phenotypes (y and x, which can be measured on two different samp
 
 > Example
 ```bash
-gcta64 --bfile mtcojo_ref_data --mtcojo-file mtcojo_summary_data.list --ref-ld-chr eur_w_ld_chr/ --w-ld-chr eur_w_ld_chr/ --out test_mtcojo_result
+gcta64 --mbfile mtcojo_ref_data.txt --mtcojo-file mtcojo_summary_data.list --ref-ld-chr eur_w_ld_chr/ --w-ld-chr eur_w_ld_chr/ --out test_mtcojo_result
 ```
+
+--mbfile mtcojo\_ref\_data.txt  
+The GSMR analysis requires a reference sample with individual level genotypes (in PLINK binary format) for LD estimation. If the genotype data are very large, the data are often saved in separate PLINK files (e.g. one for each chromosome). Here, we provide an option to read GWAS genotype data saved in multiple PLINK files. The input is a text file with each row representing a PLINK binary file.   
+**Note:** the option --bfile is still valid when there is only a single PLINK file.
 
 --mtcojo-file mtcojo\_summary\_data.list  
 Reading a list that contains filepaths of the GWAS summary data and prevalence of diseases.
@@ -170,7 +266,7 @@ bmi bmi_test.raw
 
 Columns are the trait name, filepath of the GWAS summary data, sample prevalence and population prevalence. Each row represents a trait. The first row is for the target trait (i.e. y), and the remaining rows are for covariate traits.
 
-**Note:** If the sample prevalence and the population prevalence are not specified, the estimate of the SNP-based h<sup>2</sup> will be on the observed scale.
+**Note:** If the sample prevalence and the population prevalence are not specified, the estimate of the SNP-based *h*<sup>2</sup> will be on the observed scale.
 
 > Format of the GWAS summary data (i.e. the [GCTA-COJO format](#COJO))
 
@@ -202,32 +298,7 @@ rs6687776   T   C   0.133909    0.0295588   0.0343927   0.35    38288   0.021789
 Columns are SNP, effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value, sample size from the original GWAS summary data, mtCOJO effect size, mtCOJO standard error and mtCOJO p-value.
 
 #### Optional flags
-
-*Clumping analysis*
-
---clump-p1 5e-8  
-P-value threshold for index SNPs. The default threshold is 5e-8.
-
---clump-kb 10000  
-Window size for clumping analysis. The default distance is 10,000 kb (i.e. 10 Mb).
-
---clump-r2 0.05  
-LD r<sup>2</sup> threshold for clumping analysis. The default value is 0.05.
-
-*GSMR analysis*
-
---gwas-thresh 5e-8  
-P-value threshold to select instruments for the GSMR analysis (see [Zhu et al. 2018 Nat. Commun.](https://www.nature.com/articles/s41467-017-02317-2)). Instruments are filtered from the index SNPs. The default threshold is 5e-8.
-
---heidi-thresh 0.01  
-P-value threshold for the HEIDI-outlier test to filter instruments. The default threshold is 0.01.
-
---heidi-snp 10  
-The minimum number of SNP instruments for the HEIDI-outlier test. The default number is 10.
-
---gsmr-snp 10  
-The minimum number of SNP instruments for the GSMR analysis. The default number is 10.
-
+The optional flags are the same as those described at [http://cnsgenomics.com/software/gcta/#GSMR](#GSMR). These flags include --clump-p1, --clump-r2, --gwas-thresh, --heidi-thresh, --heidi-snp, --gsmr-snp and --gsmr-ld-fdr.
 
 #### Citation
 
