@@ -57,21 +57,22 @@
 <li>Estimating the genetic variance attributed to the X chromosome, and testing for the effect of dosage compensation;</li>
 <li>GREMLd: estimating the dominance variance in unrelated individuals using GWAS data;</li>
 <li>Bivariate GREML: estimating the genetic correlation between two traits (diseases) using GWAS data;</li>
-<li>PCA analysis and estimation of Fst in GWAS data</li>
+<li>PCA analysis and estimation of Fst in GWAS data;</li>
 <li>Computing LD scores and searching for LD friends for a list of target SNPs;</li>
 <li>Simulating a phenotype based on GWAS data;</li>
 <li>Conditional &amp; joint (COJO) analysis of GWAS summary statistics without individual-level genotype data;</li>
-<li>mtCOJO: multi-trait-based conditional &amp; joint analysis using GWAS summary data</li>
+<li>mtCOJO: multi-trait-based conditional &amp; joint analysis using GWAS summary data;</li>
+<li>GSMR: generalised summary-data-based mendelian randomisaion;</li>
 <li>MLMA and MLMA-LOCO: mixed linear model association analysis;</li>
 <li>fastBAT: gene- or set-based association analysis;</li>
 <li>sBLUP: sumamry-data based BLUP analysis for genomic risk prediction;</li>
 <li>Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits.</li>
 </ul>
-<p><strong>Latest release <a href="#Download">v1.91.1beta</a>, click to download or view update log (25 Nov 2017)</strong></p>
+<p><strong>Latest release <a href="#Download">v1.91.2beta</a>, click to download or view update log (30 Jan 2018)</strong></p>
 <hr><h3 id="credits">Credits</h3>
 <p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with supports from <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:hong.lee@uq.edu.au">Hong Lee</a>. </p>
-<p><a href="mailto:zhilizheng@outlook.com">Zhili Zheng</a> rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, developed the website, and is currently maintaining the software.</p>
-<p><a href="mailto:z.zhu1@uq.edu.au">Zhihong Zhu</a> developed the GCTA-mtCOJO module and improved the GCTA-COJO module. </p>
+<p><a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, improved the SBLUP module, developed the website, and is currently maintaining the software.</p>
+<p><a href="mailto:z.zhu1@uq.edu.au">Zhihong Zhu</a> developed the GCTA-mtCOJO, GCTA-GSMR module and improved the GCTA-COJO module. </p>
 <p><a href="mailto:j.zeng@imb.uq.edu.au">Jian Zeng</a> rewrote the GCTA-HEreg module. </p>
 <p><a href="mailto:andrew.bakshi@gmail.com">Andrew Bakshi</a> contributed to the GCTA-fastBAT module. </p>
 <p><a href="mailto:rmaier@broadinstitute.org">Robert Maier</a> improved the GCTA-SBLUP module.</p>
@@ -98,17 +99,19 @@ Yang et al. (2015) Genetic variance estimation with imputed variants finds negli
 Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J Hum Genet. 19(7): 807-812. [<a href="http://www.nature.com/ejhg/journal/v19/n7/full/ejhg201139a.html">Pubmed ID: 21407268</a>]</p>
 <p><strong>fastBAT method:</strong><br>
 Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894. [<a href="https://www.nature.com/articles/srep32894">PMID: 27604177</a>]</p>
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 25 Nov 2017</p>
+<p><strong>mtCOJO GSMR method:</strong><br>
+Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. <a href="https://www.nature.com/articles/s41467-017-02317-2">Nat. Commun. 9, 224.</a>  </p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 30 Jan 2018</p>
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>The executable files below only support a 64-bit operating system on the x86_64 CPU platform. </p>
-<p>Note: the latest Linux versein of GCTA (v1.91.1) uses the shared library glibc which might need to be installed manually in some Linux systems (e.g. alpine). </p>
-<p>Linux <a href="./gcta_1.91.1beta.zip">gcta_1.91.1beta.zip</a></p>
-<p>Windows <a href="./gcta_1.91.1beta_win.zip">gcta_1.91.1beta_win.zip</a></p>
-<p>Mac <a href="./gcta_1.91.1beta_mac.zip">gcta_1.91.1beta_mac.zip</a></p>
+<p>Note: the latest Linux versein of GCTA (v1.91.2) uses the shared library glibc which might need to be installed manually in some Linux systems (e.g. alpine). </p>
+<p>Linux <a href="./gcta_1.91.2beta.zip">gcta_1.91.2beta.zip</a></p>
+<p>Windows <a href="./gcta_1.91.2beta_win.zip">gcta_1.91.2beta_win.zip</a></p>
+<p>Mac <a href="./gcta_1.91.2beta_mac.zip">gcta_1.91.2beta_mac.zip</a></p>
 <p>The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.</p>
 <blockquote>
-  <p>Note: GCTA 1.91.1 is a beta version under testing. We have fixed a few bugs in the previous versions (1.90.0, 1.90.1). If you find any bug in tihs version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
+  <p>Note: GCTA 1.91.2 is a beta version under testing. We have fixed a few bugs in the previous versions (1.90.0, 1.90.1). If you find any bug in tihs version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
 </blockquote>
 <hr><h3 id="sourcecodenotoc" class="notoc">Source code </h3>
 <p><a href="./gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
@@ -116,8 +119,11 @@ Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and 
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
 <h4 id="version1912beta30jan2018">Version 1.91.2beta (30 Jan 2018)</h4>
 <ul>
-<li>Added a new module <a href="#GSMR">GSMR</a></li>
-<li>Added a flag (--mbfile) to read multiple PLINK binary files for <a href="#GSMR">GSMR</a> and <a href="#mtCOJO">mtCOJO</a></li>
+<li>Added a new module <a href="#GSMR">GSMR</a>.</li>
+<li>Added a flag (--mbfile) to read multiple PLINK binary files for <a href="#GSMR">GSMR</a> and <a href="#mtCOJO">mtCOJO</a>.</li>
+<li>Fixed a bug in SBLUP, and improve the speed by 40%.</li>
+<li>Fixed a bug in MLMA when aranging the individual ID.</li>
+<li>Fixed unreadable character in the output of some cluter.</li>
 </ul>
 <h4 id="version1911beta25nov2017">Version 1.91.1beta (25 Nov 2017)</h4>
 <ul>
@@ -1712,7 +1718,7 @@ rs2003 -0.0672 0.0045 1 ...
 ...
 </code></pre>
 <blockquote>
-  <p>test.cma (generate by the option <span class="kwd">--cojo-slct</span> or <span class="kwd">--cojo-cond</span>)</p>
+  <p>test.cma (generate by the option <span class="kwd">--cojo-cond</span>)</p>
 </blockquote>
 <pre><code class="nohighlight language-nohighlight">Chr SNP bp freq refA b se p n freq_geno bC bC_se pC
 1 rs2001 172585028 0.6105 A 0.0377 0.0042 6.38e-19 121056 0.614 0.0379 0.0042 1.74e-19

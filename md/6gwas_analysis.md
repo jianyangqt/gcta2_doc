@@ -202,7 +202,7 @@ rs2003 -0.0672 0.0045 1 ...
 ...
 ```
 
-> test.cma (generate by the option --cojo-slct or --cojo-cond)
+> test.cma (generate by the option --cojo-cond)
 ```nohighlight
 Chr SNP bp freq refA b se p n freq_geno bC bC_se pC
 1 rs2001 172585028 0.6105 A 0.0377 0.0042 6.38e-19 121056 0.614 0.0379 0.0042 1.74e-19

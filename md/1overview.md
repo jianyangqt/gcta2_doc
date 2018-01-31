@@ -9,25 +9,26 @@ GCTA (Genome-wide Complex Trait Analysis) was originally designed to estimate th
 * Estimating the genetic variance attributed to the X chromosome, and testing for the effect of dosage compensation;
 * GREMLd: estimating the dominance variance in unrelated individuals using GWAS data;
 * Bivariate GREML: estimating the genetic correlation between two traits (diseases) using GWAS data;
-* PCA analysis and estimation of Fst in GWAS data
+* PCA analysis and estimation of Fst in GWAS data;
 * Computing LD scores and searching for LD friends for a list of target SNPs;
 * Simulating a phenotype based on GWAS data;
 * Conditional & joint (COJO) analysis of GWAS summary statistics without individual-level genotype data;
-* mtCOJO: multi-trait-based conditional & joint analysis using GWAS summary data
+* mtCOJO: multi-trait-based conditional & joint analysis using GWAS summary data;
+* GSMR: generalised summary-data-based mendelian randomisaion;
 * MLMA and MLMA-LOCO: mixed linear model association analysis;
 * fastBAT: gene- or set-based association analysis;
 * sBLUP: sumamry-data based BLUP analysis for genomic risk prediction;
 * Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits.
 
-**Latest release [v1.91.1beta](#Download), click to download or view update log (25 Nov 2017)**
+**Latest release [v1.91.2beta](#Download), click to download or view update log (30 Jan 2018)**
 
 ### Credits 
 
 [Jian Yang](http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) developed the original version of the software with supports from [Peter Visscher](mailto:peter.visscher@uq.edu.au), [Mike Goddard](mailto:Mike.Goddard@dpi.vic.gov.au) and [Hong Lee](mailto:hong.lee@uq.edu.au). 
 
-[Zhili Zheng](mailto:zhilizheng@outlook.com) rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, developed the website, and is currently maintaining the software.
+[Zhili Zheng](mailto:zhili.zheng@uq.edu.au) rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, improved the SBLUP module, developed the website, and is currently maintaining the software.
 
-[Zhihong Zhu](mailto:z.zhu1@uq.edu.au) developed the GCTA-mtCOJO module and improved the GCTA-COJO module. 
+[Zhihong Zhu](mailto:z.zhu1@uq.edu.au) developed the GCTA-mtCOJO, GCTA-GSMR module and improved the GCTA-COJO module. 
 
 [Jian Zeng](mailto:j.zeng@imb.uq.edu.au) rewrote the GCTA-HEreg module. 
 
@@ -69,5 +70,8 @@ Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J 
 **fastBAT method:**  
 Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894. \[[PMID: 27604177](https://www.nature.com/articles/srep32894)\]
 
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 25 Nov 2017</p>
+**mtCOJO GSMR method:**  
+Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. [Nat. Commun. 9, 224.](https://www.nature.com/articles/s41467-017-02317-2)  
+
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 30 Jan 2018</p>
 
