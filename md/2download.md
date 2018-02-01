@@ -24,11 +24,11 @@ The source code are released under GPL v3. The source code of the latest version
 
 ### Update log {: .notoc}
 
-#### Version 1.91.2beta (30 Jan 2018)
+#### Version 1.91.2beta (2 Feb 2018)
 * Added a new module [GSMR](#GSMR).
 * Added a flag (--mbfile) to read multiple PLINK binary files for [GSMR](#GSMR) and [mtCOJO](#mtCOJO).
 * Fixed a bug in SBLUP, and improve the speed by 40%.
-* Fixed a bug in MLMA when aranging the individual ID.
+* Fixed a bug in MLMA when arranging the individual ID.
 * Fixed unreadable character in the output of some cluter.
 
 #### Version 1.91.1beta (25 Nov 2017)
