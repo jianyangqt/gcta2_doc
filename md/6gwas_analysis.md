@@ -63,11 +63,25 @@ hdl         t2d     -0.125651    0.0431615    0.00360073    130
 ```
 Columns are exposure, outcome, GSMR estimates of *b*<sub>xy</sub>, standard error, p-value and number of SNPs.
 
+#### Visualization
+--effect-plot
+This flag will save the information required to generate a plot of SNP effects as in Figure 3d of Zhu et al. ([2018 Nature Communications](https://www.nature.com/articles/s41467-017-02317-2); also see the figure below) in a compressed text file (\*.eff\_plot.gz). We provide an R script ([gsmr\_plot.r](./static/gsmr_plot.r)) to generate the effect size plot based on the \*.eff\_plot.gz file (see the example below).
+
+> Example
+
+```r
+source("gsmr_plot.r")
+gsmr_data = read_gsmr_data("test_gsmr_result.eff_plot.gz”)
+gsmr_summary(gsmr_data)            # show a summary of the data
+plot_gsmr_effect(gsmr_data, “bmi”, “t2d”, colors()[75])           
+```
+
+![effect_size_plot](./static/gsmr_toy_bmi_t2d.jpg)
 #### Optional flags  
 *Clumping analysis*  
 
 --clump-p1 5e-8  
-P-value threshold for index SNPs. The default threshold is 5e-8.  
+P-value threshold for index SNPs. The default threshold is 5e-8.
 
 --clump-r2 0.05  
 LD *r*<sup>2</sup> threshold for clumping analysis. The default value is 0.05. 
