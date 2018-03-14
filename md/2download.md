@@ -24,6 +24,10 @@ The source code are released under GPL v3. The source code of the latest version
 
 ### Update log {: .notoc}
 
+#### Version 1.91.3beta (14 Mar 2018)
+* Fixed a bug in mtCOJO.
+* Added a flag (--effect-plot) in GSMR for visualization.
+
 #### Version 1.91.2beta (2 Feb 2018)
 * Added a new module [GSMR](#GSMR).
 * Added a flag (--mbfile) to read multiple PLINK binary files for [GSMR](#GSMR) and [mtCOJO](#mtCOJO).
