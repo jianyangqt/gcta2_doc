@@ -4,29 +4,33 @@
 
 The executable files below only support a 64-bit operating system on the x86_64 CPU platform. 
 
-Note: the latest Linux versein of GCTA (v1.91.2) uses the shared library glibc which might need to be installed manually in some Linux systems (e.g. alpine). 
+Note: the latest Linux versein of GCTA (v1.91.3) uses the shared library glibc which might need to be installed manually in some Linux systems (e.g. alpine). 
 
-Linux [gcta\_1.91.2beta.zip](./gcta_1.91.2beta.zip)
+Linux [gcta\_1.91.3beta.zip](./gcta_1.91.3beta.zip)
 
-Windows [gcta\_1.91.2beta\_win.zip](./gcta_1.91.2beta_win.zip)
+Windows [gcta\_1.91.3beta\_win.zip](./gcta_1.91.3beta_win.zip)
 
-Mac [gcta\_1.91.2beta\_mac.zip](./gcta_1.91.2beta_mac.zip)
+Mac [gcta\_1.91.3beta\_mac.zip](./gcta_1.91.3beta_mac.zip)
  
 The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
 
-> Note: GCTA 1.91.2 is a beta version under testing. We have fixed a few bugs in the previous versions (1.90.0, 1.90.1). If you find any bug in tihs version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
+> Note: GCTA 1.91.3 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in tihs version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
 [gcta\_1.26.0\_src.zip](./gcta_1.26.0_src.zip)
 
-The source code are released under GPL v3. The source code of the latest version will be release when it is stable.
+The source code are released under GPL v3. The source code of the latest version will be released when it is stable.
 
 ### Update log {: .notoc}
 
 #### Version 1.91.3beta (14 Mar 2018)
+* Added a flag (--effect-plot) in [GSMR](#GSMR) for visualization.
+* Speeded up [dominance GRM](#GREMLfordominancevariance) and added a flag --make-grm-d-part to partition the computaion.
+* Fixed bugs in REML, REML bivar, MLMA, LD when --thread-num > 1.
+* Captured output logs to both screen and output.log file.
+* Fixed a bug in COJO on chrX when no gender information present.
 * Fixed a bug in mtCOJO.
-* Added a flag (--effect-plot) in GSMR for visualization.
 
 #### Version 1.91.2beta (2 Feb 2018)
 * Added a new module [GSMR](#GSMR).

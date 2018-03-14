@@ -662,11 +662,19 @@ Details of the method can be found in [Zhu et al. (2015 AJHG)](http://www.scienc
 --make-grm-d  
 or  
 --make-grm-d-bin  
-Estimate the dominance genetic relationship matrix (GRM) between pairs of individuals from a set of SNPs and save the lower triangle elements of the dominance GRM to binary files. eg. test.grm.d.bin, test.grm.d.N.bin, test.grm.d.id
+Estimate the dominance genetic relationship matrix (GRM) between pairs of individuals from a set of SNPs and save the lower triangle elements of the dominance GRM to binary files. eg. test.grm.d.bin, test.grm.d.N.bin, test.grm.d.id.
+
+Note: the memory usage of --make-grm-d is same with --make-grm. --make-grm-d-bin takes much more memory.
+
 > Output file format:
 test.grm.d.bin Binary file which contains the lower triangle elements of the dominance GRM).  
 test.grm.d.N.bin Binary file which contains the number of SNPs used to calculate the dominance GRM).  
 test.grm.d.id No header line; columns are family ID and individual ID
+
+--make-grm-d-part m i  
+Partition the dominance GRM into m parts (by row), and compute the i-th part in the current run.
+
+See the document of [--make-grm-part](#MakingaGRM)
 
 --make-grm-d-gz  
 Estimate the dominance GRM, save the lower triangle elements to a compressed text file (e.g. test.grm.d.gz) and save the IDs in a plain text file (e.g. test.grm.d.id). 

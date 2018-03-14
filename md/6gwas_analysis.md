@@ -71,9 +71,9 @@ This flag will save the information required to generate a plot of SNP effects a
 
 ```r
 source("gsmr_plot.r")
-gsmr_data = read_gsmr_data("test_gsmr_result.eff_plot.gz”)
-gsmr_summary(gsmr_data)            # show a summary of the data
-plot_gsmr_effect(gsmr_data, “bmi”, “t2d”, colors()[75])           
+gsmr_data = read_gsmr_data("test_gsmr_result.eff_plot.gz")
+gsmr_summary(gsmr_data)      # show a summary of the data
+plot_gsmr_effect(gsmr_data, "bmi", "t2d", colors()[75])           
 ```
 
 ![effect_size_plot](./static/gsmr_toy_bmi_t2d.jpg)
