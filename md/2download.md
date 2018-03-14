@@ -25,12 +25,12 @@ The source code are released under GPL v3. The source code of the latest version
 ### Update log {: .notoc}
 
 #### Version 1.91.3beta (14 Mar 2018)
-* Added a flag (--effect-plot) in [GSMR](#GSMR) for visualization.
-* Speeded up [dominance GRM](#GREMLfordominancevariance) and added a flag --make-grm-d-part to partition the computaion.
-* Fixed bugs in REML, REML bivar, MLMA, LD when --thread-num > 1.
-* Captured output logs to both screen and output.log file.
-* Fixed a bug in COJO on chrX when no gender information present.
+* Speeded up [dominance GRM](#GREMLfordominancevariance) and added a flag --make-grm-d-part to partition the computation.
+* Fixed a bug in REML, REML bivar, MLMA and LD when the number of thread (--thread-num) is larger than 1.
+* Redirected the log output to both screen and .log file.
+* Fixed a bug in COJO for the X chromosome when there is no gender information in the .fam file.
 * Fixed a bug in mtCOJO.
+* Added a flag (--effect-plot) in [GSMR](#GSMR) for visualization.
 
 #### Version 1.91.2beta (2 Feb 2018)
 * Added a new module [GSMR](#GSMR).
