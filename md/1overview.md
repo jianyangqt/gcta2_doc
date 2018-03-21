@@ -70,7 +70,7 @@ Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J 
 **fastBAT method:**  
 Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894. \[[PMID: 27604177](https://www.nature.com/articles/srep32894)\]
 
-**mtCOJO GSMR method:**  
+**mtCOJO and GSMR methods:**  
 Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. [Nat. Commun. 9, 224.](https://www.nature.com/articles/s41467-017-02317-2)  
 
 <p style="color: rgb(204,0,0);font-weight:bold;">Last update: 14 Mar 2018</p>

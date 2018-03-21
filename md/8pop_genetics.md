@@ -70,3 +70,11 @@ Examples
 gcta64  --grm test --keep test.indi.list  --pca 20  --out test
 ```
 
+
+#### Citations
+
+**PCA method**: Price AL, Patterson NJ, Plenge RM, Weinblatt ME, Shadick NA and Reich D (2006) Principal components analysis corrects for stratification in genome-wide association studies. Nat Genet, 38: 904-909. [PubMed ID: 16862161]
+
+**GCTA software**: Yang J, Lee SH, Goddard ME and Visscher PM. (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]
+
+
