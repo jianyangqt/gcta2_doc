@@ -1573,7 +1573,7 @@ N_tr2               56342
 <blockquote>
   <p>Example</p>
 </blockquote>
-<pre><code class="bash language-bash">gcta64 --mbfile gsmr_ref_data.txt --gsmr-file gsmr_exposure.txt gsmr_outcome.txt --gsmr-alg 0 --out test_gsmr_result
+<pre><code class="bash language-bash">gcta64 --mbfile gsmr_ref_data.txt --gsmr-file gsmr_exposure.txt gsmr_outcome.txt --gsmr-direction 0 --out test_gsmr_result
 </code></pre>
 <p><span class="kwd">--mbfile</span> gsmr_ref_data.txt  </p>
 <p>The GSMR analysis requires a reference sample with individual level genotypes (in PLINK binary format) for LD estimation. If the genotype data are very large, the data are often saved in separate PLINK files (e.g. one for each chromosome). Here, we provide an option to read GWAS genotype data saved in multiple PLINK files. The input is a text file with each row representing a PLINK binary file.</p>
@@ -1609,7 +1609,7 @@ rs10000012  G   C   0.137219265 -0.0095 0.0054  0.07853 233933
 rs10000013  A   C   0.775931455 -0.0095 0.0044  0.03084 233886
 </code></pre>
 <p>Columns are SNP, the effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value and sample size.</p>
-<p><span class="kwd">--gsmr-alg</span> 0<br>
+<p><span class="kwd">--gsmr-direction</span> 0<br>
 There are 3 GSMR analyses, forward-GSMR analysis (coded as 0), reverse-GSMR analysis (coded as 1) and bi-GSMR analysis (both forward- and reverse-GSMR analyses, coded as 2). </p>
 <p><span class="kwd">--out</span> test_gsmr_result  </p>
 <blockquote>
@@ -1621,6 +1621,18 @@ bmi         t2d      0.798596    0.086785     3.51315e-20   77
 hdl         t2d     -0.125651    0.0431615    0.00360073    130
 </code></pre>
 <p>Columns are exposure, outcome, GSMR estimates of <em>b</em><sub>xy</sub>, standard error, p-value and number of SNPs.</p>
+<h4 id="sampleoverlap">Sample overlap</h4>
+<p>LD score regression analysis is used to estimate sample overlap between the GWAS data for exposure and outcome. </p>
+<blockquote>
+  <p>Example</p>
+</blockquote>
+<pre><code class="bash language-bash">gcta64 --mbfile gsmr_ref_data.txt --gsmr-file gsmr_exposure.txt gsmr_outcome.txt --gsmr-direction 0 --ref-ld-chr eur_w_ld_chr/ --w-ld-chr eur_w_ld_chr/ --out test_gsmr_result
+</code></pre>
+<p><span class="kwd">--ref-ld-chr</span> eur_w_ld_chr/<br>
+The directory of LD score files (the same format as in <a href="https://github.com/bulik/ldsc">LDSC software tool</a>).</p>
+<p><span class="kwd">--w-ld-chr</span> eur_w_ld_chr/<br>
+The directory of LD scores for the regression weights (the same format as in <a href="https://github.com/bulik/ldsc">LDSC software tool</a>).</p>
+<p><strong>Note:</strong> If these two flags are not specified, the GSMR analysis will be performed assuming no sample overlap between the GWAS data for exposure and outcome.</p>
 <h4 id="visualization">Visualization</h4>
 <p><span class="kwd">--effect-plot</span>
 This flag will save the information required to generate a plot of SNP effects as in Figure 3d of Zhu et al. (<a href="https://www.nature.com/articles/s41467-017-02317-2">2018 Nature Communications</a>; also see the figure below) in a compressed text file (*.eff_plot.gz). We provide an R script (<a href="./static/gsmr_plot.r">gsmr_plot.r</a>) to generate the effect size plot based on the *.eff_plot.gz file (see the example below).</p>

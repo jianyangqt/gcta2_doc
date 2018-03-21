@@ -9,7 +9,7 @@ The GSMR method tests for putative causal association between a risk factor and 
 
 > Example
 ```bash
-gcta64 --mbfile gsmr_ref_data.txt --gsmr-file gsmr_exposure.txt gsmr_outcome.txt --gsmr-alg 0 --out test_gsmr_result
+gcta64 --mbfile gsmr_ref_data.txt --gsmr-file gsmr_exposure.txt gsmr_outcome.txt --gsmr-direction 0 --out test_gsmr_result
 ```
 
 --mbfile gsmr\_ref\_data.txt  
@@ -49,7 +49,7 @@ rs10000013  A   C   0.775931455 -0.0095 0.0044  0.03084 233886
 ```
 Columns are SNP, the effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value and sample size.
 
---gsmr-alg 0   
+--gsmr-direction 0   
 There are 3 GSMR analyses, forward-GSMR analysis (coded as 0), reverse-GSMR analysis (coded as 1) and bi-GSMR analysis (both forward- and reverse-GSMR analyses, coded as 2). 
 
 --out test\_gsmr\_result  
@@ -62,6 +62,21 @@ bmi         t2d      0.798596    0.086785     3.51315e-20   77
 hdl         t2d     -0.125651    0.0431615    0.00360073    130
 ```
 Columns are exposure, outcome, GSMR estimates of *b*<sub>xy</sub>, standard error, p-value and number of SNPs.
+
+#### Sample overlap
+LD score regression analysis is used to estimate sample overlap between the GWAS data for exposure and outcome. 
+
+> Example
+```bash
+gcta64 --mbfile gsmr_ref_data.txt --gsmr-file gsmr_exposure.txt gsmr_outcome.txt --gsmr-direction 0 --ref-ld-chr eur_w_ld_chr/ --w-ld-chr eur_w_ld_chr/ --out test_gsmr_result
+```
+--ref-ld-chr eur\_w\_ld\_chr/  
+The directory of LD score files (the same format as in [LDSC software tool](https://github.com/bulik/ldsc)).
+
+--w-ld-chr eur\_w\_ld\_chr/  
+The directory of LD scores for the regression weights (the same format as in [LDSC software tool](https://github.com/bulik/ldsc)).
+
+**Note:** If these two flags are not specified, the GSMR analysis will be performed assuming no sample overlap between the GWAS data for exposure and outcome.
 
 #### Visualization
 --effect-plot
@@ -77,6 +92,7 @@ plot_gsmr_effect(gsmr_data, "bmi", "t2d", colors()[75])
 ```
 
 ![effect_size_plot](./static/gsmr_toy_bmi_t2d.jpg)
+
 #### Optional flags  
 *Clumping analysis*  
 
