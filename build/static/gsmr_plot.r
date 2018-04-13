@@ -36,6 +36,8 @@ read_snp_effect = function(file_con) {
         strbuf = scan(file_con, nlines=1, quiet=TRUE, what="");
         if(strbuf[1] == "#effect_end") break;
         snp_effect = rbind(snp_effect, strbuf);
+        print(length(strbuf))
+        if(length(strbuf)<14) print(strbuf)
     }
     return(snp_effect)
 }
@@ -138,41 +140,12 @@ gsmr_summary = function(gsmr_data) {
     print(m_bxy_rst)
 }
 
-# ************************************************** #
-#                  Plot bzy vs bzx                   #
-# ************************************************** #
-plot_snp_effect = function(expo_str, outcome_str, bxy, bzx, bzx_se, bzy, bzy_se, effect_col=colors()[75]) {
-    vals = c(bzx-bzx_se, bzx+bzx_se)
-    xmin = min(vals); xmax = max(vals)
-    vals = c(bzy-bzy_se, bzy+bzy_se)
-    ymin = min(vals); ymax = max(vals)
-    plot(bzx, bzy, pch=20, cex=0.8, bty="n", cex.axis=1.1, cex.lab=1.2,
-         col=effect_col, xlim=c(xmin, xmax), ylim=c(ymin, ymax),
-         xlab=substitute(paste(trait, " (", italic(b[zx]), ")", sep=""), list(trait=expo_str)),
-         ylab=substitute(paste(trait, " (", italic(b[zy]), ")", sep=""), list(trait=outcome_str)))
-    abline(0, bxy, lwd=1.5, lty=2, col="dim grey")
-    ## Standard errors
-    nsnps = length(bzx)
-    for( i in 1:nsnps ) {
-        # x axis
-        xstart = bzx[i] - bzx_se[i]; xend = bzx[i] + bzx_se[i]
-        ystart = bzy[i]; yend = bzy[i]
-        segments(xstart, ystart, xend, yend, lwd=1.5, col=effect_col)
-        # y axis
-        xstart = bzx[i]; xend = bzx[i] 
-        ystart = bzy[i] - bzy_se[i]; yend = bzy[i] + bzy_se[i]
-        segments(xstart, ystart, xend, yend, lwd=1.5, col=effect_col)
-    }
-}
 
 # ************************************************** #
-#                  Effect size plot                  #
+#               Retrieve SNP effects                 #
 # ************************************************** #
-# expo_str, exposure
-# outcome_str, outcome
-# effect_col, plotting colour
-plot_gsmr_effect = function(gsmr_data, expo_str, outcome_str, effect_col=colors()[75]) {
-    # index of SNP instruments
+gsmr_snp_effect = function(gsmr_data, expo_str, outcome_str) {
+   # index of SNP instruments
     pheno_str = as.character(gsmr_data$pheno[c(-1,-2)])
     nexpo = as.numeric(gsmr_data$pheno[1])
     noutcome = as.numeric(gsmr_data$pheno[2])
@@ -191,22 +164,131 @@ plot_gsmr_effect = function(gsmr_data, expo_str, outcome_str, effect_col=colors(
     if(!forward_flag) indxbuf = indxbuf + nexpo
     strbuf = as.character(substr(gsmr_data$snp_effect[,indxbuf], outcome_indx, outcome_indx))
     snpindx = which(strbuf=="1")
-    if(length(snpindx) < 3) stop("Not enough SNPs retained for plot.")
+    if(length(snpindx) < 3) stop("Not enough SNPs retained.")
     # bxy
     indxbuf = which(gsmr_data$bxy_result[,1]==expo_str & gsmr_data$bxy_result[,2]==outcome_str)
     bxy = as.numeric(gsmr_data$bxy_result[indxbuf, 3])
     # SNP effects
     if(forward_flag) {
-        indxbuf1 = 1 + nexpo + noutcome + 3 + expo_indx
-        indxbuf2 = 1 + nexpo + noutcome + 3 + nexpo*2 + outcome_indx
+        indxbuf1 = 1 + nexpo + noutcome + 3 + (expo_indx-1)*2 + 1
+        indxbuf2 = 1 + nexpo + noutcome + 3 + nexpo*2 + (outcome_indx-1)*2 + 1
     } else {
-        indxbuf1 = 1 + nexpo + noutcome + 3 + nexpo*2 + expo_indx
-        indxbuf2 = 1 + nexpo + noutcome + 3 + expo_indx
+        indxbuf1 = 1 + nexpo + noutcome + 3 + nexpo*2 + (expo_indx-1)*2 + 1
+        indxbuf2 = 1 + nexpo + noutcome + 3 + (outcome_indx-1)*2 + 1
     }
+    snpid = as.character(gsmr_data$snp_effect[snpindx,1])
     bzx = as.numeric(gsmr_data$snp_effect[snpindx,indxbuf1]); indxbuf1 = indxbuf1 + 1;
     bzx_se = as.numeric(gsmr_data$snp_effect[snpindx,indxbuf1]);
+    bzx_pval = pchisq((bzx/bzx_se)^2, 1, lower.tail=F);
     bzy = as.numeric(gsmr_data$snp_effect[snpindx,indxbuf2]); indxbuf2 = indxbuf2 + 1;
     bzy_se = as.numeric(gsmr_data$snp_effect[snpindx,indxbuf2]);
+    bzy_pval = pchisq((bzy/bzy_se)^2, 1, lower.tail=F);
+    return(list(snp=snpid, bxy=bxy, bzx=bzx, bzx_se=bzx_se, bzx_pval=bzx_pval, bzy=bzy, bzy_se=bzy_se, bzy_pval=bzy_pval))
+}
+
+# ************************************************** #
+#                  Plot bzy vs bzx                   #
+# ************************************************** #
+plot_snp_effect = function(expo_str, outcome_str, bxy, bzx, bzx_se, bzy, bzy_se, effect_col=colors()[75]) {
+    vals = c(bzx-bzx_se, bzx+bzx_se)
+    xmin = min(vals); xmax = max(vals)
+    vals = c(bzy-bzy_se, bzy+bzy_se)
+    ymin = min(vals); ymax = max(vals)
+    plot(bzx, bzy, pch=20, cex=0.8, bty="n", cex.axis=1.1, cex.lab=1.2,
+         col=effect_col, xlim=c(xmin, xmax), ylim=c(ymin, ymax),
+         xlab=substitute(paste(trait, " (", italic(b[zx]), ")", sep=""), list(trait=expo_str)),
+         ylab=substitute(paste(trait, " (", italic(b[zy]), ")", sep=""), list(trait=outcome_str)))
+    if(!is.na(bxy)) abline(0, bxy, lwd=1.5, lty=2, col="dim grey")
+    ## Standard errors
+    nsnps = length(bzx)
+    for( i in 1:nsnps ) {
+        # x axis
+        xstart = bzx[i] - bzx_se[i]; xend = bzx[i] + bzx_se[i]
+        ystart = bzy[i]; yend = bzy[i]
+        segments(xstart, ystart, xend, yend, lwd=1.5, col=effect_col)
+        # y axis
+        xstart = bzx[i]; xend = bzx[i] 
+        ystart = bzy[i] - bzy_se[i]; yend = bzy[i] + bzy_se[i]
+        segments(xstart, ystart, xend, yend, lwd=1.5, col=effect_col)
+    }
+}
+
+# ************************************************** #
+#             Plot bzy_pval vs bzx_pval              #
+# ************************************************** #
+plot_snp_pval = function(expo_str, outcome_str, bzx_pval, bzy_pval, gwas_thresh, truncation, effect_col) {
+    eps = 1e-300; truncation = -log10(truncation);
+    if(truncation > 300) {
+        warning("The minimal truncated p-value would be 1e-300.")
+        truncation = 300
+    }
+    bzx_pval = -log10(bzx_pval + eps);
+    bzy_pval = -log10(bzy_pval + eps);
+    pval = c(bzx_pval, bzy_pval)
+    min_val = 0; max_val = max(pval);
+    max_val = ifelse(max_val > truncation, truncation, max_val)
+    gwas_thresh = -log10(gwas_thresh);
+    plot(bzx_pval, bzy_pval, pch=20, cex=0.8, bty="n", cex.axis=1.1, cex.lab=1.2,
+         col=effect_col, xlim=c(min_val, max_val), ylim=c(min_val, max_val),
+         xlab=substitute(paste(trait, " (", -log[10], italic(P)[zx], ")", sep=""), list(trait=expo_str)),
+         ylab=substitute(paste(trait, " (", -log[10], italic(P[zy]), ")", sep=""), list(trait=outcome_str)))
+    abline(h=gwas_thresh, lty=2, lwd=1.5, col="maroon")
+}
+
+# ************************************************** #
+#                Plot bxy vs bzx_pval                #
+# ************************************************** #
+plot_snp_bxy = function(expo_str, outcome_str, bxy, bzx_pval, effect_col) {
+    eps = 1e-300;
+    bzx_pval = -log10(bzx_pval + eps);
+    xmin = min(bxy, na.rm=T); xmax = max(bxy, na.rm=T)
+    ymin = min(bzx_pval); ymax = max(bzx_pval);
+    plot(bxy, bzx_pval, pch=20, cex=0.8, bty="n", cex.axis=1.1, cex.lab=1.2,
+         col=effect_col, xlim=c(xmin, xmax), ylim=c(ymin, ymax),
+         xlab=substitute(paste(italic(hat(b)[xy]), " (", trait1, " -> ", trait2, ")", sep=""), list(trait1=expo_str, trait2=outcome_str)),
+         ylab=substitute(paste(trait, " (", -log[10], italic(P[zx]), ")", sep=""), list(trait=expo_str)))
+}
+
+# ************************************************** #
+#                  Effect size plot                  #
+# ************************************************** #
+# expo_str, exposure
+# outcome_str, outcome
+# effect_col, plotting colour
+plot_gsmr_effect = function(gsmr_data, expo_str, outcome_str, effect_col=colors()[75]) {
+    resbuf = gsmr_snp_effect(gsmr_data, expo_str, outcome_str);
+    bxy = resbuf$bxy
+    bzx = resbuf$bzx; bzx_se = resbuf$bzx_se;
+    bzy = resbuf$bzy; bzy_se = resbuf$bzy_se;
     # plot
     plot_snp_effect(expo_str, outcome_str, bxy, bzx, bzx_se, bzy, bzy_se, effect_col)
+}
+
+# ************************************************** #
+#                    P-value plot                    #
+# ************************************************** #
+# expo_str, exposure
+# outcome_str, outcome
+# effect_col, plotting colour
+plot_gsmr_pvalue = function(gsmr_data, expo_str, outcome_str, gwas_thresh=5e-8, truncation=1e-50, effect_col=colors()[75]) {
+    resbuf = gsmr_snp_effect(gsmr_data, expo_str, outcome_str);
+    bzx_pval = resbuf$bzx_pval; bzy_pval = resbuf$bzy_pval;
+    # plot
+    plot_snp_pval(expo_str, outcome_str, bzx_pval, bzy_pval, gwas_thresh, truncation, effect_col)
+}
+
+# ************************************************** #
+#                     bxy distribution plot                         #
+# ************************************************** #
+
+# expo_str, exposure
+# outcome_str, outcome
+# effect_col, plotting colour
+plot_bxy_distribution = function(gsmr_data, expo_str, outcome_str, effect_col=colors()[75]) {
+    resbuf = gsmr_snp_effect(gsmr_data, expo_str, outcome_str);
+    bzx = resbuf$bzx; bzx_pval = resbuf$bzx_pval;
+    bzy = resbuf$bzy; 
+    bxy = bzy/bzx
+    # plot
+    plot_snp_bxy(expo_str, outcome_str, bxy, bzx_pval, effect_col)
 }
