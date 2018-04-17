@@ -4,17 +4,17 @@
 
 The executable files below only support a 64-bit operating system on the x86_64 CPU platform. 
 
-Note: the latest Linux versein of GCTA (v1.91.3) uses the shared library glibc which might need to be installed manually in some Linux systems (e.g. alpine). 
+Note: the latest Linux versein of GCTA (v1.91.4) uses the shared library glibc which might need to be installed manually in some Linux systems (e.g. alpine). 
 
-Linux [gcta\_1.91.3beta.zip](./gcta_1.91.3beta.zip)
+Linux [gcta\_1.91.4beta.zip](./gcta_1.91.4beta.zip)
 
-Windows [gcta\_1.91.3beta\_win.zip](./gcta_1.91.3beta_win.zip)
+Windows [gcta\_1.91.4beta\_win.zip](./gcta_1.91.4beta_win.zip)
 
-Mac [gcta\_1.91.3beta\_mac.zip](./gcta_1.91.3beta_mac.zip)
+Mac [gcta\_1.91.4beta\_mac.zip](./gcta_1.91.4beta_mac.zip)
  
 The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
 
-> Note: GCTA 1.91.3 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in tihs version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
+> Note: GCTA 1.91.4 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in tihs version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
@@ -23,6 +23,15 @@ The executable files are released under the MIT license. We recommend to use the
 The source code are released under GPL v3. The source code of the latest version will be released when it is stable.
 
 ### Update log {: .notoc}
+
+#### Version 1.91.4beta (17 Apr 2018)
+* Fixed a bug in GSMR when there are multiple outcome variables.
+* Fixed a bug in COJO when the standard error is extremely small.
+* Improved the speed and memory usage of --make-grm-xchr, and added an option --make-grm-xchr-part to reduce the memory usage further.
+* Added --mbfile in GRM functions to proceed genotypes stored in multiple PLINK files.
+* Updated the options --update-sex, --update-ref-allele and --update-freq to be compatible with the new GRM functions.
+* Added --threads to specify the thread number, same with --thread-num. 
+* Got thread number from standard OpenMP environment variable OMP\_NUM\_THREADS, when no --thread-num is specified. 
 
 #### Version 1.91.3beta (14 Mar 2018)
 * Speeded up [dominance GRM](#GREMLfordominancevariance) and added a flag --make-grm-d-part to partition the computation.

@@ -98,8 +98,20 @@ ReadGRMBin=function(prefix, AllN=F, size=4){
 }
 ```
 
-**Note**: --make-grm has been rewritten with orders of magnitude improvement in speed and memory usage. Currently, It can only used in combination with a limited number of other flags, i.e., --keep, --remove, --chr, --autosome-num, --autosome, --extract, --exclude, --maf, --max-maf, --thread-num. You can use --make-grm-part to reduce the memory usage further.
+**Note**: --make-grm has been rewritten with orders of magnitude improvement in speed and memory usage. Currently, It can only used in combination with a limited number of other flags, i.e., --keep, --remove, --chr, --autosome-num, --autosome, --extract, --exclude, --maf, --max-maf, --thread-num, --update-ref-allele, --update-sex, --update-freq. You can use --make-grm-part to reduce the memory usage further.
 
+Make GRM function can combine with --mbfile to calculate GRMs in multiple PLINK files without merge them together. 
+
+--mbfile chrs.txt  
+If the genotype data is very large, the data is often saved in separate PLINK files (e.g. one for each chromosome). Use --mbfile to specify multiple PLINK files. The input is a text file with each row representing a PLINK binary file (without file name suffix).
+> Input file format
+```nohighlight
+data_chr1
+data_chr2
+…
+```
+
+**Note**: All these files shall have same sample size and order, the program will prompt an error if not. 
 
 --make-grm-part m i  
 Partition the GRM into m parts (by row), and compute the i-th part in the current run. 
@@ -146,7 +158,17 @@ Estimate the GRM, save the lower triangle elements to a compressed text file (e.
 ```
 
 --make-grm-xchr  
-Estimate the GRM from SNPs on the X-chromosome. The GRM will be saved in the same binary format as above (*.grm.bin, *.grm.N.bin and *.grm.id). Due to the speciality of the GRM for the X-chromosome, it is not recommended to manipulate the matrix by --grm-cutoff or --grm-adj, or merge it with the GRMs for autosomes (see below for the options of manipulating the GRM).
+Estimate the GRM from SNPs on the X-chromosome. The GRM will be saved in the same binary format as above (\*.grm.bin, \*.grm.N.bin and \*.grm.id). Due to the speciality of the GRM for the X-chromosome, it is not recommended to manipulate the matrix by --grm-cutoff or --grm-adj, or merge it with the GRMs for autosomes (see below for the options of manipulating the GRM). 
+
+Note 1: this flag has been re-implemented in GCTA 1.91.4, it has same performance and memory consumption as --make-grm.
+
+Note 2: the function treats X chr as non-pseudoautosomal region (nPAR) with genotype coding for male as 0, 2. For pseudoautosomal region (PAR), we can alter the chromosome number in bim file to autosome and use --make-grm to run. Don't put nPAR and PAR together as X chr, GCTA will give weird results.
+
+--make-grm-xchr-part m i  
+Partition the GRM of X chromosome into m parts (by row), and compute the i-th part in the current run.
+
+See the document of [--make-grm-part](#MakingaGRM)
+
 
 --make-grm-xchr-gz  
 Same as --make-grm-xchr but the GRM will be in compressed text files (see --make-grm-gz for the format of the output files).

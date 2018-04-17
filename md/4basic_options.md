@@ -178,13 +178,20 @@ gcta64  --dosage-mach  test.mldose.gz  test.mlinfo.gz  --make-bed --out test
 
 ### Multi-thread computing
 
-We have made most of the analyses in GCTA being able to run on multiple CPUs.
+We have made most of the analyses in GCTA being able to run on multiple threads. 
+
+As a rule of thumb, never give thread number larger than the number of CPU cores. Too many threads may also slow down the analysis if the complexity is not large enough.
  
---thread-num   10  
+--thread-num 10  
 Specify the number of threads on which the program will be running.
+
+--threads 10  
+Same with --thread-num.
+
+**Note**: GCTA (>=v1.91.4) will try to get thread number from standard OpenMP environment variable OMP\_NUM\_THREADS, if --thread-num or --threads is not specified.
  
 > Examples
 ```bash
 gcta64 --bfile test --make-grm --out test --thread-num 10
-gcta64 --reml --grm test --pheno test.pheno --out test --thread-num 10
+gcta64 --reml --grm test --pheno test.pheno --out test --threads 10
 ```

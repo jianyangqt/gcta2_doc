@@ -68,7 +68,7 @@
 <li>sBLUP: sumamry-data based BLUP analysis for genomic risk prediction;</li>
 <li>Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits.</li>
 </ul>
-<p><strong>Latest release <a href="#Download">v1.91.3beta</a>, click to download or view update log (14 Mar 2018)</strong></p>
+<p><strong>Latest release <a href="#Download">v1.91.4beta</a>, click to download or view update log (17 Apr 2018)</strong></p>
 <hr><h3 id="credits">Credits</h3>
 <p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with supports from <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:hong.lee@uq.edu.au">Hong Lee</a>. </p>
 <p><a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, improved the SBLUP module, developed the website, and is currently maintaining the software.</p>
@@ -101,22 +101,32 @@ Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J 
 Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894. [<a href="https://www.nature.com/articles/srep32894">PMID: 27604177</a>]</p>
 <p><strong>mtCOJO and GSMR methods:</strong><br>
 Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. <a href="https://www.nature.com/articles/s41467-017-02317-2">Nat. Commun. 9, 224.</a>  </p>
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 14 Mar 2018</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 17 Apr 2018</p>
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>The executable files below only support a 64-bit operating system on the x86_64 CPU platform. </p>
-<p>Note: the latest Linux versein of GCTA (v1.91.3) uses the shared library glibc which might need to be installed manually in some Linux systems (e.g. alpine). </p>
-<p>Linux <a href="./gcta_1.91.3beta.zip">gcta_1.91.3beta.zip</a></p>
-<p>Windows <a href="./gcta_1.91.3beta_win.zip">gcta_1.91.3beta_win.zip</a></p>
-<p>Mac <a href="./gcta_1.91.3beta_mac.zip">gcta_1.91.3beta_mac.zip</a></p>
+<p>Note: the latest Linux versein of GCTA (v1.91.4) uses the shared library glibc which might need to be installed manually in some Linux systems (e.g. alpine). </p>
+<p>Linux <a href="./gcta_1.91.4beta.zip">gcta_1.91.4beta.zip</a></p>
+<p>Windows <a href="./gcta_1.91.4beta_win.zip">gcta_1.91.4beta_win.zip</a></p>
+<p>Mac <a href="./gcta_1.91.4beta_mac.zip">gcta_1.91.4beta_mac.zip</a></p>
 <p>The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.</p>
 <blockquote>
-  <p>Note: GCTA 1.91.3 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in tihs version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
+  <p>Note: GCTA 1.91.4 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in tihs version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
 </blockquote>
 <hr><h3 id="sourcecodenotoc" class="notoc">Source code </h3>
 <p><a href="./gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
 <p>The source code are released under GPL v3. The source code of the latest version will be released when it is stable.</p>
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
+<h4 id="version1914beta17apr2018">Version 1.91.4beta (17 Apr 2018)</h4>
+<ul>
+<li>Fixed a bug in GSMR when there are multiple outcome variables.</li>
+<li>Fixed a bug in COJO when the standard error is extremely small.</li>
+<li>Improved the speed and memory usage of --make-grm-xchr, and added an option --make-grm-xchr-part to reduce the memory usage further.</li>
+<li>Added --mbfile in GRM functions to proceed genotypes stored in multiple PLINK files.</li>
+<li>Updated the options --update-sex, --update-ref-allele and --update-freq to be compatible with the new GRM functions.</li>
+<li>Added --threads to specify the thread number, same with --thread-num. </li>
+<li>Got thread number from standard OpenMP environment variable OMP_NUM_THREADS, when no --thread-num is specified. </li>
+</ul>
 <h4 id="version1913beta14mar2018">Version 1.91.3beta (14 Mar 2018)</h4>
 <ul>
 <li>Speeded up <a href="#GREMLfordominancevariance">dominance GRM</a> and added a flag --make-grm-d-part to partition the computation.</li>
@@ -687,14 +697,18 @@ gcta64  --dosage-mach  test.mldose.gz  test.mlinfo.gz  --make-bed --out test
 </code></pre>
 <p><strong>Note</strong>: the <span class="kwd">--dosage-mach</span> option was designed to read output files from an early version of MACH, which might not be compatible with output files from the latest version of MACH or Minimac.</p>
 <hr><h3 id="multithreadcomputing">Multi-thread computing</h3>
-<p>We have made most of the analyses in GCTA being able to run on multiple CPUs.</p>
-<p><span class="kwd">--thread-num</span>   10<br>
+<p>We have made most of the analyses in GCTA being able to run on multiple threads. </p>
+<p>As a rule of thumb, never give thread number larger than the number of CPU cores. Too many threads may also slow down the analysis if the complexity is not large enough.</p>
+<p><span class="kwd">--thread-num</span> 10<br>
 Specify the number of threads on which the program will be running.</p>
+<p><span class="kwd">--threads</span> 10<br>
+Same with <span class="kwd">--thread-num</span>.</p>
+<p><strong>Note</strong>: GCTA (&gt;=v1.91.4) will try to get thread number from standard OpenMP environment variable OMP_NUM_THREADS, if <span class="kwd">--thread-num</span> or <span class="kwd">--threads</span> is not specified.</p>
 <blockquote>
   <p>Examples</p>
 </blockquote>
 <pre><code class="bash language-bash">gcta64 --bfile test --make-grm --out test --thread-num 10
-gcta64 --reml --grm test --pheno test.pheno --out test --thread-num 10
+gcta64 --reml --grm test --pheno test.pheno --out test --threads 10
 </code></pre>
 <h2 id="greml">GREML</h2>
 <hr><h3 id="tutorial">Tutorial</h3>
@@ -774,7 +788,18 @@ ReadGRMBin=function(prefix, AllN=F, size=4){
   return(list(diag=grm[i], off=grm[-i], id=id, N=N))
 }
 </code></pre>
-<p><strong>Note</strong>: <span class="kwd">--make-grm</span> has been rewritten with orders of magnitude improvement in speed and memory usage. Currently, It can only used in combination with a limited number of other flags, i.e., <span class="kwd">--keep</span>, <span class="kwd">--remove</span>, <span class="kwd">--chr</span>, <span class="kwd">--autosome-num</span>, <span class="kwd">--autosome</span>, <span class="kwd">--extract</span>, <span class="kwd">--exclude</span>, <span class="kwd">--maf</span>, <span class="kwd">--max-maf</span>, <span class="kwd">--thread-num</span>. You can use <span class="kwd">--make-grm-part</span> to reduce the memory usage further.</p>
+<p><strong>Note</strong>: <span class="kwd">--make-grm</span> has been rewritten with orders of magnitude improvement in speed and memory usage. Currently, It can only used in combination with a limited number of other flags, i.e., <span class="kwd">--keep</span>, <span class="kwd">--remove</span>, <span class="kwd">--chr</span>, <span class="kwd">--autosome-num</span>, <span class="kwd">--autosome</span>, <span class="kwd">--extract</span>, <span class="kwd">--exclude</span>, <span class="kwd">--maf</span>, <span class="kwd">--max-maf</span>, <span class="kwd">--thread-num</span>, <span class="kwd">--update-ref-allele</span>, <span class="kwd">--update-sex</span>, <span class="kwd">--update-freq</span>. You can use <span class="kwd">--make-grm-part</span> to reduce the memory usage further.</p>
+<p>Make GRM function can combine with <span class="kwd">--mbfile</span> to calculate GRMs in multiple PLINK files without merge them together. </p>
+<p><span class="kwd">--mbfile</span> chrs.txt<br>
+If the genotype data is very large, the data is often saved in separate PLINK files (e.g. one for each chromosome). Use <span class="kwd">--mbfile</span> to specify multiple PLINK files. The input is a text file with each row representing a PLINK binary file (without file name suffix).</p>
+<blockquote>
+  <p>Input file format</p>
+</blockquote>
+<pre><code class="nohighlight language-nohighlight">data_chr1
+data_chr2
+…
+</code></pre>
+<p><strong>Note</strong>: All these files shall have same sample size and order, the program will prompt an error if not. </p>
 <p><span class="kwd">--make-grm-part</span> m i<br>
 Partition the GRM into m parts (by row), and compute the i-th part in the current run. </p>
 <p><strong>Note</strong>: This option is designed to compute the GRM in a very large sample (e.g. the UK Biobank data). The memory usage of each run is the total memory required divided by m. Thus partitioning a large number of parts can reduce the memory usage significantly. The total memory required is approximately [n * (n + 1) / 2 * 12] / 1024<sup>3</sup> GB + 0.5GB, where n is the sample size. As some computer clusters limit the virtual memory, allocating 1 to 2GB more memory to each job will be safer. In our computation of the GRM in the UKB data, we partitioned the whole data set (n = 456,426) into 250 parts and allocated 6700MB memory to each job.</p>
@@ -817,7 +842,12 @@ Estimate the GRM, save the lower triangle elements to a compressed text file (e.
 ...
 </code></pre>
 <p><span class="kwd">--make-grm-xchr</span><br>
-Estimate the GRM from SNPs on the X-chromosome. The GRM will be saved in the same binary format as above (*.grm.bin, *.grm.N.bin and *.grm.id). Due to the speciality of the GRM for the X-chromosome, it is not recommended to manipulate the matrix by <span class="kwd">--grm-cutoff</span> or <span class="kwd">--grm-adj</span>, or merge it with the GRMs for autosomes (see below for the options of manipulating the GRM).</p>
+Estimate the GRM from SNPs on the X-chromosome. The GRM will be saved in the same binary format as above (*.grm.bin, *.grm.N.bin and *.grm.id). Due to the speciality of the GRM for the X-chromosome, it is not recommended to manipulate the matrix by <span class="kwd">--grm-cutoff</span> or <span class="kwd">--grm-adj</span>, or merge it with the GRMs for autosomes (see below for the options of manipulating the GRM). </p>
+<p>Note 1: this flag has been re-implemented in GCTA 1.91.4, it has same performance and memory consumption as <span class="kwd">--make-grm</span>.</p>
+<p>Note 2: the function treats X chr as non-pseudoautosomal region (nPAR) with genotype coding for male as 0, 2. For pseudoautosomal region (PAR), we can alter the chromosome number in bim file to autosome and use <span class="kwd">--make-grm</span> to run. Don't put nPAR and PAR together as X chr, GCTA will give weird results.</p>
+<p><span class="kwd">--make-grm-xchr-part</span> m i<br>
+Partition the GRM of X chromosome into m parts (by row), and compute the i-th part in the current run.</p>
+<p>See the document of <a href="#MakingaGRM"><span class="kwd">--make-grm-part</span></a></p>
 <p><span class="kwd">--make-grm-xchr-gz</span><br>
 Same as <span class="kwd">--make-grm-xchr</span> but the GRM will be in compressed text files (see <span class="kwd">--make-grm-gz</span> for the format of the output files).</p>
 <p><span class="kwd">--make-grm-inbred</span> or <span class="kwd">--make-grm-inbred-gz</span><br>
