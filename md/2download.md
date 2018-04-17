@@ -30,9 +30,8 @@ The source code are released under GPL v3. The source code of the latest version
 * Improved the speed and memory usage of --make-grm-xchr, and added an option --make-grm-xchr-part to reduce the memory usage further.
 * Added --mbfile in GRM functions to proceed genotypes stored in multiple PLINK files.
 * Updated the options --update-sex, --update-ref-allele and --update-freq to be compatible with the new GRM functions.
-* Fixed a bug of prompt "Illegal instruction" when run on old Linux machine (earlier than 2009). 
-* Added --threads to specify the thread number, same with --thread-num. 
-* Got thread number from standard OpenMP environment variable OMP\_NUM\_THREADS, when no --thread-num is specified. 
+* Fixed a bug of reporting "Illegal instruction" error for old versions of Linux (earlier than 2009). 
+* Added an additional option --threads to specify the number of threads (the same as --thread-num). The number of threads will be obtained from standard OpenMP environment variable OMP\_NUM\_THREADS if --thread-num or --threads is not specified. 
 
 #### Version 1.91.3beta (14 Mar 2018)
 * Speeded up [dominance GRM](#GREMLfordominancevariance) and added a flag --make-grm-d-part to partition the computation.
