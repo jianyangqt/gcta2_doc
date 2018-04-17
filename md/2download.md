@@ -2,9 +2,9 @@
 ## Download
 ### Executable Files {: .notoc}
 
-The executable files below only support a 64-bit operating system on the x86_64 CPU platform. 
+The executable files below only support a 64-bit operating system on the x86\_64 CPU platform. 
 
-Note: the latest Linux versein of GCTA (v1.91.4) uses the shared library glibc which might need to be installed manually in some Linux systems (e.g. alpine). 
+Note: the latest Linux version of GCTA (v1.91.4) uses the shared library glibc (version >= 2.6) which might need to be installed manually in some Linux systems (e.g. alpine). If your Linux system is more than 10 years old, you may run into problem (GLIBC\_xxx not found). It is best to upgrade your Linux into recent release in this case, or email us to get a special compiled version.
 
 Linux [gcta\_1.91.4beta.zip](./gcta_1.91.4beta.zip)
 
@@ -30,7 +30,7 @@ The source code are released under GPL v3. The source code of the latest version
 * Improved the speed and memory usage of --make-grm-xchr, and added an option --make-grm-xchr-part to reduce the memory usage further.
 * Added --mbfile in GRM functions to proceed genotypes stored in multiple PLINK files.
 * Updated the options --update-sex, --update-ref-allele and --update-freq to be compatible with the new GRM functions.
-* Fixed a bug of reporting "Illegal instruction" error for old versions of Linux (earlier than 2009). 
+* Fixed a bug of reporting "Illegal instruction" error for old CPU (earlier than 2009). 
 * Added an additional option --threads to specify the number of threads (the same as --thread-num). The number of threads will be obtained from standard OpenMP environment variable OMP\_NUM\_THREADS if --thread-num or --threads is not specified. 
 
 #### Version 1.91.3beta (14 Mar 2018)

@@ -105,7 +105,7 @@ Zhu, Z. et al. (2018) Causal associations between risk factors and common diseas
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>The executable files below only support a 64-bit operating system on the x86_64 CPU platform. </p>
-<p>Note: the latest Linux versein of GCTA (v1.91.4) uses the shared library glibc which might need to be installed manually in some Linux systems (e.g. alpine). </p>
+<p>Note: the latest Linux version of GCTA (v1.91.4) uses the shared library glibc (version &gt;= 2.6) which might need to be installed manually in some Linux systems (e.g. alpine). If your Linux system is more than 10 years old, you may run into problem (GLIBC_xxx not found). It is best to upgrade your Linux into recent release in this case, or email us to get a special compiled version.</p>
 <p>Linux <a href="./gcta_1.91.4beta.zip">gcta_1.91.4beta.zip</a></p>
 <p>Windows <a href="./gcta_1.91.4beta_win.zip">gcta_1.91.4beta_win.zip</a></p>
 <p>Mac <a href="./gcta_1.91.4beta_mac.zip">gcta_1.91.4beta_mac.zip</a></p>
@@ -124,7 +124,7 @@ Zhu, Z. et al. (2018) Causal associations between risk factors and common diseas
 <li>Improved the speed and memory usage of --make-grm-xchr, and added an option --make-grm-xchr-part to reduce the memory usage further.</li>
 <li>Added --mbfile in GRM functions to proceed genotypes stored in multiple PLINK files.</li>
 <li>Updated the options --update-sex, --update-ref-allele and --update-freq to be compatible with the new GRM functions.</li>
-<li>Fixed a bug of reporting "Illegal instruction" error for old versions of Linux (earlier than 2009). </li>
+<li>Fixed a bug of reporting "Illegal instruction" error for old CPU (earlier than 2009). </li>
 <li>Added an additional option --threads to specify the number of threads (the same as --thread-num). The number of threads will be obtained from standard OpenMP environment variable OMP_NUM_THREADS if --thread-num or --threads is not specified. </li>
 </ul>
 <h4 id="version1913beta14mar2018">Version 1.91.3beta (14 Mar 2018)</h4>
