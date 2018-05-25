@@ -110,9 +110,6 @@ P-value threshold to select instruments for the GSMR analysis (see [Zhu et al. 2
 --heidi-thresh 0.01  
 P-value threshold for the HEIDI-outlier analysis to filter instruments. The default threshold is 0.01.  
 
---heidi-snp 10  
-The minimum number of SNP instruments for the HEIDI-outlier analysis. The default number is 10.  
-
 --gsmr-snp 10  
 The minimum number of SNP instruments for the GSMR analysis. The default number is 10.  
 
