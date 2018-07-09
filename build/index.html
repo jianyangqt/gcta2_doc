@@ -68,7 +68,7 @@
 <li>sBLUP: sumamry-data based BLUP analysis for genomic risk prediction;</li>
 <li>Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits.</li>
 </ul>
-<p><strong>Latest release <a href="#Download">v1.91.4beta</a>, click to download or view update log (17 Apr 2018)</strong></p>
+<p><strong>Latest release <a href="#Download">v1.91.5beta</a>, click to download or view update log (7 Jul 2018)</strong></p>
 <hr><h3 id="credits">Credits</h3>
 <p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with supports from <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:hong.lee@uq.edu.au">Hong Lee</a>. </p>
 <p><a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, improved the SBLUP module, developed the website, and is currently maintaining the software.</p>
@@ -101,22 +101,33 @@ Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J 
 Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894. [<a href="https://www.nature.com/articles/srep32894">PMID: 27604177</a>]</p>
 <p><strong>mtCOJO and GSMR methods:</strong><br>
 Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. <a href="https://www.nature.com/articles/s41467-017-02317-2">Nat. Commun. 9, 224.</a>  </p>
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 17 Apr 2018</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 7 Jul 2018</p>
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>The executable files below only support a 64-bit operating system on the x86_64 CPU platform. </p>
-<p>Note: the latest Linux version of GCTA (v1.91.4) uses the shared library glibc (version &gt;= 2.6) which might need to be installed manually in some Linux systems (e.g. alpine). If your Linux system is more than 10 years old, you may have issues with this library (e.g. GLIBC_xxx not found). If you encounter this problem, you can either upgrade your Linux to one of the recent versions, or email us to request a specific version of GCTA for your system.</p>
-<p>Linux <a href="./gcta_1.91.4beta.zip">gcta_1.91.4beta.zip</a></p>
-<p>Windows <a href="./gcta_1.91.4beta_win.zip">gcta_1.91.4beta_win.zip</a></p>
-<p>Mac <a href="./gcta_1.91.4beta_mac.zip">gcta_1.91.4beta_mac.zip</a></p>
+<p>Linux <a href="./gcta_1.91.5beta.zip">gcta_1.91.5beta.zip</a></p>
+<p>Windows <a href="./gcta_1.91.5beta_win.zip">gcta_1.91.5beta_win.zip</a></p>
+<p>Mac <a href="./gcta_1.91.5beta_mac.zip">gcta_1.91.5beta_mac.zip</a></p>
 <p>The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.</p>
 <blockquote>
-  <p>Note: GCTA 1.91.4 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in tihs version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
+  <p>Note: GCTA 1.91.5 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in tihs version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
 </blockquote>
 <hr><h3 id="sourcecodenotoc" class="notoc">Source code </h3>
 <p><a href="./gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
 <p>The source code are released under GPL v3. The source code of the latest version will be released when it is stable.</p>
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
+<h4 id="version1915beta7jul2018">Version 1.91.5beta (7 Jul 2018)</h4>
+<ul>
+<li>Fixed a bug in GSMR when there is a very small number of SNPs used to run an HEIDI-outlier analysis.</li>
+<li>Added a flag --diff-freq to check difference in allele frequency between data sets in the GSMR and mtCOJO analyses.</li>
+<li>Removed flags --clump-p1 and --heidi-snp from the GSMR and mtCOJO analyses</li>
+<li>The flag --gsmr-snp has been superseded by --gsmr-snp-min.</li>
+<li>Improved compatibility with old Linux version.</li>
+<li>Added a flag --mbfile to merge multiple BED files (e.g. genotype data of each chromsome saved in a separate BED file) into a single BED file.</li>
+<li>Fixed a memory issue with the flag --make-grm-x.</li>
+<li>Fixed a build stack issue in the Windows version.</li>
+<li>Fixed a rare thread freezing with --make-grm.</li>
+</ul>
 <h4 id="version1914beta17apr2018">Version 1.91.4beta (17 Apr 2018)</h4>
 <ul>
 <li>Fixed a bug in GSMR when there are multiple outcome variables.</li>

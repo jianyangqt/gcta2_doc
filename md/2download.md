@@ -4,17 +4,15 @@
 
 The executable files below only support a 64-bit operating system on the x86\_64 CPU platform. 
 
-Note: the latest Linux version of GCTA (v1.91.4) uses the shared library glibc (version >= 2.6) which might need to be installed manually in some Linux systems (e.g. alpine). If your Linux system is more than 10 years old, you may have issues with this library (e.g. GLIBC\_xxx not found). If you encounter this problem, you can either upgrade your Linux to one of the recent versions, or email us to request a specific version of GCTA for your system.
+Linux [gcta\_1.91.5beta.zip](./gcta_1.91.5beta.zip)
 
-Linux [gcta\_1.91.4beta.zip](./gcta_1.91.4beta.zip)
+Windows [gcta\_1.91.5beta\_win.zip](./gcta_1.91.5beta_win.zip)
 
-Windows [gcta\_1.91.4beta\_win.zip](./gcta_1.91.4beta_win.zip)
-
-Mac [gcta\_1.91.4beta\_mac.zip](./gcta_1.91.4beta_mac.zip)
+Mac [gcta\_1.91.5beta\_mac.zip](./gcta_1.91.5beta_mac.zip)
  
 The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
 
-> Note: GCTA 1.91.4 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in tihs version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
+> Note: GCTA 1.91.5 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in tihs version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
@@ -23,6 +21,16 @@ The executable files are released under the MIT license. We recommend to use the
 The source code are released under GPL v3. The source code of the latest version will be released when it is stable.
 
 ### Update log {: .notoc}
+#### Version 1.91.5beta (7 Jul 2018)
+* Fixed a bug in GSMR when there is a very small number of SNPs used to run an HEIDI-outlier analysis.
+* Added a flag --diff-freq to check difference in allele frequency between data sets in the GSMR and mtCOJO analyses.
+* Removed flags --clump-p1 and --heidi-snp from the GSMR and mtCOJO analyses
+* The flag --gsmr-snp has been superseded by --gsmr-snp-min.
+* Improved compatibility with old Linux version.
+* Added a flag --mbfile to merge multiple BED files (e.g. genotype data of each chromsome saved in a separate BED file) into a single BED file.
+* Fixed a memory issue with the flag --make-grm-x.
+* Fixed a build stack issue in the Windows version.
+* Fixed a rare thread freezing with --make-grm.
 
 #### Version 1.91.4beta (17 Apr 2018)
 * Fixed a bug in GSMR when there are multiple outcome variables.
