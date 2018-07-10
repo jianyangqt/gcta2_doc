@@ -1676,18 +1676,19 @@ plot_gsmr_effect(gsmr_data, "bmi", "t2d", colors()[75])
 </code></pre>
 <p><img src="./static/gsmr_toy_bmi_t2d.jpg" alt="effect_size_plot"></p>
 <h4 id="optionalflags">Optional flags</h4>
+<p><em>Quality control</em></p>
+<p><span class="kwd">--diff-freq</span> 0.2<br>
+To check the difference in allele frequency of each SNP between the GWAS summary datasets and the LD reference sample. SNPs with allele frequency differences greater than the specified threshold value will be excluded from the analysis. The default value is 0.2.</p>
 <p><em>Clumping analysis</em>  </p>
-<p><span class="kwd">--clump-p1</span> 5e-8<br>
-P-value threshold for index SNPs. The default threshold is 5e-8.</p>
+<p><span class="kwd">--gwas-thresh</span> 5e-8<br>
+To specify a threshold p-value to select SNPs for clumping. Note that the SNP instruments used in the GSMR analysis (<a href="https://www.nature.com/articles/s41467-017-02317-2">Zhu et al. 2018 Nat. Commun.</a>) are a set of near-independent SNPs from the clumping analysis at this threshold. The default value is 5e-8.</p>
 <p><span class="kwd">--clump-r2</span> 0.05<br>
 LD <em>r</em><sup>2</sup> threshold for clumping analysis. The default value is 0.05. </p>
 <p><em>GSMR analysis</em>  </p>
-<p><span class="kwd">--gwas-thresh</span> 5e-8<br>
-P-value threshold to select instruments for the GSMR analysis (see <a href="https://www.nature.com/articles/s41467-017-02317-2">Zhu et al. 2018 Nat. Commun.</a>). Instruments are filtered from the index SNPs. The default threshold is 5e-8.  </p>
 <p><span class="kwd">--heidi-thresh</span> 0.01<br>
 P-value threshold for the HEIDI-outlier analysis to filter instruments. The default threshold is 0.01.  </p>
-<p><span class="kwd">--gsmr-snp</span> 10<br>
-The minimum number of SNP instruments for the GSMR analysis. The default number is 10.  </p>
+<p><span class="kwd">--gsmr-snp-min</span> 10<br>
+To specify the minimum number of genome-wide significant and near-independent SNPs required for the GSMR analysis. Note that the SNP instruments will be pruned for LD by a clump analysis and filtered for horizontal pleiotropy by the HEIDI-outlier analysis. This option will count the number of SNPs after clumping and HEIDI-outlier filtering. The default value is 10.</p>
 <p><span class="kwd">--gsmr-ld-fdr</span> 0.05<br>
 FDR threshold to shrink the chance correlations between the SNP instruments to zero. The default value is 0.05. If the reference sample is independent from the GWAS samples, it is not valid to approximate the chance correlations between SNPs in the GWAS data by those estimated from the reference sample. Under the null that the SNPs are not correlated, <em>n</em><em>r</em><sup>2</sup> follows a chi-squared distribution with df = 1, where n is the sample size and df is the degrees of freedom.  </p>
 <h4 id="citation-1">Citation</h4>
@@ -1855,7 +1856,7 @@ rs6687776   T   C   0.133909    0.0295588   0.0343927   0.35    38288   0.021789
 </code></pre>
 <p>Columns are SNP, effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value, sample size from the original GWAS summary data, mtCOJO effect size, mtCOJO standard error and mtCOJO p-value.</p>
 <h4 id="optionalflags-1">Optional flags</h4>
-<p>The optional flags are the same as those described at <a href="#GSMR">http://cnsgenomics.com/software/gcta/#GSMR</a>. These flags include <span class="kwd">--clump-p1</span>, <span class="kwd">--clump-r2</span>, <span class="kwd">--gwas-thresh</span>, <span class="kwd">--heidi-thresh</span>, <span class="kwd">--heidi-snp</span>, <span class="kwd">--gsmr-snp</span> and <span class="kwd">--gsmr-ld-fdr</span>.</p>
+<p>The optional flags are the same as those described at <a href="#GSMR">http://cnsgenomics.com/software/gcta/#GSMR</a>. These flags include <span class="kwd">--diff-freq</span>, <span class="kwd">--gwas-thresh</span>, <span class="kwd">--clump-r2</span>, <span class="kwd">--heidi-thresh</span>, <span class="kwd">--gsmr-snp</span> and <span class="kwd">--gsmr-ld-fdr</span>.</p>
 <h4 id="citation-2">Citation</h4>
 <p>Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. Nat. Commun. 9, 224.</p>
 <hr><h3 id="mixedmodelassociation">Mixed model association</h3>

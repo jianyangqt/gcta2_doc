@@ -94,24 +94,26 @@ plot_gsmr_effect(gsmr_data, "bmi", "t2d", colors()[75])
 ![effect_size_plot](./static/gsmr_toy_bmi_t2d.jpg)
 
 #### Optional flags  
+*Quality control*
+
+--diff-freq 0.2   
+To check the difference in allele frequency of each SNP between the GWAS summary datasets and the LD reference sample. SNPs with allele frequency differences greater than the specified threshold value will be excluded from the analysis. The default value is 0.2.
+
 *Clumping analysis*  
 
---clump-p1 5e-8  
-P-value threshold for index SNPs. The default threshold is 5e-8.
+--gwas-thresh 5e-8   
+To specify a threshold p-value to select SNPs for clumping. Note that the SNP instruments used in the GSMR analysis ([Zhu et al. 2018 Nat. Commun.](https://www.nature.com/articles/s41467-017-02317-2)) are a set of near-independent SNPs from the clumping analysis at this threshold. The default value is 5e-8.
 
 --clump-r2 0.05  
 LD *r*<sup>2</sup> threshold for clumping analysis. The default value is 0.05. 
 
 *GSMR analysis*  
 
---gwas-thresh 5e-8  
-P-value threshold to select instruments for the GSMR analysis (see [Zhu et al. 2018 Nat. Commun.](https://www.nature.com/articles/s41467-017-02317-2)). Instruments are filtered from the index SNPs. The default threshold is 5e-8.  
-
 --heidi-thresh 0.01  
 P-value threshold for the HEIDI-outlier analysis to filter instruments. The default threshold is 0.01.  
 
---gsmr-snp 10  
-The minimum number of SNP instruments for the GSMR analysis. The default number is 10.  
+--gsmr-snp-min 10   
+To specify the minimum number of genome-wide significant and near-independent SNPs required for the GSMR analysis. Note that the SNP instruments will be pruned for LD by a clump analysis and filtered for horizontal pleiotropy by the HEIDI-outlier analysis. This option will count the number of SNPs after clumping and HEIDI-outlier filtering. The default value is 10.
 
 --gsmr-ld-fdr 0.05  
 FDR threshold to shrink the chance correlations between the SNP instruments to zero. The default value is 0.05. If the reference sample is independent from the GWAS samples, it is not valid to approximate the chance correlations between SNPs in the GWAS data by those estimated from the reference sample. Under the null that the SNPs are not correlated, *n**r*<sup>2</sup> follows a chi-squared distribution with df = 1, where n is the sample size and df is the degrees of freedom.  
@@ -325,7 +327,7 @@ rs6687776   T   C   0.133909    0.0295588   0.0343927   0.35    38288   0.021789
 Columns are SNP, effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value, sample size from the original GWAS summary data, mtCOJO effect size, mtCOJO standard error and mtCOJO p-value.
 
 #### Optional flags
-The optional flags are the same as those described at [http://cnsgenomics.com/software/gcta/#GSMR](#GSMR). These flags include --clump-p1, --clump-r2, --gwas-thresh, --heidi-thresh, --heidi-snp, --gsmr-snp and --gsmr-ld-fdr.
+The optional flags are the same as those described at [http://cnsgenomics.com/software/gcta/#GSMR](#GSMR). These flags include --diff-freq, --gwas-thresh, --clump-r2, --heidi-thresh, --gsmr-snp and --gsmr-ld-fdr.
 
 #### Citation
 
