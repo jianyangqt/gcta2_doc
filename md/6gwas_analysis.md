@@ -63,21 +63,6 @@ hdl         t2d     -0.125651    0.0431615    0.00360073    130
 ```
 Columns are exposure, outcome, GSMR estimates of *b*<sub>xy</sub>, standard error, p-value and number of SNPs.
 
-#### Sample overlap
-LD score regression analysis is used to estimate sample overlap between the GWAS data for exposure and outcome. 
-
-> Example
-```bash
-gcta64 --mbfile gsmr_ref_data.txt --gsmr-file gsmr_exposure.txt gsmr_outcome.txt --gsmr-direction 0 --ref-ld-chr eur_w_ld_chr/ --w-ld-chr eur_w_ld_chr/ --out test_gsmr_result
-```
---ref-ld-chr eur\_w\_ld\_chr/  
-The directory of LD score files (the same format as in [LDSC software tool](https://github.com/bulik/ldsc)).
-
---w-ld-chr eur\_w\_ld\_chr/  
-The directory of LD scores for the regression weights (the same format as in [LDSC software tool](https://github.com/bulik/ldsc)).
-
-**Note:** If these two flags are not specified, the GSMR analysis will be performed assuming no sample overlap between the GWAS data for exposure and outcome.
-
 #### Visualization
 --effect-plot
 This flag will save the information required to generate a plot of SNP effects as in Figure 3d of Zhu et al. ([2018 Nature Communications](https://www.nature.com/articles/s41467-017-02317-2); also see the figure below) in a compressed text file (\*.eff\_plot.gz). We provide an R script ([gsmr\_plot.r](./static/gsmr_plot.r)) to generate the effect size plot based on the \*.eff\_plot.gz file (see the example below).
