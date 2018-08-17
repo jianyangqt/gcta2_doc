@@ -138,7 +138,7 @@ Perform a stepwise model selection procedure to select a fixed number of indepen
 Fit all the included SNPs to estimate their joint effects without model selection. Results will be saved in a \*.jma file with additional file \*.jma.ldr showing the LD correlations between the SNPs.
 
 --cojo-cond cond.snplist  
-Perform association analysis of the included SNPs conditional on the given list of SNPs. Results will be saved in a \*.cma.
+Perform association analysis of the included SNPs conditional on the given list of SNPs. Results will be saved in a \*.cma. The conditional SNP effects (i.e. bC) will be labelled as "NA" if the multivariate correlation between the SNP in question and all the covariate SNPs is > 0.9. 
 > Input file format  
 > cond.snplist
 ```nohighlight
@@ -157,6 +157,9 @@ Specify a distance d (in Kb unit). It is assumed that SNPs more than d Kb away f
 
 --cojo-collinear 0.9  
 During the model selection procedure, the program will check the collinearity between the SNPs that have already been selected and a SNP to be tested. The testing SNP will not be selected if its multiple regression *R<sup>2</sup>* on the selected SNPs is greater than the cutoff value. By default, the cutoff value is 0.9 if not specified.
+
+--diff-freq 0.2  
+To check the difference in allele frequency of each SNP between the GWAS summary datasets and the LD reference sample. SNPs with allele frequency differences greater than the specified threshold value will be excluded from the analysis. The default value is 0.2.
 
 --cojo-gc 
 If this option is specified, p-values will be adjusted by the genomic control method. By default, the genomic inflation factor will be calculated from the summary-level statistics of all the SNPs unless you specify a value, e.g. --cojo-gc 1.05.

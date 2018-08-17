@@ -68,7 +68,7 @@
 <li>sBLUP: sumamry-data based BLUP analysis for genomic risk prediction;</li>
 <li>Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits.</li>
 </ul>
-<p><strong>Latest release <a href="#Download">v1.91.5beta</a>, click to download or view update log (7 Jul 2018)</strong></p>
+<p><strong>Latest release <a href="#Download">v1.91.6beta</a>, click to download or view update log (17 Aug 2018)</strong></p>
 <hr><h3 id="credits">Credits</h3>
 <p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with supports from <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:hong.lee@uq.edu.au">Hong Lee</a>. </p>
 <p><a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, improved the SBLUP module, developed the website, and is currently maintaining the software.</p>
@@ -101,21 +101,30 @@ Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J 
 Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894. [<a href="https://www.nature.com/articles/srep32894">PMID: 27604177</a>]</p>
 <p><strong>mtCOJO and GSMR methods:</strong><br>
 Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. <a href="https://www.nature.com/articles/s41467-017-02317-2">Nat. Commun. 9, 224.</a>  </p>
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 7 Jul 2018</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 17 Aug 2018</p>
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>The executable files below only support a 64-bit operating system on the x86_64 CPU platform. </p>
-<p>Linux <a href="./gcta_1.91.5beta.zip">gcta_1.91.5beta.zip</a></p>
-<p>Windows <a href="./gcta_1.91.5beta_win.zip">gcta_1.91.5beta_win.zip</a></p>
-<p>Mac <a href="./gcta_1.91.5beta_mac.zip">gcta_1.91.5beta_mac.zip</a></p>
+<p>Linux <a href="./gcta_1.91.6beta.zip">gcta_1.91.6beta.zip</a></p>
+<p>Windows <a href="./gcta_1.91.6beta_win.zip">gcta_1.91.6beta_win.zip</a></p>
+<p>Mac <a href="./gcta_1.91.6beta_mac.zip">gcta_1.91.6beta_mac.zip</a></p>
 <p>The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.</p>
 <blockquote>
-  <p>Note: GCTA 1.91.5 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in tihs version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
+  <p>Note: GCTA 1.91.6 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
 </blockquote>
 <hr><h3 id="sourcecodenotoc" class="notoc">Source code </h3>
 <p><a href="./gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
 <p>The source code are released under GPL v3. The source code of the latest version will be released when it is stable.</p>
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
+<h4 id="version1916beta17aug2018">Version 1.91.6beta (17 Aug 2018)</h4>
+<ul>
+<li>Changed the criterion of selecting the top associated SNP by p-value in COJO to that by chi-squared value to avoid the problem of having extremely small p-values (e.g. those = 1e-300). </li>
+<li>Fixed a bug in COJO in the Windows version.</li>
+<li>Fixed an issue related to allele frequency in COJO when the first allele differs between the GWAS summary data and the LD reference sample.</li>
+<li>Added a function to check the consistency of allele frequency between the GWAS summary data and the reference sample in COJO (the --diff-freq flag).</li>
+<li>Fixed a bug when manipulating the GRM in PCA.</li>
+<li>Added a new flag --unify-grm to unify the order of the IDs in multiple GRM files.</li>
+</ul>
 <h4 id="version1915beta7jul2018">Version 1.91.5beta (7 Jul 2018)</h4>
 <ul>
 <li>Fixed a bug in GSMR when there is a very small number of SNPs used to run an HEIDI-outlier analysis.</li>
@@ -933,6 +942,12 @@ test_chr3
 ......  
 test_chr22  
 </code></pre>
+<p><span class="kwd">--unify-grm</span><br>
+This option is designed to unify the individual IDs (as well as the order) of multiple GRMs (with <span class="kwd">--mgrm</span> option) used in analyses such as REML and HE regression.</p>
+<p>Examples  </p>
+<pre><code class="bash language-bash">gcta64 --mgrm multi_grm.txt --keep sample_list.txt --remove sample_rm.txt --unify-grm --out common
+# The output are GRMs with the same individual IDs (i.e. the individuals in common among all the GRM files) in the same order.
+</code></pre>
 <p><span class="kwd">--mgrm-gz</span> multi_grm.txt<br>
 To be compatible with the previous version of GCTA. Same as <span class="kwd">--mgrm</span> but read the GRM files in compressed text format generated by <span class="kwd">--make-grm-gz</span>.</p>
 <p>Examples  </p>
@@ -1141,6 +1156,7 @@ gcta64  --reml  --mgrm multi_grm.txt  --pheno test.phen  --keep test.indi.list  
 
 # BLUP solutions for the SNP effects
 gcta64  --bfile   test   --blup-snp test.indi.blp  --out test
+# Then use plink --score test.snp.blp 1 2 3 
 </code></pre>
 <p><span class="kwd">--reml-bendV</span><br>
 The GREML method uses REML for variance estimation, which requires the inverse of the variance-covariance matrix V. If V is not positive definite, the inverse of V does not exist. We therefore could not estimate the variance component. This usually happens when one (or more) of the variance components are negative or constrained at zero. It might also indicate there is something wrong with the GRM or the data which you might need to check carefully.</p>
@@ -1662,18 +1678,6 @@ bmi         t2d      0.798596    0.086785     3.51315e-20   77
 hdl         t2d     -0.125651    0.0431615    0.00360073    130
 </code></pre>
 <p>Columns are exposure, outcome, GSMR estimates of <em>b</em><sub>xy</sub>, standard error, p-value and number of SNPs.</p>
-<h4 id="sampleoverlap">Sample overlap</h4>
-<p>LD score regression analysis is used to estimate sample overlap between the GWAS data for exposure and outcome. </p>
-<blockquote>
-  <p>Example</p>
-</blockquote>
-<pre><code class="bash language-bash">gcta64 --mbfile gsmr_ref_data.txt --gsmr-file gsmr_exposure.txt gsmr_outcome.txt --gsmr-direction 0 --ref-ld-chr eur_w_ld_chr/ --w-ld-chr eur_w_ld_chr/ --out test_gsmr_result
-</code></pre>
-<p><span class="kwd">--ref-ld-chr</span> eur_w_ld_chr/<br>
-The directory of LD score files (the same format as in <a href="https://github.com/bulik/ldsc">LDSC software tool</a>).</p>
-<p><span class="kwd">--w-ld-chr</span> eur_w_ld_chr/<br>
-The directory of LD scores for the regression weights (the same format as in <a href="https://github.com/bulik/ldsc">LDSC software tool</a>).</p>
-<p><strong>Note:</strong> If these two flags are not specified, the GSMR analysis will be performed assuming no sample overlap between the GWAS data for exposure and outcome.</p>
 <h4 id="visualization">Visualization</h4>
 <p><span class="kwd">--effect-plot</span>
 This flag will save the information required to generate a plot of SNP effects as in Figure 3d of Zhu et al. (<a href="https://www.nature.com/articles/s41467-017-02317-2">2018 Nature Communications</a>; also see the figure below) in a compressed text file (*.eff_plot.gz). We provide an R script (<a href="./static/gsmr_plot.r">gsmr_plot.r</a>) to generate the effect size plot based on the *.eff_plot.gz file (see the example below).</p>
@@ -1728,7 +1732,7 @@ Perform a stepwise model selection procedure to select a fixed number of indepen
 <p><span class="kwd">--cojo-joint</span><br>
 Fit all the included SNPs to estimate their joint effects without model selection. Results will be saved in a *.jma file with additional file *.jma.ldr showing the LD correlations between the SNPs.</p>
 <p><span class="kwd">--cojo-cond</span> cond.snplist<br>
-Perform association analysis of the included SNPs conditional on the given list of SNPs. Results will be saved in a *.cma.</p>
+Perform association analysis of the included SNPs conditional on the given list of SNPs. Results will be saved in a *.cma. The conditional SNP effects (i.e. bC) will be labelled as "NA" if the multivariate correlation between the SNP in question and all the covariate SNPs is &gt; 0.9. </p>
 <blockquote>
   <p>Input file format<br>
   cond.snplist</p>
@@ -1744,6 +1748,8 @@ Threshold p-value to declare a genome-wide significant hit. The default value is
 Specify a distance d (in Kb unit). It is assumed that SNPs more than d Kb away from each other are in complete linkage equilibrium. The default value is 10000 Kb (i.e. 10 Mb) if not specified.</p>
 <p><span class="kwd">--cojo-collinear</span> 0.9<br>
 During the model selection procedure, the program will check the collinearity between the SNPs that have already been selected and a SNP to be tested. The testing SNP will not be selected if its multiple regression <em>R<sup>2</sup></em> on the selected SNPs is greater than the cutoff value. By default, the cutoff value is 0.9 if not specified.</p>
+<p><span class="kwd">--diff-freq</span> 0.2<br>
+To check the difference in allele frequency of each SNP between the GWAS summary datasets and the LD reference sample. SNPs with allele frequency differences greater than the specified threshold value will be excluded from the analysis. The default value is 0.2.</p>
 <p><span class="kwd">--cojo-gc</span> 
 If this option is specified, p-values will be adjusted by the genomic control method. By default, the genomic inflation factor will be calculated from the summary-level statistics of all the SNPs unless you specify a value, e.g. <span class="kwd">--cojo-gc</span> 1.05.</p>
 <p><span class="kwd">--cojo-actual-geno</span><br>

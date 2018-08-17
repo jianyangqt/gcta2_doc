@@ -4,15 +4,15 @@
 
 The executable files below only support a 64-bit operating system on the x86\_64 CPU platform. 
 
-Linux [gcta\_1.91.5beta.zip](./gcta_1.91.5beta.zip)
+Linux [gcta\_1.91.6beta.zip](./gcta_1.91.6beta.zip)
 
-Windows [gcta\_1.91.5beta\_win.zip](./gcta_1.91.5beta_win.zip)
+Windows [gcta\_1.91.6beta\_win.zip](./gcta_1.91.6beta_win.zip)
 
-Mac [gcta\_1.91.5beta\_mac.zip](./gcta_1.91.5beta_mac.zip)
+Mac [gcta\_1.91.6beta\_mac.zip](./gcta_1.91.6beta_mac.zip)
  
 The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
 
-> Note: GCTA 1.91.5 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in tihs version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
+> Note: GCTA 1.91.6 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
@@ -21,6 +21,14 @@ The executable files are released under the MIT license. We recommend to use the
 The source code are released under GPL v3. The source code of the latest version will be released when it is stable.
 
 ### Update log {: .notoc}
+#### Version 1.91.6beta (17 Aug 2018)
+* Changed the criterion of selecting the top associated SNP by p-value in COJO to that by chi-squared value to avoid the problem of having extremely small p-values (e.g. those = 1e-300). 
+* Fixed a bug in COJO in the Windows version.
+* Fixed an issue related to allele frequency in COJO when the first allele differs between the GWAS summary data and the LD reference sample.
+* Added a function to check the consistency of allele frequency between the GWAS summary data and the reference sample in COJO (the --diff-freq flag).
+* Fixed a bug when manipulating the GRM in PCA.
+* Added a new flag --unify-grm to unify the order of the IDs in multiple GRM files.
+
 #### Version 1.91.5beta (7 Jul 2018)
 * Fixed a bug in GSMR when there is a very small number of SNPs used to run an HEIDI-outlier analysis.
 * Added a flag --diff-freq to check difference in allele frequency between data sets in the GSMR and mtCOJO analyses.
