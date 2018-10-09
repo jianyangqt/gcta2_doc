@@ -24,7 +24,7 @@ gsmr_ref_data_chr2
 **Note:** the option --bfile is still valid when there is only a single PLINK file.
 
 --gsmr-file gsmr\_exposure.txt gsmr\_outcome.txt  
-The inputs are two text files containing the filepaths of the GWAS summary data. The first one is for exposures and the second one is for outcomes. 
+The inputs are two text or compressed text (gz format) files containing the filepaths of the GWAS summary data. The first one is for exposures and the second one is for outcomes. 
 > Input file format 
  
 gsmr\_exposure.txt
@@ -94,8 +94,10 @@ LD *r*<sup>2</sup> threshold for clumping analysis. The default value is 0.05.
 
 *GSMR analysis*  
 
---heidi-thresh 0.01  
-P-value threshold for the HEIDI-outlier analysis to filter instruments. The default threshold is 0.01.  
+--heidi-thresh 0.05  
+To specific a p-value threshold for the HEIDI-outlier analysis to remove horizontal pleiotropic SNPs. The default threshold is 0.05.
+
+The HEIDI-outlier analysis involves two steps: 1) excluding a SNP with the smallest p-value from a single-SNP HEIDI-outlier analysis iteratively until the HEIDI-outlier p-values of all the remaining SNPs are not smaller than the p-value threshold, 0.05/number of SNPs; 2) excluding a SNP with the smallest p-value (from a single-SNP HEIDI-outlier analysis) iteratively until the p-value from the multi-SNP HEIDI-outlier test is not smaller than the specified p-value threshold.
 
 --gsmr-snp-min 10   
 To specify the minimum number of genome-wide significant and near-independent SNPs required for the GSMR analysis. Note that the SNP instruments will be pruned for LD by a clump analysis and filtered for horizontal pleiotropy by the HEIDI-outlier analysis. This option will count the number of SNPs after clumping and HEIDI-outlier filtering. The default value is 10.
@@ -273,7 +275,7 @@ The GSMR analysis requires a reference sample with individual level genotypes (i
 **Note:** the option --bfile is still valid when there is only a single PLINK file.
 
 --mtcojo-file mtcojo\_summary\_data.list  
-Reading a list that contains filepaths of the GWAS summary data and prevalence of diseases.
+Reading a list that contains filepaths of the GWAS summary data (text or compressed text in gz format files) and prevalence of diseases.
 
 > Input file format
 ```nohighlight
@@ -315,7 +317,16 @@ rs6687776   T   C   0.133909    0.0295588   0.0343927   0.35    38288   0.021789
 Columns are SNP, effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value, sample size from the original GWAS summary data, mtCOJO effect size, mtCOJO standard error and mtCOJO p-value.
 
 #### Optional flags
-The optional flags are the same as those described at [http://cnsgenomics.com/software/gcta/#GSMR](#GSMR). These flags include --diff-freq, --gwas-thresh, --clump-r2, --heidi-thresh, --gsmr-snp and --gsmr-ld-fdr.
+--mtcojo-bxy test\_mtcojo\_bxy.txt  
+> Input file format
+test\_mtcojo\_bxy.txt
+```nohighlight
+bmi 0.795765
+hdl -0.138449
+```
+Columns are name of the exposure trait (two exposure traits in the example above) and effect (bxy) of the exposure (x) on outcome (y) estimated from a reference sample with both x and y measured. bxy will be estimated by GSMR (or a genetic correlation analysis if there are not enough genome-wide SNPs for the GSMR analysis) if this option is not specified.
+
+The other optional flags are the same as those described at [http://cnsgenomics.com/software/gcta/#GSMR](#GSMR). These flags include --diff-freq, --gwas-thresh, --clump-r2, --heidi-thresh, --gsmr-snp and --gsmr-ld-fdr.
 
 #### Citation
 

@@ -22,6 +22,16 @@ The source code are released under GPL v3. The source code of the latest version
 
 ### Update log {: .notoc}
 #### Version 1.91.7beta (8 Oct 2018)
+* Add a flag (--mtcojo-bxy) in the mtCOJO analysis to read the effects of covariates on trait from a user-specified file.
+* Add a multi-SNP-based HEIDI-outlier test in the HEIDI-outlier analysis.
+* Add a function in mtCOJO to compute the effects of covariates on trait from a genetic correlation analysis if there are not enough SNPs to perform the GSMR analysis.
+* Modified mtCOJO and GSMR to read  summary data from compressed text files.
+* Modified HEIDI-outlier to save the removed pleiotropic SNPs in text file.
+* Modified GSMR to sort SNPs by chi-squared values in the clumping analysis.
+* Fixed a bug in the GSMR effect plot.
+* Fixed a bug in --reml-bivar
+* Changed the flag --mlma-no-adj to --mlma-no-preadj
+
 
 #### Version 1.91.6beta (17 Aug 2018)
 * Changed the criterion of selecting the top associated SNP by p-value in COJO to that by chi-squared value to avoid the problem of having extremely small p-values (e.g. those = 1e-300). 

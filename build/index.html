@@ -68,7 +68,7 @@
 <li>sBLUP: sumamry-data based BLUP analysis for genomic risk prediction;</li>
 <li>Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits.</li>
 </ul>
-<p><strong>Latest release <a href="#Download">v1.91.6beta</a>, click to download or view update log (17 Aug 2018)</strong></p>
+<p><strong>Latest release <a href="#Download">v1.91.7beta</a>, click to download or view update log (8 Oct 2018)</strong></p>
 <hr><h3 id="credits">Credits</h3>
 <p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with supports from <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:hong.lee@uq.edu.au">Hong Lee</a>. </p>
 <p><a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, improved the SBLUP module, developed the website, and is currently maintaining the software.</p>
@@ -101,21 +101,33 @@ Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J 
 Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894. [<a href="https://www.nature.com/articles/srep32894">PMID: 27604177</a>]</p>
 <p><strong>mtCOJO and GSMR methods:</strong><br>
 Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. <a href="https://www.nature.com/articles/s41467-017-02317-2">Nat. Commun. 9, 224.</a>  </p>
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 17 Aug 2018</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 8 Oct 2018</p>
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>The executable files below only support a 64-bit operating system on the x86_64 CPU platform. </p>
-<p>Linux <a href="./gcta_1.91.6beta.zip">gcta_1.91.6beta.zip</a></p>
-<p>Windows <a href="./gcta_1.91.6beta_win.zip">gcta_1.91.6beta_win.zip</a></p>
-<p>Mac <a href="./gcta_1.91.6beta_mac.zip">gcta_1.91.6beta_mac.zip</a></p>
+<p>Linux <a href="./gcta_1.91.7beta.zip">gcta_1.91.7beta.zip</a></p>
+<p>Windows <a href="./gcta_1.91.7beta_win.zip">gcta_1.91.7beta_win.zip</a></p>
+<p>Mac <a href="./gcta_1.91.7beta_mac.zip">gcta_1.91.7beta_mac.zip</a></p>
 <p>The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.</p>
 <blockquote>
-  <p>Note: GCTA 1.91.6 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
+  <p>Note: GCTA 1.91.7 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
 </blockquote>
 <hr><h3 id="sourcecodenotoc" class="notoc">Source code </h3>
 <p><a href="./gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
 <p>The source code are released under GPL v3. The source code of the latest version will be released when it is stable.</p>
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
+<h4 id="version1917beta8oct2018">Version 1.91.7beta (8 Oct 2018)</h4>
+<ul>
+<li>Add a flag (--mtcojo-bxy) in the mtCOJO analysis to read the effects of covariates on trait from a user-specified file.</li>
+<li>Add a multi-SNP-based HEIDI-outlier test in the HEIDI-outlier analysis.</li>
+<li>Add a function in mtCOJO to compute the effects of covariates on trait from a genetic correlation analysis if there are not enough SNPs to perform the GSMR analysis.</li>
+<li>Modified mtCOJO and GSMR to read  summary data from compressed text files.</li>
+<li>Modified HEIDI-outlier to save the removed pleiotropic SNPs in text file.</li>
+<li>Modified GSMR to sort SNPs by chi-squared values in the clumping analysis.</li>
+<li>Fixed a bug in the GSMR effect plot.</li>
+<li>Fixed a bug in --reml-bivar</li>
+<li>Changed the flag --mlma-no-adj to --mlma-no-preadj</li>
+</ul>
 <h4 id="version1916beta17aug2018">Version 1.91.6beta (17 Aug 2018)</h4>
 <ul>
 <li>Changed the criterion of selecting the top associated SNP by p-value in COJO to that by chi-squared value to avoid the problem of having extremely small p-values (e.g. those = 1e-300). </li>
@@ -1643,7 +1655,7 @@ gsmr_ref_data_chr2
 </code></pre>
 <p><strong>Note:</strong> the option <span class="kwd">--bfile</span> is still valid when there is only a single PLINK file.</p>
 <p><span class="kwd">--gsmr-file</span> gsmr_exposure.txt gsmr_outcome.txt<br>
-The inputs are two text files containing the filepaths of the GWAS summary data. The first one is for exposures and the second one is for outcomes. </p>
+The inputs are two text or compressed text (gz format) files containing the filepaths of the GWAS summary data. The first one is for exposures and the second one is for outcomes. </p>
 <blockquote>
   <p>Input file format </p>
 </blockquote>
@@ -1700,8 +1712,9 @@ To specify a threshold p-value to select SNPs for clumping. Note that the SNP in
 <p><span class="kwd">--clump-r2</span> 0.05<br>
 LD <em>r</em><sup>2</sup> threshold for clumping analysis. The default value is 0.05. </p>
 <p><em>GSMR analysis</em>  </p>
-<p><span class="kwd">--heidi-thresh</span> 0.01<br>
-P-value threshold for the HEIDI-outlier analysis to filter instruments. The default threshold is 0.01.  </p>
+<p><span class="kwd">--heidi-thresh</span> 0.05<br>
+To specific a p-value threshold for the HEIDI-outlier analysis to remove horizontal pleiotropic SNPs. The default threshold is 0.05.</p>
+<p>The HEIDI-outlier analysis involves two steps: 1) excluding a SNP with the smallest p-value from a single-SNP HEIDI-outlier analysis iteratively until the HEIDI-outlier p-values of all the remaining SNPs are not smaller than the p-value threshold, 0.05/number of SNPs; 2) excluding a SNP with the smallest p-value (from a single-SNP HEIDI-outlier analysis) iteratively until the p-value from the multi-SNP HEIDI-outlier test is not smaller than the specified p-value threshold.</p>
 <p><span class="kwd">--gsmr-snp-min</span> 10<br>
 To specify the minimum number of genome-wide significant and near-independent SNPs required for the GSMR analysis. Note that the SNP instruments will be pruned for LD by a clump analysis and filtered for horizontal pleiotropy by the HEIDI-outlier analysis. This option will count the number of SNPs after clumping and HEIDI-outlier filtering. The default value is 10.</p>
 <p><span class="kwd">--gsmr-ld-fdr</span> 0.05<br>
@@ -1838,7 +1851,7 @@ For example, cond.snplist)</p>
 The GSMR analysis requires a reference sample with individual level genotypes (in PLINK binary format) for LD estimation. If the genotype data are very large, the data are often saved in separate PLINK files (e.g. one for each chromosome). Here, we provide an option to read GWAS genotype data saved in multiple PLINK files. The input is a text file with each row representing a PLINK binary file.<br>
 <strong>Note:</strong> the option <span class="kwd">--bfile</span> is still valid when there is only a single PLINK file.</p>
 <p><span class="kwd">--mtcojo-file</span> mtcojo_summary_data.list<br>
-Reading a list that contains filepaths of the GWAS summary data and prevalence of diseases.</p>
+Reading a list that contains filepaths of the GWAS summary data (text or compressed text in gz format files) and prevalence of diseases.</p>
 <blockquote>
   <p>Input file format</p>
 </blockquote>
@@ -1873,7 +1886,16 @@ rs6687776   T   C   0.133909    0.0295588   0.0343927   0.35    38288   0.021789
 </code></pre>
 <p>Columns are SNP, effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value, sample size from the original GWAS summary data, mtCOJO effect size, mtCOJO standard error and mtCOJO p-value.</p>
 <h4 id="optionalflags-1">Optional flags</h4>
-<p>The optional flags are the same as those described at <a href="#GSMR">http://cnsgenomics.com/software/gcta/#GSMR</a>. These flags include <span class="kwd">--diff-freq</span>, <span class="kwd">--gwas-thresh</span>, <span class="kwd">--clump-r2</span>, <span class="kwd">--heidi-thresh</span>, <span class="kwd">--gsmr-snp</span> and <span class="kwd">--gsmr-ld-fdr</span>.</p>
+<p><span class="kwd">--mtcojo-bxy</span> test_mtcojo_bxy.txt  </p>
+<blockquote>
+  <p>Input file format
+  test_mtcojo_bxy.txt</p>
+</blockquote>
+<pre><code class="nohighlight language-nohighlight">bmi 0.795765
+hdl -0.138449
+</code></pre>
+<p>Columns are name of the exposure trait (two exposure traits in the example above) and effect (bxy) of the exposure (x) on outcome (y) estimated from a reference sample with both x and y measured. bxy will be estimated by GSMR (or a genetic correlation analysis if there are not enough genome-wide SNPs for the GSMR analysis) if this option is not specified.</p>
+<p>The other optional flags are the same as those described at <a href="#GSMR">http://cnsgenomics.com/software/gcta/#GSMR</a>. These flags include <span class="kwd">--diff-freq</span>, <span class="kwd">--gwas-thresh</span>, <span class="kwd">--clump-r2</span>, <span class="kwd">--heidi-thresh</span>, <span class="kwd">--gsmr-snp</span> and <span class="kwd">--gsmr-ld-fdr</span>.</p>
 <h4 id="citation-2">Citation</h4>
 <p>Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. Nat. Commun. 9, 224.</p>
 <hr><h3 id="mixedmodelassociation">Mixed model association</h3>
