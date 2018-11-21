@@ -1243,28 +1243,7 @@ rs28705211 1 890368 0.278112 0.000573876 999 0.216874 1.5733 2.75538
 rs9777703 1 918699 0.0301614 0.00131291 999 0.854464 2.31159 2.75538
 .... 
 </code></pre>
-<h4 id="step2option1stratifythesnpsbysegmentbasedldscoresinr">Step 2 (option #1): stratify the SNPs by segment-based LD scores in R</h4>
-<p>This assumes that functional SNPs are clustered in regions with higher or lower LD.<br>
-Below is an example of R script to stratify the SNPs by the segment-based mean LD scores.</p>
-<pre><code class="r language-r">lds_seg = read.table("test.score.ld",header=T,colClasses=c("character",rep("numeric",8)))
-quartiles=summary(lds_seg$ldscore_region)
-
-lb1 = which(lds_seg$ldscore_region &lt;= quartiles[2])
-lb2 = which(lds_seg$ldscore_region &gt; quartiles[2] &amp; lds_seg$ldscore_region &lt;= quartiles[3])
-lb3 = which(lds_seg$ldscore_region &gt; quartiles[3] &amp; lds_seg$ldscore_region &lt;= quartiles[5])
-lb4 = which(lds_seg$ldscore_region &gt; quartiles[5])
-
-lb1_snp = lds_seg$SNP[lb1]
-lb2_snp = lds_seg$SNP[lb2]
-lb3_snp = lds_seg$SNP[lb3]
-lb4_snp = lds_seg$SNP[lb4]
-
-write.table(lb1_snp, "snp_group1.txt", row.names=F, quote=F, col.names=F)
-write.table(lb2_snp, "snp_group2.txt", row.names=F, quote=F, col.names=F)
-write.table(lb3_snp, "snp_group3.txt", row.names=F, quote=F, col.names=F)
-write.table(lb4_snp, "snp_group4.txt", row.names=F, quote=F, col.names=F)
-</code></pre>
-<h4 id="step2option2stratifythesnpsbyldscoresofindividualsnpsinr">Step 2 (option #2): stratify the SNPs by LD scores of individual SNPs in R</h4>
+<h4 id="step2option1stratifythesnpsbyldscoresofindividualsnpsinr">Step 2 (option #1): stratify the SNPs by LD scores of individual SNPs in R</h4>
 <p>Below is an example of R script to stratify the SNPs by the LD scores of individual SNPs.</p>
 <pre><code class="r language-r">lds_seg = read.table("test.score.ld",header=T,colClasses=c("character",rep("numeric",8)))
 quartiles=summary(lds_seg$ldscore_SNP)
@@ -1285,6 +1264,28 @@ write.table(lb3_snp, "snp_group3.txt", row.names=F, quote=F, col.names=F)
 write.table(lb4_snp, "snp_group4.txt", row.names=F, quote=F, col.names=F)
 </code></pre>
 <p>In each LD group, you can use the <span class="kwd">--maf</span> and <span class="kwd">--max-maf</span> options GCTA to further stratify the SNPs into MAF groups.</p>
+<p>Option 1 is preferred because it is shown in Evans et al. (<a href="https://www.nature.com/articles/s41588-018-0108-x">2018 Nature Genetics</a>) stratifying SNPs by LD scores of individual SNPs as opposed to regional LD scores significantly improves the performance of GREML-LDMS.</p>
+<h4 id="step2option2stratifythesnpsbysegmentbasedldscoresinr">Step 2 (option #2): stratify the SNPs by segment-based LD scores in R</h4>
+<p>This assumes that functional SNPs are clustered in regions with higher or lower LD.<br>
+Below is an example of R script to stratify the SNPs by the segment-based mean LD scores.</p>
+<pre><code class="r language-r">lds_seg = read.table("test.score.ld",header=T,colClasses=c("character",rep("numeric",8)))
+quartiles=summary(lds_seg$ldscore_region)
+
+lb1 = which(lds_seg$ldscore_region &lt;= quartiles[2])
+lb2 = which(lds_seg$ldscore_region &gt; quartiles[2] &amp; lds_seg$ldscore_region &lt;= quartiles[3])
+lb3 = which(lds_seg$ldscore_region &gt; quartiles[3] &amp; lds_seg$ldscore_region &lt;= quartiles[5])
+lb4 = which(lds_seg$ldscore_region &gt; quartiles[5])
+
+lb1_snp = lds_seg$SNP[lb1]
+lb2_snp = lds_seg$SNP[lb2]
+lb3_snp = lds_seg$SNP[lb3]
+lb4_snp = lds_seg$SNP[lb4]
+
+write.table(lb1_snp, "snp_group1.txt", row.names=F, quote=F, col.names=F)
+write.table(lb2_snp, "snp_group2.txt", row.names=F, quote=F, col.names=F)
+write.table(lb3_snp, "snp_group3.txt", row.names=F, quote=F, col.names=F)
+write.table(lb4_snp, "snp_group4.txt", row.names=F, quote=F, col.names=F)
+</code></pre>
 <h4 id="step3makinggrmsusingsnpsstratifiedintodifferentgroups">Step 3: making GRMs using SNPs stratified into different groups</h4>
 <pre><code class="bash language-bash">gcta64 --bfile test --extract snp_group1.txt --make-grm --out test_group1
 gcta64 --bfile test --extract snp_group2.txt --make-grm --out test_group2
@@ -1637,36 +1638,36 @@ N_tr2               56342
 <p>Yang J, Zeng J, Goddard ME, Wray NR, Visscher PM  (2017) Concepts, estimation and interpretation of SNP-based heritability. Nature Genetics, 49: 1304-1310.</p>
 <h2 id="gwasanalysis">GWAS analysis</h2>
 <hr><h3 id="fastfam">fastFAM</h3>
-<p><strong>fastFAM: Fast Family Based Association Analysis</strong></p>
-<p>fastFAM is a resource-efficient approach to perform an MLM-based GWAS analysis on large-scale data. </p>
+<p><strong>fastFAM: fast FAMily-based association analysis</strong></p>
+<p>fastFAM is an extremely resource-efficient tool to perform an MLM-based GWAS analysis on large-scale data (e.g., biobank-scale data such as the UK Biobank and expression or methylation QTL analysis in family data). Credits: <a href="mailto:longda.jiang@uq.edu.au">Jiang Longda</a> and <a href="http://researchers.uq.edu.au/researcher/2713">Jian Yang</a> proposed and tested the method; <a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> developed the software tool.</p>
 <p><span class="kwd">--make-bK-sparse</span> 0.05<br>
-Generate genetic relationship matrix in sparse format with a cutoff of 0.05.</p>
+To generate a sparse genetic relationship matrix (GRM) from a full-dense GRM with a cutoff of 0.05. Note that the full-dense GRM can be generated by the <span class="kwd">--make-grm</span> or <span class="kwd">--make-grm-part</span> option (see the <a href="#MakingaGRM">GRM page</a>).</p>
 <pre><code class="bash language-bash">gcta64 --grm test_grm --make-bK-sparse 0.05 --out test_sp_grm
 </code></pre>
 <blockquote>
   <p>Output file format<br>
-  test_sp_grm.grm.id (FID IID)</p>
+  test_sp_grm.grm.id (columns are family ID and individual ID)</p>
 </blockquote>
-<pre><code class="nohighlight language-nohighlight">test1 test1
-test2 test2
+<pre><code class="nohighlight language-nohighlight">fid1 iid1
+fid2 iid2
 ...
 </code></pre>
 <blockquote>
-  <p>test_sp_grm.grm.sp (index_sample1 index_sample2 GRM)</p>
+  <p>test_sp_grm.grm.sp (columns are the indexes of the two individuals of a pair and the corresponding GRM value)</p>
 </blockquote>
 <pre><code class="nohighlight language-nohighlight">0   0   0.999106
 1   1   0.993465
 ...
 </code></pre>
-<p>Note: the indices are 0 based, 0 indicate the first sample in *.grm.id.</p>
+<p>Note: "0" indicates the first individual in *.grm.id.</p>
 <p><span class="kwd">--grm-sparse</span> test_sp_grm<br>
-Input the genetic relationship matrix in sparse format. The sparse format can be got from <span class="kwd">--make-bK-sparse</span> or generated from pedigree. </p>
-<p>If <span class="kwd">--grm-sparse</span> flag is not provided, <span class="kwd">--fastFAM</span> will run as linear regression without considering the relationships between samples. </p>
+To input the sparse GRM. The sparse format can be generated from SNP data using the <span class="kwd">--make-bK-sparse</span> option described above or from pedigree information using our <a href="./static/pedFAM.R">R-script</a>.</p>
+<p>If the <span class="kwd">--grm-sparse</span> flag is not specified, <span class="kwd">--fastFAM</span> will run a linear regression analysis without correcting for relatedness.</p>
 <p><span class="kwd">--fastFAM</span><br>
-Perform fast family based association analysis.</p>
+Perform a fast family-based association analysis.</p>
 <blockquote>
   <p>Output format<br>
-  test.fastFAM.assoc (CHR SNP POS A1 A2 AF1 beta se p)</p>
+  test.fastFAM.assoc (columns are chromosome, SNP, SNP position, the effect allele, the other allele, frequency of A1, SNP effect, SE and p-value)</p>
 </blockquote>
 <pre><code class="nohighlight language-nohighlight">CHR     SNP     POS     A1      A2      AF1     beta    se      p
 1       rs3131962       756604  A       G       0.130613        -0.00651289     0.00665363      0.327655
@@ -1676,27 +1677,12 @@ Perform fast family based association analysis.</p>
 1       rs6657440       850780  C       T       0.393875        -0.00596944     0.00459088      0.193504
 ...
 </code></pre>
-<p>Examples:</p>
-<pre><code class="bash language-bash"># Example: based on sample relationships from genotype
-# geno_chrs.txt is a text file including genotype names of each chromosome
+<p>Examples</p>
+<pre><code class="bash language-bash"># To run a fastFAM analysis with a sparse GRM generated from SNP data
+# geno_chrs.txt is a text file containing file paths to the SNP data of each chromosome
 gcta64 --mbfile geno_chrs.txt --make-grm --thread-num 10 --out geno_grm
 gcta64 --grm geno_grm --make-bK-sparse 0.05 --out sp_grm
 gcta64 --mbfile geno_chrs.txt --grm-sparse sp_grm --fastFAM --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --thread-num 10 --out geno_assoc
-</code></pre>
-<h4 id="optionalflags">Optional flags</h4>
-<p><span class="kwd">--save-inv</span><br>
-Save the V inverse to file named in <span class="kwd">--out</span> for further usage. </p>
-<p><span class="kwd">--load-inv</span>  v_inv<br>
-Load the V inverse from v_inv that was saved before without re-estimating from the phenotype and GRM.</p>
-<p>Note: <span class="kwd">--save-inv</span> and <span class="kwd">--load-inv</span> simplified to parallel the calculation in many computational nodes. The program will not check the status of V inverse, thus make sure to load the correct V inverse. </p>
-<p>Example:</p>
-<pre><code class="bash language-bash"># get the V inverse
-gcta64 --mbfile geno_chrs.txt --grm-sparse sp_grm --fastFAM --save-inv --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --thread-num 10 --out geno_inv
-# parallel across computational nodes
-gcta64 --bfile ./genotype/chr1 --grm-sparse sp_grm --fastFAM --load-inv geno_inv --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --thread-num 10 --out geno_assoc_chr1
-gcta64 --bfile ./genotype/chr2 --grm-sparse sp_grm --fastFAM --load-inv geno_inv --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --thread-num 10 --out geno_assoc_chr2
-...
-gcta64 --bfile ./genotype/chr22 --grm-sparse sp_grm --fastFAM --load-inv geno_inv --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --thread-num 10 --out geno_assoc_chr22
 </code></pre>
 <h4 id="citation-1">Citation</h4>
 <p>Jiang L. et al. (2018) A fast family-based association analysis tool for large-scale data. (DEMO to be revised)</p>
@@ -1766,7 +1752,7 @@ gsmr_summary(gsmr_data)      # show a summary of the data
 plot_gsmr_effect(gsmr_data, "bmi", "t2d", colors()[75])           
 </code></pre>
 <p><img src="./static/gsmr_toy_bmi_t2d.jpg" alt="effect_size_plot"></p>
-<h4 id="optionalflags-1">Optional flags</h4>
+<h4 id="optionalflags">Optional flags</h4>
 <p><em>Quality control</em></p>
 <p><span class="kwd">--diff-freq</span> 0.2<br>
 To check the difference in allele frequency of each SNP between the GWAS summary datasets and the LD reference sample. SNPs with allele frequency differences greater than the specified threshold value will be excluded from the analysis. The default value is 0.2.</p>
@@ -1949,7 +1935,7 @@ rs4040617   G   A   0.143126    -0.0295588  0.0397075   0.50    28944   -0.03435
 rs6687776   T   C   0.133909    0.0295588   0.0343927   0.35    38288   0.0217897   0.0344916   0.527557
 </code></pre>
 <p>Columns are SNP, effect allele, the other allele, frequency of the effect allele, effect size, standard error, p-value, sample size from the original GWAS summary data, mtCOJO effect size, mtCOJO standard error and mtCOJO p-value.</p>
-<h4 id="optionalflags-2">Optional flags</h4>
+<h4 id="optionalflags-1">Optional flags</h4>
 <p><span class="kwd">--mtcojo-bxy</span> test_mtcojo_bxy.txt  </p>
 <blockquote>
   <p>Input file format
@@ -2374,29 +2360,29 @@ gcta64  --grm test --keep test.indi.list  --pca 20  --out test
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="pcloadingandprojection">PC loading and projection</h3>
 <p><span class="kwd">--pc-loading</span> ref_pca<br>
-Generate the SNP loading from the GCTA-PCA results of the reference genotype</p>
+To generate the loadings of each SNP on the PCs computed from a reference sample (or a subset of the whole sample)</p>
 <p><span class="kwd">--project-loading</span> ref_snp_loading 20<br>
-Project the target genotype into the reference SNP loading (ref_snp_loading), and generate 20 principal component</p>
+To project the SNP genotypes of a target sample onto a reference sample (or a subset of the target sample) via the precomputed SNP loadings (see the option above), and generate PCs in the target sample (20 PCs by default).</p>
 <blockquote>
   <p>Note: </p>
   <ul>
-  <li>The mismatch SNPs in the reference and target genotype will be obsoleted in the PC loadings, so it might be biased if lots of SNPs missing in the target genotype.</li>
-  <li>The default mode uses the MAF in reference genotype to calculate the projection, which coincides with EIGENSOFT projection.</li>
+  <li>Only the SNPs in common between the target and reference samples will be used in the PC projection analysis.</li>
+  <li>By default, PC loadings of the SNPs will be computed based on allele frequencies estimated in the reference sample (similar to the PC projection approach implemented in EIGENSOFT), which can be changed by the option --update-freq with allele frequencies computed from the target sample or a meta-analysis of the target and reference samples.</li>
   </ul>
 </blockquote>
 <p><strong>Example</strong><br>
-REF: reference genotype, the reference genotype to generate PC loading;<br>
-TAR: target genotype to project the PC to REF;</p>
-<pre><code class="bash language-bash"># make GRM
+REF: SNP genotype data of the reference sample; 
+TAR: SNP genotype data of the target sample;</p>
+<pre><code class="bash language-bash"># To make a GRM
 gcta64 --bfile REF --maf 0.01 --autosome --make-grm --out REF
 # PCA analysis
 gcta64 --grm REF --pca 20 --out REF_pca20
 
-# use the pca generated above to produce the SNP loading
+# To use the PCs generated above to produce PC loadings of each SNP
 gcta64 --bfile REF --pc-loading REF_pca20 --out REF_snp_loading
 
-# project the TAR to the SNP loading. The number 20 is the PC want to project.
-# It is the same if do chromosome by chromosome calculation add them up after each calculation 
+# To compute the PCs of the target sample using the PC loading generated above
+# Note that the analysis can be performed with one chromosome at a time 
 gcta64 --bfile TAR --project-loading REF_snp_loading 20 --out TAR_pca20
 </code></pre></body></div>
         </div>
