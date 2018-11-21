@@ -70,11 +70,39 @@ Examples
 gcta64  --grm test --keep test.indi.list  --pca 20  --out test
 ```
 
-
 #### Citations
 
 **PCA method**: Price AL, Patterson NJ, Plenge RM, Weinblatt ME, Shadick NA and Reich D (2006) Principal components analysis corrects for stratification in genome-wide association studies. Nat Genet, 38: 904-909. [PubMed ID: 16862161]
 
 **GCTA software**: Yang J, Lee SH, Goddard ME and Visscher PM. (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]
+
+### PC loading and projection
+
+--pc-loading ref_pca  
+To generate the loadings of each SNP on the PCs computed from a reference sample (or a subset of the whole sample)
+
+--project-loading ref\_snp\_loading 20  
+To project the SNP genotypes of a target sample onto a reference sample (or a subset of the target sample) via the precomputed SNP loadings (see the option above), and generate PCs in the target sample (20 PCs by default).
+
+> Note: 
+> * Only the SNPs in common between the target and reference samples will be used in the PC projection analysis.
+> * By default, PC loadings of the SNPs will be computed based on allele frequencies estimated in the reference sample (similar to the PC projection approach implemented in EIGENSOFT), which can be changed by the option --update-freq with allele frequencies computed from the target sample or a meta-analysis of the target and reference samples.
+
+**Example**  
+REF: SNP genotype data of the reference sample; 
+TAR: SNP genotype data of the target sample;
+```bash
+# To make a GRM
+gcta64 --bfile REF --maf 0.01 --autosome --make-grm --out REF
+# PCA analysis
+gcta64 --grm REF --pca 20 --out REF_pca20
+
+# To use the PCs generated above to produce PC loadings of each SNP
+gcta64 --bfile REF --pc-loading REF_pca20 --out REF_snp_loading
+
+# To compute the PCs of the target sample using the PC loading generated above
+# Note that the analysis can be performed with one chromosome at a time 
+gcta64 --bfile TAR --project-loading REF_snp_loading 20 --out TAR_pca20
+```
 
 

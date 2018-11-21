@@ -1,6 +1,85 @@
 
 ## GWAS analysis
 
+### fastFAM
+
+**fastFAM: Fast Family Based Association Analysis**
+
+fastFAM is a resource-efficient approach to perform an MLM-based GWAS analysis on large-scale data. 
+
+--make-bK-sparse 0.05  
+Generate genetic relationship matrix in sparse format with a cutoff of 0.05.
+
+```bash
+gcta64 --grm test_grm --make-bK-sparse 0.05 --out test_sp_grm
+```
+> Output file format  
+> test\_sp\_grm.grm.id (FID IID)
+```nohighlight
+test1 test1
+test2 test2
+...
+```
+> test\_sp\_grm.grm.sp (index\_sample1 index\_sample2 GRM)
+```nohighlight
+0   0   0.999106
+1   1   0.993465
+...
+```
+Note: the indices are 0 based, 0 indicate the first sample in \*.grm.id.
+
+--grm-sparse test\_sp\_grm  
+Input the genetic relationship matrix in sparse format. The sparse format can be got from --make-bK-sparse or generated from pedigree. 
+
+If --grm-sparse flag is not provided, --fastFAM will run as linear regression without considering the relationships between samples. 
+
+--fastFAM  
+Perform fast family based association analysis.
+> Output format  
+> test.fastFAM.assoc (CHR SNP POS A1 A2 AF1 beta se p)
+```nohighlight
+CHR     SNP     POS     A1      A2      AF1     beta    se      p
+1       rs3131962       756604  A       G       0.130613        -0.00651289     0.00665363      0.327655
+1       rs12562034      768448  A       G       0.106691        -0.0037883      0.00724556      0.601082
+1       rs4040617       779322  G       A       0.128422        -0.00407097     0.00670377      0.543675
+1       rs79373928      801536  G       T       0.0147122       -0.0365657      0.0186005       0.0493158
+1       rs6657440       850780  C       T       0.393875        -0.00596944     0.00459088      0.193504
+...
+```
+
+Examples:
+```bash
+# Example: based on sample relationships from genotype
+# geno_chrs.txt is a text file including genotype names of each chromosome
+gcta64 --mbfile geno_chrs.txt --make-grm --thread-num 10 --out geno_grm
+gcta64 --grm geno_grm --make-bK-sparse 0.05 --out sp_grm
+gcta64 --mbfile geno_chrs.txt --grm-sparse sp_grm --fastFAM --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --thread-num 10 --out geno_assoc
+```
+
+#### Optional flags
+--save-inv  
+Save the V inverse to file named in --out for further usage. 
+
+--load-inv  v\_inv  
+Load the V inverse from v\_inv that was saved before without re-estimating from the phenotype and GRM.
+
+Note: --save-inv and --load-inv simplified to parallel the calculation in many computational nodes. The program will not check the status of V inverse, thus make sure to load the correct V inverse. 
+
+Example:
+```bash
+# get the V inverse
+gcta64 --mbfile geno_chrs.txt --grm-sparse sp_grm --fastFAM --save-inv --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --thread-num 10 --out geno_inv
+# parallel across computational nodes
+gcta64 --bfile ./genotype/chr1 --grm-sparse sp_grm --fastFAM --load-inv geno_inv --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --thread-num 10 --out geno_assoc_chr1
+gcta64 --bfile ./genotype/chr2 --grm-sparse sp_grm --fastFAM --load-inv geno_inv --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --thread-num 10 --out geno_assoc_chr2
+...
+gcta64 --bfile ./genotype/chr22 --grm-sparse sp_grm --fastFAM --load-inv geno_inv --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --thread-num 10 --out geno_assoc_chr22
+```
+
+#### Citation
+Jiang L. et al. (2018) A fast family-based association analysis tool for large-scale data. (DEMO to be revised)
+
+
 ### GSMR
 
 **GSMR: Generalised Summary-data-based Mendelian Randomisation**
@@ -351,7 +430,7 @@ This option will implement an MLM based association analysis with the chromosome
 where *g<sup>-</sup>* is the accumulated effect of all SNPs except those on the chromosome where the candidate SNP is located. The *var(g<sup>-</sup>)* will be re-estimated each time when a chromosome is excluded from calculating the GRM. The MLM-LOCO analysis is computationally less efficient but more powerful as compared with the MLM analysis including the candidate (--mlma).
 The results will be saved in the *.loco.mlma file.
  
---mlma-no-adj-covar  
+--mlma-no-preadj-covar  
 If there are covariates included in the analysis, the covariates will be fitted in the null model, a model including the mean term (fixed effect), covariates (fixed effects), polygenic effects (random effects) and residuals (random effects). By default, in order to improve computational efficiency, the phenotype will be adjusted by the mean and covariates, and the adjusted phenotype will subsequently be used for testing SNP association. However, if SNPs are correlated with the covariates, pre-adjusting the phenotype by the covariates will probably cause loss of power. If this option is specified, the covariates will be fitted together with the SNP for association test. However, this will significantly reduce computational efficiency.
 
 --mlma-subtract-grm  

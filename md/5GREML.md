@@ -611,30 +611,7 @@ rs9777703 1 918699 0.0301614 0.00131291 999 0.854464 2.31159 2.75538
 .... 
 ```
 
-#### Step 2 (option #1): stratify the SNPs by segment-based LD scores in R
-This assumes that functional SNPs are clustered in regions with higher or lower LD.  
-Below is an example of R script to stratify the SNPs by the segment-based mean LD scores.
-```r
-lds_seg = read.table("test.score.ld",header=T,colClasses=c("character",rep("numeric",8)))
-quartiles=summary(lds_seg$ldscore_region)
-
-lb1 = which(lds_seg$ldscore_region <= quartiles[2])
-lb2 = which(lds_seg$ldscore_region > quartiles[2] & lds_seg$ldscore_region <= quartiles[3])
-lb3 = which(lds_seg$ldscore_region > quartiles[3] & lds_seg$ldscore_region <= quartiles[5])
-lb4 = which(lds_seg$ldscore_region > quartiles[5])
-
-lb1_snp = lds_seg$SNP[lb1]
-lb2_snp = lds_seg$SNP[lb2]
-lb3_snp = lds_seg$SNP[lb3]
-lb4_snp = lds_seg$SNP[lb4]
-
-write.table(lb1_snp, "snp_group1.txt", row.names=F, quote=F, col.names=F)
-write.table(lb2_snp, "snp_group2.txt", row.names=F, quote=F, col.names=F)
-write.table(lb3_snp, "snp_group3.txt", row.names=F, quote=F, col.names=F)
-write.table(lb4_snp, "snp_group4.txt", row.names=F, quote=F, col.names=F)
-```
-
-#### Step 2 (option #2): stratify the SNPs by LD scores of individual SNPs in R
+#### Step 2 (option #1): stratify the SNPs by LD scores of individual SNPs in R
 Below is an example of R script to stratify the SNPs by the LD scores of individual SNPs.
 ```r
 lds_seg = read.table("test.score.ld",header=T,colClasses=c("character",rep("numeric",8)))
@@ -657,6 +634,31 @@ write.table(lb4_snp, "snp_group4.txt", row.names=F, quote=F, col.names=F)
 ```
 
 In each LD group, you can use the --maf and --max-maf options GCTA to further stratify the SNPs into MAF groups.
+
+Option 1 is preferred because it is shown in Evans et al. ([2018 Nature Genetics](https://www.nature.com/articles/s41588-018-0108-x)) stratifying SNPs by LD scores of individual SNPs as opposed to regional LD scores significantly improves the performance of GREML-LDMS.
+
+#### Step 2 (option #2): stratify the SNPs by segment-based LD scores in R
+This assumes that functional SNPs are clustered in regions with higher or lower LD.  
+Below is an example of R script to stratify the SNPs by the segment-based mean LD scores.
+```r
+lds_seg = read.table("test.score.ld",header=T,colClasses=c("character",rep("numeric",8)))
+quartiles=summary(lds_seg$ldscore_region)
+
+lb1 = which(lds_seg$ldscore_region <= quartiles[2])
+lb2 = which(lds_seg$ldscore_region > quartiles[2] & lds_seg$ldscore_region <= quartiles[3])
+lb3 = which(lds_seg$ldscore_region > quartiles[3] & lds_seg$ldscore_region <= quartiles[5])
+lb4 = which(lds_seg$ldscore_region > quartiles[5])
+
+lb1_snp = lds_seg$SNP[lb1]
+lb2_snp = lds_seg$SNP[lb2]
+lb3_snp = lds_seg$SNP[lb3]
+lb4_snp = lds_seg$SNP[lb4]
+
+write.table(lb1_snp, "snp_group1.txt", row.names=F, quote=F, col.names=F)
+write.table(lb2_snp, "snp_group2.txt", row.names=F, quote=F, col.names=F)
+write.table(lb3_snp, "snp_group3.txt", row.names=F, quote=F, col.names=F)
+write.table(lb4_snp, "snp_group4.txt", row.names=F, quote=F, col.names=F)
+```
 
 #### Step 3: making GRMs using SNPs stratified into different groups
 ```bash
