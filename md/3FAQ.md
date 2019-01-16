@@ -111,13 +111,15 @@ For a quantitative trait (which is relatively robust to the artefacts in SNP dat
 
 Yes, you can. GCTA-GREML does not assume that the individuals should be unrelated. The reason for excluding close-relatives in Yang et al. (Nat. Genet. 2010 and 2011) is because we do not want our estimates to be confounded with some possible shared environment effects and the effects of some possible causal variants that are not tagged by the SNPs but captured by pedigree information. If you are interested in the variance explained by a subset of SNPs in family data, you could fit the genetic relationship matrix (GRM) estimated from these SNPs along with a matrix of pedigree structure using the option --mgrm when running the REML analysis (--reml). Alternatively, we could fit the GRM of the subset of SNPs together with another GRM estimated from the SNPs in the rest of the genome.
 
-See [GCTA-GREML in family data](#GREMLanalysisinfamilydata) for an analysis of estimating SNP-based and pedigree-based h2 simultaneously in family data.
+If you don’t have SNP genotypes in the data and you are only interested in estimating pedigree-based heritability (see [Yang et al. 2017 Nat Genet](https://www.ncbi.nlm.nih.gov/pubmed/28854176) for definitions), we can compute a pedigree relatedness matrix from pedigree data using the [script available here](./static/pedFAM.R) and run a REML analysis using the pedigree relatedness matrix as if it’s a GRM.
+
+See [GCTA-GREML in family data](#GREMLinfamilydata) for an analysis of estimating SNP-based and pedigree-based h2 simultaneously in family data.
 
 ### 8. Meta-analysis of GREML results from multiple cohorts {: .notoc}
 
 If there are multiple cohorts and for some reason you are unable to pool all the individual-level genotype data together for a combined analysis, then it is OK to run a inverse-variance meta-analysis, i.e.
 
-*h<sup>2</sup><sub>meta</sub> = sum(h<sup>2</sup><sub>i</sub> / SE<sup>2</sup><sub>i</sub>) / sum(1 / SE<sup>2</sup><sub>i</sub>)*
+*h<sup>2</sup><sub>meta</sub> = sum(h<sup>2</sup><sub>i</sub> / SE<sup>2</sup><sub>i</sub>) / sum(1 / SE<sup>2</sup><sub>i</sub>)* with *SE = sqrt(1 / sum(1 / SE<sup>2</sup><sub>i</sub>))*
 
 However, this is less powerful than a combined analysis because the meta-analysis does not utilise the contrasts between individuals across cohorts.
 
