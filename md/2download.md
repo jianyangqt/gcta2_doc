@@ -4,15 +4,15 @@
 
 The executable files below only support a 64-bit operating system on the x86\_64 CPU platform. 
 
-Linux [gcta\_1.91.7beta.zip](./gcta_1.91.7beta.zip)
+Linux [gcta\_1.92.0beta.zip](./gcta_1.92.0beta.zip)
 
-Windows [gcta\_1.91.7beta\_win.zip](./gcta_1.91.7beta_win.zip)
+Windows [gcta\_1.92.0beta\_win.zip](./gcta_1.92.0beta_win.zip)
 
-Mac [gcta\_1.91.7beta\_mac.zip](./gcta_1.91.7beta_mac.zip)
+Mac [gcta\_1.92.0beta\_mac.zip](./gcta_1.92.0beta_mac.zip)
  
 The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
 
-> Note: GCTA 1.91.7 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
+> Note: GCTA 1.92.0 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
@@ -21,10 +21,14 @@ The executable files are released under the MIT license. We recommend to use the
 The source code are released under GPL v3. The source code of the latest version will be released when it is stable.
 
 ### Update log {: .notoc}
+#### Version 1.92.0beta (22 Jan 2019)
+* Added a flag ‘--gsmr-beta’ to use a testing version of the HEIDI-outlier method.
+* Modified “--make-grm-alg” so that it can be used in combination with –make-grm-part. 
+
 #### Version 1.91.7beta (8 Oct 2018)
-* Add a flag (--mtcojo-bxy) in the mtCOJO analysis to read the effects of covariates on trait from a user-specified file.
-* Add a multi-SNP-based HEIDI-outlier test in the HEIDI-outlier analysis.
-* Add a function in mtCOJO to compute the effects of covariates on trait from a genetic correlation analysis if there are not enough SNPs to perform the GSMR analysis.
+* Added a flag (--mtcojo-bxy) in the mtCOJO analysis to read the effects of covariates on trait from a user-specified file.
+* Added a multi-SNP-based HEIDI-outlier test in the HEIDI-outlier analysis.
+* Added a function in mtCOJO to compute the effects of covariates on trait from a genetic correlation analysis if there are not enough SNPs to perform the GSMR analysis.
 * Modified mtCOJO and GSMR to read  summary data from compressed text files.
 * Modified HEIDI-outlier to save the removed pleiotropic SNPs in text file.
 * Modified GSMR to sort SNPs by chi-squared values in the clumping analysis.

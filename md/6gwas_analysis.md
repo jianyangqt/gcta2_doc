@@ -139,6 +139,9 @@ plot_gsmr_effect(gsmr_data, "bmi", "t2d", colors()[75])
 ![effect_size_plot](./static/gsmr_toy_bmi_t2d.jpg)
 
 #### Optional flags  
+--gsmr-beta to use the new HEIDI-outlier method.   
+Note: We included a new HEIDI-outlier method (as part of [the GSMR analysis](#Download)) in GCTA v1.91.7. However, the new HEIDI-outlier method is currently under development and subject to changes during the method development. From GCTA version v1.92.0, we changed the default back to the original HEIDI-outlier method described in Zhu et al. (2018 Nature Communications) and added this temporary flag to test the new method. The new HEIDI-outlier method in GCTA v1.92.0 has been tested by extensive simulations and real data analyses. We will make a formal release in our next GSMR paper.
+
 *Quality control*
 
 --diff-freq 0.2   
@@ -154,10 +157,13 @@ LD *r*<sup>2</sup> threshold for clumping analysis. The default value is 0.05.
 
 *GSMR analysis*  
 
---heidi-thresh 0.05  
-To specific a p-value threshold for the HEIDI-outlier analysis to remove horizontal pleiotropic SNPs. The default threshold is 0.05.
+--heidi-thresh 0.01  
+The HEIDI-outlier method described in Zhu et al. ([2018 Nature Communications](https://www.nature.com/articles/s41467-017-02317-2))   
+To specific a p-value threshold for the HEIDI-outlier analysis to remove horizontal pleiotropic SNPs. The default threshold is 0.01.
 
-The HEIDI-outlier analysis involves two steps: 1) excluding a SNP with the smallest p-value from a single-SNP HEIDI-outlier analysis iteratively until the HEIDI-outlier p-values of all the remaining SNPs are not smaller than the p-value threshold, 0.05/number of SNPs; 2) excluding a SNP with the smallest p-value (from a single-SNP HEIDI-outlier analysis) iteratively until the p-value from the multi-SNP HEIDI-outlier test is not smaller than the specified p-value threshold.
+--heidi-thresh 0.01 0.01 (to be used together with --gsmr-beta)   
+The input parameters are two p-value thresholds used in the new HEIDI-outlier method.   
+The new HEIDI-outlier method involves two steps: 1) single-SNP-based HEIDI-outlier analysis, excluding a SNP with the smallest p-value from a single-SNP-based HEIDI-outlier analysis iteratively until the HEIDI-outlier p-values of all the remaining SNPs are not smaller than the specified p-value threshold (the first input parameter); 2) multi-SNP-based HEIDI-outlier, excluding a SNP with the smallest p-value (from a single-SNP-based HEIDI-outlier analysis) iteratively until the p-value from the multi-SNP-based HEIDI-outlier test is not smaller than the specified p-value threshold (the second input parameter). The default value is 0.01 for both.
 
 --gsmr-snp-min 10   
 To specify the minimum number of genome-wide significant and near-independent SNPs required for the GSMR analysis. Note that the SNP instruments will be pruned for LD by a clump analysis and filtered for horizontal pleiotropy by the HEIDI-outlier analysis. This option will count the number of SNPs after clumping and HEIDI-outlier filtering. The default value is 10.
