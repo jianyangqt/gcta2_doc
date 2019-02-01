@@ -68,7 +68,7 @@
 <li>sBLUP: sumamry-data based BLUP analysis for genomic risk prediction;</li>
 <li>Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits.</li>
 </ul>
-<p><strong>Latest release <a href="#Download">v1.92.0beta</a>, click to download or view update log (22 Jan 2019)</strong></p>
+<p><strong>Latest release <a href="#Download">v1.92.0beta2</a>, click to download or view update log (1 Feb 2019)</strong></p>
 <hr><h3 id="credits">Credits</h3>
 <p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with supports from <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:hong.lee@uq.edu.au">Hong Lee</a>. </p>
 <p><a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, improved the SBLUP module, developed the website, and is currently maintaining the software.</p>
@@ -101,21 +101,25 @@ Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J 
 Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894. [<a href="https://www.nature.com/articles/srep32894">PMID: 27604177</a>]</p>
 <p><strong>mtCOJO and GSMR methods:</strong><br>
 Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. <a href="https://www.nature.com/articles/s41467-017-02317-2">Nat. Commun. 9, 224.</a>  </p>
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 22 Jan 2019</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 1 Feb 2019</p>
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>The executable files below only support a 64-bit operating system on the x86_64 CPU platform. </p>
-<p>Linux <a href="./gcta_1.92.0beta.zip">gcta_1.92.0beta.zip</a></p>
-<p>Windows <a href="./gcta_1.92.0beta_win.zip">gcta_1.92.0beta_win.zip</a></p>
-<p>Mac <a href="./gcta_1.92.0beta_mac.zip">gcta_1.92.0beta_mac.zip</a></p>
+<p>Linux <a href="./gcta_1.92.0beta2.zip">gcta_1.92.0beta2.zip</a></p>
+<p>Windows <a href="./gcta_1.92.0beta2_win.zip">gcta_1.92.0beta2_win.zip</a></p>
+<p>Mac <a href="./gcta_1.92.0beta2_mac.zip">gcta_1.92.0beta2_mac.zip</a></p>
 <p>The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.</p>
 <blockquote>
-  <p>Note: GCTA 1.92.0 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
+  <p>Note: GCTA 1.92.0b2 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
 </blockquote>
 <hr><h3 id="sourcecodenotoc" class="notoc">Source code </h3>
 <p><a href="./gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
 <p>The source code are released under GPL v3. The source code of the latest version will be released when it is stable.</p>
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
+<h4 id="version1920beta21feb2019">Version 1.92.0beta2 (1 Feb 2019)</h4>
+<ul>
+<li>Fixed a bug in COJO for some circumstances where the standard errors of SNP effects are extremely small.</li>
+</ul>
 <h4 id="version1920beta22jan2019">Version 1.92.0beta (22 Jan 2019)</h4>
 <ul>
 <li>Added a flag ‘--gsmr-beta’ to use a testing version of the HEIDI-outlier method.</li>

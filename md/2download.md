@@ -4,15 +4,15 @@
 
 The executable files below only support a 64-bit operating system on the x86\_64 CPU platform. 
 
-Linux [gcta\_1.92.0beta.zip](./gcta_1.92.0beta.zip)
+Linux [gcta\_1.92.0beta2.zip](./gcta_1.92.0beta2.zip)
 
-Windows [gcta\_1.92.0beta\_win.zip](./gcta_1.92.0beta_win.zip)
+Windows [gcta\_1.92.0beta2\_win.zip](./gcta_1.92.0beta2_win.zip)
 
-Mac [gcta\_1.92.0beta\_mac.zip](./gcta_1.92.0beta_mac.zip)
+Mac [gcta\_1.92.0beta2\_mac.zip](./gcta_1.92.0beta2_mac.zip)
  
 The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
 
-> Note: GCTA 1.92.0 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
+> Note: GCTA 1.92.0b2 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
@@ -21,6 +21,9 @@ The executable files are released under the MIT license. We recommend to use the
 The source code are released under GPL v3. The source code of the latest version will be released when it is stable.
 
 ### Update log {: .notoc}
+#### Version 1.92.0beta2 (1 Feb 2019)
+* Fixed a bug in COJO for some circumstances where the standard errors of SNP effects are extremely small.
+
 #### Version 1.92.0beta (22 Jan 2019)
 * Added a flag ‘--gsmr-beta’ to use a testing version of the HEIDI-outlier method.
 * Modified “--make-grm-alg” so that it can be used in combination with –make-grm-part. 
