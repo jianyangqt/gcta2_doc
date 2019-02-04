@@ -20,7 +20,7 @@ GCTA (Genome-wide Complex Trait Analysis) was originally designed to estimate th
 * sBLUP: sumamry-data based BLUP analysis for genomic risk prediction;
 * Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits.
 
-**Latest release [v1.92.0beta2](#Download), click to download or view update log (1 Feb 2019)**
+**Latest release [v1.92.0beta3](#Download), click to download or view update log (1 Feb 2019)**
 
 ### Credits 
 
