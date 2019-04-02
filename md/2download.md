@@ -4,15 +4,15 @@
 
 The executable files below only support a 64-bit operating system on the x86\_64 CPU platform. 
 
-Linux [gcta\_1.92.0beta3.zip](./gcta_1.92.0beta3.zip)
+Linux [gcta\_1.92.1beta5.zip](./gcta_1.92.1beta5.zip)
 
-Windows [gcta\_1.92.0beta3\_win.zip](./gcta_1.92.0beta3_win.zip)
+Windows [gcta\_1.92.1beta5\_win.zip](./gcta_1.92.1beta5_win.zip)
 
-Mac [gcta\_1.92.0beta3\_mac.zip](./gcta_1.92.0beta3_mac.zip)
+Mac [gcta\_1.92.1beta5\_mac.zip](./gcta_1.92.1beta5_mac.zip)
  
 The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
 
-> Note: GCTA 1.92.0b3 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
+> Note: GCTA 1.92.1b5 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
@@ -21,12 +21,16 @@ The executable files are released under the MIT license. We recommend to use the
 The source code are released under GPL v3. The source code of the latest version will be released when it is stable.
 
 ### Update log {: .notoc}
+#### Version 1.92.1beta5 (1 Apr 2019)
+* Added a flag '--weighted-res' to adjust the diagonal element of residual in REML.
+* Added a new model fastGWA(#fastGWA).
+
 #### Version 1.92.0beta3 (1 Feb 2019)
 * Fixed a bug in COJO for some circumstances where the standard errors of SNP effects are extremely small.
 
 #### Version 1.92.0beta (22 Jan 2019)
-* Added a flag ‘--gsmr-beta’ to use a testing version of the HEIDI-outlier method.
-* Modified “--make-grm-alg” so that it can be used in combination with –make-grm-part. 
+* Added a flag '--gsmr-beta' to use a testing version of the HEIDI-outlier method.
+* Modified '--make-grm-alg' so that it can be used in combination with –make-grm-part. 
 
 #### Version 1.91.7beta (8 Oct 2018)
 * Added a flag (--mtcojo-bxy) in the mtCOJO analysis to read the effects of covariates on trait from a user-specified file.
