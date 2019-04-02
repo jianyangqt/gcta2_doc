@@ -22,8 +22,8 @@ The source code are released under GPL v3. The source code of the latest version
 
 ### Update log {: .notoc}
 #### Version 1.92.1beta5 (1 Apr 2019)
-* Added a flag '--weighted-res' to adjust the diagonal element of residual in REML.
-* Added a new model fastGWA(#fastGWA).
+* Added a flag '[--weighted-res](#GREMLanalysis)' to adjust the diagonal element of residual in REML.
+* Added a new model [fastGWA](#fastGWA).
 
 #### Version 1.92.0beta3 (1 Feb 2019)
 * Fixed a bug in COJO for some circumstances where the standard errors of SNP effects are extremely small.

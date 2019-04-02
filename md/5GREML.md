@@ -410,6 +410,15 @@ Input quantitative covariates from a plain text file, e.g. test.qcovar. Each qua
 ......
 ```
 
+--weighted-res weight_file  
+Specify the diagonal weight to the Ve instead of 1 only. This value will be put into the diagonal value directly, thus transform the weight value (such as 1/weight) before running GCTA if needed.  
+
+> weight_file (no header line; Columns are family ID, individual ID and weight)
+```nohighlight
+sub1 sub1 0.5
+sub2 sub2 0.9
+```
+
 --reml-lrt 1  
 Calculate the log likelihood of a reduce model with one or multiple genetic variance components dropped from the full model and calculate the LRT and p-value. By default, GCTA will always calculate and report the LRT for the first genetic variance component, i.e. --reml-lrt 1, unless you re-specify this option, e.g. --reml-lrt 2 assuming there are a least two genetic variance components included in the analysis. You can also test multiple components simultaneously, e.g. --reml-lrt 1 2 4. See FAQ #1 for more details. 
 
