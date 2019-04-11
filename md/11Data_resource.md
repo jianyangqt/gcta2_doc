@@ -4,11 +4,11 @@
 ### UK Biobank GWAS results
 We developed a resource-efficient tool (called [fastGWA](#fastGWA)) for mixed model association analysis, and applied it to 3,613 traits on 456,422 array-genotyped and 46,191 whole-exome-sequenced individuals of European ancestry in the UK Biobank (UKB).
 
-* GWAS summary statistics from imputed/genotyped data: 456,422 individuals of European ancestry; 12,602,502 variants (MAF > 0.0001); 3613 traits.
+* GWAS summary statistics from imputed/genotyped data: 456,422 individuals of European ancestry; 12,602,502 variants (MAF > 0.0001); 3,613 traits.
     * Summary table: [UKB\_impute\_v1.csv](./static/UKB_impute_v1.csv)
-    * Variants information: [IMPUTE\_SNP\_info\_v1.txt.gz](http://data.qld.edu.au/public/Q1031/IMPUTE_SNP_info_v1.txt.gz)) 
+    * Variants information: [IMPUTE\_SNP\_info\_v1.txt.gz](http://data.qld.edu.au/public/Q1031/IMPUTE_SNP_info_v1.txt.gz) 
     * Summary statistics: [http://data.qld.edu.au/public/Q1031/UKB\_impute\_v1/](http://data.qld.edu.au/public/Q1031/UKB_impute_v1/)
-* GWAS summary statistics from whole-exome sequence (WES) data: 46,191 individuals of European ancestry; 3,264,503 variants; 3610 valid traits.
+* GWAS summary statistics from whole-exome sequence (WES) data: 46,191 individuals of European ancestry; 151,498 variants (MAF > 0.01); 2,090 valid traits.
     * Summary table: [UKB\_WES\_v1.csv](./static/UKB_WES_v1.csv)
     * Variants information: [WES\_SNP\_info\_v1.txt.gz](http://data.qld.edu.au/public/Q1031/WES_SNP_info_v1.txt.gz)
     * Summary statistics: [http://data.qld.edu.au/public/Q1031/UKB\_WES\_v1/](http://data.qld.edu.au/public/Q1031/UKB_WES_v1/)
