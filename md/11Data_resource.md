@@ -5,20 +5,20 @@
 We developed a resource-efficient tool (called [fastGWA](#fastGWA)) for mixed model association analysis, and applied it to 3,613 traits on 456,422 array-genotyped and 46,191 whole-exome-sequenced individuals of European ancestry in the UK Biobank (UKB).
 
 * GWAS summary statistics from imputed/genotyped data: 456,422 individuals of European ancestry; 12,602,502 variants (MAF > 0.0001); 3613 traits.
-    * Summary table: [UKB\_impute.csv](./static/UKB_impute.csv)
-    * Variants information: [IMPUTE\_SNP\_info.txt.gz](http://data.qld.edu.au/public/Q1031/IMPUTE_SNP_info.txt.gz)) 
-    * Summary statistics: [http://data.qld.edu.au/public/Q1031/UKB\_impute/](http://data.qld.edu.au/public/Q1031/UKB_impute/)
+    * Summary table: [UKB\_impute\_v1.csv](./static/UKB_impute_v1.csv)
+    * Variants information: [IMPUTE\_SNP\_info\_v1.txt.gz](http://data.qld.edu.au/public/Q1031/IMPUTE_SNP_info_v1.txt.gz)) 
+    * Summary statistics: [http://data.qld.edu.au/public/Q1031/UKB\_impute\_v1/](http://data.qld.edu.au/public/Q1031/UKB_impute_v1/)
 * GWAS summary statistics from whole-exome sequence (WES) data: 46,191 individuals of European ancestry; 3,264,503 variants; 3610 valid traits.
-    * Summary table: [UKB\_WES.csv](./static/UKB_WES.csv)
-    * Variants information: [WES\_SNP\_info.txt.gz](http://data.qld.edu.au/public/Q1031/WES_SNP_info.txt.gz)
-    * Summary statistics: [http://data.qld.edu.au/public/Q1031/UKB\_WES/](http://data.qld.edu.au/public/Q1031/UKB_WES/)
+    * Summary table: [UKB\_WES\_v1.csv](./static/UKB_WES_v1.csv)
+    * Variants information: [WES\_SNP\_info\_v1.txt.gz](http://data.qld.edu.au/public/Q1031/WES_SNP_info_v1.txt.gz)
+    * Summary statistics: [http://data.qld.edu.au/public/Q1031/UKB\_WES\_v1/](http://data.qld.edu.au/public/Q1031/UKB_WES_v1/)
 
 Note:   
 1) The names of the variants were kept the same as provided. Thus, the coordinates of the variants in the UKB imputed data were based on GRCh37, whereas those in the UKB WES data were based on GRCh38.  
 2) You can download all the summary data files by the following Linux commands.
 ```bash
-wget -r -np -nd -l 1 -A gz http://data.qld.edu.au/public/Q1031/UKB_impute/ 
-wget -r -np -nd -l 1 -A gz http://data.qld.edu.au/public/Q1031/UKB_WES/
+wget http://data.qld.edu.au/public/Q1031/UKB_impute_v1.list && wget -i UKB_impute_v1.list
+wget http://data.qld.edu.au/public/Q1031/UKB_WES_v1.list && wget -i UKB_WES_v1.list
 ```
 
 Columns in the summary table:
@@ -45,6 +45,7 @@ A2:   the other allele
 Association Results:
 ```nohightlight
 SNP:  SNP ID
+N:    sample size
 AF1:  the allele frequency of A1
 beta: SNP effect
 se:   standard error

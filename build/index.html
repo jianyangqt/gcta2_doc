@@ -2422,19 +2422,19 @@ gcta64 --bfile TAR --project-loading REF_snp_loading 20 --out TAR_pca20
 <p>We developed a resource-efficient tool (called <a href="#fastGWA">fastGWA</a>) for mixed model association analysis, and applied it to 3,613 traits on 456,422 array-genotyped and 46,191 whole-exome-sequenced individuals of European ancestry in the UK Biobank (UKB).</p>
 <ul>
 <li>GWAS summary statistics from imputed/genotyped data: 456,422 individuals of European ancestry; 12,602,502 variants (MAF &gt; 0.0001); 3613 traits.<ul>
-<li>Summary table: <a href="./static/UKB_impute.csv">UKB_impute.csv</a></li>
-<li>Variants information: <a href="http://data.qld.edu.au/public/Q1031/IMPUTE_SNP_info.txt.gz">IMPUTE_SNP_info.txt.gz</a>) </li>
-<li>Summary statistics: <a href="http://data.qld.edu.au/public/Q1031/UKB_impute/">http://data.qld.edu.au/public/Q1031/UKB_impute/</a></li></ul></li>
+<li>Summary table: <a href="./static/UKB_impute_v1.csv">UKB_impute_v1.csv</a></li>
+<li>Variants information: <a href="http://data.qld.edu.au/public/Q1031/IMPUTE_SNP_info_v1.txt.gz">IMPUTE_SNP_info_v1.txt.gz</a>) </li>
+<li>Summary statistics: <a href="http://data.qld.edu.au/public/Q1031/UKB_impute_v1/">http://data.qld.edu.au/public/Q1031/UKB_impute_v1/</a></li></ul></li>
 <li>GWAS summary statistics from whole-exome sequence (WES) data: 46,191 individuals of European ancestry; 3,264,503 variants; 3610 valid traits.<ul>
-<li>Summary table: <a href="./static/UKB_WES.csv">UKB_WES.csv</a></li>
-<li>Variants information: <a href="http://data.qld.edu.au/public/Q1031/WES_SNP_info.txt.gz">WES_SNP_info.txt.gz</a></li>
-<li>Summary statistics: <a href="http://data.qld.edu.au/public/Q1031/UKB_WES/">http://data.qld.edu.au/public/Q1031/UKB_WES/</a></li></ul></li>
+<li>Summary table: <a href="./static/UKB_WES_v1.csv">UKB_WES_v1.csv</a></li>
+<li>Variants information: <a href="http://data.qld.edu.au/public/Q1031/WES_SNP_info_v1.txt.gz">WES_SNP_info_v1.txt.gz</a></li>
+<li>Summary statistics: <a href="http://data.qld.edu.au/public/Q1031/UKB_WES_v1/">http://data.qld.edu.au/public/Q1031/UKB_WES_v1/</a></li></ul></li>
 </ul>
 <p>Note:<br>
 1) The names of the variants were kept the same as provided. Thus, the coordinates of the variants in the UKB imputed data were based on GRCh37, whereas those in the UKB WES data were based on GRCh38.<br>
 2) You can download all the summary data files by the following Linux commands.</p>
-<pre><code class="bash language-bash">wget -r -np -nd -l 1 -A gz http://data.qld.edu.au/public/Q1031/UKB_impute/ 
-wget -r -np -nd -l 1 -A gz http://data.qld.edu.au/public/Q1031/UKB_WES/
+<pre><code class="bash language-bash">wget http://data.qld.edu.au/public/Q1031/UKB_impute_v1.list &amp;&amp; wget -i UKB_impute_v1.list
+wget http://data.qld.edu.au/public/Q1031/UKB_WES_v1.list &amp;&amp; wget -i UKB_WES_v1.list
 </code></pre>
 <p>Columns in the summary table:</p>
 <pre><code class="nohighlight language-nohighlight">ID: the trait ID in the UKB
@@ -2455,6 +2455,7 @@ A2:   the other allele
 </code></pre>
 <p>Association Results:</p>
 <pre><code class="nohightlight language-nohightlight">SNP:  SNP ID
+N:    sample size
 AF1:  the allele frequency of A1
 beta: SNP effect
 se:   standard error
