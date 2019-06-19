@@ -68,7 +68,7 @@
 <li>sBLUP: sumamry-data based BLUP analysis for genomic risk prediction;</li>
 <li>Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits.</li>
 </ul>
-<p><strong>Latest release <a href="#Download">v1.92.1beta5</a>, click to download or view update log (1 April 2019)</strong></p>
+<p><strong>Latest release <a href="#Download">v1.92.1beta6</a>, click to download or view update log (13 April 2019)</strong></p>
 <hr><h3 id="credits">Credits</h3>
 <p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with supports from <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:hong.lee@uq.edu.au">Hong Lee</a>. </p>
 <p><a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, improved the SBLUP module, developed the website, and is currently maintaining the software.</p>
@@ -101,21 +101,25 @@ Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J 
 Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894. [<a href="https://www.nature.com/articles/srep32894">PMID: 27604177</a>]</p>
 <p><strong>mtCOJO and GSMR methods:</strong><br>
 Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. <a href="https://www.nature.com/articles/s41467-017-02317-2">Nat. Commun. 9, 224.</a>  </p>
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 1 April 2019</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 13 April 2019</p>
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>The executable files below only support a 64-bit operating system on the x86_64 CPU platform. </p>
-<p>Linux <a href="./gcta_1.92.1beta5.zip">gcta_1.92.1beta5.zip</a></p>
+<p>Linux <a href="./gcta_1.92.1beta6.zip">gcta_1.92.1beta6.zip</a></p>
 <p>Windows <a href="./gcta_1.92.1beta5_win.zip">gcta_1.92.1beta5_win.zip</a></p>
 <p>Mac <a href="./gcta_1.92.1beta5_mac.zip">gcta_1.92.1beta5_mac.zip</a></p>
 <p>The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.</p>
 <blockquote>
-  <p>Note: GCTA 1.92.1b5 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
+  <p>Note: GCTA 1.92.1b6 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
 </blockquote>
 <hr><h3 id="sourcecodenotoc" class="notoc">Source code </h3>
 <p><a href="./gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
 <p>The source code are released under GPL v3. The source code of the latest version will be released when it is stable.</p>
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
+<h4 id="version1921beta613apr2019">Version 1.92.1beta6 (13 Apr 2019)</h4>
+<ul>
+<li>Fixed a bug in --reml-bivar due to the update of Linux compiler.</li>
+</ul>
 <h4 id="version1921beta51apr2019">Version 1.92.1beta5 (1 Apr 2019)</h4>
 <ul>
 <li>Added a flag '<a href="#GREMLanalysis">--reml-res-diag</a>' to specify the diagonal elements of the residual correlation matrix in REML.</li>
@@ -1662,7 +1666,8 @@ N_tr2               56342
 <h2 id="gwasanalysis">GWAS analysis</h2>
 <hr><h3 id="fastgwa">fastGWA</h3>
 <p><strong>fastGWA: A fast MLM-based Genome-Wide Association tool</strong></p>
-<p>fastGWA is an extremely resource-efficient tool to perform a mixed linear model (MLM)-based GWAS analysis on large-scale data (e.g., biobank-scale data such as the UK Biobank and omics QTL analysis in samples including closely related individuals). Credits: <a href="mailto:longda.jiang@uq.edu.au">Longda Jiang</a> (method, simulation and analysis), <a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> (software and analysis) and <a href="http://researchers.uq.edu.au/researcher/2713">Jian Yang</a> (method and overseeing).</p>
+<p>fastGWA is an extremely resource-efficient tool for mixed linear model (MLM)-based GWAS analysis of biobank-scale data such as the UK Biobank (see Jiang et al. <a href="https://www.biorxiv.org/content/10.1101/598110v1">2019 bioRxiv</a> for details of the method). Credits: <a href="mailto:longda.jiang@uq.edu.au">Longda Jiang</a> (method, simulation and analysis), <a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> (software and analysis) and <a href="http://researchers.uq.edu.au/researcher/2713">Jian Yang</a> (method and overseeing).</p>
+<p>We have applied fastGWA to 3,613 traits on 456,422 array-genotyped and imputed individuals and 2,090 traits on 46,191 whole-exome-sequenced (WES) individuals in the UK Biobank. <strong>All the summary statistics are available at <a href="#DataResource">UKBiobankGWASresults</a></strong>.</p>
 <p><span class="kwd">--make-bK-sparse</span> 0.05<br>
 To generate a sparse genetic relationship matrix (GRM) from a full-dense GRM at a cutoff value of 0.05. Note:1) The full-dense GRM can be generated by the <span class="kwd">--make-grm</span> or <span class="kwd">--make-grm-part</span> option (see the <a href="#MakingaGRM">GRM page</a>); 2) We also provide an <a href="./static/pedFAM.R">R-script</a> to generate a family relatedness matrix (FAM, the sparse GRM constructed from expected relatedness coefficients between related individuals), without the need of calculating a full-dense GRM. It only requires the input of a <a href="https://www.cog-genomics.org/plink/1.9/formats#fam">PLINK .fam file</a> and a table that describes the pedigree information of the cohort.</p>
 <pre><code class="bash language-bash">gcta64 --grm test_grm --make-bK-sparse 0.05 --out test_sp_grm
@@ -1690,14 +1695,14 @@ To input the sparse GRM. The sparse format can be generated from SNP data using 
 Perform a fast MLM-based genome-wide association analysis.</p>
 <blockquote>
   <p>Output format<br>
-  test.fastGWA (columns are chromosome, SNP, SNP position, the effect allele, the other allele, frequency of A1, SNP effect, SE and p-value)</p>
+  test.fastGWA (columns are chromosome, SNP, SNP position, the effect allele, the other allele, per allele sample size, frequency of A1, SNP effect, SE and p-value)</p>
 </blockquote>
-<pre><code class="nohighlight language-nohighlight">CHR     SNP     POS     A1      A2      AF1     beta    se      p
-1       rs3131962       756604  A       G       0.130613        -0.00651289     0.00665363      0.327655
-1       rs12562034      768448  A       G       0.106691        -0.0037883      0.00724556      0.601082
-1       rs4040617       779322  G       A       0.128422        -0.00407097     0.00670377      0.543675
-1       rs79373928      801536  G       T       0.0147122       -0.0365657      0.0186005       0.0493158
-1       rs6657440       850780  C       T       0.393875        -0.00596944     0.00459088      0.193504
+<pre><code class="nohighlight language-nohighlight">CHR     SNP     POS     A1      A2      N      AF1     beta    se      p
+1       rs3131962       756604  A       G       10000      0.130613        -0.00651289     0.00665363      0.327655
+1       rs12562034      768448  A       G       9998       0.106691        -0.0037883      0.00724556      0.601082
+1       rs4040617       779322  G       A       10000      0.128422        -0.00407097     0.00670377      0.543675
+1       rs79373928      801536  G       T       9996       0.0147122       -0.0365657      0.0186005       0.0493158
+1       rs6657440       850780  C       T       9992       0.393875        -0.00596944     0.00459088      0.193504
 ...
 </code></pre>
 <p>Examples</p>
@@ -1708,7 +1713,7 @@ gcta64 --grm geno_grm --make-bK-sparse 0.05 --out sp_grm
 gcta64 --mbfile geno_chrs.txt --grm-sparse sp_grm --fastGWA --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --thread-num 10 --out geno_assoc
 </code></pre>
 <h4 id="citation-1">Citation</h4>
-<p>Jiang L, Zheng Z, Qi T, Kemper KE, Wray NR, Visscher PM, Yang J. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. bioRxiv.</p>
+<p>Jiang L, Zheng Z, Qi T, Kemper KE, Wray NR, Visscher PM, Yang J. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. <a href="https://www.biorxiv.org/content/10.1101/598110v1">bioRxiv 598110; doi:10.1101/598110</a>.</p>
 <hr><h3 id="mixedmodelassociation">Mixed model association</h3>
 <p><strong>GCTA-MLMA and GCTA-LOCO: mixed linear model based association analysis</strong> </p>
 <p>The following options are designed to perform an MLM based association analysis. Previous data management options such as <span class="kwd">--keep</span>, <span class="kwd">--extract</span> and <span class="kwd">--maf</span>, REML analysis options such as <span class="kwd">--reml-priors</span>, <span class="kwd">--reml-maxit</span> and <span class="kwd">--reml-no-constrain</span> and multi-threading option <span class="kwd">--thread-num</span> are still valid for this analysis.</p>
@@ -2416,35 +2421,35 @@ gcta64 --bfile REF --pc-loading REF_pca20 --out REF_snp_loading
 gcta64 --bfile TAR --project-loading REF_snp_loading 20 --out TAR_pca20
 </code></pre>
 <h4 id="citation-4">Citation</h4>
-<p>Jiang L, Zheng Z, Qi T, Kemper KE, Wray NR, Visscher PM, Yang J. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. bioRxiv.</p>
+<p>Jiang L, Zheng Z, Qi T, Kemper KE, Wray NR, Visscher PM, Yang J. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. <a href="https://www.biorxiv.org/content/10.1101/598110v1">bioRxiv 598110; doi:10.1101/598110</a>.</p>
 <h2 id="dataresource">Data Resource</h2>
 <hr><h3 id="ukbiobankgwasresults">UK Biobank GWAS results</h3>
-<p>We developed a resource-efficient tool (called <a href="#fastGWA">fastGWA</a>) for mixed model association analysis, and applied it to 3,613 traits on 456,422 array-genotyped and 46,191 whole-exome-sequenced individuals of European ancestry in the UK Biobank (UKB).</p>
+<p>We developed a resource-efficient tool (called <a href="#fastGWA">fastGWA</a>) for mixed model association analysis, and applied it to 3,613 traits on 456,422 array-genotyped as well as 46,191 whole-exome-sequenced individuals of European ancestry in the UK Biobank (UKB).</p>
 <ul>
-<li>GWAS summary statistics from imputed/genotyped data: 456,422 individuals of European ancestry; 12,602,502 variants (MAF &gt; 0.0001); 3,613 traits.<ul>
+<li>GWAS summary statistics from the imputed data: 456,422 individuals of European ancestry; 12,602,502 variants (MAF &gt; 0.0001); 3,613 traits.<ul>
 <li>Summary table: <a href="./static/UKB_impute_v1.csv">UKB_impute_v1.csv</a></li>
 <li>Variants information: <a href="http://data.qld.edu.au/public/Q1031/IMPUTE_SNP_info_v1.txt.gz">IMPUTE_SNP_info_v1.txt.gz</a> </li>
 <li>Summary statistics: <a href="http://data.qld.edu.au/public/Q1031/UKB_impute_v1/">http://data.qld.edu.au/public/Q1031/UKB_impute_v1/</a></li></ul></li>
-<li>GWAS summary statistics from whole-exome sequence (WES) data: 46,191 individuals of European ancestry; 151,498 variants (MAF &gt; 0.01); 2,090 valid traits.<ul>
+<li>GWAS summary statistics from the whole-exome sequence (WES) data: 46,191 individuals of European ancestry; 151,498 variants (MAF &gt; 0.01); 2,090 valid traits.<ul>
 <li>Summary table: <a href="./static/UKB_WES_v1.csv">UKB_WES_v1.csv</a></li>
 <li>Variants information: <a href="http://data.qld.edu.au/public/Q1031/WES_SNP_info_v1.txt.gz">WES_SNP_info_v1.txt.gz</a></li>
 <li>Summary statistics: <a href="http://data.qld.edu.au/public/Q1031/UKB_WES_v1/">http://data.qld.edu.au/public/Q1031/UKB_WES_v1/</a></li></ul></li>
 </ul>
 <p>Note:<br>
-1) The names of the variants were kept the same as provided. Thus, the coordinates of the variants in the UKB imputed data were based on GRCh37, whereas those in the UKB WES data were based on GRCh38.<br>
+1) The names of the variants were kept the same as provided (the coordinates of the variants in the imputed data were based on GRCh37 and those in the WES data were based on GRCh38).<br>
 2) You can download all the summary data files by the following Linux commands.</p>
 <pre><code class="bash language-bash">wget http://data.qld.edu.au/public/Q1031/UKB_impute_v1.list &amp;&amp; wget -i UKB_impute_v1.list
 wget http://data.qld.edu.au/public/Q1031/UKB_WES_v1.list &amp;&amp; wget -i UKB_WES_v1.list
 </code></pre>
 <p>Columns in the summary table:</p>
-<pre><code class="nohighlight language-nohighlight">ID: the trait ID in the UKB
+<pre><code class="nohighlight language-nohighlight">ID: the trait ID
 Description: trait description
 Data_type:  the type of phenotype (Continuous: quantitative traits; Ordered_Categorical: ordered categorical traits; Binary: binary trait)
-Method: LR - Linear Regression; MLM - Mixed Linear Model. Note that the fastGWA program will switch to use LR for analysis if the estimated genetic variance from an MLM is not significant (p &gt; 0.05) .
+Method: LR - Linear Regression; MLM - Mixed Linear Model. Note that fastGWA will switch to use LR for analysis if the estimated genetic variance from an MLM is not significant (p &gt; 0.05) .
 N:  sample size
 N_Case (N_control): number of affected (unaffected) individuals for binary trait.
-Gener_specific:  Is the trait limited to one gender?
-URL:  the link to download the association summary statistics.
+Gener_specific:  is it a gender-specific trait?
+URL:  the link to download the summary statistics.
 </code></pre>
 <p>Variants information:</p>
 <pre><code class="nohighlight language-nohighlight">CHR:  chromosome
@@ -2453,16 +2458,16 @@ POS:  SNP position
 A1:   effect allele
 A2:   the other allele
 </code></pre>
-<p>Association Results:</p>
+<p>Association results:</p>
 <pre><code class="nohightlight language-nohightlight">SNP:  SNP ID
-N:    sample size
+N:    per allele sample size
 AF1:  the allele frequency of A1
 beta: SNP effect
 se:   standard error
 p:    p value
 </code></pre>
 <h4 id="citation-5">Citation</h4>
-<p>Jiang L, Zheng Z, Qi T, Kemper KE, Wray NR, Visscher PM, Yang J. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. bioRxiv.</p></body></div>
+<p>Jiang L, Zheng Z, Qi T, Kemper KE, Wray NR, Visscher PM, Yang J. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. <a href="https://www.biorxiv.org/content/10.1101/598110v1">bioRxiv 598110; doi:10.1101/598110</a>.</p></body></div>
         </div>
 
         <script>

@@ -4,7 +4,7 @@
 
 The executable files below only support a 64-bit operating system on the x86\_64 CPU platform. 
 
-Linux [gcta\_1.92.1beta5.zip](./gcta_1.92.1beta5.zip)
+Linux [gcta\_1.92.1beta6.zip](./gcta_1.92.1beta6.zip)
 
 Windows [gcta\_1.92.1beta5\_win.zip](./gcta_1.92.1beta5_win.zip)
 
@@ -12,7 +12,7 @@ Mac [gcta\_1.92.1beta5\_mac.zip](./gcta_1.92.1beta5_mac.zip)
  
 The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
 
-> Note: GCTA 1.92.1b5 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
+> Note: GCTA 1.92.1b6 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
@@ -21,6 +21,9 @@ The executable files are released under the MIT license. We recommend to use the
 The source code are released under GPL v3. The source code of the latest version will be released when it is stable.
 
 ### Update log {: .notoc}
+#### Version 1.92.1beta6 (13 Apr 2019)
+* Fixed a bug in --reml-bivar due to the update of Linux compiler.
+
 #### Version 1.92.1beta5 (1 Apr 2019)
 * Added a flag '[--reml-res-diag](#GREMLanalysis)' to specify the diagonal elements of the residual correlation matrix in REML.
 * Added a new module [fastGWA](#fastGWA) (an extremely resource-efficient tool for mixed linear model association analysis of biobank-scale GWAS data).
