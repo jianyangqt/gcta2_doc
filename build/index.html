@@ -68,7 +68,7 @@
 <li>sBLUP: sumamry-data based BLUP analysis for genomic risk prediction;</li>
 <li>Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits.</li>
 </ul>
-<p><strong>Latest release <a href="#Download">v1.92.1beta6</a>, click to download or view update log (13 April 2019)</strong></p>
+<p><strong>Latest release <a href="#Download">v1.92.2beta</a>, click to download or view update log (18 June 2019)</strong></p>
 <hr><h3 id="credits">Credits</h3>
 <p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with supports from <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:hong.lee@uq.edu.au">Hong Lee</a>. </p>
 <p><a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, improved the SBLUP module, developed the website, and is currently maintaining the software.</p>
@@ -101,21 +101,29 @@ Yang et al. (2011) Genomic inflation factors under polygenic inheritance. Eur J 
 Bakshi A., Zhu Z., Vinkhuyzen A.A.E., Hill W.D., McRae A.F., Visscher P.M., and Yang J. (2016). Fast set-based association analysis using summary data from GWAS identifies novel gene loci for human complex traits. Scientific Reports 6, 32894. [<a href="https://www.nature.com/articles/srep32894">PMID: 27604177</a>]</p>
 <p><strong>mtCOJO and GSMR methods:</strong><br>
 Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. <a href="https://www.nature.com/articles/s41467-017-02317-2">Nat. Commun. 9, 224.</a>  </p>
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 13 April 2019</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 18 June 2019</p>
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>The executable files below only support a 64-bit operating system on the x86_64 CPU platform. </p>
-<p>Linux <a href="./gcta_1.92.1beta6.zip">gcta_1.92.1beta6.zip</a></p>
-<p>Windows <a href="./gcta_1.92.1beta5_win.zip">gcta_1.92.1beta5_win.zip</a></p>
-<p>Mac <a href="./gcta_1.92.1beta5_mac.zip">gcta_1.92.1beta5_mac.zip</a></p>
+<p>Linux <a href="./gcta_1.92.2beta.zip">gcta_1.92.2beta.zip</a></p>
+<p>Windows <a href="./gcta_1.92.2beta_win.zip">gcta_1.92.2beta_win.zip</a></p>
+<p>Mac <a href="./gcta_1.92.2beta_mac.zip">gcta_1.92.2beta_mac.zip</a></p>
 <p>The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.</p>
 <blockquote>
-  <p>Note: GCTA 1.92.1b6 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
+  <p>Note: GCTA 1.92.2beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
 </blockquote>
 <hr><h3 id="sourcecodenotoc" class="notoc">Source code </h3>
 <p><a href="./gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
 <p>The source code are released under GPL v3. The source code of the latest version will be released when it is stable.</p>
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
+<h4 id="version1922beta18june2019">Version 1.92.2beta (18 June 2019)</h4>
+<ul>
+<li>Modified mtCOJO to accept LD score files with 4 columns. </li>
+<li>Changed flag --gsmr-beta to --gsmr2-beta.</li>
+<li>Fixed a bug in GWAS simulation.</li>
+<li>Fixed a bug in fastGWA if a p-value is extremely small.</li>
+<li>Improved the performance of fastGWA.</li>
+</ul>
 <h4 id="version1921beta613apr2019">Version 1.92.1beta6 (13 Apr 2019)</h4>
 <ul>
 <li>Fixed a bug in --reml-bivar due to the update of Linux compiler.</li>
@@ -1924,6 +1932,23 @@ rs10000013  A   C   0.775931455 -0.0095 0.0044  0.03084 233886
 The directory of LD score files (the same format as in <a href="https://github.com/bulik/ldsc">LDSC software tool</a>). Note that the LD scores will be used in the LD score regression analysis to estimate the SNP-based heritability for a trait based on summary data, genetic correlation between two traits, and to estimate the degree of overlap between two samples (see <a href="https://www.nature.com/articles/s41467-017-02317-2">Zhu et al. 2018 Nat. Commun.</a>).</p>
 <p><span class="kwd">--w-ld-chr</span> eur_w_ld_chr/<br>
 The directory of LD scores for the regression weights (the same format as in <a href="https://github.com/bulik/ldsc">LDSC software tool</a>).</p>
+<blockquote>
+  <p>Example of the LD score files</p>
+</blockquote>
+<p>LD score files with 4 columns such as those generated by the LDSC software.</p>
+<pre><code class="nohighlight language-nohighlight">CHR SNP            BP          L2
+22    rs9617528   16061016    1.271
+22    rs4911642   16504399    1.805
+22    rs140378    16877135    3.849
+22    rs131560    16877230    3.769
+</code></pre>
+<p>LD score files with 6 columns such as those downloaded from the <a href="https://github.com/bulik/ldsc">LDSC website</a>.</p>
+<pre><code class="nohighlight language-nohighlight">CHR    SNP BP  CM  MAF L2
+22    rs9617528   16061016    0.059575804 0.245382585752  1.26311352717
+22    rs4911642   16504399    2.1274578   0.174142480211  1.79642023571
+22    rs140378    16877135    2.2461841   0.0751978891821 3.82440968754
+22    rs131560    16877230    2.2463345   0.0699208443272 3.7427909096
+</code></pre>
 <p><span class="kwd">--out</span> test_mtcojo_result    </p>
 <blockquote>
   <p>Output file format  </p>
@@ -2182,7 +2207,7 @@ plot_gsmr_effect(gsmr_data, "bmi", "t2d", colors()[75])
 </code></pre>
 <p><img src="./static/gsmr_toy_bmi_t2d.jpg" alt="effect_size_plot"></p>
 <h4 id="optionalflags-1">Optional flags</h4>
-<p><span class="kwd">--gsmr-beta</span> to use the new HEIDI-outlier method.<br>
+<p><span class="kwd">--gsmr2-beta</span> to use the new HEIDI-outlier method.<br>
 Note: We included a new HEIDI-outlier method (as part of <a href="#Download">the GSMR analysis</a>) in GCTA v1.91.7. However, the new HEIDI-outlier method is currently under development and subject to changes during the method development. From GCTA version v1.92.0, we changed the default back to the original HEIDI-outlier method described in Zhu et al. (2018 Nature Communications) and added this temporary flag to test the new method. The new HEIDI-outlier method in GCTA v1.92.0 has been tested by extensive simulations and real data analyses. We will make a formal release in our next GSMR paper.</p>
 <p><em>Quality control</em></p>
 <p><span class="kwd">--diff-freq</span> 0.2<br>
@@ -2196,7 +2221,7 @@ LD <em>r</em><sup>2</sup> threshold for clumping analysis. The default value is 
 <p><span class="kwd">--heidi-thresh</span> 0.01<br>
 The HEIDI-outlier method described in Zhu et al. (<a href="https://www.nature.com/articles/s41467-017-02317-2">2018 Nature Communications</a>)<br>
 To specific a p-value threshold for the HEIDI-outlier analysis to remove horizontal pleiotropic SNPs. The default threshold is 0.01.</p>
-<p><span class="kwd">--heidi-thresh</span> 0.01 0.01 (to be used together with <span class="kwd">--gsmr-beta</span>)<br>
+<p><span class="kwd">--heidi-thresh</span> 0.01 0.01 (to be used together with <span class="kwd">--gsmr2-beta</span>)<br>
 The input parameters are two p-value thresholds used in the new HEIDI-outlier method.<br>
 The new HEIDI-outlier method involves two steps: 1) single-SNP-based HEIDI-outlier analysis, excluding a SNP with the smallest p-value from a single-SNP-based HEIDI-outlier analysis iteratively until the HEIDI-outlier p-values of all the remaining SNPs are not smaller than the specified p-value threshold (the first input parameter); 2) multi-SNP-based HEIDI-outlier, excluding a SNP with the smallest p-value (from a single-SNP-based HEIDI-outlier analysis) iteratively until the p-value from the multi-SNP-based HEIDI-outlier test is not smaller than the specified p-value threshold (the second input parameter). The default value is 0.01 for both.</p>
 <p><span class="kwd">--gsmr-snp-min</span> 10<br>

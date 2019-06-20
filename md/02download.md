@@ -4,15 +4,15 @@
 
 The executable files below only support a 64-bit operating system on the x86\_64 CPU platform. 
 
-Linux [gcta\_1.92.1beta6.zip](./gcta_1.92.1beta6.zip)
+Linux [gcta\_1.92.2beta.zip](./gcta_1.92.2beta.zip)
 
-Windows [gcta\_1.92.1beta5\_win.zip](./gcta_1.92.1beta5_win.zip)
+Windows [gcta\_1.92.2beta\_win.zip](./gcta_1.92.2beta_win.zip)
 
-Mac [gcta\_1.92.1beta5\_mac.zip](./gcta_1.92.1beta5_mac.zip)
+Mac [gcta\_1.92.2beta\_mac.zip](./gcta_1.92.2beta_mac.zip)
  
 The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
 
-> Note: GCTA 1.92.1b6 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
+> Note: GCTA 1.92.2beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
@@ -21,6 +21,13 @@ The executable files are released under the MIT license. We recommend to use the
 The source code are released under GPL v3. The source code of the latest version will be released when it is stable.
 
 ### Update log {: .notoc}
+#### Version 1.92.2beta (18 June 2019)
+* Modified mtCOJO to accept LD score files with 4 columns. 
+* Changed flag --gsmr-beta to --gsmr2-beta.
+* Fixed a bug in GWAS simulation.
+* Fixed a bug in fastGWA if a p-value is extremely small.
+* Improved the performance of fastGWA.
+
 #### Version 1.92.1beta6 (13 Apr 2019)
 * Fixed a bug in --reml-bivar due to the update of Linux compiler.
 
