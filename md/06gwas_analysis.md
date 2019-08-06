@@ -1,7 +1,7 @@
 
 ## GWAS analysis
 
-### fastGWA
+### fastGWA: fast MLM association
 
 **fastGWA: A fast MLM-based Genome-Wide Association tool**
 
@@ -61,7 +61,7 @@ gcta64 --mbfile geno_chrs.txt --grm-sparse sp_grm --fastGWA --pheno phenotype.tx
 #### Citation
 Jiang L, Zheng Z, Qi T, Kemper KE, Wray NR, Visscher PM, Yang J. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. [bioRxiv 598110; doi:10.1101/598110](https://www.biorxiv.org/content/10.1101/598110v1).
 
-### Mixed model association
+### MLM association
 
 **GCTA-MLMA and GCTA-LOCO: mixed linear model based association analysis** 
 
