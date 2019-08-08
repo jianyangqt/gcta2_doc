@@ -2,25 +2,24 @@
 ## Data Resource
 
 ### UK Biobank GWAS results
-We developed a resource-efficient tool (called [fastGWA](#fastGWA)) for mixed model association analysis, and applied it to 3,613 traits on 456,422 array-genotyped as well as 46,191 whole-exome-sequenced individuals of European ancestry in the UK Biobank (UKB).
+We developed a resource-efficient tool (called [fastGWA](#fastGWA:fastMLMassociation)) for mixed model association analysis, and applied it to 2,173 traits on 456,422 array-genotyped as well as 49,960 whole-exome-sequenced individuals of European ancestry in the UK Biobank (UKB). All the summary data can be downloaded using the Linux commands below. One can also query or visualize the summary data using the [online tool](http://fastgwa.info).
 
-* GWAS summary statistics from the imputed data: 456,422 individuals of European ancestry; 12,602,502 variants (MAF > 0.0001); 3,613 traits.
-    * Summary table: [UKB\_impute\_v1.csv](./static/UKB_impute_v1.csv)
-    * Variants information: [IMPUTE\_SNP\_info\_v1.txt.gz](http://data.qld.edu.au/public/Q1031/IMPUTE_SNP_info_v1.txt.gz) 
-    * Summary statistics: [http://data.qld.edu.au/public/Q1031/UKB\_impute\_v1/](http://data.qld.edu.au/public/Q1031/UKB_impute_v1/)
-* GWAS summary statistics from the whole-exome sequence (WES) data: 46,191 individuals of European ancestry; 151,498 variants (MAF > 0.01); 2,090 valid traits.
-    * Summary table: [UKB\_WES\_v1.csv](./static/UKB_WES_v1.csv)
-    * Variants information: [WES\_SNP\_info\_v1.txt.gz](http://data.qld.edu.au/public/Q1031/WES_SNP_info_v1.txt.gz)
-    * Summary statistics: [http://data.qld.edu.au/public/Q1031/UKB\_WES\_v1/](http://data.qld.edu.au/public/Q1031/UKB_WES_v1/)
-
-Note:   
-1) The names of the variants were kept the same as provided (the coordinates of the variants in the imputed data were based on GRCh37 and those in the WES data were based on GRCh38).  
-2) You can download all the summary data files by the following Linux commands.
+* GWAS summary statistics from the imputed data: 456,422 individuals of European ancestry; 8,531,416 variants (MAF > 0.01 and missingness rate < 0.1); 2,173 traits.
+    * Summary table: [UKB\_impute\_v1.1.csv](./static/UKB_impute_v1.1.csv)
+    * Online tool: [http://fastgwa.info](http://fastgwa.info) 
+    * Linux command to download all the summary statistics:
 ```bash
-wget http://data.qld.edu.au/public/Q1031/UKB_impute_v1.list && wget -i UKB_impute_v1.list
-wget http://data.qld.edu.au/public/Q1031/UKB_WES_v1.list && wget -i UKB_WES_v1.list
+wget http://fastgwa.info/UKB_impute_v1.1.list && wget -i UKB_impute_v1.1.list
+```
+* GWAS summary statistics from the whole-exome sequence (WES) data: 46,191 individuals of European ancestry; 152,327 variants (MAF > 0.01 and missingness rate < 0.1); 2,048 valid traits.
+    * Summary table: [UKB\_WES\_v1.1.csv](./static/UKB_WES_v1.1.csv)
+    * Online tool: [http://fastgwa.info/ukbwes](Online tool: http://fastgwa.info/ukbwes/) 
+    * Linux command to download all the summary statistics:
+```bash
+wget http://fastgwa.info/UKB_WES_v1.1.list && wget -i UKB_WES_v1.1.list
 ```
 
+#### Data format
 Columns in the summary table:
 ```nohighlight
 ID: the trait ID
@@ -33,26 +32,29 @@ Gener_specific:  is it a gender-specific trait?
 URL:  the link to download the summary statistics.
 ```
 
-Variants information:
-```nohighlight
+Association results:
+```nohightlight
 CHR:  chromosome
 SNP:  SNP ID
 POS:  SNP position
 A1:   effect allele
 A2:   the other allele
-```
-
-Association results:
-```nohightlight
-SNP:  SNP ID
 N:    per allele sample size
 AF1:  the allele frequency of A1
-beta: SNP effect
-se:   standard error
-p:    p value
+BETA: SNP effect
+SE:   standard error
+P:    p value
 ```
 
+Note: the names of the variants were kept the same as provided (the coordinates of the variants were based on GRCh37).
+
+#### Credits and Acknowledgements
+Zhili Zheng (online tool development and data analysis), Longda Jiang (data analysis), Jian Yang (overseeing). The online tool was developed based on the source code modified from Pheweb. We thank Alibaba Cloud - Australia and New Zealand for hosting the online tool.
+
+#### Questions and Help Requests
+If you have any question, please send an email to Jian Yang [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au)
+
 #### Citation
-Jiang L, Zheng Z, Qi T, Kemper KE, Wray NR, Visscher PM, Yang J. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. [bioRxiv 598110; doi:10.1101/598110](https://www.biorxiv.org/content/10.1101/598110v1).
+Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. [bioRxiv 598110; doi:10.1101/598110](https://www.biorxiv.org/content/10.1101/598110v1).
 
 
