@@ -1,7 +1,7 @@
 
 ## GWAS analysis
 
-### fastGWA: fast MLM association
+### fastGWA
 
 **fastGWA: A fast MLM-based Genome-Wide Association tool**
 
@@ -82,7 +82,7 @@ gcta64 --mbfile geno_chrs.txt --grm-sparse sp_grm --fastGWA-lmm --pheno phenotyp
 gcta64 --mbfile geno_chrs.txt --fastGWA-lr --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --threads 10 --out geno_assoc
 ```
 
-### MLM association
+### MLMA
 
 **GCTA-MLMA and GCTA-LOCO: mixed linear model based association analysis** 
 

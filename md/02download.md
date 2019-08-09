@@ -22,7 +22,7 @@ The source code are released under GPL v2. The source code of the latest version
 
 ### Update log {: .notoc}
 #### Version 1.92.3beta (9 Aug 2019)
-* Updated the [fastGWA](#fastGWA:fastMLMassociation) module with fastGWA-REML as the default method for variance component estimation and the GRAMMAR-GAMMA approximation as the default method to compute test-statistics. The updated version is ~10 times faster than the previous version.
+* Updated the [fastGWA](#fastGWA) module with fastGWA-REML as the default method for variance component estimation and the GRAMMAR-GAMMA approximation as the default method to compute test-statistics. The updated version is ~10 times faster than the previous version.
 * Improved the speed of --make-grm and --make-grm-part by ~3-fold.
 
 #### Version 1.92.2beta (18 June 2019)
@@ -37,7 +37,7 @@ The source code are released under GPL v2. The source code of the latest version
 
 #### Version 1.92.1beta5 (1 Apr 2019)
 * Added a flag '[--reml-res-diag](#GREMLanalysis)' to specify the diagonal elements of the residual correlation matrix in REML.
-* Added a new module [fastGWA](#fastGWA:fastMLMassociation) (an extremely resource-efficient tool for mixed linear model association analysis of biobank-scale GWAS data).
+* Added a new module [fastGWA](#fastGWA) (an extremely resource-efficient tool for mixed linear model association analysis of biobank-scale GWAS data).
 
 #### Version 1.92.0beta3 (1 Feb 2019)
 * Fixed a bug in COJO for some circumstances where the standard errors of SNP effects are extremely small.

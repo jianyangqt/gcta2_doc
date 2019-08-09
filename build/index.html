@@ -122,7 +122,7 @@ Jiang et al. (2019) A resource-efficient tool for mixed model association analys
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
 <h4 id="version1923beta9aug2019">Version 1.92.3beta (9 Aug 2019)</h4>
 <ul>
-<li>Updated the <a href="#fastGWA:fastMLMassociation">fastGWA</a> module with fastGWA-REML as the default method for variance component estimation and the GRAMMAR-GAMMA approximation as the default method to compute test-statistics. The updated version is ~10 times faster than the previous version.</li>
+<li>Updated the <a href="#fastGWA">fastGWA</a> module with fastGWA-REML as the default method for variance component estimation and the GRAMMAR-GAMMA approximation as the default method to compute test-statistics. The updated version is ~10 times faster than the previous version.</li>
 <li>Improved the speed of --make-grm and --make-grm-part by ~3-fold.</li>
 </ul>
 <h4 id="version1922beta18june2019">Version 1.92.2beta (18 June 2019)</h4>
@@ -140,7 +140,7 @@ Jiang et al. (2019) A resource-efficient tool for mixed model association analys
 <h4 id="version1921beta51apr2019">Version 1.92.1beta5 (1 Apr 2019)</h4>
 <ul>
 <li>Added a flag '<a href="#GREMLanalysis">--reml-res-diag</a>' to specify the diagonal elements of the residual correlation matrix in REML.</li>
-<li>Added a new module <a href="#fastGWA:fastMLMassociation">fastGWA</a> (an extremely resource-efficient tool for mixed linear model association analysis of biobank-scale GWAS data).</li>
+<li>Added a new module <a href="#fastGWA">fastGWA</a> (an extremely resource-efficient tool for mixed linear model association analysis of biobank-scale GWAS data).</li>
 </ul>
 <h4 id="version1920beta31feb2019">Version 1.92.0beta3 (1 Feb 2019)</h4>
 <ul>
@@ -1681,7 +1681,7 @@ N_tr2               56342
 <h4 id="citation">Citation</h4>
 <p>Yang J, Zeng J, Goddard ME, Wray NR, Visscher PM  (2017) Concepts, estimation and interpretation of SNP-based heritability. Nature Genetics, 49: 1304-1310.</p>
 <h2 id="gwasanalysis">GWAS analysis</h2>
-<hr><h3 id="fastgwafastmlmassociation">fastGWA: fast MLM association</h3>
+<hr><h3 id="fastgwa">fastGWA</h3>
 <p><strong>fastGWA: A fast MLM-based Genome-Wide Association tool</strong></p>
 <p>fastGWA is a resource-efficient tool for mixed linear model (MLM)-based GWAS analysis of biobank-scale data such as the UK Biobank (see Jiang et al. <a href="https://www.biorxiv.org/content/10.1101/598110v1">2019 bioRxiv</a> for details of the method). Credits: <a href="mailto:longda.jiang@uq.edu.au">Longda Jiang</a> (method, simulation and analysis), <a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> (method, software and analysis) and <a href="http://researchers.uq.edu.au/researcher/2713">Jian Yang</a> (method and overseeing).</p>
 <p>We have applied fastGWA to 2,173 traits on 456,422 array-genotyped and imputed individuals and 2,048 traits on 49,960 whole-exome-sequenced (WES) individuals in the UK Biobank. All the summary statistics are available at <strong><a href="#DataResource">UKBiobankGWASresults</a></strong>. One can also query or visualize the summary data using the online tool: <a href="http://fastgwa.info">http://fastgwa.info</a>.</p>
@@ -1747,7 +1747,7 @@ gcta64 --mbfile geno_chrs.txt --grm-sparse sp_grm --fastGWA-lmm --pheno phenotyp
 # fastGWA linear regression
 gcta64 --mbfile geno_chrs.txt --fastGWA-lr --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --threads 10 --out geno_assoc
 </code></pre>
-<hr><h3 id="mlmassociation">MLM association</h3>
+<hr><h3 id="mlma">MLMA</h3>
 <p><strong>GCTA-MLMA and GCTA-LOCO: mixed linear model based association analysis</strong> </p>
 <p>The following options are designed to perform an MLM based association analysis. Previous data management options such as <span class="kwd">--keep</span>, <span class="kwd">--extract</span> and <span class="kwd">--maf</span>, REML analysis options such as <span class="kwd">--reml-priors</span>, <span class="kwd">--reml-maxit</span> and <span class="kwd">--reml-no-constrain</span> and multi-threading option <span class="kwd">--thread-num</span> are still valid for this analysis.</p>
 <p><span class="kwd">--mlma</span><br>
@@ -2474,7 +2474,7 @@ gcta64 --bfile TAR --project-loading REF_snp_loading 20 --out TAR_pca20
 <p>Jiang L, Zheng Z, Qi T, Kemper KE, Wray NR, Visscher PM, Yang J. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. <a href="https://www.biorxiv.org/content/10.1101/598110v1">bioRxiv 598110; doi:10.1101/598110</a>.</p>
 <h2 id="dataresource">Data Resource</h2>
 <hr><h3 id="ukbiobankgwasresults">UK Biobank GWAS results</h3>
-<p>We developed a resource-efficient tool (called <a href="#fastGWA:fastMLMassociation">fastGWA</a>) for mixed model association analysis, and applied it to 2,173 traits on 456,422 array-genotyped as well as 49,960 whole-exome-sequenced individuals of European ancestry in the UK Biobank (UKB). All the summary data can be downloaded using the Linux commands below. One can also query or visualize the summary data using the <a href="http://fastgwa.info">online tool</a>.</p>
+<p>We developed a resource-efficient tool (called <a href="#fastGWA">fastGWA</a>) for mixed model association analysis, and applied it to 2,173 traits on 456,422 array-genotyped as well as 49,960 whole-exome-sequenced individuals of European ancestry in the UK Biobank (UKB). All the summary data can be downloaded using the Linux commands below. One can also query or visualize the summary data using the <a href="http://fastgwa.info">online tool</a>.</p>
 <ul>
 <li>GWAS summary statistics from the imputed data: 456,422 individuals of European ancestry; 8,531,416 variants (MAF &gt; 0.01 and missingness rate &lt; 0.1); 2,173 traits.<ul>
 <li>Summary table: <a href="./static/UKB_impute_v1.1.csv">UKB_impute_v1.1.csv</a></li>
@@ -2486,7 +2486,7 @@ gcta64 --bfile TAR --project-loading REF_snp_loading 20 --out TAR_pca20
 <ul>
 <li>GWAS summary statistics from the whole-exome sequence (WES) data: 46,191 individuals of European ancestry; 152,327 variants (MAF &gt; 0.01 and missingness rate &lt; 0.1); 2,048 valid traits.<ul>
 <li>Summary table: <a href="./static/UKB_WES_v1.1.csv">UKB_WES_v1.1.csv</a></li>
-<li>Online tool: [http://fastgwa.info/ukbwes](Online tool: http://fastgwa.info/ukbwes/) </li>
+<li>Online tool: <a href="http://fastgwa.info/ukbwes/">http://fastgwa.info/ukbwes</a> </li>
 <li>Linux command to download all the summary statistics:</li></ul></li>
 </ul>
 <pre><code class="bash language-bash">wget http://cnsgenomics.com/software/gcta/static/UKB_WES_v1.1.list &amp;&amp; wget -i UKB_WES_v1.1.list
