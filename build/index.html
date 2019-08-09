@@ -69,7 +69,7 @@
 <li>Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits;</li>
 <li>fastGWA: an extremely source-efficient (mixed) linear model association tool.</li>
 </ul>
-<p><strong>Latest release <a href="#Download">v1.92.2beta</a>, click to download or view update log (18 June 2019)</strong></p>
+<p><strong>Latest release <a href="#Download">v1.92.3beta</a>, click to download or view update log (9 Aug 2019)</strong></p>
 <hr><h3 id="credits">Credits</h3>
 <p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with supports from <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:hong.lee@uq.edu.au">Hong Lee</a>. </p>
 <p><a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> programmed the fastGWA module, rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, improved the SBLUP module, developed the website, and is currently maintaining the software.</p>
@@ -105,21 +105,26 @@ Bakshi et al. (2016) Fast set-based association analysis using summary data from
 Zhu et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. Nat Commun. 9, 224.[<a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=29335400">PMID: 29335400</a>]  </p>
 <p><strong>fastGWA method:</strong><br>
 Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. bioRxiv 598110; doi:10.1101/598110.</p>
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 1 August 2019</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 9 August 2019</p>
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>The executable files below only support a 64-bit operating system on the x86_64 CPU platform. </p>
-<p>Linux <a href="./gcta_1.92.2beta.zip">gcta_1.92.2beta.zip</a></p>
-<p>Windows <a href="./gcta_1.92.2beta_win.zip">gcta_1.92.2beta_win.zip</a></p>
-<p>Mac <a href="./gcta_1.92.2beta_mac.zip">gcta_1.92.2beta_mac.zip</a></p>
+<p>Linux <a href="./gcta_1.92.3beta.zip">gcta_1.92.3beta.zip</a></p>
+<p>Windows <a href="./gcta_1.92.3beta_win.zip">gcta_1.92.3beta_win.zip</a></p>
+<p>Mac <a href="./gcta_1.92.3beta_mac.zip">gcta_1.92.3beta_mac.zip</a></p>
 <p>The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.</p>
 <blockquote>
-  <p>Note: GCTA 1.92.2beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
+  <p>Note: GCTA 1.92.3beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
 </blockquote>
 <hr><h3 id="sourcecodenotoc" class="notoc">Source code </h3>
 <p><a href="./gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
-<p>The source code are released under GPL v3. The source code of the latest version will be released when it is stable.</p>
+<p>The source code are released under GPL v2. The source code of the latest version will be released when it is stable.</p>
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
+<h4 id="version1923beta9aug2019">Version 1.92.3beta (9 Aug 2019)</h4>
+<ul>
+<li>Updated the <a href="#fastGWA:fastMLMassociation">fastGWA</a> module with fastGWA-REML as the default method for variance component estimation and the GRAMMAR-GAMMA approximation as the default method to compute test-statistics. The updated version is ~10 times faster than the previous version.</li>
+<li>Improved the speed of --make-grm and --make-grm-part by ~3-fold.</li>
+</ul>
 <h4 id="version1922beta18june2019">Version 1.92.2beta (18 June 2019)</h4>
 <ul>
 <li>Modified mtCOJO to accept LD score files with 4 columns. </li>
@@ -135,7 +140,7 @@ Jiang et al. (2019) A resource-efficient tool for mixed model association analys
 <h4 id="version1921beta51apr2019">Version 1.92.1beta5 (1 Apr 2019)</h4>
 <ul>
 <li>Added a flag '<a href="#GREMLanalysis">--reml-res-diag</a>' to specify the diagonal elements of the residual correlation matrix in REML.</li>
-<li>Added a new module <a href="#fastGWA">fastGWA</a> (an extremely resource-efficient tool for mixed linear model association analysis of biobank-scale GWAS data).</li>
+<li>Added a new module <a href="#fastGWA:fastMLMassociation">fastGWA</a> (an extremely resource-efficient tool for mixed linear model association analysis of biobank-scale GWAS data).</li>
 </ul>
 <h4 id="version1920beta31feb2019">Version 1.92.0beta3 (1 Feb 2019)</h4>
 <ul>
@@ -1681,7 +1686,7 @@ N_tr2               56342
 <p>fastGWA is a resource-efficient tool for mixed linear model (MLM)-based GWAS analysis of biobank-scale data such as the UK Biobank (see Jiang et al. <a href="https://www.biorxiv.org/content/10.1101/598110v1">2019 bioRxiv</a> for details of the method). Credits: <a href="mailto:longda.jiang@uq.edu.au">Longda Jiang</a> (method, simulation and analysis), <a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> (method, software and analysis) and <a href="http://researchers.uq.edu.au/researcher/2713">Jian Yang</a> (method and overseeing).</p>
 <p>We have applied fastGWA to 2,173 traits on 456,422 array-genotyped and imputed individuals and 2,048 traits on 49,960 whole-exome-sequenced (WES) individuals in the UK Biobank. All the summary statistics are available at <strong><a href="#DataResource">UKBiobankGWASresults</a></strong>. One can also query or visualize the summary data using the online tool: <a href="http://fastgwa.info">http://fastgwa.info</a>.</p>
 <h4 id="citation-1">Citation</h4>
-<p>Jiang L et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. <a href="https://www.biorxiv.org/content/10.1101/598110v1">bioRxiv 598110; doi:10.1101/598110</a>.</p>
+<p>Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. <a href="https://www.biorxiv.org/content/10.1101/598110v1">bioRxiv 598110; doi:10.1101/598110</a>.</p>
 <p><span class="kwd">--make-bK-sparse</span> 0.05<br>
 To generate a sparse genetic relationship matrix (GRM) from a full-dense GRM at a cutoff value of 0.05. Note:1) The full-dense GRM can be generated by the <span class="kwd">--make-grm</span> or <span class="kwd">--make-grm-part</span> option (see the <a href="#MakingaGRM">GRM page</a>); 2) We also have an <a href="./static/pedFAM.R">R-script</a> to generate a family relatedness matrix (FAM, the sparse GRM constructed from expected relatedness coefficients between related individuals), without the need of calculating a full-dense GRM. It only requires the input of a <a href="https://www.cog-genomics.org/plink/1.9/formats#fam">PLINK .fam file</a> and a table that describes the pedigree information of the cohort.</p>
 <pre><code class="bash language-bash">gcta64 --grm test_grm --make-bK-sparse 0.05 --out test_sp_grm
@@ -2476,7 +2481,7 @@ gcta64 --bfile TAR --project-loading REF_snp_loading 20 --out TAR_pca20
 <li>Online tool: <a href="http://fastgwa.info">http://fastgwa.info</a> </li>
 <li>Linux command to download all the summary statistics:</li></ul></li>
 </ul>
-<pre><code class="bash language-bash">wget http://fastgwa.info/UKB_impute_v1.1.list &amp;&amp; wget -i UKB_impute_v1.1.list
+<pre><code class="bash language-bash">wget http://cnsgenomics.com/software/gcta/static/UKB_impute_v1.1.list &amp;&amp; wget -i UKB_impute_v1.1.list
 </code></pre>
 <ul>
 <li>GWAS summary statistics from the whole-exome sequence (WES) data: 46,191 individuals of European ancestry; 152,327 variants (MAF &gt; 0.01 and missingness rate &lt; 0.1); 2,048 valid traits.<ul>
@@ -2484,7 +2489,7 @@ gcta64 --bfile TAR --project-loading REF_snp_loading 20 --out TAR_pca20
 <li>Online tool: [http://fastgwa.info/ukbwes](Online tool: http://fastgwa.info/ukbwes/) </li>
 <li>Linux command to download all the summary statistics:</li></ul></li>
 </ul>
-<pre><code class="bash language-bash">wget http://fastgwa.info/UKB_WES_v1.1.list &amp;&amp; wget -i UKB_WES_v1.1.list
+<pre><code class="bash language-bash">wget http://cnsgenomics.com/software/gcta/static/UKB_WES_v1.1.list &amp;&amp; wget -i UKB_WES_v1.1.list
 </code></pre>
 <h4 id="dataformat">Data format</h4>
 <p>Columns in the summary table:</p>
@@ -2493,8 +2498,8 @@ Description: trait description
 Data_type:  the type of phenotype (Continuous: quantitative traits; Ordered_Categorical: ordered categorical traits; Binary: binary trait)
 Method: LR - Linear Regression; MLM - Mixed Linear Model. Note that fastGWA will switch to use LR for analysis if the estimated genetic variance from an MLM is not significant (p &gt; 0.05) .
 N:  sample size
-N_Case (N_control): number of affected (unaffected) individuals for binary trait.
-Gener_specific:  is it a gender-specific trait?
+Ncase: number of affected (unaffected) individuals for binary trait.
+Gender_specific:  is it a gender-specific trait?
 URL:  the link to download the summary statistics.
 </code></pre>
 <p>Association results:</p>

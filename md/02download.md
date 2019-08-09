@@ -4,23 +4,27 @@
 
 The executable files below only support a 64-bit operating system on the x86\_64 CPU platform. 
 
-Linux [gcta\_1.92.2beta.zip](./gcta_1.92.2beta.zip)
+Linux [gcta\_1.92.3beta.zip](./gcta_1.92.3beta.zip)
 
-Windows [gcta\_1.92.2beta\_win.zip](./gcta_1.92.2beta_win.zip)
+Windows [gcta\_1.92.3beta\_win.zip](./gcta_1.92.3beta_win.zip)
 
-Mac [gcta\_1.92.2beta\_mac.zip](./gcta_1.92.2beta_mac.zip)
+Mac [gcta\_1.92.3beta\_mac.zip](./gcta_1.92.3beta_mac.zip)
  
 The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
 
-> Note: GCTA 1.92.2beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
+> Note: GCTA 1.92.3beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
 [gcta\_1.26.0\_src.zip](./gcta_1.26.0_src.zip)
 
-The source code are released under GPL v3. The source code of the latest version will be released when it is stable.
+The source code are released under GPL v2. The source code of the latest version will be released when it is stable.
 
 ### Update log {: .notoc}
+#### Version 1.92.3beta (9 Aug 2019)
+* Updated the [fastGWA](#fastGWA:fastMLMassociation) module with fastGWA-REML as the default method for variance component estimation and the GRAMMAR-GAMMA approximation as the default method to compute test-statistics. The updated version is ~10 times faster than the previous version.
+* Improved the speed of --make-grm and --make-grm-part by ~3-fold.
+
 #### Version 1.92.2beta (18 June 2019)
 * Modified mtCOJO to accept LD score files with 4 columns. 
 * Changed flag --gsmr-beta to --gsmr2-beta.
@@ -33,7 +37,7 @@ The source code are released under GPL v3. The source code of the latest version
 
 #### Version 1.92.1beta5 (1 Apr 2019)
 * Added a flag '[--reml-res-diag](#GREMLanalysis)' to specify the diagonal elements of the residual correlation matrix in REML.
-* Added a new module [fastGWA](#fastGWA) (an extremely resource-efficient tool for mixed linear model association analysis of biobank-scale GWAS data).
+* Added a new module [fastGWA](#fastGWA:fastMLMassociation) (an extremely resource-efficient tool for mixed linear model association analysis of biobank-scale GWAS data).
 
 #### Version 1.92.0beta3 (1 Feb 2019)
 * Fixed a bug in COJO for some circumstances where the standard errors of SNP effects are extremely small.

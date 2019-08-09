@@ -9,14 +9,14 @@ We developed a resource-efficient tool (called [fastGWA](#fastGWA:fastMLMassocia
     * Online tool: [http://fastgwa.info](http://fastgwa.info) 
     * Linux command to download all the summary statistics:
 ```bash
-wget http://fastgwa.info/UKB_impute_v1.1.list && wget -i UKB_impute_v1.1.list
+wget http://cnsgenomics.com/software/gcta/static/UKB_impute_v1.1.list && wget -i UKB_impute_v1.1.list
 ```
 * GWAS summary statistics from the whole-exome sequence (WES) data: 46,191 individuals of European ancestry; 152,327 variants (MAF > 0.01 and missingness rate < 0.1); 2,048 valid traits.
     * Summary table: [UKB\_WES\_v1.1.csv](./static/UKB_WES_v1.1.csv)
     * Online tool: [http://fastgwa.info/ukbwes](Online tool: http://fastgwa.info/ukbwes/) 
     * Linux command to download all the summary statistics:
 ```bash
-wget http://fastgwa.info/UKB_WES_v1.1.list && wget -i UKB_WES_v1.1.list
+wget http://cnsgenomics.com/software/gcta/static/UKB_WES_v1.1.list && wget -i UKB_WES_v1.1.list
 ```
 
 #### Data format
@@ -27,8 +27,8 @@ Description: trait description
 Data_type:  the type of phenotype (Continuous: quantitative traits; Ordered_Categorical: ordered categorical traits; Binary: binary trait)
 Method: LR - Linear Regression; MLM - Mixed Linear Model. Note that fastGWA will switch to use LR for analysis if the estimated genetic variance from an MLM is not significant (p > 0.05) .
 N:  sample size
-N_Case (N_control): number of affected (unaffected) individuals for binary trait.
-Gener_specific:  is it a gender-specific trait?
+Ncase: number of affected (unaffected) individuals for binary trait.
+Gender_specific:  is it a gender-specific trait?
 URL:  the link to download the summary statistics.
 ```
 
@@ -56,5 +56,4 @@ If you have any question, please send an email to Jian Yang [jian.yang@uq.edu.au
 
 #### Citation
 Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. [bioRxiv 598110; doi:10.1101/598110](https://www.biorxiv.org/content/10.1101/598110v1).
-
 
