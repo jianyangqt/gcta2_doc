@@ -64,7 +64,7 @@ Columns are exposure, outcome, GSMR estimates of *b*<sub>xy</sub>, standard erro
 
 #### Visualization
 --effect-plot
-This flag will save the information required to generate a plot of SNP effects as in Figure 3d of Zhu et al. ([2018 Nature Communications](https://www.nature.com/articles/s41467-017-02317-2); also see the figure below) in a compressed text file (\*.eff\_plot.gz). We provide an R script ([gsmr\_plot.r](./static/gsmr_plot.r)) to generate the effect size plot based on the \*.eff\_plot.gz file (see the example below).
+This flag will save the information required to generate a plot of SNP effects as in Figure 3d of Zhu et al. ([2018 Nature Communications](https://www.nature.com/articles/s41467-017-02317-2); also see the figure below) in a compressed text file (\*.eff\_plot.gz). We provide an R script ([gsmr\_plot.r](./res/gsmr_plot.r)) to generate the effect size plot based on the \*.eff\_plot.gz file (see the example below).
 
 > Example
 
@@ -75,7 +75,7 @@ gsmr_summary(gsmr_data)      # show a summary of the data
 plot_gsmr_effect(gsmr_data, "bmi", "t2d", colors()[75])           
 ```
 
-![effect_size_plot](./static/gsmr_toy_bmi_t2d.jpg)
+![effect_size_plot](./res/gsmr_toy_bmi_t2d.jpg)
 
 #### Optional flags  
 --gsmr2-beta to use the new HEIDI-outlier method.   

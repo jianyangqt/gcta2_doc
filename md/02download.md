@@ -4,23 +4,26 @@
 
 The executable files below only support a 64-bit operating system on the x86\_64 CPU platform. 
 
-Linux [gcta\_1.92.3beta.zip](./gcta_1.92.3beta.zip)
+Linux [gcta\_1.92.3beta2.zip](./bin/gcta_1.92.3beta2.zip)
 
-Windows [gcta\_1.92.3beta\_win.zip](./gcta_1.92.3beta_win.zip)
+Windows [gcta\_1.92.3beta2\_win.zip](./bin/gcta_1.92.3beta2_win.zip)
 
-Mac [gcta\_1.92.3beta\_mac.zip](./gcta_1.92.3beta_mac.zip)
+Mac [gcta\_1.92.3beta2\_mac.zip](./bin/gcta_1.92.3beta2_mac.zip)
  
 The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
 
-> Note: GCTA 1.92.3beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
+> Note: GCTA 1.92.3beta2 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
-[gcta\_1.26.0\_src.zip](./gcta_1.26.0_src.zip)
+[gcta\_1.26.0\_src.zip](./pre_gcta/gcta_1.26.0_src.zip)
 
 The source code are released under GPL v2. The source code of the latest version will be released when it is stable.
 
 ### Update log {: .notoc}
+#### Version 1.92.3beta2 (12 Aug 2019)
+* Fixed a bug in --maf. The bug only occurred in rare scenarios with specific numbers of variants.
+
 #### Version 1.92.3beta (9 Aug 2019)
 * Updated the [fastGWA](#fastGWA) module with fastGWA-REML as the default method for variance component estimation and the GRAMMAR-GAMMA approximation as the default method to compute test-statistics. The updated version is ~10 times faster than the previous version.
 * Improved the speed of --make-grm and --make-grm-part by ~3-fold.
@@ -140,19 +143,19 @@ The source code are released under GPL v2. The source code of the latest version
 * Fixed the memory issue when the sample size exceeds 500K in some functions (e.g. bivariate GREML and reading the GRM in gz format).
 
 #### Version 1.26.0 (22 June 2016)
-Download link: [gcta_1.26.0.zip](./gcta_1.26.0.zip)
+Download link: [gcta_1.26.0.zip](./pre_gcta/gcta_1.26.0.zip)
 
 * Fixed a bug in MLMA.
 * Added a new module (GCTA-fastBAT) for a set- or gene-based association analysis using GWAS summary data.
 
 #### Version 1.25.3 (27 April 2016)
 
-Download link: [gcta_1.25.3.zip](./gcta_1.25.3.zip)
+Download link: [gcta_1.25.3.zip](./pre_gcta/gcta_1.25.3.zip)
 
 * Fixed a memory leaking issue in --mlma
 
 #### Version 1.25.2 (22 Dec 2015)
-Download link: [gcta_1.25.2.zip](./gcta_1.25.2.zip)
+Download link: [gcta_1.25.2.zip](./pre_gcta/gcta_1.25.2.zip)
 
 * A much more memory-efficient version of MLMA.
 * Added a new option (--mlma-subtract-grm) for MLMA-LOCO with large data sets.
@@ -161,12 +164,12 @@ Download link: [gcta_1.25.2.zip](./gcta_1.25.2.zip)
 * Added a new option (--recode-std) to output standardised SNP genotypes.
 
 #### Version 1.25.1 (8 Dec 2015)
-Download link: [gcta_1.25.1.zip](./gcta_1.25.1.zip)
+Download link: [gcta_1.25.1.zip](./pre_gcta/gcta_1.25.1.zip)
 
 * Added an option <a href="#EstimatevarianceexplainedbyalltheSNPs" target="_blank">--reml-bendV</a>
 
 #### Version 1.25.0 (30 Oct 2015)
-Download link: [gcta_1.25.0.zip](./gcta_1.25.0.zip)
+Download link: [gcta_1.25.0.zip](./pre_gcta/gcta_1.25.0.zip)
 
 * Fixed a bug in --imp-rsq
 * Added an option to calculate an unbiased estimate of LD score for LDSC regression analysis (see gcta.freeforums.net/thread/177/gcta-lds-calculating-score-snp); Added an option to calculate multi-component LD score following Finucane et al. (2015 Nat Genet).
@@ -176,7 +179,7 @@ Download link: [gcta_1.25.0.zip](./gcta_1.25.0.zip)
 * We have implemented the Zaitlen et al. method in GCTA which allows to estimate SNP-based h2 in family data without having to remove related individuals.
 
 #### Version 1.24.7 (11 June 2015)
-Download link: [gcta_1.24.7.zip](./gcta_1.24.7.zip)
+Download link: [gcta_1.24.7.zip](./pre_gcta/gcta_1.24.7.zip)
 
 * Mixed linear model association (MLMA) analysis with multiple GRMs
 * Fst calculation

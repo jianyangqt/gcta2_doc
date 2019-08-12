@@ -69,7 +69,7 @@
 <li>Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits;</li>
 <li>fastGWA: an extremely source-efficient (mixed) linear model association tool.</li>
 </ul>
-<p><strong>Latest release <a href="#Download">v1.92.3beta</a>, click to download or view update log (9 Aug 2019)</strong></p>
+<p><strong>Latest release <a href="#Download">v1.92.3beta2</a>, click to download or view update log (12 Aug 2019)</strong></p>
 <hr><h3 id="credits">Credits</h3>
 <p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with supports from <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:hong.lee@uq.edu.au">Hong Lee</a>. </p>
 <p><a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> programmed the fastGWA module, rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, improved the SBLUP module, developed the website, and is currently maintaining the software.</p>
@@ -105,21 +105,25 @@ Bakshi et al. (2016) Fast set-based association analysis using summary data from
 Zhu et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. Nat Commun. 9, 224.[<a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=29335400">PMID: 29335400</a>]  </p>
 <p><strong>fastGWA method:</strong><br>
 Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. bioRxiv 598110; doi:10.1101/598110.</p>
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 9 August 2019</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 12 August 2019</p>
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>The executable files below only support a 64-bit operating system on the x86_64 CPU platform. </p>
-<p>Linux <a href="./gcta_1.92.3beta.zip">gcta_1.92.3beta.zip</a></p>
-<p>Windows <a href="./gcta_1.92.3beta_win.zip">gcta_1.92.3beta_win.zip</a></p>
-<p>Mac <a href="./gcta_1.92.3beta_mac.zip">gcta_1.92.3beta_mac.zip</a></p>
+<p>Linux <a href="./bin/gcta_1.92.3beta2.zip">gcta_1.92.3beta2.zip</a></p>
+<p>Windows <a href="./bin/gcta_1.92.3beta2_win.zip">gcta_1.92.3beta2_win.zip</a></p>
+<p>Mac <a href="./bin/gcta_1.92.3beta2_mac.zip">gcta_1.92.3beta2_mac.zip</a></p>
 <p>The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.</p>
 <blockquote>
-  <p>Note: GCTA 1.92.3beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
+  <p>Note: GCTA 1.92.3beta2 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
 </blockquote>
 <hr><h3 id="sourcecodenotoc" class="notoc">Source code </h3>
-<p><a href="./gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
+<p><a href="./pre_gcta/gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
 <p>The source code are released under GPL v2. The source code of the latest version will be released when it is stable.</p>
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
+<h4 id="version1923beta212aug2019">Version 1.92.3beta2 (12 Aug 2019)</h4>
+<ul>
+<li>Fixed a bug in --maf. The bug only occurred in rare scenarios with specific numbers of variants.</li>
+</ul>
 <h4 id="version1923beta9aug2019">Version 1.92.3beta (9 Aug 2019)</h4>
 <ul>
 <li>Updated the <a href="#fastGWA">fastGWA</a> module with fastGWA-REML as the default method for variance component estimation and the GRAMMAR-GAMMA approximation as the default method to compute test-statistics. The updated version is ~10 times faster than the previous version.</li>
@@ -256,18 +260,18 @@ Jiang et al. (2019) A resource-efficient tool for mixed model association analys
 <li>Fixed the memory issue when the sample size exceeds 500K in some functions (e.g. bivariate GREML and reading the GRM in gz format).</li>
 </ul>
 <h4 id="version126022june2016">Version 1.26.0 (22 June 2016)</h4>
-<p>Download link: <a href="./gcta_1.26.0.zip">gcta_1.26.0.zip</a></p>
+<p>Download link: <a href="./pre_gcta/gcta_1.26.0.zip">gcta_1.26.0.zip</a></p>
 <ul>
 <li>Fixed a bug in MLMA.</li>
 <li>Added a new module (GCTA-fastBAT) for a set- or gene-based association analysis using GWAS summary data.</li>
 </ul>
 <h4 id="version125327april2016">Version 1.25.3 (27 April 2016)</h4>
-<p>Download link: <a href="./gcta_1.25.3.zip">gcta_1.25.3.zip</a></p>
+<p>Download link: <a href="./pre_gcta/gcta_1.25.3.zip">gcta_1.25.3.zip</a></p>
 <ul>
 <li>Fixed a memory leaking issue in --mlma</li>
 </ul>
 <h4 id="version125222dec2015">Version 1.25.2 (22 Dec 2015)</h4>
-<p>Download link: <a href="./gcta_1.25.2.zip">gcta_1.25.2.zip</a></p>
+<p>Download link: <a href="./pre_gcta/gcta_1.25.2.zip">gcta_1.25.2.zip</a></p>
 <ul>
 <li>A much more memory-efficient version of MLMA.</li>
 <li>Added a new option (--mlma-subtract-grm) for MLMA-LOCO with large data sets.</li>
@@ -276,12 +280,12 @@ Jiang et al. (2019) A resource-efficient tool for mixed model association analys
 <li>Added a new option (--recode-std) to output standardised SNP genotypes.</li>
 </ul>
 <h4 id="version12518dec2015">Version 1.25.1 (8 Dec 2015)</h4>
-<p>Download link: <a href="./gcta_1.25.1.zip">gcta_1.25.1.zip</a></p>
+<p>Download link: <a href="./pre_gcta/gcta_1.25.1.zip">gcta_1.25.1.zip</a></p>
 <ul>
 <li>Added an option <a href="#EstimatevarianceexplainedbyalltheSNPs" target="_blank">--reml-bendV</a></li>
 </ul>
 <h4 id="version125030oct2015">Version 1.25.0 (30 Oct 2015)</h4>
-<p>Download link: <a href="./gcta_1.25.0.zip">gcta_1.25.0.zip</a></p>
+<p>Download link: <a href="./pre_gcta/gcta_1.25.0.zip">gcta_1.25.0.zip</a></p>
 <ul>
 <li>Fixed a bug in --imp-rsq</li>
 <li>Added an option to calculate an unbiased estimate of LD score for LDSC regression analysis (see gcta.freeforums.net/thread/177/gcta-lds-calculating-score-snp); Added an option to calculate multi-component LD score following Finucane et al. (2015 Nat Genet).</li>
@@ -291,7 +295,7 @@ Jiang et al. (2019) A resource-efficient tool for mixed model association analys
 <li>We have implemented the Zaitlen et al. method in GCTA which allows to estimate SNP-based h2 in family data without having to remove related individuals.</li>
 </ul>
 <h4 id="version124711june2015">Version 1.24.7 (11 June 2015)</h4>
-<p>Download link: <a href="./gcta_1.24.7.zip">gcta_1.24.7.zip</a></p>
+<p>Download link: <a href="./pre_gcta/gcta_1.24.7.zip">gcta_1.24.7.zip</a></p>
 <ul>
 <li>Mixed linear model association (MLMA) analysis with multiple GRMs</li>
 <li>Fst calculation</li>
@@ -516,7 +520,7 @@ gcta64 --bfile test_dog --autosome-num 38 --chr 38 --make-grm --out test_dog_c38
 <p>For a quantitative trait (which is relatively robust to the artefacts in SNP data as compared to a case-control study), it is likely that your sample size is small so that the estimate varies within a great range (i.e. large standard error). It may also suggest that the true parameter (i.e. variance explained by all SNPs) is relatively large.</p>
 <hr><h3 id="7caniusegctagremlinfamilydatanotoc" class="notoc">7. Can I use GCTA-GREML in family data? </h3>
 <p>Yes, you can. GCTA-GREML does not assume that the individuals should be unrelated. The reason for excluding close-relatives in Yang et al. (Nat. Genet. 2010 and 2011) is because we do not want our estimates to be confounded with some possible shared environment effects and the effects of some possible causal variants that are not tagged by the SNPs but captured by pedigree information. If you are interested in the variance explained by a subset of SNPs in family data, you could fit the genetic relationship matrix (GRM) estimated from these SNPs along with a matrix of pedigree structure using the option <span class="kwd">--mgrm</span> when running the REML analysis (<span class="kwd">--reml</span>). Alternatively, we could fit the GRM of the subset of SNPs together with another GRM estimated from the SNPs in the rest of the genome.</p>
-<p>If you don’t have SNP genotypes in the data and you are only interested in estimating pedigree-based heritability (see <a href="https://www.ncbi.nlm.nih.gov/pubmed/28854176">Yang et al. 2017 Nat Genet</a> for definitions), we can compute a pedigree relatedness matrix from pedigree data using the <a href="./static/pedFAM.R">script available here</a> and run a REML analysis using the pedigree relatedness matrix as if it’s a GRM.</p>
+<p>If you don’t have SNP genotypes in the data and you are only interested in estimating pedigree-based heritability (see <a href="https://www.ncbi.nlm.nih.gov/pubmed/28854176">Yang et al. 2017 Nat Genet</a> for definitions), we can compute a pedigree relatedness matrix from pedigree data using the <a href="./res/pedFAM.R">script available here</a> and run a REML analysis using the pedigree relatedness matrix as if it’s a GRM.</p>
 <p>See <a href="#GREMLinfamilydata">GCTA-GREML in family data</a> for an analysis of estimating SNP-based and pedigree-based h2 simultaneously in family data.</p>
 <hr><h3 id="8metaanalysisofgremlresultsfrommultiplecohortsnotoc" class="notoc">8. Meta-analysis of GREML results from multiple cohorts </h3>
 <p>If there are multiple cohorts and for some reason you are unable to pool all the individual-level genotype data together for a combined analysis, then it is OK to run a inverse-variance meta-analysis, i.e.</p>
@@ -1688,7 +1692,7 @@ N_tr2               56342
 <h4 id="citation-1">Citation</h4>
 <p>Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. <a href="https://www.biorxiv.org/content/10.1101/598110v1">bioRxiv 598110; doi:10.1101/598110</a>.</p>
 <p><span class="kwd">--make-bK-sparse</span> 0.05<br>
-To generate a sparse genetic relationship matrix (GRM) from a full-dense GRM at a cutoff value of 0.05. Note:1) The full-dense GRM can be generated by the <span class="kwd">--make-grm</span> or <span class="kwd">--make-grm-part</span> option (see the <a href="#MakingaGRM">GRM page</a>); 2) We also have an <a href="./static/pedFAM.R">R-script</a> to generate a family relatedness matrix (FAM, the sparse GRM constructed from expected relatedness coefficients between related individuals), without the need of calculating a full-dense GRM. It only requires the input of a <a href="https://www.cog-genomics.org/plink/1.9/formats#fam">PLINK .fam file</a> and a table that describes the pedigree information of the cohort.</p>
+To generate a sparse genetic relationship matrix (GRM) from a full-dense GRM at a cutoff value of 0.05. Note:1) The full-dense GRM can be generated by the <span class="kwd">--make-grm</span> or <span class="kwd">--make-grm-part</span> option (see the <a href="#MakingaGRM">GRM page</a>); 2) We also have an <a href="./res/pedFAM.R">R-script</a> to generate a family relatedness matrix (FAM, the sparse GRM constructed from expected relatedness coefficients between related individuals), without the need of calculating a full-dense GRM. It only requires the input of a <a href="https://www.cog-genomics.org/plink/1.9/formats#fam">PLINK .fam file</a> and a table that describes the pedigree information of the cohort.</p>
 <pre><code class="bash language-bash">gcta64 --grm test_grm --make-bK-sparse 0.05 --out test_sp_grm
 </code></pre>
 <blockquote>
@@ -1708,7 +1712,7 @@ fid2 iid2
 </code></pre>
 <p>Note: "0" indicates the first individual in *.grm.id.</p>
 <p><span class="kwd">--grm-sparse</span> test_sp_grm<br>
-To input the sparse GRM. The sparse format can be generated from SNP data using the <span class="kwd">--make-bK-sparse</span> option described above or from pedigree information using our <a href="./static/pedFAM.R">R-script</a>.</p>
+To input the sparse GRM. The sparse format can be generated from SNP data using the <span class="kwd">--make-bK-sparse</span> option described above or from pedigree information using our <a href="./res/pedFAM.R">R-script</a>.</p>
 <p>If the <span class="kwd">--grm-sparse</span> flag is not specified, <span class="kwd">--fastGWA</span> will run a linear regression analysis that does not account for relatedness.</p>
 <p><span class="kwd">--fastGWA-lmm</span><br>
 Perform an MLM-based genome-wide association analysis.</p>
@@ -2040,8 +2044,8 @@ Input gene list with gene start and end positions.</p>
 </code></pre>
 <p>Please click the link below to download the gene list file.</p>
 <blockquote>
-  <p>Gene list (hg18): <a href="./glist-hg18.txt">glist-hg18.txt</a><br>
-  Gene list (hg19): <a href="./glist-hg19.txt">glist-hg19.txt</a>  </p>
+  <p>Gene list (hg18): <a href="./res/glist-hg18.txt">glist-hg18.txt</a><br>
+  Gene list (hg19): <a href="./res/glist-hg19.txt">glist-hg19.txt</a>  </p>
 </blockquote>
 <p><span class="kwd">--fastBAT-set-list</span> set.txt<br>
 Input set list with name and list of SNPs in the set.</p>
@@ -2221,7 +2225,7 @@ hdl         t2d     -0.125651    0.0431615    0.00360073    130
 <p>Columns are exposure, outcome, GSMR estimates of <em>b</em><sub>xy</sub>, standard error, p-value and number of SNPs.</p>
 <h4 id="visualization">Visualization</h4>
 <p><span class="kwd">--effect-plot</span>
-This flag will save the information required to generate a plot of SNP effects as in Figure 3d of Zhu et al. (<a href="https://www.nature.com/articles/s41467-017-02317-2">2018 Nature Communications</a>; also see the figure below) in a compressed text file (*.eff_plot.gz). We provide an R script (<a href="./static/gsmr_plot.r">gsmr_plot.r</a>) to generate the effect size plot based on the *.eff_plot.gz file (see the example below).</p>
+This flag will save the information required to generate a plot of SNP effects as in Figure 3d of Zhu et al. (<a href="https://www.nature.com/articles/s41467-017-02317-2">2018 Nature Communications</a>; also see the figure below) in a compressed text file (*.eff_plot.gz). We provide an R script (<a href="./res/gsmr_plot.r">gsmr_plot.r</a>) to generate the effect size plot based on the *.eff_plot.gz file (see the example below).</p>
 <blockquote>
   <p>Example</p>
 </blockquote>
@@ -2230,7 +2234,7 @@ gsmr_data = read_gsmr_data("test_gsmr_result.eff_plot.gz")
 gsmr_summary(gsmr_data)      # show a summary of the data
 plot_gsmr_effect(gsmr_data, "bmi", "t2d", colors()[75])           
 </code></pre>
-<p><img src="./static/gsmr_toy_bmi_t2d.jpg" alt="effect_size_plot"></p>
+<p><img src="./res/gsmr_toy_bmi_t2d.jpg" alt="effect_size_plot"></p>
 <h4 id="optionalflags-1">Optional flags</h4>
 <p><span class="kwd">--gsmr2-beta</span> to use the new HEIDI-outlier method.<br>
 Note: We included a new HEIDI-outlier method (as part of <a href="#Download">the GSMR analysis</a>) in GCTA v1.91.7. However, the new HEIDI-outlier method is currently under development and subject to changes during the method development. From GCTA version v1.92.0, we changed the default back to the original HEIDI-outlier method described in Zhu et al. (2018 Nature Communications) and added this temporary flag to test the new method. The new HEIDI-outlier method in GCTA v1.92.0 has been tested by extensive simulations and real data analyses. We will make a formal release in our next GSMR paper.</p>
@@ -2477,19 +2481,19 @@ gcta64 --bfile TAR --project-loading REF_snp_loading 20 --out TAR_pca20
 <p>We developed a resource-efficient tool (called <a href="#fastGWA">fastGWA</a>) for mixed model association analysis, and applied it to 2,173 traits on 456,422 array-genotyped as well as 49,960 whole-exome-sequenced individuals of European ancestry in the UK Biobank (UKB). All the summary data can be downloaded using the Linux commands below. One can also query or visualize the summary data using the <a href="http://fastgwa.info">online tool</a>.</p>
 <ul>
 <li>GWAS summary statistics from the imputed data: 456,422 individuals of European ancestry; 8,531,416 variants (MAF &gt; 0.01 and missingness rate &lt; 0.1); 2,173 traits.<ul>
-<li>Summary table: <a href="./static/UKB_impute_v1.1.csv">UKB_impute_v1.1.csv</a></li>
-<li>Online tool: <a href="http://fastgwa.info">http://fastgwa.info</a> </li>
+<li>Summary table: <a href="./res/UKB_impute_v1.1.csv">UKB_impute_v1.1.csv</a></li>
+<li>Online tool: <a href="http://fastgwa.info/ukbimp/phenotypes">http://fastgwa.info/ukbimp/phenotypes</a> </li>
 <li>Linux command to download all the summary statistics:</li></ul></li>
 </ul>
-<pre><code class="bash language-bash">wget http://cnsgenomics.com/software/gcta/static/UKB_impute_v1.1.list &amp;&amp; wget -i UKB_impute_v1.1.list
+<pre><code class="bash language-bash">wget http://cnsgenomics.com/software/gcta/res/UKB_impute_v1.1.list &amp;&amp; wget -i UKB_impute_v1.1.list
 </code></pre>
 <ul>
 <li>GWAS summary statistics from the whole-exome sequence (WES) data: 46,191 individuals of European ancestry; 152,327 variants (MAF &gt; 0.01 and missingness rate &lt; 0.1); 2,048 valid traits.<ul>
-<li>Summary table: <a href="./static/UKB_WES_v1.1.csv">UKB_WES_v1.1.csv</a></li>
-<li>Online tool: <a href="http://fastgwa.info/ukbwes/">http://fastgwa.info/ukbwes</a> </li>
+<li>Summary table: <a href="./res/UKB_WES_v1.1.csv">UKB_WES_v1.1.csv</a></li>
+<li>Online tool: <a href="http://fastgwa.info/ukbwes/phenotypes">http://fastgwa.info/ukbwes/phenotypes</a> </li>
 <li>Linux command to download all the summary statistics:</li></ul></li>
 </ul>
-<pre><code class="bash language-bash">wget http://cnsgenomics.com/software/gcta/static/UKB_WES_v1.1.list &amp;&amp; wget -i UKB_WES_v1.1.list
+<pre><code class="bash language-bash">wget http://cnsgenomics.com/software/gcta/res/UKB_WES_v1.1.list &amp;&amp; wget -i UKB_WES_v1.1.list
 </code></pre>
 <h4 id="dataformat">Data format</h4>
 <p>Columns in the summary table:</p>
@@ -2520,7 +2524,12 @@ P:    p value
 <h4 id="questionsandhelprequests-1">Questions and Help Requests</h4>
 <p>If you have any question, please send an email to Jian Yang <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a></p>
 <h4 id="citation-5">Citation</h4>
-<p>Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. <a href="https://www.biorxiv.org/content/10.1101/598110v1">bioRxiv 598110; doi:10.1101/598110</a>.</p></body></div>
+<p>Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. <a href="https://www.biorxiv.org/content/10.1101/598110v1">bioRxiv 598110; doi:10.1101/598110</a>.</p>
+<h4 id="updatelog">Update log</h4>
+<ul>
+<li>Version v1.1 (9 Aug 2019): reran all the analyses using GCTA-fastGWA v1.92.3; removed variants with MAF &lt; 0.01 or missingness rate &gt; 0.1 per trait, and removed binary traits with case fraction &lt; 0.01.</li>
+<li>Version v1.0 (Apr 2019): first release.</li>
+</ul></body></div>
         </div>
 
         <script>
