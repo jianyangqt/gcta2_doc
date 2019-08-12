@@ -7,16 +7,16 @@ We developed a resource-efficient tool (called [fastGWA](#fastGWA)) for mixed mo
 * GWAS summary statistics from the imputed data: 456,422 individuals of European ancestry; 8,531,416 variants (MAF > 0.01 and missingness rate < 0.1); 2,173 traits.
     * Summary table: [UKB\_impute\_v1.1.csv](./res/UKB_impute_v1.1.csv)
     * Online tool: [http://fastgwa.info/ukbimp/phenotypes](http://fastgwa.info/ukbimp/phenotypes) 
-    * Linux command to download all the summary statistics:
+    * Linux command to download all the summary statistics (2,173 files; 454 GB in total):
 ```bash
-wget http://cnsgenomics.com/software/gcta/res/UKB_impute_v1.1.list && wget -i UKB_impute_v1.1.list
+mkdir ukb && cd ukb && wget http://cnsgenomics.com/software/gcta/res/UKB_impute_v1.1.list && wget -i UKB_impute_v1.1.list
 ```
 * GWAS summary statistics from the whole-exome sequence (WES) data: 46,191 individuals of European ancestry; 152,327 variants (MAF > 0.01 and missingness rate < 0.1); 2,048 valid traits.
     * Summary table: [UKB\_WES\_v1.1.csv](./res/UKB_WES_v1.1.csv)
     * Online tool: [http://fastgwa.info/ukbwes/phenotypes](http://fastgwa.info/ukbwes/phenotypes) 
-    * Linux command to download all the summary statistics:
+    * Linux command to download all the summary statistics (2,048 files; 8 GB in total):
 ```bash
-wget http://cnsgenomics.com/software/gcta/res/UKB_WES_v1.1.list && wget -i UKB_WES_v1.1.list
+mkdir wes && cd wes && wget http://cnsgenomics.com/software/gcta/res/UKB_WES_v1.1.list && wget -i UKB_WES_v1.1.list
 ```
 
 #### Data format

@@ -2483,17 +2483,17 @@ gcta64 --bfile TAR --project-loading REF_snp_loading 20 --out TAR_pca20
 <li>GWAS summary statistics from the imputed data: 456,422 individuals of European ancestry; 8,531,416 variants (MAF &gt; 0.01 and missingness rate &lt; 0.1); 2,173 traits.<ul>
 <li>Summary table: <a href="./res/UKB_impute_v1.1.csv">UKB_impute_v1.1.csv</a></li>
 <li>Online tool: <a href="http://fastgwa.info/ukbimp/phenotypes">http://fastgwa.info/ukbimp/phenotypes</a> </li>
-<li>Linux command to download all the summary statistics:</li></ul></li>
+<li>Linux command to download all the summary statistics (2,173 files; 454 GB in total):</li></ul></li>
 </ul>
-<pre><code class="bash language-bash">wget http://cnsgenomics.com/software/gcta/res/UKB_impute_v1.1.list &amp;&amp; wget -i UKB_impute_v1.1.list
+<pre><code class="bash language-bash">mkdir ukb &amp;&amp; cd ukb &amp;&amp; wget http://cnsgenomics.com/software/gcta/res/UKB_impute_v1.1.list &amp;&amp; wget -i UKB_impute_v1.1.list
 </code></pre>
 <ul>
 <li>GWAS summary statistics from the whole-exome sequence (WES) data: 46,191 individuals of European ancestry; 152,327 variants (MAF &gt; 0.01 and missingness rate &lt; 0.1); 2,048 valid traits.<ul>
 <li>Summary table: <a href="./res/UKB_WES_v1.1.csv">UKB_WES_v1.1.csv</a></li>
 <li>Online tool: <a href="http://fastgwa.info/ukbwes/phenotypes">http://fastgwa.info/ukbwes/phenotypes</a> </li>
-<li>Linux command to download all the summary statistics:</li></ul></li>
+<li>Linux command to download all the summary statistics (2,048 files; 8 GB in total):</li></ul></li>
 </ul>
-<pre><code class="bash language-bash">wget http://cnsgenomics.com/software/gcta/res/UKB_WES_v1.1.list &amp;&amp; wget -i UKB_WES_v1.1.list
+<pre><code class="bash language-bash">mkdir wes &amp;&amp; cd wes &amp;&amp; wget http://cnsgenomics.com/software/gcta/res/UKB_WES_v1.1.list &amp;&amp; wget -i UKB_WES_v1.1.list
 </code></pre>
 <h4 id="dataformat">Data format</h4>
 <p>Columns in the summary table:</p>
