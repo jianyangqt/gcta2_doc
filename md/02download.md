@@ -4,15 +4,15 @@
 
 The executable files below only support a 64-bit operating system on the x86\_64 CPU platform. 
 
-Linux [gcta\_1.92.3beta2.zip](./bin/gcta_1.92.3beta2.zip)
+Linux [gcta\_1.92.3beta3.zip](./bin/gcta_1.92.3beta3.zip)
 
-Windows [gcta\_1.92.3beta2\_win.zip](./bin/gcta_1.92.3beta2_win.zip)
+Windows [gcta\_1.92.3beta3\_win.zip](./bin/gcta_1.92.3beta3_win.zip)
 
-Mac [gcta\_1.92.3beta2\_mac.zip](./bin/gcta_1.92.3beta2_mac.zip)
+Mac [gcta\_1.92.3beta3\_mac.zip](./bin/gcta_1.92.3beta3_mac.zip)
  
 The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
 
-> Note: GCTA 1.92.3beta2 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
+> Note: GCTA 1.92.3beta3 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
@@ -21,6 +21,9 @@ The executable files are released under the MIT license. We recommend to use the
 The source code are released under GPL v2. The source code of the latest version will be released when it is stable.
 
 ### Update log {: .notoc}
+#### Version 1.92.3beta3 (20 Aug 2019)
+* Fixed a bug related to the convergence of fastGWA-REML in some rare scenarios.
+
 #### Version 1.92.3beta2 (12 Aug 2019)
 * Fixed a bug in --maf. The bug only occurred in rare scenarios with specific numbers of variants.
 
