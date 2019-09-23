@@ -69,7 +69,7 @@
 <li>Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits;</li>
 <li>fastGWA: an extremely source-efficient (mixed) linear model association tool.</li>
 </ul>
-<p><strong>Latest release <a href="#Download">v1.92.3beta3</a>, click to download or view update log (20 Aug 2019)</strong></p>
+<p><strong>Latest release <a href="#Download">v1.92.4beta</a>, click to download or view update log (23 Sep 2019)</strong></p>
 <hr><h3 id="credits">Credits</h3>
 <p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with supports from <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:hong.lee@uq.edu.au">Hong Lee</a>. </p>
 <p><a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> programmed the fastGWA module, rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, improved the SBLUP module, developed the website, and is currently maintaining the software.</p>
@@ -105,21 +105,26 @@ Bakshi et al. (2016) Fast set-based association analysis using summary data from
 Zhu et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. Nat Commun. 9, 224.[<a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=29335400">PMID: 29335400</a>]  </p>
 <p><strong>fastGWA method:</strong><br>
 Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. bioRxiv 598110; doi:10.1101/598110.</p>
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 20 August 2019</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 23 Sep 2019</p>
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>The executable files below only support a 64-bit operating system on the x86_64 CPU platform. </p>
-<p>Linux <a href="./bin/gcta_1.92.3beta3.zip">gcta_1.92.3beta3.zip</a></p>
-<p>Windows <a href="./bin/gcta_1.92.3beta3_win.zip">gcta_1.92.3beta3_win.zip</a></p>
-<p>Mac <a href="./bin/gcta_1.92.3beta3_mac.zip">gcta_1.92.3beta3_mac.zip</a></p>
+<p>Linux <a href="./bin/gcta_1.92.4beta.zip">gcta_1.92.4beta.zip</a></p>
+<p>Windows <a href="./bin/gcta_1.92.4beta_win.zip">gcta_1.92.4beta_win.zip</a></p>
+<p>Mac <a href="./bin/gcta_1.92.4beta_mac.zip">gcta_1.92.4beta_mac.zip</a></p>
 <p>The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.</p>
 <blockquote>
-  <p>Note: GCTA 1.92.3beta3 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
+  <p>Note: GCTA 1.92.4beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
 </blockquote>
 <hr><h3 id="sourcecodenotoc" class="notoc">Source code </h3>
 <p><a href="./pre_gcta/gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
 <p>The source code are released under GPL v2. The source code of the latest version will be released when it is stable.</p>
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
+<h4 id="version1924beta23sep2019">Version 1.92.4beta (23 Sep 2019)</h4>
+<ul>
+<li>Fixed a bug in --make-grm when the MAFs of some SNPs are 0.</li>
+<li>Fixed a bug in --make-grm-d and --make-grm-alg.</li>
+</ul>
 <h4 id="version1923beta320aug2019">Version 1.92.3beta3 (20 Aug 2019)</h4>
 <ul>
 <li>Fixed a bug related to the convergence of fastGWA-REML in some rare scenarios.</li>
@@ -2264,6 +2269,64 @@ FDR threshold to shrink the chance correlations between the SNP instruments to z
 <h4 id="citation-3">Citation</h4>
 <p>Zhu, Z. et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. Nat. Commun. 9, 224.  </p>
 <h2 id="genomicriskprediction">Genomic risk prediction</h2>
+<hr><h3 id="blup">BLUP</h3>
+<p>BLUP (best linear unbiased prediction) is a method frequently used to estimate the random effects in mixed linear models (MLMs). In GCTA, we have implemented options to estimate the BLUP effects of individuals’ genetic values, and then transform them to the BLUP effects of all SNPs. The BLUP SNP effects can be used to predict the PRS (polygenic risk scores) in an independent sample. We have also implemented the cross validated BLUP (cvBLUP) approach to perform a leave-one-out BLUP analysis in one run (<a href="https://www.biorxiv.org/content/10.1101/517821v1.full">Mefford et al. 2019 bioRxiv</a>). The BLUP and cvBLUP functions share multiple flags with <span class="kwd">--reml</span>.</p>
+<p><span class="kwd">--reml-pred-rand</span><br>
+To estimate random effects in a MLM by BLUP. It can be used to predict the genetic value (called "breeding value" in animal genetics) of each individual attributed to the aggregative effect of all SNPs used to compute the GRM. The genetic values of all the individuals will be saved in a plain text file *.indi.blp.</p>
+<blockquote>
+  <p>Output file format</p>
+  <blockquote>
+    <p>test.indi.blp (no headers). The columns are family ID, individual ID, an intermediate variable, the genetic value, another intermediate variable and the residual effect. If there are multiple GRMs fitted in the model, each GRM will add two additional columns, i.e., an intermediate variable (= <strong>Py</strong>, see Yang et al. 2011 AJHG for the definitions of matrix <strong>P</strong> and vector <strong>y</strong>) and a genetic value, before the last two columns.</p>
+  </blockquote>
+</blockquote>
+<pre><code class="nohighlight language-nohighlight">01       0101    -0.012    -0.014   -0.010    -0.035
+02       0203    0.021     0.031    -0.027    -0.031
+03       0305    0.097     0.102    -0.026    -0.041
+...
+</code></pre>
+<p><span class="kwd">--blup-snp</span> test.indi.blp<br>
+To compute the BLUP solutions for the SNPs (you will need to specify the option <span class="kwd">--bfile</span> to read the genotype data). This option takes the output from <span class="kwd">--reml-pred-rand</span> as the input (*.indi.blp file) and transforms the BLUP solutions for individuals to those for SNPs. The SNP BLUP effects can then be used to predict the genetic values (so called PRS) of individuals in an independent sample by the PLINK <span class="kwd">--score</span> option. Note that for the ease of using the BLUP SNP effects in PLINK <span class="kwd">--score</span>, the BLUP SNPs effects are scaled by sqrt[2p(1-p)](see pages 77 and 78 of Yang et al. 2011 AJHG for details).</p>
+<blockquote>
+  <p>Output file format</p>
+  <blockquote>
+    <p>test.snp.blp (no heades). The columns are SNP ID, reference allele and BLUP of SNP effect. If there are multiple GRMs fitted in the model, each GRM will add an additional column to the file. The last column is for the residual effect.</p>
+  </blockquote>
+</blockquote>
+<pre><code class="nohighlight language-nohighlight">rs103645   A     0.00312    0.00451
+rs175292   G    -0.00021    0.00139
+...
+</code></pre>
+<p><span class="kwd">--cvblup</span><br>
+cvBLUP is an approach that can be used to obtain BLUP solution of an individual’s genetic value without using the individual’s genotype or phenotype data (<a href="https://www.biorxiv.org/content/10.1101/517821v1.full">Mefford et al. 2019 bioRxiv</a>). It is equivalent to (but a lot more efficient than) the leave-one-individual-out BLUP analysis. Because of this property, the cvBLUP SNP effects can be used to compute the out-of-sample PRS in either the discovery or an independent sample.</p>
+<blockquote>
+  <p>Output file format</p>
+  <blockquote>
+    <p>test.indi.cvblp (no headers). The columns are family ID, individual ID, an intermediate variable, the genetic effect, another intermediate variable and the residual effect.</p>
+  </blockquote>
+</blockquote>
+<pre><code class="nohighlight language-nohighlight">01       0101    -0.012    -0.014   -0.010    -0.035
+02       0203    0.021     0.031    -0.027    -0.031
+03       0305    0.097     0.102    -0.026    -0.041
+...
+</code></pre>
+<h4 id="examples-3">Examples</h4>
+<pre><code class="bash language-bash"># To obtain BLUP solutions for the genetic values of individuals
+gcta64 --reml --grm test --pheno test.phen --reml-pred-rand –qcovar test_10PCs.txt  --out test
+# To obtain BLUP solutions for the SNP effects
+gcta64 --bfile geno_to_predict --blup-snp test.indi.blp --out test
+# To compute the polygenic risk score (PRS) in an independent sample
+plink --bfile geno_to_predict --score test.snp.blp 1 2 3
+
+# To obtain cvBLUP solutions for the genetic values of individuals
+gcta64 --reml --grm test --pheno test.phen --cvblup –qcovar test_10PCs.txt --out test
+# To obtain cvBLUP solutions for the SNP effects
+gcta64 --bfile geno_to_predict --update-freq reference.frq --blup-snp test.indi.cvblp --out test
+# To compute the polygenic risk score (PRS) in the discovery or an independent sample
+plink --bfile geno_to_predict --score test.snp.blp 1 2 3
+</code></pre>
+<h4 id="citation-4">Citation</h4>
+<p>BLUP method or GCTA software: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/21167468">21167468</a>]</p>
+<p>cvBLUP method: Mefford JA, Park D, Zheng Z, et al. (2019) Efficient estimation and applications of cross-validated genetic predictions. <a href="https://www.biorxiv.org/content/10.1101/517821v1.full">bioRxiv 517821</a>; doi: https://doi.org/10.1101/517821</p>
 <hr><h3 id="sblup">SBLUP</h3>
 <p>This is a method to run BLUP analysis using summary data from a GWAS/meta-analysis with LD from a reference sample with individual-level data. Similar methods have been proposed in recent studies to predict complex traits and diseases using GWAS summary data (Vilhjálmsson et al. 2015 AJHG; Robinson et al. 2017 Nat Hum Behav) or age using summary data from transcriptome-wise association studies (Peters et al. 2015 Nat Comm).</p>
 <blockquote>
@@ -2478,7 +2541,7 @@ gcta64 --bfile REF --pc-loading REF_pca20 --out REF_snp_loading
 # Note that the analysis can be performed with one chromosome at a time 
 gcta64 --bfile TAR --project-loading REF_snp_loading 20 --out TAR_pca20
 </code></pre>
-<h4 id="citation-4">Citation</h4>
+<h4 id="citation-5">Citation</h4>
 <p>Jiang L, Zheng Z, Qi T, Kemper KE, Wray NR, Visscher PM, Yang J. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. <a href="https://www.biorxiv.org/content/10.1101/598110v1">bioRxiv 598110; doi:10.1101/598110</a>.</p>
 <h2 id="dataresource">Data Resource</h2>
 <hr><h3 id="ukbiobankgwasresults">UK Biobank GWAS results</h3>
@@ -2527,7 +2590,7 @@ P:    p value
 <p>Zhili Zheng (online tool development and data analysis), Longda Jiang (data analysis), Jian Yang (overseeing). The online tool was developed based on the source code modified from Pheweb. We thank Alibaba Cloud - Australia and New Zealand for hosting the online tool.</p>
 <h4 id="questionsandhelprequests-1">Questions and Help Requests</h4>
 <p>If you have any question, please send an email to Jian Yang <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a></p>
-<h4 id="citation-5">Citation</h4>
+<h4 id="citation-6">Citation</h4>
 <p>Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. <a href="https://www.biorxiv.org/content/10.1101/598110v1">bioRxiv 598110; doi:10.1101/598110</a>.</p>
 <h4 id="updatelog">Update log</h4>
 <ul>
