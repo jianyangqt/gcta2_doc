@@ -47,10 +47,10 @@ To input the sparse GRM. The sparse format can be generated from SNP data using 
 
 If the --grm-sparse flag is not specified, --fastGWA will run a linear regression analysis that does not account for relatedness.
 
---fastGWA-lmm  
+--fastGWA-mlm  
 Perform an MLM-based genome-wide association analysis.
 
---fastGWA-lmm-exact  
+--fastGWA-mlm-exact  
 Perform an exact MLM-based association analysis without the GRAMMAR-GAMMA approximation.
 
 --fastGWA-lr  
@@ -86,7 +86,7 @@ gcta64 --grm geno_grm --make-bK-sparse 0.05 --out sp_grm
 gcta64 --mbfile geno_chrs.txt --make-grm --sparse-cutoff 0.05 --threads 10 --out sp_grm
 
 # fastGWA mixed model (based on the sparse GRM generated above)
-gcta64 --mbfile geno_chrs.txt --grm-sparse sp_grm --fastGWA-lmm --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --threads 10 --out geno_assoc
+gcta64 --mbfile geno_chrs.txt --grm-sparse sp_grm --fastGWA-mlm --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --threads 10 --out geno_assoc
 
 # fastGWA linear regression
 gcta64 --mbfile geno_chrs.txt --fastGWA-lr --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --threads 10 --out geno_assoc
