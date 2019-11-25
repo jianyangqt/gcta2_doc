@@ -22,7 +22,7 @@
         "copy-dir": "^0.3.0",
         "fs": "0.0.1-security",
         "html-minifier": "^3.4.3",
-        "jquery": "^3.2.1",
+        "jquery": "^3.4.0",
         "jsdom": "^9.12.0",
         "showdown": "^1.6.4",
         "uglify-js": "^2.8.22"
