@@ -4,15 +4,17 @@
 
 The executable files below only support a 64-bit operating system on the x86\_64 CPU platform. 
 
-Linux [gcta\_1.92.4beta2.zip](./bin/gcta_1.92.4beta2.zip)
+Linux [gcta\_1.93.0beta.zip](./bin/gcta_1.93.0beta.zip)
 
-Windows [gcta\_1.92.4beta2\_win.zip](./bin/gcta_1.92.4beta2_win.zip)
+Windows [gcta\_1.93.0beta\_win.zip](./bin/gcta_1.93.0beta_win.zip)
 
-Mac [gcta\_1.92.4beta2\_mac.zip](./bin/gcta_1.92.4beta2_mac.zip)
+Mac [gcta\_1.93.0beta\_mac.zip](./bin/gcta_1.93.0beta_mac.zip)
  
 The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
 
-> Note: GCTA 1.92.4beta2 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
+GCTA v1.93.0beta now supports genotype data (including imputed dosage data) in [bgen](https://www.well.ox.ac.uk/~gav/bgen_format/) and [pgen](https://github.com/chrchang/plink-ng/blob/master/pgen_spec/pgen_spec.pdf) format.
+
+> Note: GCTA 1.93.0beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
@@ -21,9 +23,27 @@ The executable files are released under the MIT license. We recommend to use the
 The source code are released under GPL v2. The source code of the latest version will be released when it is stable.
 
 ### Update log {: .notoc}
+#### Version 1.93.0beta (9 Dec 2019)
+* Added a flag [--bgen](#Inputandoutput) to input genotype data (including imputed dosage data) in bgen format (>=v1.2).
+* Added a flag [--mbgen](#Inputandoutput) to input genotype data in multiple bgen files.
+* Added a flag [--pfile](#Inputandoutput) to input genotype data in pgen format.
+* Added a flag --mpfile to input genotype data in multiple pgen files.
+* Added a flag --bpfile to input genotype data in hybrid pgen format (i.e., \*.pgen, \*.bim and \*.fam).
+* Added a flag --mbpfile to input genotype data in multiple sets of hybrid pgen files.
+* Added a flag [--geno](#Datamanagement) to filter out individuals based on genotype missingness rate.
+* Added a flag --info to filter out SNPs based on imputation INFO score.
+* Added a flag --recodet to output a transposed matrix of the genotypes.
+* Allows duplicated SNP IDs in genotype data.
+* Added a flag --save-fastGWA-mlm-residual to output fastGWA residuals.
+* Fixed a bug in fastGWA for chromosome X.
+* Amended the flag --dc to support fastGWA analysis of SNPs on chromosome X based on different dosage compensation models.
+* Fixed a bug in --make-grm-xchr.
+
 #### Version 1.92.4beta2 (25 Nov 2019)
 * Changed the flag --fastGWA-lmm to --fastGWA-mlm.
 * Fixed a bug in GSMR (HEIDI outlier test).
+* Download: Linux [gcta\_1.92.4beta2.zip](./bin/gcta_1.92.4beta2.zip), Windows [gcta\_1.92.4beta2\_win.zip](./bin/gcta_1.92.4beta2_win.zip), Mac [gcta\_1.92.4beta2\_mac.zip](./bin/gcta_1.92.4beta2_mac.zip)
+ 
 
 #### Version 1.92.4beta (23 Sep 2019)
 * Fixed a bug in --make-grm when the MAFs of some SNPs are 0.

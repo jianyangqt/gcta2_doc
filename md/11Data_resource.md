@@ -55,7 +55,7 @@ Zhili Zheng (online tool development and data analysis), Longda Jiang (data anal
 If you have any question, please send an email to Jian Yang [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au)
 
 #### Citation
-Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. [bioRxiv 598110; doi:10.1101/598110](https://www.biorxiv.org/content/10.1101/598110v1).
+Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. Nature Genet. 51, 1749–1755 (2019) [doi:10.1038/s41588-019-0530-8](https://www.nature.com/articles/s41588-019-0530-8).
 
 #### Update log
 * Version v1.1 (9 Aug 2019): reran all the analyses using GCTA-fastGWA v1.92.3; removed variants with MAF < 0.01 or missingness rate > 0.1 per trait, and removed binary traits with case fraction < 0.01.

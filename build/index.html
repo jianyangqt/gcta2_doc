@@ -69,7 +69,7 @@
 <li>Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits;</li>
 <li>fastGWA: an extremely source-efficient (mixed) linear model association tool.</li>
 </ul>
-<p><strong>Latest release <a href="#Download">v1.92.4beta2</a>, click to download or view update log (25 Nov 2019)</strong></p>
+<p><strong>Latest release <a href="#Download">v1.93.0beta</a>, click to download or view update log (9 Dec 2019)</strong></p>
 <hr><h3 id="credits">Credits</h3>
 <p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with supports from <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:hong.lee@uq.edu.au">Hong Lee</a>. </p>
 <p><a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> programmed the fastGWA module, rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, improved the SBLUP module, developed the website, and is currently maintaining the software.</p>
@@ -104,26 +104,45 @@ Bakshi et al. (2016) Fast set-based association analysis using summary data from
 <p><strong>mtCOJO and GSMR methods:</strong><br>
 Zhu et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. Nat Commun. 9, 224.[<a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=29335400">PMID: 29335400</a>]  </p>
 <p><strong>fastGWA method:</strong><br>
-Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. bioRxiv 598110; doi:10.1101/598110.</p>
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 25 Nov 2019</p>
+Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. Nature Genet. 51, 1749–1755 (2019) <a href="https://www.nature.com/articles/s41588-019-0530-8">doi:10.1038/s41588-019-0530-8</a>.</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 9 Dec 2019</p>
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>The executable files below only support a 64-bit operating system on the x86_64 CPU platform. </p>
-<p>Linux <a href="./bin/gcta_1.92.4beta2.zip">gcta_1.92.4beta2.zip</a></p>
-<p>Windows <a href="./bin/gcta_1.92.4beta2_win.zip">gcta_1.92.4beta2_win.zip</a></p>
-<p>Mac <a href="./bin/gcta_1.92.4beta2_mac.zip">gcta_1.92.4beta2_mac.zip</a></p>
+<p>Linux <a href="./bin/gcta_1.93.0beta.zip">gcta_1.93.0beta.zip</a></p>
+<p>Windows <a href="./bin/gcta_1.93.0beta_win.zip">gcta_1.93.0beta_win.zip</a></p>
+<p>Mac <a href="./bin/gcta_1.93.0beta_mac.zip">gcta_1.93.0beta_mac.zip</a></p>
 <p>The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.</p>
+<p>GCTA v1.93.0beta now supports genotype data (including imputed dosage data) in <a href="https://www.well.ox.ac.uk/~gav/bgen_format/">bgen</a> and <a href="https://github.com/chrchang/plink-ng/blob/master/pgen_spec/pgen_spec.pdf">pgen</a> format.</p>
 <blockquote>
-  <p>Note: GCTA 1.92.4beta2 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
+  <p>Note: GCTA 1.93.0beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
 </blockquote>
 <hr><h3 id="sourcecodenotoc" class="notoc">Source code </h3>
 <p><a href="./pre_gcta/gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
 <p>The source code are released under GPL v2. The source code of the latest version will be released when it is stable.</p>
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
+<h4 id="version1930beta9dec2019">Version 1.93.0beta (9 Dec 2019)</h4>
+<ul>
+<li>Added a flag <a href="#Inputandoutput">--bgen</a> to input genotype data (including imputed dosage data) in bgen format (&gt;=v1.2).</li>
+<li>Added a flag <a href="#Inputandoutput">--mbgen</a> to input genotype data in multiple bgen files.</li>
+<li>Added a flag <a href="#Inputandoutput">--pfile</a> to input genotype data in pgen format.</li>
+<li>Added a flag --mpfile to input genotype data in multiple pgen files.</li>
+<li>Added a flag --bpfile to input genotype data in hybrid pgen format (i.e., *.pgen, *.bim and *.fam).</li>
+<li>Added a flag --mbpfile to input genotype data in multiple sets of hybrid pgen files.</li>
+<li>Added a flag <a href="#Datamanagement">--geno</a> to filter out individuals based on genotype missingness rate.</li>
+<li>Added a flag --info to filter out SNPs based on imputation INFO score.</li>
+<li>Added a flag --recodet to output a transposed matrix of the genotypes.</li>
+<li>Allows duplicated SNP IDs in genotype data.</li>
+<li>Added a flag --save-fastGWA-mlm-residual to output fastGWA residuals.</li>
+<li>Fixed a bug in fastGWA for chromosome X.</li>
+<li>Amended the flag --dc to support fastGWA analysis of SNPs on chromosome X based on different dosage compensation models.</li>
+<li>Fixed a bug in --make-grm-xchr.</li>
+</ul>
 <h4 id="version1924beta225nov2019">Version 1.92.4beta2 (25 Nov 2019)</h4>
 <ul>
 <li>Changed the flag --fastGWA-lmm to --fastGWA-mlm.</li>
 <li>Fixed a bug in GSMR (HEIDI outlier test).</li>
+<li>Download: Linux <a href="./bin/gcta_1.92.4beta2.zip">gcta_1.92.4beta2.zip</a>, Windows <a href="./bin/gcta_1.92.4beta2_win.zip">gcta_1.92.4beta2_win.zip</a>, Mac <a href="./bin/gcta_1.92.4beta2_mac.zip">gcta_1.92.4beta2_mac.zip</a></li>
 </ul>
 <h4 id="version1924beta23sep2019">Version 1.92.4beta (23 Sep 2019)</h4>
 <ul>
@@ -637,6 +656,21 @@ where the interpretation of bq(1) is similar as that from a linear regression.</
 <hr><h3 id="inputandoutput">Input and output</h3>
 <p><span class="kwd">--bfile</span> test<br>
 Input PLINK binary PED files, e.g. test.fam, test.bim and test.bed (see PLINK user manual for details).</p>
+<p><span class="kwd">--mbfile</span> test.list<br>
+To input genotype data in multiple PLINK binary PED files listed in a text file.</p>
+<p><span class="kwd">--bgen</span> test.bgen <span class="kwd">--sample</span> test.sample<br>
+To input genotype data in bgen format (&gt;=v1.2). The sample information in the *.bgen file will be ignored and read from the *.sample file. GCTA currently only supports biallelic SNPs, and multiallelic SNPs will be ignored automatically. Note: if you have an old bgen file, you can convert it to the new version by <a href="https://www.well.ox.ac.uk/~gav/qctool_v2/">qctools</a>. We suggest users save the genotype posterior probabilities in 8 bits and compress the data in zstd format (although all compression formats and bit lengths (&lt;27) are supported by GCTA) because data with bit lengths &gt; 16 will be slow to process. The bgen index file (*.bgen.bgi) is required to be in the same folder as the *.bgen file. The *.bgen.bgi file can also be generated by <a href="https://bitbucket.org/gavinband/bgen/wiki/bgenix">bgenix</a> -g test.bgen -index .</p>
+<p><span class="kwd">--mbgen</span> test.list<br>
+To input genotype data in multiple bgen files listed in a text file.</p>
+<p><span class="kwd">--pfile</span> test<br>
+To input genotype data in <a href="https://www.cog-genomics.org/plink/2.0/formats#pgen">PLINK2 pgen file</a>. The pgen file must be accompanied by .pvar and .psam files.  Note: GCTA currently only reads hard-call genotype in pgen file.</p>
+<p><span class="kwd">--mpfile</span> test.list<br>
+To input genotype data in multiple pgen files listed in a text file.</p>
+<p><span class="kwd">--bpfile</span> test<br>
+To input hybrid pgen files. The pgen file must be accompanied by .bim and .fam files. </p>
+<p><span class="kwd">--mbpfile</span> test.list<br>
+To input genotype data in multiple hybrid bgen files listed in a text file.</p>
+<p>Note: <span class="kwd">--bgen</span>, <span class="kwd">--pfile</span>, <span class="kwd">--bpfile</span>, <span class="kwd">--mbfile</span>, <span class="kwd">--mbgen</span>, <span class="kwd">--mpfile</span> and <span class="kwd">--mbpfile</span> are currently only supported in the GRM and fastGWA analyses. More functions will be available after rewriting some of the legacy codes. All the QC flags (e.g. <span class="kwd">--keep</span>, <span class="kwd">--extract</span>, <span class="kwd">--maf</span>) in GCTA 1.92.4 are currently applicable to these two formats.</p>
 <p><span class="kwd">--dosage-mach</span> test.mldose test.mlinfo<br>
 Input files in MACH output format (uncompressed), e.g. test.mldose and test.mlinfo (see MACH user manual for details).</p>
 <p><span class="kwd">--dosage-mach-gz</span> test.mldose.gz test.mlinfo.gz<br>
@@ -722,6 +756,10 @@ Assign a list of alleles to be the reference alleles for the SNPs included in th
 rs175292 G  
 ......  
 </code></pre>
+<p><span class="kwd">--geno</span> 0.1<br>
+To remove SNPs with missingness rates &gt; 0.1.</p>
+<p><span class="kwd">--info</span> 0.3<br>
+To remove SNPs with imputation INFO scores &lt; 0.3. Note: this option is only supported for the bgen format; the INFO scores in the GCTA output may be slightly different from the original scores because GCTA uses higher precision to save dosage data and recomputes the INFO scores based on the individuals included in the analysis.</p>
 <p><span class="kwd">--imput-rsq</span> 0.3<br>
 Include SNPs with imputation R<sup>2</sup> (squared correlation between imputed and true genotypes) larger than a specified value, e.g. 0.3.</p>
 <p><span class="kwd">--update-imput-rsq</span> test.imput.rsq<br>
@@ -758,6 +796,19 @@ rs28705211 C 0.278
 </code></pre>
 <p><span class="kwd">--update-freq</span> test.freq<br>
 Update allele frequencies of the SNPs from a file rather than calculating from the data. The format of the input file is the same as the output format for the option <span class="kwd">--freq</span>.</p>
+<p><span class="kwd">--recodet</span><br>
+To output a transposed matrix of the genotype data (SNPs in rows and individuals in columns) in text format (*.xmat). By default, missing genotypes will be replaced by the expected values. <span class="kwd">--recodet</span> raw: replacing missing genotypes by NAs. <span class="kwd">--recodet</span> std: standardizing the genotypes. Note: <span class="kwd">--recodet</span> supports more formats than <span class="kwd">--recode</span>. </p>
+<blockquote>
+  <p>*.xmat </p>
+</blockquote>
+<pre><code class="nohighlight language-nohighlight">CHR     SNP           POS    A1     A2      AF      NCHROBS 1|11    2|21    3|31    4|41    5|51    6|61
+1       rs4475691    836671  T      C       0.197698        7036    0       0       1       1
+1       rs28705211   890368  C      G       0.278112        6972    0       0       0       1
+1       rs3934834    995669  T      C       0.143316        7780    0       0       0       0
+1       rs3737728    1011278 T      C       0.289266        7844    1       0       0       1
+1       rs6687776    1020428 T      C       0.156593        7842    0       1       1       1
+</code></pre>
+<p>Columns are chromosome, SNP ID, physical position, the coded allele, the other allele, frequency of the coded allele, the number of non-missing alleles, genotype of FID1|IID1, FID2|IID2…).</p>
 <p><span class="kwd">--recode</span><br>
 Output SNP genotypes based on additive model (i.e. x coded as 0, 1 or 2) in compressed text format, e.g. test.xmat.gz.</p>
 <p><span class="kwd">--recode-nomiss</span><br>
@@ -1704,7 +1755,7 @@ N_tr2               56342
 <p>fastGWA is a resource-efficient tool for mixed linear model (MLM)-based GWAS analysis of biobank-scale data such as the UK Biobank (see Jiang et al. <a href="https://www.biorxiv.org/content/10.1101/598110v1">2019 bioRxiv</a> for details of the method). Credits: <a href="mailto:longda.jiang@uq.edu.au">Longda Jiang</a> (method, simulation and analysis), <a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> (method, software and analysis) and <a href="http://researchers.uq.edu.au/researcher/2713">Jian Yang</a> (method and overseeing).</p>
 <p>We have applied fastGWA to 2,173 traits on 456,422 array-genotyped and imputed individuals and 2,048 traits on 49,960 whole-exome-sequenced (WES) individuals in the UK Biobank. All the summary statistics are available at <strong><a href="#DataResource">UKBiobankGWASresults</a></strong>. One can also query or visualize the summary data using the online tool: <a href="http://fastgwa.info">http://fastgwa.info</a>.</p>
 <h4 id="citation-1">Citation</h4>
-<p>Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. <a href="https://www.biorxiv.org/content/10.1101/598110v1">bioRxiv 598110; doi:10.1101/598110</a>.</p>
+<p>Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. Nature Genet. 51, 1749–1755 (2019) <a href="https://www.nature.com/articles/s41588-019-0530-8">doi:10.1038/s41588-019-0530-8</a>.</p>
 <p><span class="kwd">--make-bK-sparse</span> 0.05<br>
 To generate a sparse genetic relationship matrix (GRM) from a full-dense GRM at a cutoff value of 0.05. Note:1) The full-dense GRM can be generated by the <span class="kwd">--make-grm</span> or <span class="kwd">--make-grm-part</span> option (see the <a href="#MakingaGRM">GRM page</a>); 2) We also have an <a href="./res/pedFAM.R">R-script</a> to generate a family relatedness matrix (FAM, the sparse GRM constructed from expected relatedness coefficients between related individuals), without the need of calculating a full-dense GRM. It only requires the input of a <a href="https://www.cog-genomics.org/plink/1.9/formats#fam">PLINK .fam file</a> and a table that describes the pedigree information of the cohort.</p>
 <pre><code class="bash language-bash"># Partition the GRM into 100 parts
@@ -1748,6 +1799,19 @@ Perform a linear regression-based association analysis.</p>
 Specify the method used to estimate the genetic variance component (Vg). The default value is "REML", which uses the fastGWA-REML method to estimate Vg. The alternative option is "HE", which uses Haseman-Elston regression to estimate Vg.</p>
 <p><span class="kwd">--h2-limit</span> 1.6<br>
 Specify the upper limit of Vg / Vp (with Vg being the genetic variance and Vp being the phenotypic variance) used in fastGWA-REML for grid search. The default value is 1.6.</p>
+<p><span class="kwd">--save-fastGWA-mlm-residual</span><br>
+Save fastGWA residuals in a text file (*.fastGWA.residual). The residuals are V<sup>-1</sup> y/gamma. The estimated gamma parameter will be saved in a text file (*.fastGWA.gamma). </p>
+<blockquote>
+  <p>*.fastGWA.residual</p>
+</blockquote>
+<pre><code class="nohightlight language-nohightlight">1 11 0.03135
+2 22 0.05642
+3 33 0.000125
+...
+</code></pre>
+<p>Columns are FID, IID and residual.</p>
+<p><span class="kwd">--dc</span> 1<br>
+To specify a dosage compensation model for the X chromosome. Following PLINK, GCTA labels non-PAR (chr23) and PAR (chr25) regions of chromosome X with different chromosome numbers. The SNPs on chr23 are coded as 0/2 for males and as 0/1/2 for females. By default, the GRM for chromosome X is parameterized under the assumption of equal variance for males and females, unless the option <span class="kwd">--dc</span> is specified (1 and 0 for full and no dosage compensation, respectively). However, all other analyses assume a full dosage compensation model (i.e., <span class="kwd">--dc</span> 1) by default. Individuals without gender information will be treated same as females </p>
 <blockquote>
   <p>Output format<br>
   test.fastGWA (columns are chromosome, SNP, SNP position, the effect allele, the other allele, per allele sample size, frequency of A1, SNP effect, SE and p-value)</p>
@@ -2595,7 +2659,7 @@ P:    p value
 <h4 id="questionsandhelprequests-1">Questions and Help Requests</h4>
 <p>If you have any question, please send an email to Jian Yang <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a></p>
 <h4 id="citation-6">Citation</h4>
-<p>Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. <a href="https://www.biorxiv.org/content/10.1101/598110v1">bioRxiv 598110; doi:10.1101/598110</a>.</p>
+<p>Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. Nature Genet. 51, 1749–1755 (2019) <a href="https://www.nature.com/articles/s41588-019-0530-8">doi:10.1038/s41588-019-0530-8</a>.</p>
 <h4 id="updatelog">Update log</h4>
 <ul>
 <li>Version v1.1 (9 Aug 2019): reran all the analyses using GCTA-fastGWA v1.92.3; removed variants with MAF &lt; 0.01 or missingness rate &gt; 0.1 per trait, and removed binary traits with case fraction &lt; 0.01.</li>
