@@ -5,7 +5,7 @@
 
 **fastGWA: A fast MLM-based Genome-Wide Association tool**
 
-fastGWA is a resource-efficient tool for mixed linear model (MLM)-based GWAS analysis of biobank-scale data such as the UK Biobank (see Jiang et al. [2019 bioRxiv](https://www.biorxiv.org/content/10.1101/598110v1) for details of the method). Credits: [Longda Jiang](mailto:longda.jiang@uq.edu.au) (method, simulation and analysis), [Zhili Zheng](mailto:zhili.zheng@uq.edu.au) (method, software and analysis) and [Jian Yang](http://researchers.uq.edu.au/researcher/2713) (method and overseeing).
+fastGWA is a resource-efficient tool for mixed linear model (MLM)-based GWAS analysis of biobank-scale data such as the UK Biobank (see Jiang et al. [Nature Genetics 2019](https://www.nature.com/articles/s41588-019-0530-8) for details of the method). Credits: [Longda Jiang](mailto:longda.jiang@uq.edu.au) (method, simulation and analysis), [Zhili Zheng](mailto:zhili.zheng@uq.edu.au) (method, software and analysis) and [Jian Yang](http://researchers.uq.edu.au/researcher/2713) (method and overseeing).
 
 We have applied fastGWA to 2,173 traits on 456,422 array-genotyped and imputed individuals and 2,048 traits on 49,960 whole-exome-sequenced (WES) individuals in the UK Biobank. All the summary statistics are available at **[UKBiobankGWASresults](#DataResource)**. One can also query or visualize the summary data using the online tool: [http://fastgwa.info](http://fastgwa.info).
 

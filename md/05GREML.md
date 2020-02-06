@@ -848,7 +848,7 @@ n    3669
 ### GREML power calculator
 R functions for GCTA power calculation
 
-Although the online version of [GCTA power calculator](http://cnsgenomics.shinyapps.io/gctaPower/) is available, I think it would still be useful for some users to have the R functions below.
+Although the online version of [GCTA power calculator](http://shiny.cnsgenomics.com/gctaPower/) is available, I think it would still be useful for some users to have the R functions below.
 
 Reference: [Visscher et al. (2014) Statistical power to detect genetic (co)variance of complex traits using SNP data in unrelated samples. PLoS Genetics, 10(4): e1004269.](http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1004269)
 ```r

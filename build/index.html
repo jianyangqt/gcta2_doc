@@ -1555,7 +1555,7 @@ n    3669
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. (2011) GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet, 88: 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="gremlpowercalculator">GREML power calculator</h3>
 <p>R functions for GCTA power calculation</p>
-<p>Although the online version of <a href="http://cnsgenomics.shinyapps.io/gctaPower/">GCTA power calculator</a> is available, I think it would still be useful for some users to have the R functions below.</p>
+<p>Although the online version of <a href="http://shiny.cnsgenomics.com/gctaPower/">GCTA power calculator</a> is available, I think it would still be useful for some users to have the R functions below.</p>
 <p>Reference: <a href="http://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1004269">Visscher et al. (2014) Statistical power to detect genetic (co)variance of complex traits using SNP data in unrelated samples. PLoS Genetics, 10(4): e1004269.</a></p>
 <pre><code class="r language-r"># Function for a quantitative trait
 # n = sample size 
@@ -1762,7 +1762,7 @@ N_tr2               56342
 <h2 id="gwasanalysis">GWAS analysis</h2>
 <hr><h3 id="fastgwa">fastGWA</h3>
 <p><strong>fastGWA: A fast MLM-based Genome-Wide Association tool</strong></p>
-<p>fastGWA is a resource-efficient tool for mixed linear model (MLM)-based GWAS analysis of biobank-scale data such as the UK Biobank (see Jiang et al. <a href="https://www.biorxiv.org/content/10.1101/598110v1">2019 bioRxiv</a> for details of the method). Credits: <a href="mailto:longda.jiang@uq.edu.au">Longda Jiang</a> (method, simulation and analysis), <a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> (method, software and analysis) and <a href="http://researchers.uq.edu.au/researcher/2713">Jian Yang</a> (method and overseeing).</p>
+<p>fastGWA is a resource-efficient tool for mixed linear model (MLM)-based GWAS analysis of biobank-scale data such as the UK Biobank (see Jiang et al. <a href="https://www.nature.com/articles/s41588-019-0530-8">Nature Genetics 2019</a> for details of the method). Credits: <a href="mailto:longda.jiang@uq.edu.au">Longda Jiang</a> (method, simulation and analysis), <a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> (method, software and analysis) and <a href="http://researchers.uq.edu.au/researcher/2713">Jian Yang</a> (method and overseeing).</p>
 <p>We have applied fastGWA to 2,173 traits on 456,422 array-genotyped and imputed individuals and 2,048 traits on 49,960 whole-exome-sequenced (WES) individuals in the UK Biobank. All the summary statistics are available at <strong><a href="#DataResource">UKBiobankGWASresults</a></strong>. One can also query or visualize the summary data using the online tool: <a href="http://fastgwa.info">http://fastgwa.info</a>.</p>
 <h4 id="citation-1">Citation</h4>
 <p>Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. Nature Genet. 51, 1749–1755 (2019) <a href="https://www.nature.com/articles/s41588-019-0530-8">doi:10.1038/s41588-019-0530-8</a>.</p>
