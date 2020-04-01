@@ -4,17 +4,17 @@
 
 The executable files below only support a 64-bit operating system on the x86\_64 CPU platform. 
 
-Linux [gcta\_1.93.0beta.zip](./bin/gcta_1.93.0beta.zip)
+Linux [gcta\_1.93.1beta.zip](./bin/gcta_1.93.1beta.zip)
 
-Windows [gcta\_1.93.0beta\_win.zip](./bin/gcta_1.93.0beta_win.zip)
+Windows [gcta\_1.93.1beta\_win.zip](./bin/gcta_1.93.1beta_win.zip)
 
-Mac [gcta\_1.93.0beta\_mac.zip](./bin/gcta_1.93.0beta_mac.zip)
+Mac [gcta\_1.93.1beta\_mac.zip](./bin/gcta_1.93.1beta_mac.zip)
  
-The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.
+The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested. GCTA for Linux only supports kernel version >= 2.6.32 (released 10 years ago), or the users would receive error "FATAL: kernel too old".  Windows and Mac version are tested under most recent system versions only. 
 
-GCTA v1.93.0beta now supports genotype data (including imputed dosage data) in [bgen](https://www.well.ox.ac.uk/~gav/bgen_format/) and [pgen](https://github.com/chrchang/plink-ng/blob/master/pgen_spec/pgen_spec.pdf) format.
+GCTA v1.93.1beta now supports genotype data (including imputed dosage data) in [bgen](https://www.well.ox.ac.uk/~gav/bgen_format/) and [pgen](https://github.com/chrchang/plink-ng/blob/master/pgen_spec/pgen_spec.pdf) format.
 
-> Note: GCTA 1.93.0beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
+> Note: GCTA 1.93.1beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
 
 ### Source code {: .notoc}
 
@@ -23,6 +23,19 @@ GCTA v1.93.0beta now supports genotype data (including imputed dosage data) in [
 The source code are released under GPL v2. The source code of the latest version will be released when it is stable.
 
 ### Update log {: .notoc}
+#### Version 1.93.1beta (1 Apr 2020)
+* Added two new flags in fastGWA: --model-only to save the estimated fastGWA model parameters and --load-model to load the saved estimates for association tests.
+* Fixed a bug in fastGWA when dealing with ChrX, and a bug when the number of SNPs to calibrate the gamma parameter is too small.
+* Changed the allele frequency calculation method for ChrX to coordinate with the corresponding changes in PLINK2.
+* Updated fastGWA to use "-9" as a missing value symbol in phenotype or covariate data.
+* Fixed a bug in --update-freq.
+* Fixed a bug in COJO when performed in conjunction with the --diff-freq flag.
+* Fixed a bug in a few analyses when no gender information is present in the .fam file.
+* Fixed a bug when loading sample information using the --sample flag.
+* Fixed a bug in reporting the "Illegal instruction" error for old versions of CPU.
+* Fixed a bug in computing the likelihood value in the within-family REML analysis.
+* Fixed a bug in checking case/control data in REML.
+
 #### Version 1.93.0beta (9 Dec 2019)
 * Added a flag [--bgen](#Inputandoutput) to input genotype data (including imputed dosage data) in bgen format (>=v1.2).
 * Added a flag [--mbgen](#Inputandoutput) to input genotype data in multiple bgen files.

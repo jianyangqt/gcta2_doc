@@ -184,7 +184,7 @@ rs28705211 C 0.278
 ```
 
 --update-freq test.freq  
-Update allele frequencies of the SNPs from a file rather than calculating from the data. The format of the input file is the same as the output format for the option --freq.
+Update allele frequencies of the SNPs from a file rather than calculating from the data. The format of the input file is the same as the output format for the option --freq-v1.
 
 --recodet  
 To output a transposed matrix of the genotype data (SNPs in rows and individuals in columns) in text format (\*.xmat). By default, missing genotypes will be replaced by the expected values. --recodet raw: replacing missing genotypes by NAs. --recodet std: standardizing the genotypes. Note: --recodet supports more formats than --recode. 

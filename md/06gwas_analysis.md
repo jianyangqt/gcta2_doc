@@ -74,9 +74,20 @@ Save fastGWA residuals in a text file (\*.fastGWA.residual). The residuals are V
 ```
 Columns are FID, IID and residual.
 
+--model-only  
+To perform the variance component estimation step in fastGWA without the association test step and save the results in *.fastGWA.mdl.id and *.fastGWA.mdl.bin files.
+
+--load-model  
+To load a saved model (see the --model-only flag above) to perform association tests. This flag is useful in a scenario where the fastGWA model parameters estimated from an analysis for the autosomes can be used in that for the X chromosome (see the example below). Note that this function only works when the sample IDs in the saved model are a subset of those in genotype data. This flag also works with all the other genotype QC flags (e.g., --maf, --extract and --geno) but is incompatible with flags to input phenotype, covariate or GRM.
+
 --dc 1  
 To specify a dosage compensation model for the X chromosome. Following PLINK, GCTA labels non-PAR (chr23) and PAR (chr25) regions of chromosome X with different chromosome numbers. The SNPs on chr23 are coded as 0/2 for males and as 0/1/2 for females. By default, the GRM for chromosome X is parameterized under the assumption of equal variance for males and females, unless the option --dc is specified (1 and 0 for full and no dosage compensation, respectively). However, all other analyses assume a full dosage compensation model (i.e., --dc 1) by default. Individuals without gender information will be treated same as females 
 
+--nofilter  
+By default, fastGWA filters out low quality variants (i.e., MAF < 0.0001 or missingness rate > 0.1) if no QC flag is specified. The --nofilter flag will mute this default filtering and output the association test results of all the variants. Note that this flag is equivalent to --maf 0 and --geno 0.
+
+--seed  
+fastGWA uses a set of randomly selected variants (up to 1000) to estimate the gamma parameter used for association tests (see the Supplementary Note 2 of Jiang et al. 2019 Nat Genet for details). In a very rare scenario, a bad choice of the random seed would lead to a failure of the gamma parameter estimation. In this case, it is recommended to choose a different seed (a non-zero integer value) using this flag.
 
 > Output format  
 > test.fastGWA (columns are chromosome, SNP, SNP position, the effect allele, the other allele, per allele sample size, frequency of A1, SNP effect, SE and p-value)
@@ -102,6 +113,16 @@ gcta64 --mbfile geno_chrs.txt --make-grm --sparse-cutoff 0.05 --threads 10 --out
 
 # fastGWA mixed model (based on the sparse GRM generated above)
 gcta64 --mbfile geno_chrs.txt --grm-sparse sp_grm --fastGWA-mlm --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --threads 10 --out geno_assoc
+
+
+# To save the estimated fastGWA model parameters from an analysis for the autosomes and use them in a subsequent analysis for chrX
+# chrX.idlist: a list of sample IDs used in the analysis for chrX
+gcta64 --mbfile geno_chrs.txt --grm-sparse sp_grm --fastGWA-mlm --model-only --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --keep chrX.idlist --threads 10 --out geno_assoc
+
+# To load the saved model above to run association tests for ChrX
+# chr.snplist: a list of variants on chrX to be included in this analysis
+gcta64 --bfile test_chrX --load-model geno_assoc.fastGWA --extract chr.snplist --geno 0.1 --out test_chrX_assoc --threads 10
+
 
 # fastGWA linear regression
 gcta64 --mbfile geno_chrs.txt --fastGWA-lr --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --threads 10 --out geno_assoc

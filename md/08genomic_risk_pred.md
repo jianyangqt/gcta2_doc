@@ -29,7 +29,7 @@ rs175292   G    -0.00021    0.00139
 ```
 
 --cvblup  
-cvBLUP is an approach that can be used to obtain BLUP solution of an individual’s genetic value without using the individual’s genotype or phenotype data ([Mefford et al. 2019 bioRxiv](https://www.biorxiv.org/content/10.1101/517821v1.full)). It is equivalent to (but a lot more efficient than) the leave-one-individual-out BLUP analysis. Because of this property, the cvBLUP SNP effects can be used to compute the out-of-sample PRS in either the discovery or an independent sample.
+cvBLUP is a computationally efficient approach that uses a mixed linear model (MLM) to generate polygenic risk scores (PRSs), which are equivalent to those from a leave-one-individual-out BLUP analysis, for all the individuals in a sample (see [Mefford et al. 2020 J Comput. Biol.](https://www.liebertpub.com/doi/full/10.1089/cmb.2019.0325) for details of the method).
 
 > Output file format
 >> test.indi.cvblp (no headers). The columns are family ID, individual ID, an intermediate variable, the genetic effect, another intermediate variable and the residual effect.
@@ -53,15 +53,15 @@ plink --bfile geno_to_predict --score test.snp.blp 1 2 3
 # To obtain cvBLUP solutions for the genetic values of individuals
 gcta64 --reml --grm test --pheno test.phen --cvblup –qcovar test_10PCs.txt --out test
 # To obtain cvBLUP solutions for the SNP effects
-gcta64 --bfile geno_to_predict --update-freq reference.frq --blup-snp test.indi.cvblp --out test
-# To compute the polygenic risk score (PRS) in the discovery or an independent sample
-plink --bfile geno_to_predict --score test.snp.blp 1 2 3
+gcta64 --bfile geno --blup-snp test.indi.cvblp --out test
+# To compute the polygenic risk score (PRS)
+plink --bfile geno --score test.snp.blp 1 2 3
 ```
 
 #### Citation
 BLUP method or GCTA software: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. \[PubMed ID: [21167468](https://www.ncbi.nlm.nih.gov/pubmed/21167468)]
 
-cvBLUP method: Mefford JA, Park D, Zheng Z, et al. (2019) Efficient estimation and applications of cross-validated genetic predictions. [bioRxiv 517821](https://www.biorxiv.org/content/10.1101/517821v1.full); doi: https://doi.org/10.1101/517821
+cvBLUP method: Mefford JA, Park D, Zheng Z, et al. Efficient Estimation and Applications of Cross-Validated Genetic Predictions to Polygenic Risk Scores and Linear Mixed Models. Journal of Computational Biology. 2020 Feb online; doi: https://doi.org/10.1089/cmb.2019.0325
 
 
 

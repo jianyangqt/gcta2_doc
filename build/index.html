@@ -69,7 +69,7 @@
 <li>Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits;</li>
 <li>fastGWA: an extremely source-efficient (mixed) linear model association tool.</li>
 </ul>
-<p><strong>Latest release <a href="#Download">v1.93.0beta</a>, click to download or view update log (9 Dec 2019)</strong></p>
+<p><strong>Latest release <a href="#Download">v1.93.1beta</a>, click to download or view update log (1 Apr 2020)</strong></p>
 <hr><h3 id="credits">Credits</h3>
 <p><a href="http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&amp;hl=en">Jian Yang</a> developed the original version of the software with supports from <a href="mailto:peter.visscher@uq.edu.au">Peter Visscher</a>, <a href="mailto:Mike.Goddard@dpi.vic.gov.au">Mike Goddard</a> and <a href="mailto:hong.lee@uq.edu.au">Hong Lee</a>. </p>
 <p><a href="mailto:zhili.zheng@uq.edu.au">Zhili Zheng</a> programmed the fastGWA module, rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, improved the SBLUP module, developed the website, and is currently maintaining the software.</p>
@@ -105,22 +105,36 @@ Bakshi et al. (2016) Fast set-based association analysis using summary data from
 Zhu et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. Nat Commun. 9, 224.[<a href="https://www.ncbi.nlm.nih.gov/pubmed/?term=29335400">PMID: 29335400</a>]  </p>
 <p><strong>fastGWA method:</strong><br>
 Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. Nature Genet. 51, 1749–1755 (2019) <a href="https://www.nature.com/articles/s41588-019-0530-8">doi:10.1038/s41588-019-0530-8</a>.</p>
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 9 Dec 2019</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 1 Apr 2020</p>
 <h2 id="download">Download</h2>
 <hr><h3 id="executablefilesnotoc" class="notoc">Executable Files </h3>
 <p>The executable files below only support a 64-bit operating system on the x86_64 CPU platform. </p>
-<p>Linux <a href="./bin/gcta_1.93.0beta.zip">gcta_1.93.0beta.zip</a></p>
-<p>Windows <a href="./bin/gcta_1.93.0beta_win.zip">gcta_1.93.0beta_win.zip</a></p>
-<p>Mac <a href="./bin/gcta_1.93.0beta_mac.zip">gcta_1.93.0beta_mac.zip</a></p>
-<p>The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested.</p>
-<p>GCTA v1.93.0beta now supports genotype data (including imputed dosage data) in <a href="https://www.well.ox.ac.uk/~gav/bgen_format/">bgen</a> and <a href="https://github.com/chrchang/plink-ng/blob/master/pgen_spec/pgen_spec.pdf">pgen</a> format.</p>
+<p>Linux <a href="./bin/gcta_1.93.1beta.zip">gcta_1.93.1beta.zip</a></p>
+<p>Windows <a href="./bin/gcta_1.93.1beta_win.zip">gcta_1.93.1beta_win.zip</a></p>
+<p>Mac <a href="./bin/gcta_1.93.1beta_mac.zip">gcta_1.93.1beta_mac.zip</a></p>
+<p>The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested. GCTA for Linux only supports kernel version &gt;= 2.6.32 (released 10 years ago), or the users would receive error "FATAL: kernel too old".  Windows and Mac version are tested under most recent system versions only. </p>
+<p>GCTA v1.93.1beta now supports genotype data (including imputed dosage data) in <a href="https://www.well.ox.ac.uk/~gav/bgen_format/">bgen</a> and <a href="https://github.com/chrchang/plink-ng/blob/master/pgen_spec/pgen_spec.pdf">pgen</a> format.</p>
 <blockquote>
-  <p>Note: GCTA 1.93.0beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
+  <p>Note: GCTA 1.93.1beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at <a href="mailto:jian.yang@uq.edu.au">jian.yang@uq.edu.au</a>.</p>
 </blockquote>
 <hr><h3 id="sourcecodenotoc" class="notoc">Source code </h3>
 <p><a href="./pre_gcta/gcta_1.26.0_src.zip">gcta_1.26.0_src.zip</a></p>
 <p>The source code are released under GPL v2. The source code of the latest version will be released when it is stable.</p>
 <hr><h3 id="updatelognotoc" class="notoc">Update log </h3>
+<h4 id="version1931beta1apr2020">Version 1.93.1beta (1 Apr 2020)</h4>
+<ul>
+<li>Added two new flags in fastGWA: --model-only to save the estimated fastGWA model parameters and --load-model to load the saved estimates for association tests.</li>
+<li>Fixed a bug in fastGWA when dealing with ChrX, and a bug when the number of SNPs to calibrate the gamma parameter is too small.</li>
+<li>Changed the allele frequency calculation method for ChrX to coordinate with the corresponding changes in PLINK2.</li>
+<li>Updated fastGWA to use "-9" as a missing value symbol in phenotype or covariate data.</li>
+<li>Fixed a bug in --update-freq.</li>
+<li>Fixed a bug in COJO when performed in conjunction with the --diff-freq flag.</li>
+<li>Fixed a bug in a few analyses when no gender information is present in the .fam file.</li>
+<li>Fixed a bug when loading sample information using the --sample flag.</li>
+<li>Fixed a bug in reporting the "Illegal instruction" error for old versions of CPU.</li>
+<li>Fixed a bug in computing the likelihood value in the within-family REML analysis.</li>
+<li>Fixed a bug in checking case/control data in REML.</li>
+</ul>
 <h4 id="version1930beta9dec2019">Version 1.93.0beta (9 Dec 2019)</h4>
 <ul>
 <li>Added a flag <a href="#Inputandoutput">--bgen</a> to input genotype data (including imputed dosage data) in bgen format (&gt;=v1.2).</li>
@@ -805,7 +819,7 @@ rs28705211 C 0.278
 ......  
 </code></pre>
 <p><span class="kwd">--update-freq</span> test.freq<br>
-Update allele frequencies of the SNPs from a file rather than calculating from the data. The format of the input file is the same as the output format for the option <span class="kwd">--freq</span>.</p>
+Update allele frequencies of the SNPs from a file rather than calculating from the data. The format of the input file is the same as the output format for the option <span class="kwd">--freq-v1</span>.</p>
 <p><span class="kwd">--recodet</span><br>
 To output a transposed matrix of the genotype data (SNPs in rows and individuals in columns) in text format (*.xmat). By default, missing genotypes will be replaced by the expected values. <span class="kwd">--recodet</span> raw: replacing missing genotypes by NAs. <span class="kwd">--recodet</span> std: standardizing the genotypes. Note: <span class="kwd">--recodet</span> supports more formats than <span class="kwd">--recode</span>. </p>
 <blockquote>
@@ -1486,7 +1500,7 @@ test_domi
 <p><strong>Method paper</strong>: Zhu Z, Bakshi A, Vinkhuyzen AA, Hemani G, Lee SH, Nolte IM, van Vliet-Ostaptchouk JV, Snieder H, The LifeLines Cohort Study, Esko T, Milani L, Mägi R, Metspalu A, Hill WG, Weir BS, Goddard ME, Visscher PM, Yang J (2015) Dominance Genetic Variation Contributes Little to the Missing Heritability for Human Complex Traits. Am J Hum Genet, 96: 1-9. [PubMed ID: 25683123]</p>
 <p><strong>GCTA software</strong>: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: 21167468]</p>
 <hr><h3 id="bivariategremlanalysis">Bivariate GREML analysis</h3>
-<p>These options are designed to perform a bivariate GREML analysis to estimate the genetic crrelation between two quantitative traits, between two disease traits (binary) from case control studies, and between a quantitative trait and a binary disease trait. The analysis will output the estimated genetic variance for each trait (captured by the SNPs) and the genetic covariance betwen traits.  </p>
+<p>These options are designed to perform a bivariate GREML analysis to estimate the genetic correlation between two quantitative traits, between two disease traits (binary) from case control studies, and between a quantitative trait and a binary disease trait. The analysis will output the estimated genetic variance for each trait (captured by the SNPs) and the genetic covariance betwen traits.  </p>
 <p><span class="kwd">--reml-bivar</span> 1 2<br>
 By default, GCTA will take the first two traits in the phenotype file for analysis. The phenotype file is specified by the option <span class="kwd">--pheno</span> as described in univariate REML analysis. All the options for univariate REML analysis are still valid here except <span class="kwd">--mpheno</span>, <span class="kwd">--gxe</span>, <span class="kwd">--prevalence</span>, <span class="kwd">--reml-lrt</span>, <span class="kwd">--reml-no-lrt</span> and <span class="kwd">--blup-snp</span>. All the input files are in the same format as in univariate REML analysis.</p>
 <p><span class="kwd">--reml-bivar-nocove</span><br>
@@ -1820,8 +1834,16 @@ Save fastGWA residuals in a text file (*.fastGWA.residual). The residuals are V<
 ...
 </code></pre>
 <p>Columns are FID, IID and residual.</p>
+<p><span class="kwd">--model-only</span><br>
+To perform the variance component estimation step in fastGWA without the association test step and save the results in *.fastGWA.mdl.id and *.fastGWA.mdl.bin files.</p>
+<p><span class="kwd">--load-model</span><br>
+To load a saved model (see the <span class="kwd">--model-only</span> flag above) to perform association tests. This flag is useful in a scenario where the fastGWA model parameters estimated from an analysis for the autosomes can be used in that for the X chromosome (see the example below). Note that this function only works when the sample IDs in the saved model are a subset of those in genotype data. This flag also works with all the other genotype QC flags (e.g., <span class="kwd">--maf</span>, <span class="kwd">--extract</span> and <span class="kwd">--geno</span>) but is incompatible with flags to input phenotype, covariate or GRM.</p>
 <p><span class="kwd">--dc</span> 1<br>
 To specify a dosage compensation model for the X chromosome. Following PLINK, GCTA labels non-PAR (chr23) and PAR (chr25) regions of chromosome X with different chromosome numbers. The SNPs on chr23 are coded as 0/2 for males and as 0/1/2 for females. By default, the GRM for chromosome X is parameterized under the assumption of equal variance for males and females, unless the option <span class="kwd">--dc</span> is specified (1 and 0 for full and no dosage compensation, respectively). However, all other analyses assume a full dosage compensation model (i.e., <span class="kwd">--dc</span> 1) by default. Individuals without gender information will be treated same as females </p>
+<p><span class="kwd">--nofilter</span><br>
+By default, fastGWA filters out low quality variants (i.e., MAF &lt; 0.0001 or missingness rate &gt; 0.1) if no QC flag is specified. The <span class="kwd">--nofilter</span> flag will mute this default filtering and output the association test results of all the variants. Note that this flag is equivalent to <span class="kwd">--maf</span> 0 and <span class="kwd">--geno</span> 0.</p>
+<p><span class="kwd">--seed</span><br>
+fastGWA uses a set of randomly selected variants (up to 1000) to estimate the gamma parameter used for association tests (see the Supplementary Note 2 of Jiang et al. 2019 Nat Genet for details). In a very rare scenario, a bad choice of the random seed would lead to a failure of the gamma parameter estimation. In this case, it is recommended to choose a different seed (a non-zero integer value) using this flag.</p>
 <blockquote>
   <p>Output format<br>
   test.fastGWA (columns are chromosome, SNP, SNP position, the effect allele, the other allele, per allele sample size, frequency of A1, SNP effect, SE and p-value)</p>
@@ -1845,6 +1867,16 @@ gcta64 --mbfile geno_chrs.txt --make-grm --sparse-cutoff 0.05 --threads 10 --out
 
 # fastGWA mixed model (based on the sparse GRM generated above)
 gcta64 --mbfile geno_chrs.txt --grm-sparse sp_grm --fastGWA-mlm --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --threads 10 --out geno_assoc
+
+
+# To save the estimated fastGWA model parameters from an analysis for the autosomes and use them in a subsequent analysis for chrX
+# chrX.idlist: a list of sample IDs used in the analysis for chrX
+gcta64 --mbfile geno_chrs.txt --grm-sparse sp_grm --fastGWA-mlm --model-only --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --keep chrX.idlist --threads 10 --out geno_assoc
+
+# To load the saved model above to run association tests for ChrX
+# chr.snplist: a list of variants on chrX to be included in this analysis
+gcta64 --bfile test_chrX --load-model geno_assoc.fastGWA --extract chr.snplist --geno 0.1 --out test_chrX_assoc --threads 10
+
 
 # fastGWA linear regression
 gcta64 --mbfile geno_chrs.txt --fastGWA-lr --pheno phenotype.txt --qcovar pc.txt --covar fixed.txt --threads 10 --out geno_assoc
@@ -2375,7 +2407,7 @@ rs175292   G    -0.00021    0.00139
 ...
 </code></pre>
 <p><span class="kwd">--cvblup</span><br>
-cvBLUP is an approach that can be used to obtain BLUP solution of an individual’s genetic value without using the individual’s genotype or phenotype data (<a href="https://www.biorxiv.org/content/10.1101/517821v1.full">Mefford et al. 2019 bioRxiv</a>). It is equivalent to (but a lot more efficient than) the leave-one-individual-out BLUP analysis. Because of this property, the cvBLUP SNP effects can be used to compute the out-of-sample PRS in either the discovery or an independent sample.</p>
+cvBLUP is a computationally efficient approach that uses a mixed linear model (MLM) to generate polygenic risk scores (PRSs), which are equivalent to those from a leave-one-individual-out BLUP analysis, for all the individuals in a sample (see <a href="https://www.liebertpub.com/doi/full/10.1089/cmb.2019.0325">Mefford et al. 2020 J Comput. Biol.</a> for details of the method).</p>
 <blockquote>
   <p>Output file format</p>
   <blockquote>
@@ -2398,13 +2430,13 @@ plink --bfile geno_to_predict --score test.snp.blp 1 2 3
 # To obtain cvBLUP solutions for the genetic values of individuals
 gcta64 --reml --grm test --pheno test.phen --cvblup –qcovar test_10PCs.txt --out test
 # To obtain cvBLUP solutions for the SNP effects
-gcta64 --bfile geno_to_predict --update-freq reference.frq --blup-snp test.indi.cvblp --out test
-# To compute the polygenic risk score (PRS) in the discovery or an independent sample
-plink --bfile geno_to_predict --score test.snp.blp 1 2 3
+gcta64 --bfile geno --blup-snp test.indi.cvblp --out test
+# To compute the polygenic risk score (PRS)
+plink --bfile geno --score test.snp.blp 1 2 3
 </code></pre>
 <h4 id="citation-4">Citation</h4>
 <p>BLUP method or GCTA software: Yang J, Lee SH, Goddard ME and Visscher PM. GCTA: a tool for Genome-wide Complex Trait Analysis. Am J Hum Genet. 2011 Jan 88(1): 76-82. [PubMed ID: <a href="https://www.ncbi.nlm.nih.gov/pubmed/21167468">21167468</a>]</p>
-<p>cvBLUP method: Mefford JA, Park D, Zheng Z, et al. (2019) Efficient estimation and applications of cross-validated genetic predictions. <a href="https://www.biorxiv.org/content/10.1101/517821v1.full">bioRxiv 517821</a>; doi: https://doi.org/10.1101/517821</p>
+<p>cvBLUP method: Mefford JA, Park D, Zheng Z, et al. Efficient Estimation and Applications of Cross-Validated Genetic Predictions to Polygenic Risk Scores and Linear Mixed Models. Journal of Computational Biology. 2020 Feb online; doi: https://doi.org/10.1089/cmb.2019.0325</p>
 <hr><h3 id="sblup">SBLUP</h3>
 <p>This is a method to run BLUP analysis using summary data from a GWAS/meta-analysis with LD from a reference sample with individual-level data. Similar methods have been proposed in recent studies to predict complex traits and diseases using GWAS summary data (Vilhjálmsson et al. 2015 AJHG; Robinson et al. 2017 Nat Hum Behav) or age using summary data from transcriptome-wise association studies (Peters et al. 2015 Nat Comm).</p>
 <blockquote>

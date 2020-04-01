@@ -21,7 +21,7 @@ GCTA (Genome-wide Complex Trait Analysis) was initially designed to estimate the
 * Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits;
 * fastGWA: an extremely source-efficient (mixed) linear model association tool.
 
-**Latest release [v1.93.0beta](#Download), click to download or view update log (9 Dec 2019)**
+**Latest release [v1.93.1beta](#Download), click to download or view update log (1 Apr 2020)**
 
 ### Credits 
 
@@ -80,5 +80,5 @@ Zhu et al. (2018) Causal associations between risk factors and common diseases i
 Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. Nature Genet. 51, 1749–1755 (2019) [doi:10.1038/s41588-019-0530-8](https://www.nature.com/articles/s41588-019-0530-8).
 
 
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 9 Dec 2019</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 1 Apr 2020</p>
 
