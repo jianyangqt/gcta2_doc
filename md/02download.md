@@ -4,25 +4,27 @@
 
 The executable files below only support a 64-bit operating system on the x86\_64 CPU platform. 
 
-Linux [gcta\_1.93.1beta.zip](./bin/gcta_1.93.1beta.zip)
+Linux [gcta\_1.93.2beta.zip](./bin/gcta_1.93.2beta.zip)
 
-Windows [gcta\_1.93.1beta\_win.zip](./bin/gcta_1.93.1beta_win.zip)
+Windows [gcta\_1.93.2beta\_win.zip](./bin/gcta_1.93.2beta_win.zip)
 
-Mac [gcta\_1.93.1beta\_mac.zip](./bin/gcta_1.93.1beta_mac.zip)
+Mac [gcta\_1.93.2beta\_mac.zip](./bin/gcta_1.93.2beta_mac.zip)
  
 The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested. GCTA for Linux only supports kernel version >= 2.6.32 (released 10 years ago), or the users would receive error "FATAL: kernel too old".  Windows and Mac version are tested under most recent system versions only. 
 
-GCTA v1.93.1beta now supports genotype data (including imputed dosage data) in [bgen](https://www.well.ox.ac.uk/~gav/bgen_format/) and [pgen](https://github.com/chrchang/plink-ng/blob/master/pgen_spec/pgen_spec.pdf) format.
-
-> Note: GCTA 1.93.1beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au).
+> Note: GCTA 1.93.2beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang.qt@gmail.com](mailto:jian.yang.qt@gmail.com).
 
 ### Source code {: .notoc}
 
-[gcta\_1.26.0\_src.zip](./pre_gcta/gcta_1.26.0_src.zip)
+[gcta\_1.93.2\_src.zip](./pre_gcta/gcta_1.93.2_src.zip)
 
-The source code are released under GPL v2. The source code of the latest version will be released when it is stable.
+The source code are released under GPL v3.
 
 ### Update log {: .notoc}
+#### Version 1.93.2beta (8 May 2020)
+* Fixed a bug in --bgen when there are missing missing genotypes.
+* Fixed a bug in --update-sex.
+
 #### Version 1.93.1beta (1 Apr 2020)
 * Added two new flags in fastGWA: --model-only to save the estimated fastGWA model parameters and --load-model to load the saved estimates for association tests.
 * Fixed a bug in fastGWA when dealing with ChrX, and a bug when the number of SNPs to calibrate the gamma parameter is too small.

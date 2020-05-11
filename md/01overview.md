@@ -21,13 +21,13 @@ GCTA (Genome-wide Complex Trait Analysis) was initially designed to estimate the
 * Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits;
 * fastGWA: an extremely source-efficient (mixed) linear model association tool.
 
-**Latest release [v1.93.1beta](#Download), click to download or view update log (1 Apr 2020)**
+**Latest release [v1.93.2beta](#Download), click to download or view update log (8 May 2020)**
 
 ### Credits 
 
 [Jian Yang](http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) developed the original version of the software with supports from [Peter Visscher](mailto:peter.visscher@uq.edu.au), [Mike Goddard](mailto:Mike.Goddard@dpi.vic.gov.au) and [Hong Lee](mailto:hong.lee@uq.edu.au). 
 
-[Zhili Zheng](mailto:zhili.zheng@uq.edu.au) programmed the fastGWA module, rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, improved the SBLUP module, developed the website, and is currently maintaining the software.
+[Zhili Zheng](mailto:zhili.zheng@outlook.com) programmed the fastGWA module, rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, improved the SBLUP module, developed the website, and is currently maintaining the software.
 
 [Zhihong Zhu](mailto:z.zhu1@uq.edu.au) programmed the GCTA-mtCOJO, GCTA-GSMR module and improved the GCTA-COJO module. 
 
@@ -40,7 +40,7 @@ GCTA (Genome-wide Complex Trait Analysis) was initially designed to estimate the
 Contributions to the developments of methods included in GCTA (e.g., GREML methods, COJO, MLMA-LOCO, fastBAT and fastGWA) can be found in the papers cited in the corresponding webpages.
 
 ### Questions and Help Requests 
-If you have any bug reports or questions please send an email to [Jian Yang](http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) at [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au)
+If you have any bug reports or questions please send an email to [Jian Yang](http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) at [jian.yang.qt@gmail.com](mailto:jian.yang.qt@gmail.com)
 
 ### Citations 
 **GCTA Software tool:**  
@@ -80,5 +80,5 @@ Zhu et al. (2018) Causal associations between risk factors and common diseases i
 Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. Nature Genet. 51, 1749–1755 (2019) [doi:10.1038/s41588-019-0530-8](https://www.nature.com/articles/s41588-019-0530-8).
 
 
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 1 Apr 2020</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 8 May 2020</p>
 

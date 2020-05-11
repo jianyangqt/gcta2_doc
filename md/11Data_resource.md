@@ -52,7 +52,7 @@ Note: the names of the variants were kept the same as provided (the coordinates 
 Zhili Zheng (online tool development and data analysis), Longda Jiang (data analysis), Jian Yang (overseeing). The online tool was developed based on the source code modified from Pheweb. We thank Alibaba Cloud - Australia and New Zealand for hosting the online tool.
 
 #### Questions and Help Requests
-If you have any question, please send an email to Jian Yang [jian.yang@uq.edu.au](mailto:jian.yang@uq.edu.au)
+If you have any question, please send an email to Jian Yang [jian.yang.qt@gmail.com](mailto:jian.yang.qt@gmail.com)
 
 #### Citation
 Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. Nature Genet. 51, 1749–1755 (2019) [doi:10.1038/s41588-019-0530-8](https://www.nature.com/articles/s41588-019-0530-8).

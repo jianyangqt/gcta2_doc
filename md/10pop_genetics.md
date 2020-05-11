@@ -106,4 +106,4 @@ gcta64 --bfile TAR --project-loading REF_snp_loading 20 --out TAR_pca20
 ```
 
 #### Citation
-Jiang L, Zheng Z, Qi T, Kemper KE, Wray NR, Visscher PM, Yang J. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. [bioRxiv 598110; doi:10.1101/598110](https://www.biorxiv.org/content/10.1101/598110v1).
+Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. Nature Genet. 51, 1749–1755 (2019) [doi:10.1038/s41588-019-0530-8](https://www.nature.com/articles/s41588-019-0530-8).
