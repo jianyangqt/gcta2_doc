@@ -24,7 +24,7 @@
         "html-minifier": "^3.4.3",
         "jquery": "^3.2.1",
         "jsdom": "^9.12.0",
-        "showdown": "^1.6.4",
+        "showdown": "^1.9.1",
         "uglify-js": "^2.8.22"
     }
 }
