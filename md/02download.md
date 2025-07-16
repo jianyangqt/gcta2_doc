@@ -4,15 +4,15 @@
 
 The executable files below only support a 64-bit operating system on the x86\_64 CPU platform. 
 
-Linux [gcta\_1.93.2beta.zip](./bin/gcta_1.93.2beta.zip)
+Linux [gcta\_1.93.3beta2.zip](./bin/gcta_1.93.3beta2.zip)
 
-Windows [gcta\_1.93.2beta\_win.zip](./bin/gcta_1.93.2beta_win.zip)
+Windows [gcta\_1.93.2beta\_win.zip](./bin/gcta_1.93.2beta.zip) \(v1.93.3beta2 will be available soon\)
 
-Mac [gcta\_1.93.2beta\_mac.zip](./bin/gcta_1.93.2beta_mac.zip)
+Mac [gcta\_1.93.2beta\_mac.zip](./bin/gcta_1.93.2beta.zip) \(v1.93.3beta2 will be available soon\)
  
-The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested. GCTA for Linux only supports kernel version >= 2.6.32 (released 10 years ago), or the users would receive error "FATAL: kernel too old".  Windows and Mac version are tested under most recent system versions only. 
+The executable files are released under the MIT license. We recommend to use the Linux version because the Windows and Mac versions have not been fully tested. The Linux version of GCTA only supports kernel version >= 2.6.32 (released 10 years ago), otherwise one may receive an error message: "FATAL: kernel too old". The Windows and Mac versions are tested under the most recent system versions only.
 
-> Note: GCTA 1.93.2beta is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang.qt@gmail.com](mailto:jian.yang.qt@gmail.com).
+> Note: GCTA 1.93.3beta2 is a beta version under testing. We have fixed a few bugs in the previous versions. If you find any bug in this version, please report it to Jian Yang at [jian.yang@westlake.edu.cn](mailto:jian.yang@westlake.edu.cn).
 
 ### Source code {: .notoc}
 
@@ -21,6 +21,16 @@ The executable files are released under the MIT license. We recommend to use the
 The source code are released under GPL v3.
 
 ### Update log {: .notoc}
+
+#### Version 1.93.3beta2 (17 Aug 2021)
+* Fixed a bug when running fastGWA with genotype files in BGEN format.
+* Fixed an issue when running fastGWA with a stringent filtering which leads to not sufficient null SNPs (i.e., < 100) to estimate the parameter gamma.
+
+#### Version 1.93.3beta (1 Jun 2021)
+* Added a new module [fastGWA-GLMM](#fastGWA-GLMM) (a resource-efficient generalized linear mixed model association tool for biobank-scale data).
+* Added a new module [fastGWA-BB](#fastGWA-BB) (a set-based burden test for binary traits based on the framework of fastGWA-GLMM).
+* Added a new module [ACAT-V](#ACAT-V) (a very efficient summary-level set-based test that only requires GWAS summary statistics, originally proposed by [Liu et al, 2019](https://www.sciencedirect.com/science/article/pii/S0002929719300023)).
+
 #### Version 1.93.2beta (8 May 2020)
 * Fixed a bug in --bgen when there are missing missing genotypes.
 * Fixed a bug in --update-sex.
