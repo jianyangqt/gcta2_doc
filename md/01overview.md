@@ -1,46 +1,63 @@
 ## Overview {: .expand}
 
 ### About
-GCTA (Genome-wide Complex Trait Analysis) was initially designed to estimate the proportion of phenotypic variance explained by all genome-wide SNPs for complex traits (i.e., the GREML method). It has been subsequently extended for many other analyses to better understand the genetic architecture of complex traits. GCTA currently supports the following analyses.
-* GRM: estimating the genetic relationships among individuals in GWAS data;
-* Estimating the inbreeding coefficients of individuals in GWAS data;
-* GREML: estimating the proportion of variance in a phenotype explained by all GWAS SNPs (i.e. the SNP-based heritability);
-* Partitioning the genetic variance onto individual chromosomes, MAF bins or functional categories;
-* Estimating the genetic variance attributed to the X chromosome, and testing for the effect of dosage compensation;
-* GREMLd: estimating the dominance variance in unrelated individuals using GWAS data;
-* Bivariate GREML: estimating the genetic correlation between two traits (diseases) using GWAS data;
-* PCA analysis and estimation of Fst in GWAS data;
-* Computing LD scores and searching for LD friends for a list of target SNPs;
-* Simulating a phenotype based on GWAS data;
-* Conditional & joint (COJO) analysis of GWAS summary statistics without individual-level genotype data;
-* mtCOJO: multi-trait-based conditional & joint analysis using GWAS summary data;
-* GSMR: generalised summary-data-based mendelian randomisaion;
-* MLMA and MLMA-LOCO: mixed linear model association analysis;
-* fastBAT: gene- or set-based association analysis;
-* sBLUP: summary-data based BLUP analysis for genomic risk prediction;
-* Haseman-Elston regression to estimate the the SNP-based heritability for a trait and the genetic correlation between two traits;
-* fastGWA: an extremely source-efficient (mixed) linear model association tool.
+GCTA (Genome-wide Complex Trait Analysis) is a software package, which was initially developed to estimate the proportion of phenotypic variance explained by all genome-wide SNPs for a complex trait but has been extensively extended for many other analyses of data from genome-wide association studies (GWASs). GCTA currently supports the following analyses.  
 
-**Latest release [v1.93.2beta](#Download), click to download or view update log (8 May 2020)**
+**Heritability, genetic correlation, and phenotype prediction**
+* GRM: estimating genetic relationships among individuals from SNP data;
+* Estimating the inbreeding coefficients of individuals in GWAS data;
+* GREML: estimating the proportion of variance in a phenotype explained by all SNPs (i.e. the SNP-based heritability);
+* Partitioning genetic variance into contributions from different sets of SNPs stratified by chromosome location, allele frequency, or functional annotation;
+* Estimating the genetic variance attributed to the X chromosome, and testing for the effect of dosage compensation;
+* GREMLd: estimating dominance variance in unrelated individuals using GWAS data;
+* Bivariate GREML: estimating the genetic correlation between two traits (diseases) using GWAS data;
+* Haseman-Elston regression to estimate SNP-based heritability for a trait and genetic correlation between two traits;
+* sBLUP: summary-data based BLUP analysis for genomic risk prediction;  
+
+**Genome-wide association analysis**
+* fastGWA: ultra-fast (mixed) linear model association analysis using a sparse GRM.
+* fastGWA-GLMM: ultra-fast generalized linear mixed model-based association analysis for binary traits using a sparse GRM.
+* MLMA and MLMA-LOCO: mixed linear model association analysis using a dense GRM;
+* COJO: conditional & joint association analysis using GWAS summary statistics;
+* mtCOJO: multi-trait-based conditional & joint association analysis using GWAS summary statistics;
+* fastBAT: a gene- or set-based association test using GWAS summary statistics;
+* fastGWA-BB: fastGWA-GLMM burden test;
+* ACAT-V: a fast Cauchy p-value combination test for the aggregate effect of multiple rare variants.
+
+
+**GWAS simulation, population genetics, and Mendelian randomisaion**
+* Simulating a phenotype based on GWAS data;
+* GSMR: generalised summary-data-based Mendelian randomisaion;
+* PCA analysis and estimation of Fst in GWAS data;
+* Estimating inbreeding coefficients of individuals from SNP data;
+* Computing LD scores and searching for LD friends for a list of target SNPs;
+
+
+
+**Latest release [v1.93.3beta](#Download), click to download or view update log (1 June 2021)**
 
 ### Credits 
 
-[Jian Yang](http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) developed the original version of the software with supports from [Peter Visscher](mailto:peter.visscher@uq.edu.au), [Mike Goddard](mailto:Mike.Goddard@dpi.vic.gov.au) and [Hong Lee](mailto:hong.lee@uq.edu.au). 
+[Jian Yang](http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) developed the original version of the software (with supports from [Peter Visscher](mailto:peter.visscher@uq.edu.au), [Mike Goddard](mailto:Mike.Goddard@dpi.vic.gov.au) and [Hong Lee](mailto:hong.lee@uq.edu.au)) and currently maintains the software. 
 
-[Zhili Zheng](mailto:zhili.zheng@outlook.com) programmed the fastGWA module, rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the GCTA-PCA module, improved the SBLUP module, developed the website, and is currently maintaining the software.
+[Zhili Zheng](mailto:zhili.zheng@outlook.com) programmed the fastGWA, fastGWA-GLMM and fastGWA-BB modules, rewrote the I/O and GRM modules, improved the GREML and bivariate GREML modules, extended the PCA module, and improved the SBLUP module.
 
-[Zhihong Zhu](mailto:z.zhu1@uq.edu.au) programmed the GCTA-mtCOJO, GCTA-GSMR module and improved the GCTA-COJO module. 
+[Zhihong Zhu](mailto:z.zhu1@uq.edu.au) programmed the mtCOJO and GSMR modules and improved the COJO module. 
+
+[Longda Jiang](longda.jiang@ue.edu.au) and [Hailing Fang](fanghailing@westlake.edu.cn) developed the ACAT-V module.
 
 [Jian Zeng](mailto:j.zeng@imb.uq.edu.au) rewrote the GCTA-HEreg module. 
 
 [Andrew Bakshi](mailto:andrew.bakshi@gmail.com) contributed to the GCTA-fastBAT module. 
 
+[Angli Xue](a.xue@imb.uq.edu.au) improved the GSMR module.
+
 [Robert Maier](mailto:rmaier@broadinstitute.org) improved the GCTA-SBLUP module.
 
-Contributions to the developments of methods included in GCTA (e.g., GREML methods, COJO, MLMA-LOCO, fastBAT and fastGWA) can be found in the papers cited in the corresponding webpages.
+Contributions to the development of methods included in GCTA (e.g., GREML methods, COJO, mtCOJO, MLMA-LOCO, fastBAT, fastGWA and fastGWA-GLMM) can be found in the papers cited in the corresponding web pages.  
 
 ### Questions and Help Requests 
-If you have any bug reports or questions please send an email to [Jian Yang](http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) at [jian.yang.qt@gmail.com](mailto:jian.yang.qt@gmail.com)
+If you have any bug reports or questions please send an email to [Jian Yang](http://scholar.google.com.au/citations?user=aLuqQs8AAAAJ&hl=en) at [jian.yang@westlake.edu.cn](mailto:jian.yang@westlake.edu.cn).
 
 ### Citations 
 **GCTA Software tool:**  
@@ -77,8 +94,10 @@ Bakshi et al. (2016) Fast set-based association analysis using summary data from
 Zhu et al. (2018) Causal associations between risk factors and common diseases inferred from GWAS summary data. Nat Commun. 9, 224.\[[PMID: 29335400](https://www.ncbi.nlm.nih.gov/pubmed/?term=29335400)\]  
 
 **fastGWA method:**  
-Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. Nature Genet. 51, 1749–1755 (2019) [doi:10.1038/s41588-019-0530-8](https://www.nature.com/articles/s41588-019-0530-8).
+Jiang et al. (2019) A resource-efficient tool for mixed model association analysis of large-scale data. Nat Genet. 51, 1749–1755. \[[PMID: 31768069](https://pubmed.ncbi.nlm.nih.gov/31768069/)\]
 
+**fastGWA-GLMM and fastGWA-BB methods:**
+Jiang et al. (2021) FastGWA-GLMM: a generalized linear mixed model association tool for biobank-scale data, 12 February 2021, PREPRINT (Version 1) available at Research Square [https://doi.org/10.21203/rs.3.rs-128758/v1](https://doi.org/10.21203/rs.3.rs-128758/v1)
 
-<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 8 May 2020</p>
+<p style="color: rgb(204,0,0);font-weight:bold;">Last update: 1 June 2021</p>
 
