@@ -13,7 +13,7 @@ We have applied fastGWA to 2,173 traits on 456,422 array-genotyped and imputed i
 Jiang L, Zheng Z, Qi T, Kemper KE, Wray NR, Visscher PM, Yang J (2019) A resource-efficient tool for mixed model association analysis of large-scale data. Nature Genetics, 51:1749–1755. [doi:10.1038/s41588-019-0530-8](https://www.nature.com/articles/s41588-019-0530-8).
 
 
-### fastGWA accepts the same input file formats as other GCTA modules:
+### fastGWA/fastGWA-GLMM accepts the same input file formats as other GCTA modules:
 #### Genotype files:
 - `--bfile` (Plink's classic binary format)
 - `--bgen` (IMPUTE format; requires `--sample`)  
@@ -153,7 +153,7 @@ We have applied fastGWA-GLMM to 2,989 binary traits on 456,348 array-genotyped a
 #### Citation
 Jiang L, Zheng Z, Yang J (2021) FastGWA-GLMM: a generalized linear mixed model association tool for biobank-scale data, 12 February 2021, PREPRINT (Version 1) available at Research Square [https://doi.org/10.21203/rs.3.rs-128758/v1](https://europepmc.org/article/PPR/PPR283012)
 
-### fastGWA accepts the same input file formats as other GCTA modules:
+### fastGWA/fastGWA-GLMM accepts the same input file formats as other GCTA modules:
 #### Genotype files:
 - `--bfile` (Plink's classic binary format)
 - `--bgen` (IMPUTE format; requires `--sample`)  
